@@ -1,0 +1,40 @@
+{% extends "quiz/base.html" %}
+{% load staticfiles %}
+
+{% block title %}{{ quiz.title }}{% endblock %}
+{% block side-complete %}active{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'quiz/css/newcreate.css' %}">
+<script src="{% static 'quiz/js/textarea_lines.js' %}"></script>
+<script src="{% static 'quiz/js/interpreter.js' %}"></script>
+{% endblock %}
+
+{% block page-content %}
+<div class="thumbnail">
+    <div class="caption-full">
+        <h1>{{ quiz.title }}</h1>
+        <form id="completeform" class="quizform" action="{% url 'quiz:complete' quiz.id %}" method="POST">
+            {% csrf_token %}
+            <ul class="list-group">
+                {% for form in l_forms %}
+                    <li class="q_container list-group-item">
+                    {% if form.get_type == 0 %}
+                        <span class="label-span">{{ form.text }}</span>
+                        {% for option in form.answer %}
+                            {{ option.tag }}
+                            <label for="{{ option.id_for_label }}">{{ option.choice_label }}</label>
+                            <br />
+                        {% endfor %}
+                    {% elif form.get_type == 1 %}
+                        <label for="{{ form.selected.id_for_label }}">{{ form.text }}</label>
+                        {{ form.answer }}
+                    {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+            <button type="submit" class="btn btn-sm btn-primary">Soumettre les réponses</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

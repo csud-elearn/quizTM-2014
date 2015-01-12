@@ -1,0 +1,58 @@
+.linedarea {
+	display: inline-block;
+	padding: 0px;
+	margin: 0px;
+	width: 90%;
+	resize: none;
+	vertical-align: top;
+	outline: none;
+	border: none;
+	overflow: hidden;
+	font-size: 15px;
+	font-family: monospace;
+	line-height: normal;
+}
+
+.lines {
+	display: inline-block;
+	padding: 0px;
+	margin: 0px;
+	vertical-align: top;
+	resize: none;
+	font-size: 15px;
+	padding-right: 7px;
+	border-right: 1px solid #81A8C1;
+	text-align: right;
+	width: 8%;
+	max-width: 40px;
+	font-family: monospace;
+	color: #b3b3b3;
+	line-height: normal;
+}
+
+.scroll {
+	height: 400px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	border: 1px solid #81A8C1;
+	border-radius: 3px;
+	text-align: left;
+	padding: 0px;
+}
+
+#view {
+	display: none;
+}
+
+#erreurs {
+	display: none;
+}
+
+#errors_p {
+	text-align: left;
+	border: 1px #BC3838 solid;
+	border-radius: 4px;
+	padding: 10px;
+	max-width: 100%;
+	color: #BC3838;
+}

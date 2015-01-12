@@ -1,0 +1,97 @@
+{% extends "quiz/base.html" %}
+{% load staticfiles %}
+
+{% block title %}Nouveau quiz{% endblock %}
+{% block side-create %}active{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'quiz/css/newcreate.css' %}">
+<script src="{% static 'quiz/js/textarea_lines.js' %}"></script>
+<script src="{% static 'quiz/js/interpreter.js' %}"></script>
+{% endblock %}
+
+{% block page-content %}
+<div class="thumbnail">
+    <div class="caption-full">
+        <h1>Nouveau quiz</h1>
+        <form id="createform" action="{% url 'quiz:create' %}" method="post">{% csrf_token %}
+            <label for="title">Titre du quiz</label>
+            <input type="text" class="form-control" id="title" name="title">
+            <label for="zonetexte">Texte du quiz</label>
+            <div class="btn-group" role="group">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" title="Nouvelle question">
+                          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#" class="tag-q" data-tag="##">QCM sélection multiple</a></li>
+                      <li><a href="#" class="tag-q"data-tag="**">QCM sélection unique</a></li>
+                      <li><a href="#" class="tag-q" data-tag="^^">Liste déroulante</a></li>
+                      <li><a href="#" class="tag-q" data-tag="??">Champ de texte</a></li>
+                    </ul>
+                </div>
+                <button type="button" class="btn btn-default btn-sm tag-p" title="Option / Réponse correcte" data-tag="=">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-default btn-sm tag-p" title="Option incorrecte" data-tag="*">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-default btn-sm tag-p" title="Commentaire pour la correction" data-tag="+">
+                    <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-default btn-sm tag-p" title="Nombre de points sur la question" data-tag=".">
+                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default btn-sm" title="Aperçu du quiz">
+                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-default btn-sm" title="Enregistrer en brouillon">
+                    <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-default btn-sm" title="Enregistrer le quiz">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon lines" id="basic-addon1">1</span>
+                <textarea class="form-control linedarea" id="zonetexte" placeholder="Votre texte ici" rows="18" wrap="off" name="quizcode" aria-describedby="basic-addon1"></textarea>
+            </div>
+            <input type="hidden" id="quiz_json" name="json" />
+        </form>
+        <button type="button" id="bouton" class="btn btn-sm btn-primary">Aperçu</button>
+        <button type="button" id="demo" class="btn btn-sm btn-primary">Démo</button>
+        <button type="button" id="submit" class="btn btn-sm btn-primary">Envoyer</button>
+        <div class="modal fade bs-example-modal-sm">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <p>One fine body&hellip;</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+    </div>
+</div>
+<div class="thumbnail viewbox">
+    <div class="caption-full">
+        <h2>Aperçu</h2>
+        <ul id="view_form" class="quizform list-group"></ul>
+    </div>
+</div>
+<div class="thumbnail errorsbox">
+    <div class="caption-full">
+        <h2>Erreurs</h2>
+        <div id="errors-div" class="alert alert-danger"></div>
+    </div>
+</div>
+{% endblock %}

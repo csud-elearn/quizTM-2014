@@ -1,0 +1,2 @@
+Pourquoi utiliser Python plutôt que Javascript ?
+------------------------------------------------

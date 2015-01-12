@@ -1,0 +1,36 @@
+.lines {
+	vertical-align: top;
+	padding: 6px 12px;
+	padding-right: 7px;
+	padding-left: 7px;
+  	font-size: 14px;
+  	line-height: normal;
+  	color: #b3b3b3;
+  	background-color: #fff;
+  	border: 1px solid #ccc;
+  	border-radius: 4px;
+  	text-align: right;
+  	min-width: 40px;
+  	font-family: monospace;
+}
+
+textarea.linedarea {
+	overflow-y: hidden;
+	overflow-x: scroll;
+	resize: none;
+	line-height: normal;
+	font-family: monospace;
+}
+
+.viewbox, .errorsbox {
+	display: none;
+}
+
+form > .btn-group {
+	margin-right: 20px;
+}
+
+.btn-group > .btn {
+	padding-left: 15px;
+	padding-right: 15px;
+}

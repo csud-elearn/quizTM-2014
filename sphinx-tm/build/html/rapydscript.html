@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Présentation de RapydScript &mdash; Développement d&#39;une application web de création de quiz 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Développement d&#39;une application web de création de quiz 0.1 documentation" href="index.html" />
+    <link rel="next" title="Documentation de l’application" href="documentation.html" />
+    <link rel="prev" title="Welcome to Développement d’une application web de création de quiz’s documentation!" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="documentation.html" title="Documentation de l’application"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Développement d’une application web de création de quiz’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Développement d&#39;une application web de création de quiz 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="presentation-de-rapydscript">
+<h1>Présentation de RapydScript<a class="headerlink" href="#presentation-de-rapydscript" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="pourquoi-utiliser-python-plutot-que-javascript">
+<h2>Pourquoi utiliser Python plutôt que Javascript ?<a class="headerlink" href="#pourquoi-utiliser-python-plutot-que-javascript" title="Permalink to this headline">¶</a></h2>
+<p>Les sites web d&#8217;aujourd&#8217;hui utilisent de plus en plus le javascript afin de rendre la navigation plus confortable pour le visiteur. Les fonctionnalités offertes par ce language permettent de concevoir une grande variété d&#8217;applications utilisables directement dans le navigateur, qui s&#8217;éxécutent côté client et qui sont donc par conséquent très accessibles au grand public. Le Javascript est donc un langage quasiment incontournable pour toute personne qui s&#8217;intéresse au développement web.</p>
+<p>Malgré cela, ce langage n&#8217;est pas forcément facile à aborder pour un programmeur habituée à coder en Java, en Python ou dans un autre langage de programmation moderne, car son fonctionnement diffère dans un certain nombre d&#8217;aspects fondamentaux. Par exemple, le Javascript est un langage orienté objet à prototype, c&#8217;est à dire que les objets utilisés en Javascript sont des copies d&#8217;objets prototype, et non des instances de classes comme en Python et Java. On peut également mentionner d&#8217;autres différences importantes, comme la portée des variables par défaut. Afin de palier aux difficultés que peut rencontrer un développeur qui débute dans ce langage, divers outils sont apparus pour tenter de remplacer Python par Javascript, avec pour objectif de combiner les possibilités offertes par le Javascript avec la simplicité et la clarté de Python. Ce travail a pour but de présenter et expliquer les fonctionnalités de RapydScript, un outil permettant d&#8217;écrire du code très semblable à du code Python (dans sa syntaxe et sa philosophie) et de générer du Javascript à partir de ce code.</p>
+</div>
+<div class="section" id="differentes-manieres-d-aborder-le-probleme-coffeescript-brython-et-rapydscript">
+<h2>Différentes manières d&#8217;aborder le problème : CoffeeScript, Brython et RapydScript<a class="headerlink" href="#differentes-manieres-d-aborder-le-probleme-coffeescript-brython-et-rapydscript" title="Permalink to this headline">¶</a></h2>
+<p>Un certain nombre d&#8217;outils open-source tentent de faciliter l&#8217;écriture de code Javascript et différentes approches du problème sont possibles. CoffeeScript (<a class="reference external" href="http://coffeescript.org/">http://coffeescript.org/</a>) est décrit par ses auteurs comme un langage à part entière, avec sa propre syntaxe (qui ressemble un peu à celle de python, mais qui s&#8217;inspire surtout de ruby), qui peut être compilé en Javascript. CoffeScript permet l&#8217;écriture d&#8217;un code source plus clair et concis, le code généré est éxecuté avec les mêmes performances que du code javascript natif (puisqu&#8217;il s&#8217;agit simplement de javascript), mais son utilisation nécessite l&#8217;apprentissage d&#8217;un nouveau langage, ce qui peut être un problème pour un débutant.</p>
+<p>À l&#8217;opposé, Brython (<a class="reference external" href="http://www.brython.info/">http://www.brython.info/</a>) propose une toute autre approche : le développeur peut écrire du code en Python qui sera éxecuté par un interpréteur python entièrement intégré dans la page web codé en javascript. C&#8217;est certainement la solution la plus fidèle à Python, puisque la syntaxe de Brython est exactement identique à celle de Python. L&#8217;accès au DOM et l&#8217;utilisation d&#8217;Ajax se fait via l&#8217;import de modules externes. Brython est donc idéal pour quelqu&#8217;un qui ne connaît pas Javascript mais possède de bonnes bases en Python. Cependant, comme la traduction en Javascript se fait &#8220;en live&#8221;, l&#8217;impact sur les performances se fait ressentir (<a class="reference external" href="http://pyppet.blogspot.ch/2013/11/brython-vs-pythonjs.html">http://pyppet.blogspot.ch/2013/11/brython-vs-pythonjs.html</a>) et peut poser problèmes pour des scripts complexes. Le script de l&#8217;interpréteur (environ 10&#8216;000 lignes) doit également être inclus dans chaque page html qui comporte du code Brython. De plus, il n&#8217;est pas possible d&#8217;utiliser des libraires Javascript externes, telles que jQuery ou AngularJS.</p>
+<p>RapydScript a l&#8217;avantage de combiner les qualités des deux outils cités plus haut, en permettant d&#8217;écrire du code très similaire à du code Python standard et en le compilant en Javascript. Rapydscript est donc facile à prendre en main pour n&#8217;importe quelle personne sachant coder en Python et ne limite pas la rapidité d&#8217;éxecution puisque le code qui sera executé est tout simplement du Javascript. Il est aussi possible d&#8217;appeler n&#8217;importe quelle fonction Javascript standard et par extension d&#8217;utiliser n&#8217;importe quelle librairie externe. Ce dernier point n&#8217;est pas négligeable puisque j&#8217;ai opté pour jQuery pour développer mon application de création de quiz en ligne. Le choix de RapydScript pour la réalisation de ce travail est apparu comme évident après avoir considéré les qualités et défauts de ces différents outils. La prise en main ainsi que la compréhension de son fonctionnement a pu se faire aisément, d&#8217;autant plus que l&#8217;absence de documentation ou de tutoriel complet sur cette technologie en français constitue une motivation supplémentaire et rend ce travail inédit.</p>
+</div>
+<div class="section" id="introduction-a-rapydscript">
+<h2>Introduction à RapydScript<a class="headerlink" href="#introduction-a-rapydscript" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="compilation">
+<h3>Compilation<a class="headerlink" href="#compilation" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="programmer-avec-rapydscript">
+<h3>Programmer avec RapydScript<a class="headerlink" href="#programmer-avec-rapydscript" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="notions-de-base">
+<h4>Notions de base<a class="headerlink" href="#notions-de-base" title="Permalink to this headline">¶</a></h4>
+<p>Pour un habitué de Python, la prise en main de RapydScript peut se faire très rapidement : il suffit d&#8217;écrire son programme comme si on écrivait un programme Python, même si dans certains cas particuliers il n&#8217;est pas possible de faire exactement la même chose avec RapydScript. Ces cas particuliers seront abordés plus loin.</p>
+<p>Pour commencer avec un exemple simple, voici en python une fonction qui prend nombres en argument et retourne le plus grand. La fonction est ensuite appelée. Ce code est parfaitement valide en Python.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">maximum</span><span class="p">(</span><span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n1</span> <span class="o">&gt;=</span> <span class="n">n2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n1</span>
+    <span class="k">elif</span> <span class="n">n2</span> <span class="o">&gt;</span> <span class="n">n1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n2</span>
+
+<span class="n">maximum</span><span class="p">(</span><span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">)</span> <span class="c">#Appel de la fonction</span>
+</pre></div>
+</div>
+<p>Une fois la compilation effectuée avec RapydScript, on obtient ce résultat :</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">maximum</span><span class="p">(</span><span class="nx">n1</span><span class="p">,</span> <span class="nx">n2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">n1</span> <span class="o">&gt;=</span> <span class="nx">n2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">n1</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">n2</span> <span class="o">&gt;</span> <span class="nx">n1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">n2</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">maximum</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">18</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>On peut voir les opérations qu&#8217;a fait RapydScript &#8220;traduire&#8221; le code source en Javascript : Remplacer le mot clé def par function, ajouter les accolades qui englobent la fonction et les if, ajouter des parenthèses autour des conditions, et ajouter un ; à la fin de chaque instruction. On remarque aussi que les commentaires ont été supprimés, puisqu&#8217;ils sont seulement utiles dans le code source. Le code ainsi produit peut maintenat être éxecuté dans n&#8217;importe quel navigateur.</p>
+<p>Cet exemple montre cependant un cas assez général puisque le code Javascript correspondant au code source est quasiment identique. Mais RapydScript permet aussi de compiler du code typiqement Python, comme par exemples des boucles for, qui n&#8217;ont pas d&#8217;équivalent en javascript.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">names_list</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Paul&quot;</span><span class="p">,</span> <span class="s">&quot;Marie&quot;</span><span class="p">,</span> <span class="s">&quot;Pierre&quot;</span><span class="p">,</span> <span class="s">&quot;Lucie&quot;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names_list</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>RapydScript produit un code équivalent en Javascript qui s&#8217;éxecutera comme en Python. Le code généré est cette fois plus complexe et des connaissances en javascript sont nécessaires pour le comprendre. Ce type de manipulations sera étudié dans un prochain chapitre. On peut par exemple aussi implémenter une fonction avec des arguments qui prennent des valeurs par défaut, ce qui n&#8217;est pas possible en javascript.</p>
+</div>
+<div class="section" id="programmation-orientee-objet-poo">
+<h4>Programmation orientée objet (POO)<a class="headerlink" href="#programmation-orientee-objet-poo" title="Permalink to this headline">¶</a></h4>
+<p>Ce qui fait de RapydScript un outil si puissant est principalement les possibilités qu&#8217;il offre pour faire de la POO. En Javascript, la POO est basée sur le prototypage, et il est beaucoup plus complexe de créer ses propres objets, avec de l&#8217;héritage, etc. En python, cela est beaucoup plus simple, il est donc particulièrement intéressant de pouvoir utiliser la POO Python pour faire de la programmation web frond-end.</p>
+<p>Encore une fois, il suffit d&#8217;écrire une classe comme on le ferait en Python:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MyObject</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="k">def</span> <span class="nf">get_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+
+<span class="nb">object</span> <span class="o">=</span> <span class="n">MyObject</span><span class="p">(</span><span class="s">&quot;Object 1&quot;</span><span class="p">)</span> <span class="c">#Instanciation avec un paramètre</span>
+<span class="nb">object</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span> <span class="c">#Retourne &quot;Objet 1&quot;</span>
+</pre></div>
+</div>
+<p>Il est également possible de faire de l&#8217;héritage :</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MyObjectPlus</span><span class="p">(</span><span class="n">MyObject</span><span class="p">):</span> <span class="c">#Classe qui hérite de la classe créée précédemment</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
+        <span class="n">MyObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">number</span> <span class="o">=</span> <span class="n">number</span>
+
+    <span class="k">def</span> <span class="nf">get_number</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">number</span>
+
+    <span class="k">def</span> <span class="nf">informations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&quot;Nom : &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s">&quot; /// Nombre : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">number</span><span class="p">)</span>
+
+<span class="n">objet</span> <span class="o">=</span> <span class="n">MyObjectPlus</span><span class="p">(</span><span class="s">&quot;Objet 2&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">objet</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span> <span class="c">#Retourne &quot;Objet 2&quot;</span>
+<span class="n">objet</span><span class="o">.</span><span class="n">get_number</span><span class="p">()</span> <span class="c">#Retourne 5</span>
+<span class="n">objet</span><span class="o">.</span><span class="n">informations</span><span class="p">()</span> <span class="c">#Retourne &quot;Nom : Objet 2 /// Nombre : 5&quot;</span>
+</pre></div>
+</div>
+<p>Il n&#8217;est par contre pas possible de définir des variables de classes avec RapydScript (si on définit une variable de classe, RapydScript l&#8217;ignore simplement). Cela est dû au fait qu&#8217;en Javascript, un objet n&#8217;est pas une instance d&#8217;une classe comme en Python, mais une copie d&#8217;un objet prototype. En Python, une variable de classe est en fait un attribut de l&#8217;objet Class. Il n&#8217;y a donc qu&#8217;une seul espace en mémoire pour cette variable. En Javascript, tous les attributs du prototype sont copiées à chaque fois qu&#8217;un objet est créé et il n&#8217;y a aucun équivalent aux variables de classe.</p>
+</div>
+<div class="section" id="utilisation-de-la-bibliotheque-standard-python">
+<h4>Utilisation de la bibliothèque standard Python<a class="headerlink" href="#utilisation-de-la-bibliotheque-standard-python" title="Permalink to this headline">¶</a></h4>
+<p>Avec RapydScript, il est possible d&#8217;utiliser dans le code source des fonctions provenant de différentes sources. La première est la bibilothèque standard de Python, c&#8217;est à dire les fonctions natives Python, telles que print(), len() ou range().</p>
+<p>Pour utiliser les fonctions de la bibliothèque standard Python, il faut placer l&#8217;instruction suivante au début du fichier Python :</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">stdlib</span>
+</pre></div>
+</div>
+<p>RapydScript définira ainsi ces fonctions dans le fichier généré et leur comportement sera en quelque sorte simulé en Javascript. Ces fonctions peuvent donc être utilisés comme on le ferait en Python, dans le code source.</p>
+</div>
+<div class="section" id="separer-son-code-en-plusieurs-fichiers">
+<h4>Séparer son code en plusieurs fichiers<a class="headerlink" href="#separer-son-code-en-plusieurs-fichiers" title="Permalink to this headline">¶</a></h4>
+<p>Il est déconseillé d&#8217;écrire tout son code dans un seul fichier lorsqu&#8217;on travaille sur un gros projet. Pour séparer son code en plusieurs fichiers, RapydScript prévoit un système d&#8217;imports qui ressemble à celui de Python. Voici comment procéder pour écrire son code dans plusieurs fichiers.</p>
+<p>Premièrement, chaque fichier du code source doit utiliser l&#8217;extension .pyj, qui est l&#8217;extension des fichiers RapydScript. Ensuite, ces fichiers peuvent être utilisés comme des modules et être importés depuis un autre fichier. Par exemple, si on a placé une partie de notre code dans un fichier &#8220;moduletest.pyj&#8221;, on ajoutera l&#8217;instruction suivante en début de fichier :</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">moduletest</span>
+</pre></div>
+</div>
+<p>Lors de la compilation, RapydScript va rassembler tous les fichiers du code source dans un même fichier Javascript, ce qui facilite aussi l&#8217;insertion du script dans un fichier HTML. Il est important de noter, cependant, que l&#8217;import d&#8217;un module ne rend pas ses fonctions disponibles dans un namespace distinct (ce qui est le cas en Python par contre). Par exemple, pour appeler la fonction test du module de l&#8217;exemple précédent, voici comment procéder :</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">moduletest</span>
+
+<span class="n">test</span><span class="p">()</span> <span class="c">#Correct</span>
+<span class="n">moduletest</span><span class="o">.</span><span class="n">test</span><span class="p">()</span> <span class="c">#Ne fonctionne pas</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="utilisation-de-fonctions-javascript-natives-ou-provenant-de-librairies-exernes">
+<h4>Utilisation de fonctions Javascript natives ou provenant de librairies exernes<a class="headerlink" href="#utilisation-de-fonctions-javascript-natives-ou-provenant-de-librairies-exernes" title="Permalink to this headline">¶</a></h4>
+<p>Il est également possible d&#8217;utiliser des fonctions Javascript natives, par exemple :</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c">#Ces deux expressions sont équivalentes :</span>
+<span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s">&quot;Bonjour&quot;</span><span class="p">)</span> <span class="c">#Fonction javascript</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Bonjour&quot;</span><span class="p">)</span> <span class="c">#Fonction python</span>
+</pre></div>
+</div>
+<p>L&#8217;exemple parle de lui-même et ne nécessite pas d&#8217;explications supplémentaires. Il peut parfois être pratique d&#8217;utiliser des fonctions qui n&#8217;ont pas d&#8217;équivalent en Python.</p>
+<p>Mais une autre grande force de RapydScript est la possibilité d&#8217;utiliser des librairies Javascript externes, telles que jQuery ou AngularJS. Pour cela, rien de plus simple, il suffit d&#8217;insérer le script (par exemple jQuery) que l&#8217;on veut utiliser dans le code HTML, comme ceci :</p>
+<div class="highlight-html"><div class="highlight"><pre><span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;jquery.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span><span class="c">&lt;!-- jQuery --&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;myscript.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span><span class="c">&lt;!-- Script créé avec RapydScript --&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;mydiv&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+</div>
+<p>On peut maintenant utiliser les fonctions jQuery dans notre code. Cette fonction sélectionne le &lt;div&gt; et y insère du texte :</p>
+<div class="highlight-python"><div class="highlight"><pre>def add_text(text):
+    $(&quot;#mydiv&quot;).text(text)
+
+add_text(&quot;Hello World&quot;)
+</pre></div>
+</div>
+<p>On peut procéder de la même manière pour n&#8217;importe quelle autre librairie externe Javascript.</p>
+</div>
+<div class="section" id="debugger-avec-rapydscript">
+<h4>Débugger avec RapydScript<a class="headerlink" href="#debugger-avec-rapydscript" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="cas-problematiques">
+<h4>Cas problématiques<a class="headerlink" href="#cas-problematiques" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+</div>
+<div class="section" id="comparaison-du-code-source-et-du-code-genere">
+<h2>Comparaison du code source et du code généré<a class="headerlink" href="#comparaison-du-code-source-et-du-code-genere" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Présentation de RapydScript</a><ul>
+<li><a class="reference internal" href="#pourquoi-utiliser-python-plutot-que-javascript">Pourquoi utiliser Python plutôt que Javascript ?</a></li>
+<li><a class="reference internal" href="#differentes-manieres-d-aborder-le-probleme-coffeescript-brython-et-rapydscript">Différentes manières d&#8217;aborder le problème : CoffeeScript, Brython et RapydScript</a></li>
+<li><a class="reference internal" href="#introduction-a-rapydscript">Introduction à RapydScript</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#compilation">Compilation</a></li>
+<li><a class="reference internal" href="#programmer-avec-rapydscript">Programmer avec RapydScript</a><ul>
+<li><a class="reference internal" href="#notions-de-base">Notions de base</a></li>
+<li><a class="reference internal" href="#programmation-orientee-objet-poo">Programmation orientée objet (POO)</a></li>
+<li><a class="reference internal" href="#utilisation-de-la-bibliotheque-standard-python">Utilisation de la bibliothèque standard Python</a></li>
+<li><a class="reference internal" href="#separer-son-code-en-plusieurs-fichiers">Séparer son code en plusieurs fichiers</a></li>
+<li><a class="reference internal" href="#utilisation-de-fonctions-javascript-natives-ou-provenant-de-librairies-exernes">Utilisation de fonctions Javascript natives ou provenant de librairies exernes</a></li>
+<li><a class="reference internal" href="#debugger-avec-rapydscript">Débugger avec RapydScript</a></li>
+<li><a class="reference internal" href="#cas-problematiques">Cas problématiques</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#comparaison-du-code-source-et-du-code-genere">Comparaison du code source et du code généré</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to Développement d&#8217;une application web de création de quiz&#8217;s documentation!</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="documentation.html"
+                        title="next chapter">Documentation de l&#8217;application</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/rapydscript.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="documentation.html" title="Documentation de l’application"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Développement d’une application web de création de quiz’s documentation!"
+             >previous</a> |</li>
+        <li><a href="index.html">Développement d&#39;une application web de création de quiz 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Benoît Léo Maillard.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

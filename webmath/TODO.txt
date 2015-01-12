@@ -1,0 +1,30 @@
+CREATE
+* L'utilisateur peut entrer du html dans le code du quiz -> a empêcher
+* Si l'utilisateur entre une ligne trop longue, les numéros de ligne seront décalés et le texte dépassera dans l'aperçu tilisateur
+* Trouver un moyen de gérer les retours à la ligne etc.
+* Ajouer la possibilité d'enregistrer un quiz en brouillon
+* Ajouter des boutons pour ajouter des questions etc.
+* Gérer l'affichage des maths avec Mathjax
+* Système de points --> FAIT
+* Ajouter une erreur dans le parser si l'attribut pour les points n'est pas un nombre --> FAIT
+* Problème si il y a une virgule dans les points (parseFloat("5,5") renvoie 5)
+* L'utilisateur doit entrer un titre -> Vérification javascript lorsqu'on appuie sur le bouton
+* Lors de la création, changer la redirection pour faire qqch de correct
+
+A REFLECHIR
+* Faut-il implémenter de nouvelles tables pour les statistiques des quiz pour éviter de faire trop de requêtes ? Sous quelle forme implémenter cela ? --> Une table de statistiques avec une relation vers
+  un groupe ferait parfaitement l'affaire. Les statistiques pourraient être affichées par groupe, ce qui serait idéal.
+* Aller voir les commentaires des modèles sur github --> FAIT
+
+COMPLETE
+* Ajouter un bouton d'aide pour répondre à une question. Par exemple : "Cochez
+* Vérifier que tous les champs sont remplis par Javascript. Si certains ne le sont pas, mettre un message d'avertissement
+
+CORRECTION
+* Deux colonnes de checkbox figées : une avec les réponses soumises et l'autre avec la correction
+* Les réponses soumises correctes sont affichées avec un font vert, les autres avec un rouge
+* Créer un moteur de vérification avec une certaine tolérance pour les questions simples.
+* Attribution des points : pour un qcm à réponse : tout les points / 0. Pour les qcm multi : division par le nombre de cases. Pour les questions simples : système de demi-point si la réponse n'est pas exacte ?
+
+FIND
+* Dans le tableau, ajouter une barre de progression selon la réussite globale qui change de couleur
