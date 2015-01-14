@@ -124,20 +124,15 @@
 \phantomsection\label{index::doc}
 
 
-Contenu:
 
-
-\chapter{Présentation de RapydScript}
-\label{rapydscript:developpement-d-une-application-web-de-creation-de-quiz-s-documentation}\label{rapydscript:presentation-de-rapydscript}\label{rapydscript::doc}
-
-\section{Pourquoi utiliser Python plutôt que Javascript ?}
-\label{rapydscript:pourquoi-utiliser-python-plutot-que-javascript}
+\chapter{Pourquoi utiliser Python plutôt que Javascript ?}
+\label{rapydscript:pourquoi-utiliser-python-plutot-que-javascript}\label{rapydscript:presentation-de-rapydscript}\label{rapydscript::doc}
 Les sites web d'aujourd'hui utilisent de plus en plus le javascript afin de rendre la navigation plus confortable pour le visiteur. Les fonctionnalités offertes par ce language permettent de concevoir une grande variété d'applications utilisables directement dans le navigateur, qui s'éxécutent côté client et qui sont donc par conséquent très accessibles au grand public. Le Javascript est donc un langage quasiment incontournable pour toute personne qui s'intéresse au développement web.
 
 Malgré cela, ce langage n'est pas forcément facile à aborder pour un programmeur habituée à coder en Java, en Python ou dans un autre langage de programmation moderne, car son fonctionnement diffère dans un certain nombre d'aspects fondamentaux. Par exemple, le Javascript est un langage orienté objet à prototype, c'est à dire que les objets utilisés en Javascript sont des copies d'objets prototype, et non des instances de classes comme en Python et Java. On peut également mentionner d'autres différences importantes, comme la portée des variables par défaut. Afin de palier aux difficultés que peut rencontrer un développeur qui débute dans ce langage, divers outils sont apparus pour tenter de remplacer Python par Javascript, avec pour objectif de combiner les possibilités offertes par le Javascript avec la simplicité et la clarté de Python. Ce travail a pour but de présenter et expliquer les fonctionnalités de RapydScript, un outil permettant d'écrire du code très semblable à du code Python (dans sa syntaxe et sa philosophie) et de générer du Javascript à partir de ce code.
 
 
-\section{Différentes manières d'aborder le problème : CoffeeScript, Brython et RapydScript}
+\chapter{Différentes manières d'aborder le problème : CoffeeScript, Brython et RapydScript}
 \label{rapydscript:differentes-manieres-d-aborder-le-probleme-coffeescript-brython-et-rapydscript}
 Un certain nombre d'outils open-source tentent de faciliter l'écriture de code Javascript et différentes approches du problème sont possibles. CoffeeScript (\href{http://coffeescript.org/}{http://coffeescript.org/}) est décrit par ses auteurs comme un langage à part entière, avec sa propre syntaxe (qui ressemble un peu à celle de python, mais qui s'inspire surtout de ruby), qui peut être compilé en Javascript. CoffeScript permet l'écriture d'un code source plus clair et concis, le code généré est éxecuté avec les mêmes performances que du code javascript natif (puisqu'il s'agit simplement de javascript), mais son utilisation nécessite l'apprentissage d'un nouveau langage, ce qui peut être un problème pour un débutant.
 
@@ -146,19 +141,19 @@ Un certain nombre d'outils open-source tentent de faciliter l'écriture de code 
 RapydScript a l'avantage de combiner les qualités des deux outils cités plus haut, en permettant d'écrire du code très similaire à du code Python standard et en le compilant en Javascript. Rapydscript est donc facile à prendre en main pour n'importe quelle personne sachant coder en Python et ne limite pas la rapidité d'éxecution puisque le code qui sera executé est tout simplement du Javascript. Il est aussi possible d'appeler n'importe quelle fonction Javascript standard et par extension d'utiliser n'importe quelle librairie externe. Ce dernier point n'est pas négligeable puisque j'ai opté pour jQuery pour développer mon application de création de quiz en ligne. Le choix de RapydScript pour la réalisation de ce travail est apparu comme évident après avoir considéré les qualités et défauts de ces différents outils. La prise en main ainsi que la compréhension de son fonctionnement a pu se faire aisément, d'autant plus que l'absence de documentation ou de tutoriel complet sur cette technologie en français constitue une motivation supplémentaire et rend ce travail inédit.
 
 
-\section{Introduction à RapydScript}
+\chapter{Introduction à RapydScript}
 \label{rapydscript:introduction-a-rapydscript}
 
-\subsection{Installation}
+\section{Installation}
 \label{rapydscript:installation}
 
-\subsection{Compilation}
+\section{Compilation}
 \label{rapydscript:compilation}
 
-\subsection{Programmer avec RapydScript}
+\section{Programmer avec RapydScript}
 \label{rapydscript:programmer-avec-rapydscript}
 
-\subsubsection{Notions de base}
+\subsection{Notions de base}
 \label{rapydscript:notions-de-base}
 Pour un habitué de Python, la prise en main de RapydScript peut se faire très rapidement : il suffit d'écrire son programme comme si on écrivait un programme Python, même si dans certains cas particuliers il n'est pas possible de faire exactement la même chose avec RapydScript. Ces cas particuliers seront abordés plus loin.
 
@@ -201,7 +196,7 @@ Cet exemple montre cependant un cas assez général puisque le code Javascript c
 RapydScript produit un code équivalent en Javascript qui s'éxecutera comme en Python. Le code généré est cette fois plus complexe et des connaissances en javascript sont nécessaires pour le comprendre. Ce type de manipulations sera étudié dans un prochain chapitre. On peut par exemple aussi implémenter une fonction avec des arguments qui prennent des valeurs par défaut, ce qui n'est pas possible en javascript.
 
 
-\subsubsection{Programmation orientée objet (POO)}
+\subsection{Programmation orientée objet (POO)}
 \label{rapydscript:programmation-orientee-objet-poo}
 Ce qui fait de RapydScript un outil si puissant est principalement les possibilités qu'il offre pour faire de la POO. En Javascript, la POO est basée sur le prototypage, et il est beaucoup plus complexe de créer ses propres objets, avec de l'héritage, etc. En python, cela est beaucoup plus simple, il est donc particulièrement intéressant de pouvoir utiliser la POO Python pour faire de la programmation web frond-end.
 
@@ -242,7 +237,7 @@ Il est également possible de faire de l'héritage :
 Il n'est par contre pas possible de définir des variables de classes avec RapydScript (si on définit une variable de classe, RapydScript l'ignore simplement). Cela est dû au fait qu'en Javascript, un objet n'est pas une instance d'une classe comme en Python, mais une copie d'un objet prototype. En Python, une variable de classe est en fait un attribut de l'objet Class. Il n'y a donc qu'une seul espace en mémoire pour cette variable. En Javascript, tous les attributs du prototype sont copiées à chaque fois qu'un objet est créé et il n'y a aucun équivalent aux variables de classe.
 
 
-\subsubsection{Utilisation de la bibliothèque standard Python}
+\subsection{Utilisation de la bibliothèque standard Python}
 \label{rapydscript:utilisation-de-la-bibliotheque-standard-python}
 Avec RapydScript, il est possible d'utiliser dans le code source des fonctions provenant de différentes sources. La première est la bibilothèque standard de Python, c'est à dire les fonctions natives Python, telles que print(), len() ou range().
 
@@ -255,7 +250,7 @@ Pour utiliser les fonctions de la bibliothèque standard Python, il faut placer 
 RapydScript définira ainsi ces fonctions dans le fichier généré et leur comportement sera en quelque sorte simulé en Javascript. Ces fonctions peuvent donc être utilisés comme on le ferait en Python, dans le code source.
 
 
-\subsubsection{Séparer son code en plusieurs fichiers}
+\subsection{Séparer son code en plusieurs fichiers}
 \label{rapydscript:separer-son-code-en-plusieurs-fichiers}
 Il est déconseillé d'écrire tout son code dans un seul fichier lorsqu'on travaille sur un gros projet. Pour séparer son code en plusieurs fichiers, RapydScript prévoit un système d'imports qui ressemble à celui de Python. Voici comment procéder pour écrire son code dans plusieurs fichiers.
 
@@ -275,7 +270,7 @@ Lors de la compilation, RapydScript va rassembler tous les fichiers du code sour
 \end{Verbatim}
 
 
-\subsubsection{Utilisation de fonctions Javascript natives ou provenant de librairies exernes}
+\subsection{Utilisation de fonctions Javascript natives ou provenant de librairies exernes}
 \label{rapydscript:utilisation-de-fonctions-javascript-natives-ou-provenant-de-librairies-exernes}
 Il est également possible d'utiliser des fonctions Javascript natives, par exemple :
 
@@ -313,26 +308,23 @@ add\PYGZus{}text(\PYGZdq{}Hello World\PYGZdq{})
 On peut procéder de la même manière pour n'importe quelle autre librairie externe Javascript.
 
 
-\subsubsection{Débugger avec RapydScript}
+\subsection{Débugger avec RapydScript}
 \label{rapydscript:debugger-avec-rapydscript}
 
-\subsubsection{Cas problématiques}
+\subsection{Cas problématiques}
 \label{rapydscript:cas-problematiques}
 
-\section{Comparaison du code source et du code généré}
+\chapter{Comparaison du code source et du code généré}
 \label{rapydscript:comparaison-du-code-source-et-du-code-genere}
 
-\chapter{Documentation de l'application}
-\label{documentation::doc}\label{documentation:documentation-de-l-application}
+\chapter{Description des fonctionnalités de l'application}
+\label{functionalities:description-des-fonctionnalites-de-l-application}\label{functionalities::doc}
 
-\section{Description des fonctionnalités}
-\label{documentation:description-des-fonctionnalites}
+\section{Professeurs}
+\label{functionalities:professeurs}
 
-\subsection{Professeurs}
-\label{documentation:professeurs}
-
-\subsubsection{Création de quiz}
-\label{documentation:creation-de-quiz}
+\subsection{Création de quiz}
+\label{functionalities:creation-de-quiz}
 Les professeurs peuvent créer un quiz en utilisant un format texte de type markdown pour créer différents types de questions et y attribuer certaines caractéristiques. Cet éditeur de quiz se présente se présente sous la forme d'une zone de texte dans laquelle le professeur peut entrer le code du quiz. Au début de chaque ligne, le prof entre un tag, chaque tag a une signification différente. Chaque tag doit être séparé de la suite de la ligne par un espace
 
 \begin{tabulary}{\linewidth}{|L|L|}
@@ -392,78 +384,248 @@ Ajout d'un commentaire d'explication qui sera affiché lors de la correction
 
 Voici un exemple de quiz comprenant 4 questions :
 
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYGZsh{}\PYGZsh{} Énoncé de la question à choix multiple (plusieurs cases peuvent être cochées)
-* Option 1
-= Option 2 (correcte)
-* Option 3
-= Option 4 (correcte)
-+ Commentaire affiché à la correction
-. 1.5
-
-** Énoncé de la question à choix multiple (une seule case peut être cochée)
-* Option 1
-* Option 2
-= Option 3 (correcte)
-. 2
-
-\PYGZca{}\PYGZca{} Liste déroulante
-* Option 1
-= Option 2 (correcte)
-* Option 3
-* Option 4
-
-?? Question à champ de texte
-= Réponse correcte
-= Autre réponse correcte possible
-\end{Verbatim}
-
 Lorsque le professeur appuie sur le bouton ``Aperçu'', il peut voir le rendu du quiz tel que le verront les étudiants. Les éventuelles erreurs dans le code (tag qui n'existe pas, etc.) sont affichés en rouge en dessous de l'aperçu. Le quiz ne peut pas être enregistré tant qu'il y a encore des erreurs dans le code. S'il commence à créer un quiz et désire le terminer plus tard, le professeur peut enregistrer un brouillon. L'outil de création de quiz supporte l'affichage des mathématiques avec MathJax (\href{http://www.mathjax.org/}{http://www.mathjax.org/}).
 
 Le prof doit également donner un titre au quiz et peut le relier à un plusieurs chapitres. Il décide de restreindre l'accès aux membres d'un ou plusieurs groupes ou de le rendre public. Pour créer un quiz, un prof a aussi la possibilité de reprendre un quiz déjà existant et de modifier son code. S'il opte pour cette solution, les statistiques du nouveau quiz ainsi créé repartent à zéro, puisque les questions ne sont plus forcément les mêmes.
 
 
-\subsubsection{Consultation des statistiques avancées}
-\label{documentation:consultation-des-statistiques-avancees}
+\subsection{Consultation des statistiques avancées}
+\label{functionalities:consultation-des-statistiques-avancees}
 Après que les élèves d'un groupe ont complété un quiz, le professeur peut afficher le résultat moyen des élèves, le \% de réussite à chaque question, mais aussi les réponses soumises par chaque élève en particulier. Le prof peut ainsi se faire une idée globale et plus cibleé du niveau de compréhension de son groupe.
 
 
-\subsection{Étudiants}
-\label{documentation:etudiants}
+\section{Étudiants}
+\label{functionalities:etudiants}
 
-\subsubsection{Trouver un quiz}
-\label{documentation:trouver-un-quiz}
+\subsection{Trouver un quiz}
+\label{functionalities:trouver-un-quiz}
 Pour trouver un quiz, un étudiant a plusieurs possibilités. Le professeur peut donner l'url exacte du quiz à compléter, ce qui peut être pratique dans un email ou toute communicaton informatisée. Une fonctionnalité permet au utilisateurs de générer un code QR correspondant à un quiz, ce qui est idéal pour afficher sur un projecteur en classe ou sur une feuille imprimée. Un étudiant peut aussi accéder à un quiz en mémorisant son id et en l'entrant dans la champ prévu à cet effet sur la page ``Trouver un quiz''.
 
 Dans son espace utilisateur, l'étudiant peut aussi consulter les derniers quizs créés dans son groupe et peut donc y accéder facilement.
 
 
-\subsubsection{Compléter un quiz et correction automatique}
-\label{documentation:completer-un-quiz-et-correction-automatique}
+\subsection{Compléter un quiz et correction automatique}
+\label{functionalities:completer-un-quiz-et-correction-automatique}
 Une fois que l'étudiant à accédé au quiz, il peut le compléter très simplement en remplissant les champs de formulaires affichés. Lorsqu'il a fini, il peut soumettre ses réponses et est redirigé vers une page de correction. Les réponses incorrectes sont affichées en rouge avec la solution et une explication pour chaque question. Les points reçus pour chaque question sont affichés avec le total de points sur le quiz. L'étudiant peut aussi comparer son score à la moyenne des autres étudiants du groupe. Un champ de texte est disponible pour envoyer des éventuelles remarques au professeur (signaler une erreur, poser une question). La page pour compléter un quiz ainsi que celle de la correction sont optimisées pour mobile et le design responsive s'adapte parfaitement à tous types de périphériques (desktop, portable, tablette, téléphone mobile).
 
 
-\section{Guide du programmeur}
-\label{documentation:guide-du-programmeur}
+\chapter{Organisation du code côté serveur}
+\label{code-backend:organisation-du-code-cote-serveur}\label{code-backend::doc}
 
-\section{Diagrammes de classes et organisation générale du code}
-\label{documentation:diagrammes-de-classes-et-organisation-generale-du-code}
+\chapter{Organisation du code côté client}
+\label{code-frontend:organisation-du-code-cote-client}\label{code-frontend::doc}
 
-\section{Explication des parties clés du code}
-\label{documentation:explication-des-parties-cles-du-code}
+\chapter{Modèle relationnel}
+\label{database:modele-relationnel}\label{database::doc}
 
-\chapter{Tables des matières}
-\label{index:tables-des-matieres}\begin{itemize}
+\section{Introduction}
+\label{database:introduction}
+Une des premières étapes importantes dans le développement d'un site web est d'imaginer un modèle relationnel structuré permettant de stocker toutes les données générées par l'application et de les relier entre elles. Un modèle relationnel décrit les différentes tables de la base de donnée et les liens entre ces tables. Une table peut être comparée à un tableau contenant des informations. Chaque table comporte une ou plusieurs colonnes, chaque colonne stockant un type de données précisément défini (par exemple, un nombre entier ou une chaîne de caractères). Si on imagine une table contenant les données sur les utilisateurs d'un site, une colonne pourrait alors définir le pseudonyme d'un utilisateur et une autre son âge. On peut ensuite ajouter des lignes à une table, c'est à dire un ensemble de données dont chaque élément correspond à une colonne de la table. Dans l'exemple précédent, on ajouterait ainsi une ligne pour chaque utilisateur s'inscrivant sur le site. Chaque ligne est identifiée grâce à une clé primaire unique, habituellement sous la forme d'un entier, qui permet de créer des liens entre différentes lignes de différentes tables (appelées relations).
+
+Voici, présenté sous forme simplifiée à l'aide d'un tableau, comment on pourrait stocker les données concernant des quiz ainsi que leurs créateurs :
+
+\textbf{Table contenant les utilisateurs :}
+
+\begin{tabulary}{\linewidth}{|L|L|L|}
+\hline
+\textsf{\relax 
+Clé primaire
+} & \textsf{\relax 
+Prénom
+} & \textsf{\relax 
+Âge
+}\\
+\hline
+1
+ & 
+Paul
+ & 
+26
+\\
+
+2
+ & 
+Juliette
+ & 
+22
+\\
+
+3
+ & 
+Marc
+ & 
+48
+\\
+\hline\end{tabulary}
+
+
+\textbf{Table contenant les quiz :}
+
+\begin{tabulary}{\linewidth}{|L|L|L|L|}
+\hline
+\textsf{\relax 
+Clé primaire
+} & \textsf{\relax 
+Titre du quiz
+} & \textsf{\relax 
+Nombre de questions
+} & \textsf{\relax 
+Auteur
+}\\
+\hline
+1
+ & 
+Fonctions exponentielles
+ & 
+5
+ & 
+3
+\\
+
+2
+ & 
+Logarithmes
+ & 
+9
+ & 
+3
+\\
+
+3
+ & 
+Comportement à l'infini
+ & 
+8
+ & 
+2
+\\
+\hline\end{tabulary}
+
+
+Ici, le quiz \#1 a comme titre \emph{Fonctions exponentielles}, comporte 5 questions et a été créé par Marc (Utilisateur 3).
+
+Une fois que le modèle relationnel a été élaboré, on peut créer une base de données sous forme informatique. Le langage SQL permet de créer les tables d'une base de données, d'y enregistrer des informations et de faire des requêtes (c'est à dire récupérer des données enregistrées). Un logiciel ou une application web peut ainsi communiquer avec une base de données et stocker les informations nécessaires de manière permanente.
+
+Django offre la possibilité de créer une base de données et d'interagir celle-ci par le biais d'une API, on peut donc éviter l'utilisation du langage SQL et communiquer avec la base de données avec des objets et des méthodes Python.
+
+
+\section{Utilisation dans l'application de création de quiz}
+\label{database:utilisation-dans-l-application-de-creation-de-quiz}
+
+\subsection{Implémentation dans Django}
+\label{database:implementation-dans-django}
+Comme indiqué précédemment, Django fournit une interface de haut niveau pour créer et interagir avec une base de données. On peut écrire nos tables avec une architecture orientée objet, que Django ``traduira'' ensuite en SQL. Ainsi, pour créer une table dans notre base de données, il suffit de définir une classe héritant de \code{models.Model} et d'initialiser des variables de classes pour ajouter des colonnes à la tables. Ainsi, par exemple, pour implémenter une table contenant les données générales d'un quiz, il suffit d'écrire le code suivant :
+
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Quiz}\PYG{p}{(}\PYG{n}{models}\PYG{o}{.}\PYG{n}{Model}\PYG{p}{)}\PYG{p}{:} \PYG{c}{\PYGZsh{}Infos générales sur le quiz}
+    \PYG{n}{title} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{CharField}\PYG{p}{(}\PYG{n}{max\PYGZus{}length}\PYG{o}{=}\PYG{l+m+mi}{100}\PYG{p}{)} \PYG{c}{\PYGZsh{}Colonne contenant une chaîne de caractères de longueur max 100}
+    \PYG{n}{creation\PYGZus{}date} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{DateTimeField}\PYG{p}{(}\PYG{p}{)} \PYG{c}{\PYGZsh{}Colonne contenant une date/heure}
+    \PYG{n}{code} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{CharField}\PYG{p}{(}\PYG{n}{max\PYGZus{}length}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{)} \PYG{c}{\PYGZsh{}Colonne contenant une chaîne de caractères de longueur max 1000}
+\end{Verbatim}
+
+Les fonctions comme \code{CharField()} ou \code{DateTimeField()} permettent de définir des champs d'un type de données précis. Une liste complète des types de champs est disponible sur la documentation officielle de Django : \href{https://docs.djangoproject.com/en/1.7/ref/models/fields/\#field-types}{https://docs.djangoproject.com/en/1.7/ref/models/fields/\#field-types}
+
+
+\subsection{Schéma global}
+\label{database:schema-global}
+L'élaboration d'un schéma relationnel n'est pas chose facile car il est nécessaire que celui ci réponde à certains critères. Il doit être relativement simple afin de garder une certaine flexibilité et d'avoir la possiblité d'être modifié plus tard, car il est souvent difficile de prédire à l'avance les difficultés liées au stockage des données qui pourraient être rencontrées au cours du développement. Il doit également être possible d'ajouter des fonctionnalités sans devoir revoir toute l'organisation du schéma ou créer un trop grand nombre de nouvelles tables. Malgré cela, le modèle doit aussi correspondre aux exigences des fonctionnalités de l'application et doit inclure toutes les relations nécessaires. Il s'agit donc d'une étape cruciale qui peut s'avérer décisive pour la suite du développement.
+
+Voici le diagramme des tables utilisés pour stocker les données des quiz :
+\begin{figure}[htbp]
+\centering
+
+\includegraphics{quiz-models.png}
+\end{figure}
+
+
+\subsection{Explications des tables}
+\label{database:explications-des-tables}
+
+\subsubsection{Quiz}
+\label{database:quiz}
+La table \emph{Quiz} est la table centrale de l'application et toutes les autres tables s'organisent autour d'elle. Elle comporte trois colonnes : une contenant le titre, une autre contenant la date et l'heure de création (ajouté automatiquement lorsqu'un nouveau quiz est créé) ainsi qu'une colonne dans laquelle est stockée le code du quiz. L'intérêt de stocker ce code n'est pas forcément évident. Il est stocké afin de permettre à un professeur de créer un nouveau quiz à partir d'un quiz créé précédemment par lui-même ou un autre professeur (à condition que celui-ci l'ait rendu public). Le code peut ainsi être modifé pour ajouter des questions ou apporter une quelconque modification. Cette table comporte également une relation vers une table Teacher (qui ne fait pas partie de l'application de quiz) qui permet l'intégration dans le projet de groupe.
+\begin{itemize}
 \item {} 
-\emph{genindex}
-
-\item {} 
-\emph{modindex}
-
-\item {} 
-\emph{search}
+\textbf{Note :} la fonction de récupération de quiz existants n'est pas encore fonctionnelle.
 
 \end{itemize}
+
+Avec django, il est possible d'initialiser automatiquement un champ \code{DateTimeField} à la date/heure du moment où le modèle est instancié avec le paramètre \code{auto\_now\_add}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{creation\PYGZus{}date} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{DateTimeField}\PYG{p}{(}\PYG{n}{auto\PYGZus{}now\PYGZus{}add}\PYG{o}{=}\PYG{n+nb+bp}{True}\PYG{p}{)}
+\end{Verbatim}
+
+
+\subsubsection{SimpleQuestion}
+\label{database:simplequestion}
+Cette table contient les informations générales sur les questions simples du quiz. Ces questions sont présentées sous la forme d'un simple champ de texte lorsqu'un élève complète le quiz. Une première colonne \emph{title} stocke l'énoncé de la question, \emph{comment} permet d'inclure un commentaire affiché lors de la correction automatique du quiz (par exemple la démonstration d'une égalité), \emph{points} définit le nombre de points attribués sur cette question et \emph{number} enregistre l'ordre auquel doit apparaître la question dans le quiz. Une relation désigne le quiz qui intègre la question.
+
+
+\subsubsection{SqAnswer}
+\label{database:sqanswer}
+Cette table contient simplement la solution de la question définie par la relation vers la table \emph{SimpleQuestion}. Il est important de noter qu'il peut y avoir plusieurs solutions possibles pour une question et c'est la raison pour laquelle la solution n'est pas simplement stockée dans une colonne de \emph{SimpleQuestion}.
+
+
+\subsubsection{Qcm}
+\label{database:qcm}
+La table Qcm permet de stocker les informations générales à propos des questions à choix multiples. Ces questions sont affichées sous forme de boutons radio, de cases à cocher ou de liste déroulante.
+Cette table reprend plusieurs colonnes de la table \emph{SimpleQuestion}. C'est pourquoi ces deux tables héritent en fait du même modèle dans django :
+
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{QuizQuestion}\PYG{p}{(}\PYG{n}{models}\PYG{o}{.}\PYG{n}{Model}\PYG{p}{)}\PYG{p}{:} \PYG{c}{\PYGZsh{}Classe abstraite dont héritent tous les types de questions}
+    \PYG{n}{text} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{CharField}\PYG{p}{(}\PYG{n}{max\PYGZus{}length}\PYG{o}{=}\PYG{l+m+mi}{200}\PYG{p}{)} \PYG{c}{\PYGZsh{}Énoncé}
+    \PYG{n}{comment} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{CharField}\PYG{p}{(}\PYG{n}{max\PYGZus{}length}\PYG{o}{=}\PYG{l+m+mi}{200}\PYG{p}{,} \PYG{n}{blank}\PYG{o}{=}\PYG{n+nb+bp}{True}\PYG{p}{)} \PYG{c}{\PYGZsh{}Commentaire affiché lors de la correction}
+    \PYG{n}{points} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{FloatField}\PYG{p}{(}\PYG{n}{default}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{)}
+    \PYG{n}{number} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{IntegerField}\PYG{p}{(}\PYG{p}{)} \PYG{c}{\PYGZsh{}Ordre de la question dans le quiz}
+    \PYG{n}{id\PYGZus{}quiz} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{ForeignKey}\PYG{p}{(}\PYG{n}{Quiz}\PYG{p}{)}
+
+    \PYG{k}{class} \PYG{n+nc}{Meta}\PYG{p}{:}
+        \PYG{n}{abstract} \PYG{o}{=} \PYG{n+nb+bp}{True}
+
+\PYG{k}{class} \PYG{n+nc}{SimpleQuestion}\PYG{p}{(}\PYG{n}{QuizQuestion}\PYG{p}{)}\PYG{p}{:}
+    \PYG{k}{pass} \PYG{c}{\PYGZsh{}Cette table reprend simplement les mêmes colonnes que le modèle abstrait}
+
+\PYG{k}{class} \PYG{n+nc}{Qcm}\PYG{p}{(}\PYG{n}{QuizQuestion}\PYG{p}{)}\PYG{p}{:}
+    \PYG{n}{multi\PYGZus{}answers} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{BooleanField}\PYG{p}{(}\PYG{p}{)} \PYG{c}{\PYGZsh{}True si il est possible de cocher plusieurs choix}
+    \PYG{n}{show\PYGZus{}list} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{BooleanField}\PYG{p}{(}\PYG{p}{)} \PYG{c}{\PYGZsh{}True si les choix sont affichés sous forme de liste déroulante}
+\end{Verbatim}
+
+En plus des colonnes héritées, \emph{Qcm} possède deux champs de types booléens : \emph{multi\_answers}, qui définit si plusieurs options peuvent être cochées ou non, et \emph{show\_list}, qui vaut \code{True} si la question est affichée sous forme de liste déroulante. Si plusieurs options peuvent être cochées, la question sera dans tous les cas affichée à l'aide de cases à cocher.
+
+
+\subsubsection{QcmChoice}
+\label{database:qcmchoice}
+Cette table contient les différents choix possibles pour la question définie par la relation vers \emph{Qcm}. Elle est formée de deux champs, le premier contenant le texte du choix et l'autre définissant par un booléen s'il est correct ou non de cocher ce choix. Une question à choix multiples doit avoir au moins deux choix possibles et au moins un choix correct. Si \emph{multi\_answers} vaut \code{False} dans \emph{Qcm}, une seule option peut être correcte puisque l'étudiant n'a la possibilité de cocher qu'une seule option.
+\begin{itemize}
+\item {} 
+\textbf{Note :} D'un point de vue purement relationnel, comme il est indiqué sur le diagramme, cette table possède une relation vers une table qui sert d'intermédiaire entre \emph{QcmChoice} et \emph{QcmSubmitMulti}. Cette table intermédiaire crée en fait une relation de type \emph{many-to-many}. L'implémentation de ce type de relation avec Django sera abordé plus loin.
+
+\end{itemize}
+
+
+\subsubsection{CompletedQuiz}
+\label{database:completedquiz}
+Comme on peut le voir sur le diagramme, à l'instar de \emph{Quiz}, cette table occupe aussi un rôle central dans le modèle relationnel. Elle permet de faire le lien entre un quiz créé par un professeur et les réponses soumises à ce quiz par les étudiants. Elle possède donc une relation vers une table \emph{Student} (encore une fois extérieure à l'application). De l'autre côté, cette table pointe vers \emph{Quiz} et définit logiquement le quiz auquel l'étudiant a répondu. Un seul champ est présent : la date et l'heure de la soumission des réponses.
+
+
+\subsubsection{SqSubmit}
+\label{database:sqsubmit}
+Il s'agit simplement de la réponse apportée à une question simple. La table a donc un champ \emph{text} qui contient la réponse soumise par l'élève. Elle possède aussi deux relations, une vers \emph{SimpleQuestion} pour préciser la question auquel l'élève a répondu, et une autre vers \emph{CompletedQuiz}. La réponse soumise par l'élève sera ensuite comparée à(aux) solution(s) enregistrées pour déterminer si les points sont attribués ou non.
+
+
+\subsubsection{QcmSubmitOne et QcmSubmitMulti}
+\label{database:qcmsubmitone-et-qcmsubmitmulti}
+Ces deux tables sont très similaires. \emph{QcmSubmitOne} contient une relation vers l'option sélectionnée par l'étudiant dans une question à choix multiples avec \emph{multi\_answers} valant \code{False}, tandis que \emph{QcmSubmitMulti} peut contenir des relations vers plusieurs options, quand \emph{multi\_answers} vaut \code{True}. Il s'agit donc dans le premier cas d'une relation \emph{many-to-one}, puique plusieurs lignes (réponses fournies par différents élèves) peuvent pointer vers la même option. Dans le deuxième cas, c'est une relation de type \emph{many-to-many}, puisque plusieurs lignes peuvent pointer vers plusieurs options.
+
+Dans Django, voici comment seront définies ces relations :
+
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{id\PYGZus{}selected} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{ForeignKey}\PYG{p}{(}\PYG{n}{QcmChoice}\PYG{p}{,} \PYG{n}{null}\PYG{o}{=}\PYG{n+nb+bp}{True}\PYG{p}{)} \PYG{c}{\PYGZsh{}Relation many\PYGZhy{}to\PYGZhy{}one \PYGZhy{}\PYGZgt{} Une seule option choisie}
+\PYG{n}{id\PYGZus{}selected} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{ManyToManyField}\PYG{p}{(}\PYG{n}{QcmChoice}\PYG{p}{,} \PYG{n}{null}\PYG{o}{=}\PYG{n+nb+bp}{True}\PYG{p}{)} \PYG{c}{\PYGZsh{}Relation many\PYGZhy{}to\PYGZhy{}many \PYGZhy{}\PYGZgt{} Plusieurs options peuvent être choisies}
+\end{Verbatim}
+
+L'argument \code{null} vaut ici \code{True} car il se peut que l'étudiant ne coche aucun choix. Dans ce cas-là, il n'obtiendra dans tous les cas aucun point.
 
 
 

@@ -1,28 +1,38 @@
 \select@language {french}
-\contentsline {chapter}{\numberline {1}Pr\IeC {\'e}sentation de RapydScript}{3}{chapter.1}
-\contentsline {section}{\numberline {1.1}Pourquoi utiliser Python plut\IeC {\^o}t que Javascript ?}{3}{section.1.1}
-\contentsline {section}{\numberline {1.2}Diff\IeC {\'e}rentes mani\IeC {\`e}res d'aborder le probl\IeC {\`e}me : CoffeeScript, Brython et RapydScript}{3}{section.1.2}
-\contentsline {section}{\numberline {1.3}Introduction \IeC {\`a} RapydScript}{4}{section.1.3}
-\contentsline {subsection}{\numberline {1.3.1}Installation}{4}{subsection.1.3.1}
-\contentsline {subsection}{\numberline {1.3.2}Compilation}{4}{subsection.1.3.2}
-\contentsline {subsection}{\numberline {1.3.3}Programmer avec RapydScript}{4}{subsection.1.3.3}
-\contentsline {subsubsection}{Notions de base}{4}{subsubsection*.3}
-\contentsline {subsubsection}{Programmation orient\IeC {\'e}e objet (POO)}{5}{subsubsection*.4}
-\contentsline {subsubsection}{Utilisation de la biblioth\IeC {\`e}que standard Python}{6}{subsubsection*.5}
-\contentsline {subsubsection}{S\IeC {\'e}parer son code en plusieurs fichiers}{6}{subsubsection*.6}
-\contentsline {subsubsection}{Utilisation de fonctions Javascript natives ou provenant de librairies exernes}{6}{subsubsection*.7}
-\contentsline {subsubsection}{D\IeC {\'e}bugger avec RapydScript}{7}{subsubsection*.8}
-\contentsline {subsubsection}{Cas probl\IeC {\'e}matiques}{7}{subsubsection*.9}
-\contentsline {section}{\numberline {1.4}Comparaison du code source et du code g\IeC {\'e}n\IeC {\'e}r\IeC {\'e}}{7}{section.1.4}
-\contentsline {chapter}{\numberline {2}Documentation de l'application}{9}{chapter.2}
-\contentsline {section}{\numberline {2.1}Description des fonctionnalit\IeC {\'e}s}{9}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}Professeurs}{9}{subsection.2.1.1}
-\contentsline {subsubsection}{Cr\IeC {\'e}ation de quiz}{9}{subsubsection*.10}
-\contentsline {subsubsection}{Consultation des statistiques avanc\IeC {\'e}es}{10}{subsubsection*.11}
-\contentsline {subsection}{\numberline {2.1.2}\IeC {\'E}tudiants}{10}{subsection.2.1.2}
-\contentsline {subsubsection}{Trouver un quiz}{10}{subsubsection*.12}
-\contentsline {subsubsection}{Compl\IeC {\'e}ter un quiz et correction automatique}{10}{subsubsection*.13}
-\contentsline {section}{\numberline {2.2}Guide du programmeur}{11}{section.2.2}
-\contentsline {section}{\numberline {2.3}Diagrammes de classes et organisation g\IeC {\'e}n\IeC {\'e}rale du code}{11}{section.2.3}
-\contentsline {section}{\numberline {2.4}Explication des parties cl\IeC {\'e}s du code}{11}{section.2.4}
-\contentsline {chapter}{\numberline {3}Tables des mati\IeC {\`e}res}{13}{chapter.3}
+\contentsline {chapter}{\numberline {1}Pourquoi utiliser Python plut\IeC {\^o}t que Javascript ?}{1}{chapter.1}
+\contentsline {chapter}{\numberline {2}Diff\IeC {\'e}rentes mani\IeC {\`e}res d'aborder le probl\IeC {\`e}me : CoffeeScript, Brython et RapydScript}{3}{chapter.2}
+\contentsline {chapter}{\numberline {3}Introduction \IeC {\`a} RapydScript}{5}{chapter.3}
+\contentsline {section}{\numberline {3.1}Installation}{5}{section.3.1}
+\contentsline {section}{\numberline {3.2}Compilation}{5}{section.3.2}
+\contentsline {section}{\numberline {3.3}Programmer avec RapydScript}{5}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Notions de base}{5}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Programmation orient\IeC {\'e}e objet (POO)}{6}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}Utilisation de la biblioth\IeC {\`e}que standard Python}{7}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.4}S\IeC {\'e}parer son code en plusieurs fichiers}{7}{subsection.3.3.4}
+\contentsline {subsection}{\numberline {3.3.5}Utilisation de fonctions Javascript natives ou provenant de librairies exernes}{7}{subsection.3.3.5}
+\contentsline {subsection}{\numberline {3.3.6}D\IeC {\'e}bugger avec RapydScript}{8}{subsection.3.3.6}
+\contentsline {subsection}{\numberline {3.3.7}Cas probl\IeC {\'e}matiques}{8}{subsection.3.3.7}
+\contentsline {chapter}{\numberline {4}Comparaison du code source et du code g\IeC {\'e}n\IeC {\'e}r\IeC {\'e}}{9}{chapter.4}
+\contentsline {chapter}{\numberline {5}Description des fonctionnalit\IeC {\'e}s de l'application}{11}{chapter.5}
+\contentsline {section}{\numberline {5.1}Professeurs}{11}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Cr\IeC {\'e}ation de quiz}{11}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}Consultation des statistiques avanc\IeC {\'e}es}{11}{subsection.5.1.2}
+\contentsline {section}{\numberline {5.2}\IeC {\'E}tudiants}{12}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Trouver un quiz}{12}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Compl\IeC {\'e}ter un quiz et correction automatique}{12}{subsection.5.2.2}
+\contentsline {chapter}{\numberline {6}Organisation du code c\IeC {\^o}t\IeC {\'e} serveur}{13}{chapter.6}
+\contentsline {chapter}{\numberline {7}Organisation du code c\IeC {\^o}t\IeC {\'e} client}{15}{chapter.7}
+\contentsline {chapter}{\numberline {8}Mod\IeC {\`e}le relationnel}{17}{chapter.8}
+\contentsline {section}{\numberline {8.1}Introduction}{17}{section.8.1}
+\contentsline {section}{\numberline {8.2}Utilisation dans l'application de cr\IeC {\'e}ation de quiz}{18}{section.8.2}
+\contentsline {subsection}{\numberline {8.2.1}Impl\IeC {\'e}mentation dans Django}{18}{subsection.8.2.1}
+\contentsline {subsection}{\numberline {8.2.2}Sch\IeC {\'e}ma global}{18}{subsection.8.2.2}
+\contentsline {subsection}{\numberline {8.2.3}Explications des tables}{18}{subsection.8.2.3}
+\contentsline {subsubsection}{Quiz}{18}{subsubsection*.3}
+\contentsline {subsubsection}{SimpleQuestion}{19}{subsubsection*.4}
+\contentsline {subsubsection}{SqAnswer}{19}{subsubsection*.5}
+\contentsline {subsubsection}{Qcm}{19}{subsubsection*.6}
+\contentsline {subsubsection}{QcmChoice}{20}{subsubsection*.7}
+\contentsline {subsubsection}{CompletedQuiz}{20}{subsubsection*.8}
+\contentsline {subsubsection}{SqSubmit}{20}{subsubsection*.9}
+\contentsline {subsubsection}{QcmSubmitOne et QcmSubmitMulti}{20}{subsubsection*.10}

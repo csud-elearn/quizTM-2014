@@ -26,7 +26,7 @@
     <script type="text/javascript" src="_static/translations.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="documentation Développement d&#39;une application web de création de quiz 0.1" href="index.html" />
-    <link rel="next" title="&lt;no title&gt;" href="organization.html" />
+    <link rel="next" title="Organisation du code côté serveur" href="code-backend.html" />
     <link rel="prev" title="Présentation de RapydScript" href="rapydscript.html" /> 
   </head>
   <body>
@@ -37,7 +37,7 @@
           <a href="genindex.html" title="Index général"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="organization.html" title="&lt;no title&gt;"
+          <a href="code-backend.html" title="Organisation du code côté serveur"
              accesskey="N">suivant</a> |</li>
         <li class="right" >
           <a href="rapydscript.html" title="Présentation de RapydScript"
@@ -58,27 +58,46 @@
 <div class="section" id="creation-de-quiz">
 <h3>Création de quiz<a class="headerlink" href="#creation-de-quiz" title="Lien permanent vers ce titre">¶</a></h3>
 <p>Les professeurs peuvent créer un quiz en utilisant un format texte de type markdown pour créer différents types de questions et y attribuer certaines caractéristiques. Cet éditeur de quiz se présente se présente sous la forme d&#8217;une zone de texte dans laquelle le professeur peut entrer le code du quiz. Au début de chaque ligne, le prof entre un tag, chaque tag a une signification différente. Chaque tag doit être séparé de la suite de la ligne par un espace</p>
-<p>+=====+=============================================================================+
-| Tag | Signification                                                               |
-+*****+*****************************************************************************+
-| ##  | Question à choix multiple avec plusieurs options cochables                  |
-+=====+=============================================================================+
-| **| Question à choix multiple avec une seule option cochable                    |
-+=====+=============================================================================+
-| ^^  | Liste déroulante avec une option sélectionnable                             |
-+=====+=============================================================================+
-| ??  | Question avec un champ de texte à remplir                                   |
-+=====+=============================================================================+
-| *  | Option invalide dans un QCM                                                 |
-+=====+=============================================================================+
-| *   | Option valide dans un QCM                                                   |
-+=====+=============================================================================+
-| *   | Réponse correcte dans une question à champ de texte                         |
-+=====+=============================================================================+
-| .   | Permet de définir le nombre de points sur la question (par défaut, 1)       |
-+=====+=============================================================================+
-| +  | Ajout d&#8217;un commentaire d&#8217;explication qui sera affiché lors de la correction |
-+=====+=============================================================================+</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="94%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Tag</th>
+<th class="head">Signification</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>##</td>
+<td>Question à choix multiple avec plusieurs options cochables</td>
+</tr>
+<tr class="row-odd"><td>**</td>
+<td>Question à choix multiple avec une seule option cochable</td>
+</tr>
+<tr class="row-even"><td>^^</td>
+<td>Liste déroulante avec une option sélectionnable</td>
+</tr>
+<tr class="row-odd"><td>??</td>
+<td>Question avec un champ de texte à remplir</td>
+</tr>
+<tr class="row-even"><td>*</td>
+<td>Option invalide dans un QCM</td>
+</tr>
+<tr class="row-odd"><td>=</td>
+<td>Option valide dans un QCM</td>
+</tr>
+<tr class="row-even"><td>=</td>
+<td>Réponse correcte dans une question à champ de texte</td>
+</tr>
+<tr class="row-odd"><td>.</td>
+<td>Permet de définir le nombre de points sur la question (par défaut, 1)</td>
+</tr>
+<tr class="row-even"><td>+</td>
+<td>Ajout d&#8217;un commentaire d&#8217;explication qui sera affiché lors de la correction</td>
+</tr>
+</tbody>
+</table>
 <p>Voici un exemple de quiz comprenant 4 questions :</p>
 <p>Lorsque le professeur appuie sur le bouton &#8220;Aperçu&#8221;, il peut voir le rendu du quiz tel que le verront les étudiants. Les éventuelles erreurs dans le code (tag qui n&#8217;existe pas, etc.) sont affichés en rouge en dessous de l&#8217;aperçu. Le quiz ne peut pas être enregistré tant qu&#8217;il y a encore des erreurs dans le code. S&#8217;il commence à créer un quiz et désire le terminer plus tard, le professeur peut enregistrer un brouillon. L&#8217;outil de création de quiz supporte l&#8217;affichage des mathématiques avec MathJax (<a class="reference external" href="http://www.mathjax.org/">http://www.mathjax.org/</a>).</p>
 <p>Le prof doit également donner un titre au quiz et peut le relier à un plusieurs chapitres. Il décide de restreindre l&#8217;accès aux membres d&#8217;un ou plusieurs groupes ou de le rendre public. Pour créer un quiz, un prof a aussi la possibilité de reprendre un quiz déjà existant et de modifier son code. S&#8217;il opte pour cette solution, les statistiques du nouveau quiz ainsi créé repartent à zéro, puisque les questions ne sont plus forcément les mêmes.</p>
@@ -129,8 +148,8 @@
   <p class="topless"><a href="rapydscript.html"
                         title="Chapitre précédent">Présentation de RapydScript</a></p>
   <h4>Sujet suivant</h4>
-  <p class="topless"><a href="organization.html"
-                        title="Chapitre suivant">&lt;no title&gt;</a></p>
+  <p class="topless"><a href="code-backend.html"
+                        title="Chapitre suivant">Organisation du code côté serveur</a></p>
   <h3>Cette page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/functionalities.txt"
@@ -160,7 +179,7 @@
           <a href="genindex.html" title="Index général"
              >index</a></li>
         <li class="right" >
-          <a href="organization.html" title="&lt;no title&gt;"
+          <a href="code-backend.html" title="Organisation du code côté serveur"
              >suivant</a> |</li>
         <li class="right" >
           <a href="rapydscript.html" title="Présentation de RapydScript"
