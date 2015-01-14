@@ -1,0 +1,28 @@
+\select@language {french}
+\contentsline {chapter}{\numberline {1}Pr\IeC {\'e}sentation de RapydScript}{3}{chapter.1}
+\contentsline {section}{\numberline {1.1}Pourquoi utiliser Python plut\IeC {\^o}t que Javascript ?}{3}{section.1.1}
+\contentsline {section}{\numberline {1.2}Diff\IeC {\'e}rentes mani\IeC {\`e}res d'aborder le probl\IeC {\`e}me : CoffeeScript, Brython et RapydScript}{3}{section.1.2}
+\contentsline {section}{\numberline {1.3}Introduction \IeC {\`a} RapydScript}{4}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}Installation}{4}{subsection.1.3.1}
+\contentsline {subsection}{\numberline {1.3.2}Compilation}{4}{subsection.1.3.2}
+\contentsline {subsection}{\numberline {1.3.3}Programmer avec RapydScript}{4}{subsection.1.3.3}
+\contentsline {subsubsection}{Notions de base}{4}{subsubsection*.3}
+\contentsline {subsubsection}{Programmation orient\IeC {\'e}e objet (POO)}{5}{subsubsection*.4}
+\contentsline {subsubsection}{Utilisation de la biblioth\IeC {\`e}que standard Python}{6}{subsubsection*.5}
+\contentsline {subsubsection}{S\IeC {\'e}parer son code en plusieurs fichiers}{6}{subsubsection*.6}
+\contentsline {subsubsection}{Utilisation de fonctions Javascript natives ou provenant de librairies exernes}{6}{subsubsection*.7}
+\contentsline {subsubsection}{D\IeC {\'e}bugger avec RapydScript}{7}{subsubsection*.8}
+\contentsline {subsubsection}{Cas probl\IeC {\'e}matiques}{7}{subsubsection*.9}
+\contentsline {section}{\numberline {1.4}Comparaison du code source et du code g\IeC {\'e}n\IeC {\'e}r\IeC {\'e}}{7}{section.1.4}
+\contentsline {chapter}{\numberline {2}Documentation de l'application}{9}{chapter.2}
+\contentsline {section}{\numberline {2.1}Description des fonctionnalit\IeC {\'e}s}{9}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Professeurs}{9}{subsection.2.1.1}
+\contentsline {subsubsection}{Cr\IeC {\'e}ation de quiz}{9}{subsubsection*.10}
+\contentsline {subsubsection}{Consultation des statistiques avanc\IeC {\'e}es}{10}{subsubsection*.11}
+\contentsline {subsection}{\numberline {2.1.2}\IeC {\'E}tudiants}{10}{subsection.2.1.2}
+\contentsline {subsubsection}{Trouver un quiz}{10}{subsubsection*.12}
+\contentsline {subsubsection}{Compl\IeC {\'e}ter un quiz et correction automatique}{10}{subsubsection*.13}
+\contentsline {section}{\numberline {2.2}Guide du programmeur}{11}{section.2.2}
+\contentsline {section}{\numberline {2.3}Diagrammes de classes et organisation g\IeC {\'e}n\IeC {\'e}rale du code}{11}{section.2.3}
+\contentsline {section}{\numberline {2.4}Explication des parties cl\IeC {\'e}s du code}{11}{section.2.4}
+\contentsline {chapter}{\numberline {3}Tables des mati\IeC {\`e}res}{13}{chapter.3}
