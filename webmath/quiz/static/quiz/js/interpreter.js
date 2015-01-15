@@ -42,6 +42,13 @@
         child.prototype = Object.create(parent.prototype);
         child.prototype.constructor = child;
     }
+    function _$rapyd$_bind(fn, thisArg) {
+        if (fn._orig) fn = fn._orig;
+        if (thisArg === false) return fn;
+        var ret = fn.bind(thisArg);
+        ret._orig = fn;
+        return ret;
+    }
     var JSON, str;
             JSON = JSON || {};
     if (!JSON.stringify) {
@@ -775,10 +782,17 @@
         $("#zonetexte").val(demo_text);
         update_lines(count(demo_text));
     }
+    function bind() {
+        var b_questions, b_properties;
+        b_questions = $(".tag-p");
+        b_properties = $(".tag-q");
+        b_questions.click();
+    }
     function main() {
         $("#bouton").click(start_render);
         $("#demo").click(demo);
         $("#submit").click(submit);
+        _$rapyd$_bind();
     }
     jQuery(document).ready(main);
 })();

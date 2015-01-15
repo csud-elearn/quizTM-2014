@@ -13,9 +13,16 @@ class SaveQuestion:
         self.id_quiz = quiz_db
         self.number = n
 
+#Enregistre une question simple
 class SaveSimpleQuestion(SaveQuestion):
     def save_db(self):
-        self.question_db = SimpleQuestion(text=self.text, comment=self.comment, number=self.number, id_quiz=self.id_quiz, points=self.points)
+        self.question_db = SimpleQuestion( #Enregistrement dans la table avec les paramètres
+            text=self.text,
+            comment=self.comment,
+            number=self.number,
+            id_quiz=self.id_quiz,
+            points=self.points
+        )
         self.question_db.save()
         
         for answer in self.question["answers"]:
@@ -28,7 +35,15 @@ class SaveSimpleQuestion(SaveQuestion):
 #Classe abstraite pour tous les QCM
 class SaveQcm(SaveQuestion):
     def save_db(self):
-        self.question_db = Qcm(text=self.text, comment=self.comment, number=self.number, id_quiz=self.id_quiz, multi_answers=self.multi_answers, show_list=self.show_list, points=self.points)
+        self.question_db = Qcm(
+            text=self.text, 
+            comment=self.comment, 
+            number=self.number, 
+            id_quiz=self.id_quiz, 
+            multi_answers=self.multi_answers, 
+            show_list=self.show_list, 
+            points=self.points
+        )
         self.question_db.save()
         
         for option in self.question["options"]:
@@ -40,21 +55,24 @@ class SaveQcm(SaveQuestion):
         
         choice_db = QcmChoice(text=text, valid=valid, id_qcm=self.question_db)
         choice_db.save()
-    
+
+#Enregistre un qcm de type checkbox
 class SaveQcmCheckbox(SaveQcm):
     def __init__(self, quiz_db, question, n):
         SaveQcm.__init__(self, quiz_db, question, n)
         
         self.multi_answers = True
         self.show_list = False
-        
+
+#Enregistre un qcm de type radio
 class SaveQcmRadio(SaveQcm):
     def __init__(self, quiz_db, question, n):
         SaveQcm.__init__(self, quiz_db, question, n)
         
         self.multi_answers = False
         self.show_list = False
-        
+
+#Enregistre un qcm de type liste déroulante
 class SaveQcmSelect(SaveQcm):
     def __init__(self, quiz_db, question, n):
         SaveQcm.__init__(self, quiz_db, question, n)
