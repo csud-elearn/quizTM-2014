@@ -14,7 +14,7 @@
 
 
 \title{Développement d'une application web de création de quiz}
-\date{14 January 2015}
+\date{15 January 2015}
 \release{0.1}
 \author{Benoît Léo Maillard}
 \newcommand{\sphinxlogo}{}
@@ -125,35 +125,38 @@
 
 
 
-\chapter{Pourquoi utiliser Python plutôt que Javascript ?}
-\label{rapydscript:pourquoi-utiliser-python-plutot-que-javascript}\label{rapydscript:presentation-de-rapydscript}\label{rapydscript::doc}
+\chapter{Présentation de RapydScript}
+\label{rapydscript:presentation-de-rapydscript}\label{rapydscript::doc}\label{rapydscript:application-de-creation-de-quiz}
+
+\section{Pourquoi utiliser Python plutôt que Javascript ?}
+\label{rapydscript:pourquoi-utiliser-python-plutot-que-javascript}
 Les sites web d'aujourd'hui utilisent de plus en plus le javascript afin de rendre la navigation plus confortable pour le visiteur. Les fonctionnalités offertes par ce language permettent de concevoir une grande variété d'applications utilisables directement dans le navigateur, qui s'éxécutent côté client et qui sont donc par conséquent très accessibles au grand public. Le Javascript est donc un langage quasiment incontournable pour toute personne qui s'intéresse au développement web.
 
-Malgré cela, ce langage n'est pas forcément facile à aborder pour un programmeur habituée à coder en Java, en Python ou dans un autre langage de programmation moderne, car son fonctionnement diffère dans un certain nombre d'aspects fondamentaux. Par exemple, le Javascript est un langage orienté objet à prototype, c'est à dire que les objets utilisés en Javascript sont des copies d'objets prototype, et non des instances de classes comme en Python et Java. On peut également mentionner d'autres différences importantes, comme la portée des variables par défaut. Afin de palier aux difficultés que peut rencontrer un développeur qui débute dans ce langage, divers outils sont apparus pour tenter de remplacer Python par Javascript, avec pour objectif de combiner les possibilités offertes par le Javascript avec la simplicité et la clarté de Python. Ce travail a pour but de présenter et expliquer les fonctionnalités de RapydScript, un outil permettant d'écrire du code très semblable à du code Python (dans sa syntaxe et sa philosophie) et de générer du Javascript à partir de ce code.
+Malgré cela, ce langage n'est pas forcément facile à aborder pour un programmeur habituée à coder en Java, en Python ou dans un autre langage de programmation moderne, car son fonctionnement diffère dans un certain nombre d'aspects fondamentaux. Par exemple, le Javascript est un langage orienté objet à prototype, c'est à dire que les objets utilisés en Javascript sont des copies d'objets prototype, et non des instances de classes comme en Python et Java. On peut également mentionner d'autres différences importantes, comme la portée des variables par défaut. Afin de palier aux difficultés que peut rencontrer un développeur qui débute dans ce langage, divers outils sont apparus pour tenter de remplacer Javascript par Python, avec pour objectif de combiner les possibilités offertes par le Javascript avec la simplicité et la clarté de Python. Ce travail a pour but de présenter et expliquer les fonctionnalités de RapydScript, un outil permettant d'écrire du code très semblable à du code Python (dans sa syntaxe et sa philosophie) et de générer du Javascript à partir de ce code.
 
 
-\chapter{Différentes manières d'aborder le problème : CoffeeScript, Brython et RapydScript}
+\section{Différentes manières d'aborder le problème : CoffeeScript, Brython et RapydScript}
 \label{rapydscript:differentes-manieres-d-aborder-le-probleme-coffeescript-brython-et-rapydscript}
 Un certain nombre d'outils open-source tentent de faciliter l'écriture de code Javascript et différentes approches du problème sont possibles. CoffeeScript (\href{http://coffeescript.org/}{http://coffeescript.org/}) est décrit par ses auteurs comme un langage à part entière, avec sa propre syntaxe (qui ressemble un peu à celle de python, mais qui s'inspire surtout de ruby), qui peut être compilé en Javascript. CoffeScript permet l'écriture d'un code source plus clair et concis, le code généré est éxecuté avec les mêmes performances que du code javascript natif (puisqu'il s'agit simplement de javascript), mais son utilisation nécessite l'apprentissage d'un nouveau langage, ce qui peut être un problème pour un débutant.
 
-À l'opposé, Brython (\href{http://www.brython.info/}{http://www.brython.info/}) propose une toute autre approche : le développeur peut écrire du code en Python qui sera éxecuté par un interpréteur python entièrement intégré dans la page web codé en javascript. C'est certainement la solution la plus fidèle à Python, puisque la syntaxe de Brython est exactement identique à celle de Python. L'accès au DOM et l'utilisation d'Ajax se fait via l'import de modules externes. Brython est donc idéal pour quelqu'un qui ne connaît pas Javascript mais possède de bonnes bases en Python. Cependant, comme la traduction en Javascript se fait ``en live'', l'impact sur les performances se fait ressentir (\href{http://pyppet.blogspot.ch/2013/11/brython-vs-pythonjs.html}{http://pyppet.blogspot.ch/2013/11/brython-vs-pythonjs.html}) et peut poser problèmes pour des scripts complexes. Le script de l'interpréteur (environ 10`000 lignes) doit également être inclus dans chaque page html qui comporte du code Brython. De plus, il n'est pas possible d'utiliser des libraires Javascript externes, telles que jQuery ou AngularJS.
+À l'opposé, Brython (\href{http://www.brython.info/}{http://www.brython.info/}) propose une toute autre approche : le développeur peut écrire du code en Python qui sera éxecuté par un interpréteur Python entièrement intégré dans la page web codé en javascript. C'est certainement la solution la plus fidèle à Python, puisque la syntaxe de Brython est exactement identique à celle de Python. L'accès au DOM et l'utilisation d'Ajax se fait via l'import de modules externes. Brython est donc idéal pour quelqu'un qui ne connaît pas Javascript mais possède de bonnes bases en Python. Cependant, comme la traduction en Javascript se fait ``en live'', l'impact sur les performances se fait ressentir (\href{http://pyppet.blogspot.ch/2013/11/brython-vs-pythonjs.html}{http://pyppet.blogspot.ch/2013/11/brython-vs-pythonjs.html}) et peut poser problèmes pour des scripts complexes. Le script de l'interpréteur (environ 10`000 lignes) doit également être inclus dans chaque page html qui comporte du code Brython. De plus, il n'est pas possible d'utiliser des libraires Javascript externes, telles que jQuery ou AngularJS.
 
-RapydScript a l'avantage de combiner les qualités des deux outils cités plus haut, en permettant d'écrire du code très similaire à du code Python standard et en le compilant en Javascript. Rapydscript est donc facile à prendre en main pour n'importe quelle personne sachant coder en Python et ne limite pas la rapidité d'éxecution puisque le code qui sera executé est tout simplement du Javascript. Il est aussi possible d'appeler n'importe quelle fonction Javascript standard et par extension d'utiliser n'importe quelle librairie externe. Ce dernier point n'est pas négligeable puisque j'ai opté pour jQuery pour développer mon application de création de quiz en ligne. Le choix de RapydScript pour la réalisation de ce travail est apparu comme évident après avoir considéré les qualités et défauts de ces différents outils. La prise en main ainsi que la compréhension de son fonctionnement a pu se faire aisément, d'autant plus que l'absence de documentation ou de tutoriel complet sur cette technologie en français constitue une motivation supplémentaire et rend ce travail inédit.
+RapydScript a l'avantage de combiner les qualités des deux outils cités plus haut, en permettant d'écrire du code très similaire à du code Python standard et en le compilant en Javascript. Rapydscript est donc facile à prendre en main pour n'importe quelle personne sachant coder en Python et ne limite pas la rapidité d'éxecution puisque le code qui sera executé est tout simplement du Javascript. Il est aussi possible d'appeler n'importe quelle fonction Javascript standard et par extension d'utiliser n'importe quelle librairie externe. Ce dernier point n'est pas négligeable puisque j'ai opté pour jQuery pour développer mon application de création de quiz en ligne. Le choix de RapydScript pour la réalisation de ce travail est apparu comme évident après avoir considéré les qualités et défauts de ces différents outils. La prise en main ainsi que la compréhension de son fonctionnement a pu se faire aisément, d'autant plus que l'absence de documentation ou de tutoriel complet sur cette technologie en français constitue une motivation supplémentaire et donne un aspect inédit à ce travail.
 
 
-\chapter{Introduction à RapydScript}
+\section{Introduction à RapydScript}
 \label{rapydscript:introduction-a-rapydscript}
 
-\section{Installation}
+\subsection{Installation}
 \label{rapydscript:installation}
 
-\section{Compilation}
+\subsection{Compilation}
 \label{rapydscript:compilation}
 
-\section{Programmer avec RapydScript}
+\subsection{Programmer avec RapydScript}
 \label{rapydscript:programmer-avec-rapydscript}
 
-\subsection{Notions de base}
+\subsubsection{Notions de base}
 \label{rapydscript:notions-de-base}
 Pour un habitué de Python, la prise en main de RapydScript peut se faire très rapidement : il suffit d'écrire son programme comme si on écrivait un programme Python, même si dans certains cas particuliers il n'est pas possible de faire exactement la même chose avec RapydScript. Ces cas particuliers seront abordés plus loin.
 
@@ -182,9 +185,9 @@ Une fois la compilation effectuée avec RapydScript, on obtient ce résultat :
 \PYG{n+nx}{maximum}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{,} \PYG{l+m+mi}{18}\PYG{p}{)}\PYG{p}{;}
 \end{Verbatim}
 
-On peut voir les opérations qu'a fait RapydScript ``traduire'' le code source en Javascript : Remplacer le mot clé def par function, ajouter les accolades qui englobent la fonction et les if, ajouter des parenthèses autour des conditions, et ajouter un ; à la fin de chaque instruction. On remarque aussi que les commentaires ont été supprimés, puisqu'ils sont seulement utiles dans le code source. Le code ainsi produit peut maintenat être éxecuté dans n'importe quel navigateur.
+On peut voir les opérations qu'a fait RapydScript ``traduire'' le code source en Javascript : Remplacer le mot clé \code{def} par \code{function}, ajouter les accolades qui englobent la fonction et les structures \code{if}, ajouter des parenthèses autour des conditions et ajouter un \code{;} à la fin de chaque instruction. On remarque aussi que les commentaires ont été supprimés, puisqu'ils sont seulement utiles dans le code source. Le code ainsi produit peut maintenant être éxecuté dans n'importe quel navigateur.
 
-Cet exemple montre cependant un cas assez général puisque le code Javascript correspondant au code source est quasiment identique. Mais RapydScript permet aussi de compiler du code typiqement Python, comme par exemples des boucles for, qui n'ont pas d'équivalent en javascript.
+Cet exemple montre cependant un cas assez peu significatif de la puissance de RapydScript puisque le code Javascript correspondant au code source est quasiment identique. Mais RapydScript permet aussi de compiler du code typiqement Python, comme par exemple des boucles for, qui n'ont pas d'équivalent en javascript.
 
 \begin{Verbatim}[commandchars=\\\{\}]
 \PYG{n}{names\PYGZus{}list} \PYG{o}{=} \PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{Paul}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{Marie}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{Pierre}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{Lucie}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}
@@ -193,12 +196,12 @@ Cet exemple montre cependant un cas assez général puisque le code Javascript c
     \PYG{k}{print}\PYG{p}{(}\PYG{n}{name}\PYG{p}{)}
 \end{Verbatim}
 
-RapydScript produit un code équivalent en Javascript qui s'éxecutera comme en Python. Le code généré est cette fois plus complexe et des connaissances en javascript sont nécessaires pour le comprendre. Ce type de manipulations sera étudié dans un prochain chapitre. On peut par exemple aussi implémenter une fonction avec des arguments qui prennent des valeurs par défaut, ce qui n'est pas possible en javascript.
+RapydScript produit un code équivalent en Javascript qui s'éxecutera comme en Python. Le code généré est cette fois plus complexe et des connaissances en Javascript sont nécessaires pour le comprendre. Ce type de manipulations sera étudié dans un chapitre ultérieur. On peut par exemple aussi implémenter une fonction avec des arguments qui prennent des valeurs par défaut, ce qui n'est pas possible en Javascript.
 
 
-\subsection{Programmation orientée objet (POO)}
+\subsubsection{Programmation orientée objet (POO)}
 \label{rapydscript:programmation-orientee-objet-poo}
-Ce qui fait de RapydScript un outil si puissant est principalement les possibilités qu'il offre pour faire de la POO. En Javascript, la POO est basée sur le prototypage, et il est beaucoup plus complexe de créer ses propres objets, avec de l'héritage, etc. En python, cela est beaucoup plus simple, il est donc particulièrement intéressant de pouvoir utiliser la POO Python pour faire de la programmation web frond-end.
+Ce qui fait de RapydScript un outil si puissant est principalement les possibilités qu'il offre pour faire de la POO. En Javascript, la POO est basée sur le prototypage, et il est beaucoup plus complexe de créer ses propres objets, avec de l'héritage, etc. En python, cela est beaucoup plus simple, il est donc particulièrement intéressant de pouvoir utiliser la POO Python pour faire de la programmation web front-end.
 
 Encore une fois, il suffit d'écrire une classe comme on le ferait en Python:
 
@@ -234,12 +237,12 @@ Il est également possible de faire de l'héritage :
 \PYG{n}{objet}\PYG{o}{.}\PYG{n}{informations}\PYG{p}{(}\PYG{p}{)} \PYG{c}{\PYGZsh{}Retourne \PYGZdq{}Nom : Objet 2 /// Nombre : 5\PYGZdq{}}
 \end{Verbatim}
 
-Il n'est par contre pas possible de définir des variables de classes avec RapydScript (si on définit une variable de classe, RapydScript l'ignore simplement). Cela est dû au fait qu'en Javascript, un objet n'est pas une instance d'une classe comme en Python, mais une copie d'un objet prototype. En Python, une variable de classe est en fait un attribut de l'objet Class. Il n'y a donc qu'une seul espace en mémoire pour cette variable. En Javascript, tous les attributs du prototype sont copiées à chaque fois qu'un objet est créé et il n'y a aucun équivalent aux variables de classe.
+Il n'est par contre pas possible de définir des variables de classes avec RapydScript (si on définit une variable de classe, RapydScript l'ignore simplement). Cela est dû au fait qu'en Javascript, un objet n'est pas une instance d'une classe comme en Python, mais une copie d'un objet prototype. En Python, une variable de classe est en fait un attribut de l'objet \code{Class}. Il n'y a donc qu'une seul espace en mémoire pour cette variable. En Javascript, tous les attributs du prototype sont copiées à chaque fois qu'un objet est créé et il n'y a aucun équivalent aux variables de classe.
 
 
-\subsection{Utilisation de la bibliothèque standard Python}
+\subsubsection{Utilisation de la bibliothèque standard Python}
 \label{rapydscript:utilisation-de-la-bibliotheque-standard-python}
-Avec RapydScript, il est possible d'utiliser dans le code source des fonctions provenant de différentes sources. La première est la bibilothèque standard de Python, c'est à dire les fonctions natives Python, telles que print(), len() ou range().
+Avec RapydScript, il est possible d'utiliser dans le code des fonctions provenant de différentes sources. La première est la bibilothèque standard de Python, c'est à dire les fonctions natives Python, telles que \code{print()}, \code{len()} ou \code{range()}.
 
 Pour utiliser les fonctions de la bibliothèque standard Python, il faut placer l'instruction suivante au début du fichier Python :
 
@@ -250,17 +253,17 @@ Pour utiliser les fonctions de la bibliothèque standard Python, il faut placer 
 RapydScript définira ainsi ces fonctions dans le fichier généré et leur comportement sera en quelque sorte simulé en Javascript. Ces fonctions peuvent donc être utilisés comme on le ferait en Python, dans le code source.
 
 
-\subsection{Séparer son code en plusieurs fichiers}
+\subsubsection{Séparer son code en plusieurs fichiers}
 \label{rapydscript:separer-son-code-en-plusieurs-fichiers}
 Il est déconseillé d'écrire tout son code dans un seul fichier lorsqu'on travaille sur un gros projet. Pour séparer son code en plusieurs fichiers, RapydScript prévoit un système d'imports qui ressemble à celui de Python. Voici comment procéder pour écrire son code dans plusieurs fichiers.
 
-Premièrement, chaque fichier du code source doit utiliser l'extension .pyj, qui est l'extension des fichiers RapydScript. Ensuite, ces fichiers peuvent être utilisés comme des modules et être importés depuis un autre fichier. Par exemple, si on a placé une partie de notre code dans un fichier ``moduletest.pyj'', on ajoutera l'instruction suivante en début de fichier :
+Premièrement, chaque fichier du code source doit utiliser l'extension \emph{.pyj}, qui est l'extension des fichiers RapydScript. Ensuite, ces fichiers peuvent être utilisés comme des modules et être importés depuis un autre fichier. Par exemple, si on a placé une partie de notre code dans un fichier \emph{moduletest.pyj}, on ajoutera l'instruction suivante en début de fichier :
 
 \begin{Verbatim}[commandchars=\\\{\}]
 \PYG{k+kn}{import} \PYG{n+nn}{moduletest}
 \end{Verbatim}
 
-Lors de la compilation, RapydScript va rassembler tous les fichiers du code source dans un même fichier Javascript, ce qui facilite aussi l'insertion du script dans un fichier HTML. Il est important de noter, cependant, que l'import d'un module ne rend pas ses fonctions disponibles dans un namespace distinct (ce qui est le cas en Python par contre). Par exemple, pour appeler la fonction test du module de l'exemple précédent, voici comment procéder :
+Lors de la compilation, RapydScript va rassembler tous les fichiers du code source dans un même fichier Javascript, ce qui facilite aussi l'insertion du script dans un fichier HTML. Il est important de noter, cependant, que l'import d'un module ne rend pas ses fonctions disponibles dans un namespace distinct (ce qui est le cas en Python par contre). Par exemple, pour appeler la fonction \code{test()} du module de l'exemple précédent, voici comment procéder :
 
 \begin{Verbatim}[commandchars=\\\{\}]
 \PYG{k+kn}{import} \PYG{n+nn}{moduletest}
@@ -270,8 +273,8 @@ Lors de la compilation, RapydScript va rassembler tous les fichiers du code sour
 \end{Verbatim}
 
 
-\subsection{Utilisation de fonctions Javascript natives ou provenant de librairies exernes}
-\label{rapydscript:utilisation-de-fonctions-javascript-natives-ou-provenant-de-librairies-exernes}
+\subsubsection{Utilisation de fonctions Javascript natives ou provenant de librairies externes}
+\label{rapydscript:utilisation-de-fonctions-javascript-natives-ou-provenant-de-librairies-externes}
 Il est également possible d'utiliser des fonctions Javascript natives, par exemple :
 
 \begin{Verbatim}[commandchars=\\\{\}]
@@ -308,13 +311,13 @@ add\PYGZus{}text(\PYGZdq{}Hello World\PYGZdq{})
 On peut procéder de la même manière pour n'importe quelle autre librairie externe Javascript.
 
 
-\subsection{Débugger avec RapydScript}
+\subsubsection{Débugger avec RapydScript}
 \label{rapydscript:debugger-avec-rapydscript}
 
-\subsection{Cas problématiques}
+\subsubsection{Cas problématiques}
 \label{rapydscript:cas-problematiques}
 
-\chapter{Comparaison du code source et du code généré}
+\section{Comparaison du code source et du code généré}
 \label{rapydscript:comparaison-du-code-source-et-du-code-genere}
 
 \chapter{Description des fonctionnalités de l'application}
@@ -324,8 +327,13 @@ On peut procéder de la même manière pour n'importe quelle autre librairie ext
 \label{functionalities:professeurs}
 
 \subsection{Création de quiz}
-\label{functionalities:creation-de-quiz}
-Les professeurs peuvent créer un quiz en utilisant un format texte de type markdown pour créer différents types de questions et y attribuer certaines caractéristiques. Cet éditeur de quiz se présente se présente sous la forme d'une zone de texte dans laquelle le professeur peut entrer le code du quiz. Au début de chaque ligne, le prof entre un tag, chaque tag a une signification différente. Chaque tag doit être séparé de la suite de la ligne par un espace
+\label{functionalities:creation-de-quiz}\begin{figure}[htbp]
+\centering
+
+\includegraphics{create.png}
+\end{figure}
+
+Les professeurs peuvent créer un quiz en utilisant un format texte de type Markdown pour créer différents types de questions et y attribuer certaines caractéristiques. Cet éditeur de quiz se présente se présente sous la forme d'une zone de texte dans laquelle le professeur peut entrer le code du quiz. Au début de chaque ligne, le prof entre un tag pour préciser la fonction de la ligne, chaque tag a une signification différente. Le tag doit être séparé de la suite de la ligne par un espace.
 
 \begin{tabulary}{\linewidth}{|L|L|}
 \hline
@@ -337,12 +345,12 @@ Signification
 \hline
 \#\#
  & 
-Question à choix multiple avec plusieurs options cochables
+Question à choix multiple avec plusieurs options qui peuvent être choisies
 \\
 
 **
  & 
-Question à choix multiple avec une seule option cochable
+Question à choix multiple avec une seule option qui peut être choisie
 \\
 
 \textasciicircum{}\textasciicircum{}
@@ -384,43 +392,73 @@ Ajout d'un commentaire d'explication qui sera affiché lors de la correction
 
 Voici un exemple de quiz comprenant 4 questions :
 
-Lorsque le professeur appuie sur le bouton ``Aperçu'', il peut voir le rendu du quiz tel que le verront les étudiants. Les éventuelles erreurs dans le code (tag qui n'existe pas, etc.) sont affichés en rouge en dessous de l'aperçu. Le quiz ne peut pas être enregistré tant qu'il y a encore des erreurs dans le code. S'il commence à créer un quiz et désire le terminer plus tard, le professeur peut enregistrer un brouillon. L'outil de création de quiz supporte l'affichage des mathématiques avec MathJax (\href{http://www.mathjax.org/}{http://www.mathjax.org/}).
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGZsh{}\PYGZsh{} Énoncé de la question à choix multiple (plusieurs cases peuvent être cochées)
+* Option 1
+* Option 2 (correcte)
+* Option 3
+* Option 4 (correcte)
++ Commentaire affiché à la correction
+. 1.5
 
-Le prof doit également donner un titre au quiz et peut le relier à un plusieurs chapitres. Il décide de restreindre l'accès aux membres d'un ou plusieurs groupes ou de le rendre public. Pour créer un quiz, un prof a aussi la possibilité de reprendre un quiz déjà existant et de modifier son code. S'il opte pour cette solution, les statistiques du nouveau quiz ainsi créé repartent à zéro, puisque les questions ne sont plus forcément les mêmes.
+** Énoncé de la question à choix multiple (une seule case peut être cochée)
+* Option 1
+* Option 2
+* Option 3 (correcte)
+. 2
+
+\PYGZca{}\PYGZca{} Liste déroulante
+* Option 1
+* Option 2 (correcte)
+* Option 3
+* Option 4
+
+?? Question à champ de texte
+* Réponse correcte
+* Autre réponse correcte possible
+\end{Verbatim}
+
+Lorsque le professeur appuie sur le bouton \emph{Aperçu}, il peut voir le rendu du quiz tel que le verront les étudiants. Les éventuelles erreurs dans le code (tag qui n'existe pas, etc.) sont affichés en rouge en dessous de l'aperçu. Le quiz ne peut pas être enregistré tant qu'il y a encore des erreurs dans le code. S'il commence à créer un quiz et désire le terminer plus tard, le professeur peut enregistrer un brouillon. L'outil de création de quiz supporte l'affichage des mathématiques avec MathJax (\href{http://www.mathjax.org/}{http://www.mathjax.org/}).
+
+Le prof doit également donner un titre au quiz et peut le relier à un ou plusieurs chapitres. Il décide de restreindre l'accès aux membres d'un ou plusieurs groupes ou de le rendre public. Pour créer un quiz, un prof a aussi la possibilité de reprendre un quiz déjà existant et de modifier son code. S'il opte pour cette solution, les statistiques du nouveau quiz ainsi créé repartent à zéro, puisque les questions ne sont plus forcément les mêmes.
 
 
 \subsection{Consultation des statistiques avancées}
 \label{functionalities:consultation-des-statistiques-avancees}
-Après que les élèves d'un groupe ont complété un quiz, le professeur peut afficher le résultat moyen des élèves, le \% de réussite à chaque question, mais aussi les réponses soumises par chaque élève en particulier. Le prof peut ainsi se faire une idée globale et plus cibleé du niveau de compréhension de son groupe.
+Après que les élèves d'un groupe ont complété un quiz, le professeur peut afficher le résultat moyen des élèves, le \% de réussite à chaque question, mais aussi les réponses soumises par chaque élève en particulier. Le prof peut ainsi se faire une idée globale et plus ciblée du niveau de compréhension de son groupe.
 
 
 \section{Étudiants}
 \label{functionalities:etudiants}
 
 \subsection{Trouver un quiz}
-\label{functionalities:trouver-un-quiz}
-Pour trouver un quiz, un étudiant a plusieurs possibilités. Le professeur peut donner l'url exacte du quiz à compléter, ce qui peut être pratique dans un email ou toute communicaton informatisée. Une fonctionnalité permet au utilisateurs de générer un code QR correspondant à un quiz, ce qui est idéal pour afficher sur un projecteur en classe ou sur une feuille imprimée. Un étudiant peut aussi accéder à un quiz en mémorisant son id et en l'entrant dans la champ prévu à cet effet sur la page ``Trouver un quiz''.
+\label{functionalities:trouver-un-quiz}\begin{figure}[htbp]
+\centering
 
-Dans son espace utilisateur, l'étudiant peut aussi consulter les derniers quizs créés dans son groupe et peut donc y accéder facilement.
+\includegraphics{find.png}
+\end{figure}
+
+Pour trouver un quiz, un étudiant a plusieurs possibilités. Le professeur peut donner l'url exacte du quiz à compléter, ce qui peut être pratique dans un e-mail ou toute communicaton informatisée. Une fonctionnalité permet au utilisateurs de générer un code QR correspondant à un quiz, ce qui est idéal pour afficher sur un projecteur en classe ou sur une feuille imprimée. Un étudiant peut aussi accéder à un quiz en mémorisant son id et en l'entrant dans la champ prévu à cet effet sur la page ``Trouver un quiz''.
+
+Dans son espace utilisateur, l'étudiant peut aussi consulter les derniers quizs créés dans son groupe et peut donc y accéder facilement (fonctionnalité externe à l'application).
 
 
 \subsection{Compléter un quiz et correction automatique}
 \label{functionalities:completer-un-quiz-et-correction-automatique}
-Une fois que l'étudiant à accédé au quiz, il peut le compléter très simplement en remplissant les champs de formulaires affichés. Lorsqu'il a fini, il peut soumettre ses réponses et est redirigé vers une page de correction. Les réponses incorrectes sont affichées en rouge avec la solution et une explication pour chaque question. Les points reçus pour chaque question sont affichés avec le total de points sur le quiz. L'étudiant peut aussi comparer son score à la moyenne des autres étudiants du groupe. Un champ de texte est disponible pour envoyer des éventuelles remarques au professeur (signaler une erreur, poser une question). La page pour compléter un quiz ainsi que celle de la correction sont optimisées pour mobile et le design responsive s'adapte parfaitement à tous types de périphériques (desktop, portable, tablette, téléphone mobile).
+Une fois que l'étudiant à accédé au quiz, il peut le compléter très simplement en remplissant les champs de formulaires affichés. Lorsqu'il a fini, il peut soumettre ses réponses et il est redirigé vers une page de correction. Les réponses incorrectes sont affichées en rouge avec la solution et une explication pour chaque question. Les points reçus pour chaque question sont affichés avec le total de points sur le quiz. L'étudiant peut aussi comparer son score à la moyenne des autres étudiants du groupe. Un champ de texte est disponible pour envoyer des éventuelles remarques au professeur (signaler une erreur, poser une question). La page pour compléter un quiz ainsi que celle de la correction sont optimisées pour mobile et le design responsive s'adapte parfaitement à tous types de périphériques (ordinateur de bureau, ordinateur portable, tablette, téléphone mobile).
+\begin{figure}[htbp]
+\centering
 
+\includegraphics{complete.png}
+\end{figure}
 
-\chapter{Organisation du code côté serveur}
-\label{code-backend:organisation-du-code-cote-serveur}\label{code-backend::doc}
-
-\chapter{Organisation du code côté client}
-\label{code-frontend:organisation-du-code-cote-client}\label{code-frontend::doc}
 
 \chapter{Modèle relationnel}
 \label{database:modele-relationnel}\label{database::doc}
 
 \section{Introduction}
 \label{database:introduction}
-Une des premières étapes importantes dans le développement d'un site web est d'imaginer un modèle relationnel structuré permettant de stocker toutes les données générées par l'application et de les relier entre elles. Un modèle relationnel décrit les différentes tables de la base de donnée et les liens entre ces tables. Une table peut être comparée à un tableau contenant des informations. Chaque table comporte une ou plusieurs colonnes, chaque colonne stockant un type de données précisément défini (par exemple, un nombre entier ou une chaîne de caractères). Si on imagine une table contenant les données sur les utilisateurs d'un site, une colonne pourrait alors définir le pseudonyme d'un utilisateur et une autre son âge. On peut ensuite ajouter des lignes à une table, c'est à dire un ensemble de données dont chaque élément correspond à une colonne de la table. Dans l'exemple précédent, on ajouterait ainsi une ligne pour chaque utilisateur s'inscrivant sur le site. Chaque ligne est identifiée grâce à une clé primaire unique, habituellement sous la forme d'un entier, qui permet de créer des liens entre différentes lignes de différentes tables (appelées relations).
+Une des premières étapes importantes dans le développement d'un site web est l'élaboration d'un modèle relationnel structuré permettant de stocker toutes les données générées par l'application et de les relier entre elles. Un modèle relationnel décrit les différentes tables de la base de donnée et les liens entre ces tables. Une table peut être comparée à un tableau contenant des informations. Chaque table comporte une ou plusieurs colonnes, chaque colonne stockant un type de données précisément défini (par exemple, un nombre entier ou une chaîne de caractères). Si on imagine une table contenant les données sur les utilisateurs d'un site, une colonne pourrait alors contenir le pseudonyme d'un utilisateur et une autre son âge. On peut ensuite ajouter des lignes à une table, c'est à dire un ensemble de données dont chaque élément correspond à une colonne de la table. Dans l'exemple précédent, on ajouterait ainsi une ligne pour chaque utilisateur s'inscrivant sur le site. Chaque ligne est identifiée grâce à une clé primaire unique, habituellement sous la forme d'un entier, qui permet de créer des liens entre différentes lignes de différentes tables (appelées relations).
 
 Voici, présenté sous forme simplifiée à l'aide d'un tableau, comment on pourrait stocker les données concernant des quiz ainsi que leurs créateurs :
 
@@ -502,9 +540,9 @@ Comportement à l'infini
 \hline\end{tabulary}
 
 
-Ici, le quiz \#1 a comme titre \emph{Fonctions exponentielles}, comporte 5 questions et a été créé par Marc (Utilisateur 3).
+Ici, le premier quiz a comme titre \emph{Fonctions exponentielles}, comporte 5 questions et a été créé par Marc (Utilisateur 3).
 
-Une fois que le modèle relationnel a été élaboré, on peut créer une base de données sous forme informatique. Le langage SQL permet de créer les tables d'une base de données, d'y enregistrer des informations et de faire des requêtes (c'est à dire récupérer des données enregistrées). Un logiciel ou une application web peut ainsi communiquer avec une base de données et stocker les informations nécessaires de manière permanente.
+Une fois que le modèle relationnel a été élaboré, on peut créer une base de données sous forme de fichier. Le langage SQL permet de créer les tables d'une base de données, d'y enregistrer des informations et de faire des requêtes (c'est à dire récupérer des données enregistrées). Un logiciel ou une application web peut ainsi communiquer avec une base de données et stocker les informations nécessaires de manière permanente.
 
 Django offre la possibilité de créer une base de données et d'interagir celle-ci par le biais d'une API, on peut donc éviter l'utilisation du langage SQL et communiquer avec la base de données avec des objets et des méthodes Python.
 
@@ -518,9 +556,9 @@ Comme indiqué précédemment, Django fournit une interface de haut niveau pour 
 
 \begin{Verbatim}[commandchars=\\\{\}]
 \PYG{k}{class} \PYG{n+nc}{Quiz}\PYG{p}{(}\PYG{n}{models}\PYG{o}{.}\PYG{n}{Model}\PYG{p}{)}\PYG{p}{:} \PYG{c}{\PYGZsh{}Infos générales sur le quiz}
-    \PYG{n}{title} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{CharField}\PYG{p}{(}\PYG{n}{max\PYGZus{}length}\PYG{o}{=}\PYG{l+m+mi}{100}\PYG{p}{)} \PYG{c}{\PYGZsh{}Colonne contenant une chaîne de caractères de longueur max 100}
+    \PYG{n}{title} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{CharField}\PYG{p}{(}\PYG{n}{max\PYGZus{}length}\PYG{o}{=}\PYG{l+m+mi}{100}\PYG{p}{)} \PYG{c}{\PYGZsh{}Colonne contenant une chaîne de caractères}
     \PYG{n}{creation\PYGZus{}date} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{DateTimeField}\PYG{p}{(}\PYG{p}{)} \PYG{c}{\PYGZsh{}Colonne contenant une date/heure}
-    \PYG{n}{code} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{CharField}\PYG{p}{(}\PYG{n}{max\PYGZus{}length}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{)} \PYG{c}{\PYGZsh{}Colonne contenant une chaîne de caractères de longueur max 1000}
+    \PYG{n}{code} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{CharField}\PYG{p}{(}\PYG{n}{max\PYGZus{}length}\PYG{o}{=}\PYG{l+m+mi}{1000}\PYG{p}{)} \PYG{c}{\PYGZsh{}Colonne contenant une chaîne de caractères}
 \end{Verbatim}
 
 Les fonctions comme \code{CharField()} ou \code{DateTimeField()} permettent de définir des champs d'un type de données précis. Une liste complète des types de champs est disponible sur la documentation officielle de Django : \href{https://docs.djangoproject.com/en/1.7/ref/models/fields/\#field-types}{https://docs.djangoproject.com/en/1.7/ref/models/fields/\#field-types}
@@ -544,11 +582,8 @@ Voici le diagramme des tables utilisés pour stocker les données des quiz :
 \subsubsection{Quiz}
 \label{database:quiz}
 La table \emph{Quiz} est la table centrale de l'application et toutes les autres tables s'organisent autour d'elle. Elle comporte trois colonnes : une contenant le titre, une autre contenant la date et l'heure de création (ajouté automatiquement lorsqu'un nouveau quiz est créé) ainsi qu'une colonne dans laquelle est stockée le code du quiz. L'intérêt de stocker ce code n'est pas forcément évident. Il est stocké afin de permettre à un professeur de créer un nouveau quiz à partir d'un quiz créé précédemment par lui-même ou un autre professeur (à condition que celui-ci l'ait rendu public). Le code peut ainsi être modifé pour ajouter des questions ou apporter une quelconque modification. Cette table comporte également une relation vers une table Teacher (qui ne fait pas partie de l'application de quiz) qui permet l'intégration dans le projet de groupe.
-\begin{itemize}
-\item {} 
-\textbf{Note :} la fonction de récupération de quiz existants n'est pas encore fonctionnelle.
 
-\end{itemize}
+\textbf{Note :} la fonction de récupération de quiz existants n'est pas encore fonctionnelle.
 
 Avec django, il est possible d'initialiser automatiquement un champ \code{DateTimeField} à la date/heure du moment où le modèle est instancié avec le paramètre \code{auto\_now\_add}
 
@@ -573,9 +608,9 @@ La table Qcm permet de stocker les informations générales à propos des questi
 Cette table reprend plusieurs colonnes de la table \emph{SimpleQuestion}. C'est pourquoi ces deux tables héritent en fait du même modèle dans django :
 
 \begin{Verbatim}[commandchars=\\\{\}]
-\PYG{k}{class} \PYG{n+nc}{QuizQuestion}\PYG{p}{(}\PYG{n}{models}\PYG{o}{.}\PYG{n}{Model}\PYG{p}{)}\PYG{p}{:} \PYG{c}{\PYGZsh{}Classe abstraite dont héritent tous les types de questions}
+\PYG{k}{class} \PYG{n+nc}{QuizQuestion}\PYG{p}{(}\PYG{n}{models}\PYG{o}{.}\PYG{n}{Model}\PYG{p}{)}\PYG{p}{:} \PYG{c}{\PYGZsh{}Classe abstraite dont héritent toutes les questions}
     \PYG{n}{text} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{CharField}\PYG{p}{(}\PYG{n}{max\PYGZus{}length}\PYG{o}{=}\PYG{l+m+mi}{200}\PYG{p}{)} \PYG{c}{\PYGZsh{}Énoncé}
-    \PYG{n}{comment} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{CharField}\PYG{p}{(}\PYG{n}{max\PYGZus{}length}\PYG{o}{=}\PYG{l+m+mi}{200}\PYG{p}{,} \PYG{n}{blank}\PYG{o}{=}\PYG{n+nb+bp}{True}\PYG{p}{)} \PYG{c}{\PYGZsh{}Commentaire affiché lors de la correction}
+    \PYG{n}{comment} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{CharField}\PYG{p}{(}\PYG{n}{max\PYGZus{}length}\PYG{o}{=}\PYG{l+m+mi}{200}\PYG{p}{,} \PYG{n}{blank}\PYG{o}{=}\PYG{n+nb+bp}{True}\PYG{p}{)} \PYG{c}{\PYGZsh{}Commentaire}
     \PYG{n}{points} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{FloatField}\PYG{p}{(}\PYG{n}{default}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{)}
     \PYG{n}{number} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{IntegerField}\PYG{p}{(}\PYG{p}{)} \PYG{c}{\PYGZsh{}Ordre de la question dans le quiz}
     \PYG{n}{id\PYGZus{}quiz} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{ForeignKey}\PYG{p}{(}\PYG{n}{Quiz}\PYG{p}{)}
@@ -587,8 +622,8 @@ Cette table reprend plusieurs colonnes de la table \emph{SimpleQuestion}. C'est 
     \PYG{k}{pass} \PYG{c}{\PYGZsh{}Cette table reprend simplement les mêmes colonnes que le modèle abstrait}
 
 \PYG{k}{class} \PYG{n+nc}{Qcm}\PYG{p}{(}\PYG{n}{QuizQuestion}\PYG{p}{)}\PYG{p}{:}
-    \PYG{n}{multi\PYGZus{}answers} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{BooleanField}\PYG{p}{(}\PYG{p}{)} \PYG{c}{\PYGZsh{}True si il est possible de cocher plusieurs choix}
-    \PYG{n}{show\PYGZus{}list} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{BooleanField}\PYG{p}{(}\PYG{p}{)} \PYG{c}{\PYGZsh{}True si les choix sont affichés sous forme de liste déroulante}
+    \PYG{n}{multi\PYGZus{}answers} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{BooleanField}\PYG{p}{(}\PYG{p}{)}
+    \PYG{n}{show\PYGZus{}list} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{BooleanField}\PYG{p}{(}\PYG{p}{)}
 \end{Verbatim}
 
 En plus des colonnes héritées, \emph{Qcm} possède deux champs de types booléens : \emph{multi\_answers}, qui définit si plusieurs options peuvent être cochées ou non, et \emph{show\_list}, qui vaut \code{True} si la question est affichée sous forme de liste déroulante. Si plusieurs options peuvent être cochées, la question sera dans tous les cas affichée à l'aide de cases à cocher.
@@ -597,11 +632,8 @@ En plus des colonnes héritées, \emph{Qcm} possède deux champs de types boolé
 \subsubsection{QcmChoice}
 \label{database:qcmchoice}
 Cette table contient les différents choix possibles pour la question définie par la relation vers \emph{Qcm}. Elle est formée de deux champs, le premier contenant le texte du choix et l'autre définissant par un booléen s'il est correct ou non de cocher ce choix. Une question à choix multiples doit avoir au moins deux choix possibles et au moins un choix correct. Si \emph{multi\_answers} vaut \code{False} dans \emph{Qcm}, une seule option peut être correcte puisque l'étudiant n'a la possibilité de cocher qu'une seule option.
-\begin{itemize}
-\item {} 
-\textbf{Note :} D'un point de vue purement relationnel, comme il est indiqué sur le diagramme, cette table possède une relation vers une table qui sert d'intermédiaire entre \emph{QcmChoice} et \emph{QcmSubmitMulti}. Cette table intermédiaire crée en fait une relation de type \emph{many-to-many}. L'implémentation de ce type de relation avec Django sera abordé plus loin.
 
-\end{itemize}
+\textbf{Note :} D'un point de vue purement relationnel, comme il est indiqué sur le diagramme, cette table possède une relation vers une table qui sert d'intermédiaire entre \emph{QcmChoice} et \emph{QcmSubmitMulti}. Cette table intermédiaire crée en fait une relation de type \emph{many-to-many}. L'implémentation de ce type de relation avec Django sera abordé plus loin.
 
 
 \subsubsection{CompletedQuiz}
@@ -621,8 +653,8 @@ Ces deux tables sont très similaires. \emph{QcmSubmitOne} contient une relation
 Dans Django, voici comment seront définies ces relations :
 
 \begin{Verbatim}[commandchars=\\\{\}]
-\PYG{n}{id\PYGZus{}selected} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{ForeignKey}\PYG{p}{(}\PYG{n}{QcmChoice}\PYG{p}{,} \PYG{n}{null}\PYG{o}{=}\PYG{n+nb+bp}{True}\PYG{p}{)} \PYG{c}{\PYGZsh{}Relation many\PYGZhy{}to\PYGZhy{}one \PYGZhy{}\PYGZgt{} Une seule option choisie}
-\PYG{n}{id\PYGZus{}selected} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{ManyToManyField}\PYG{p}{(}\PYG{n}{QcmChoice}\PYG{p}{,} \PYG{n}{null}\PYG{o}{=}\PYG{n+nb+bp}{True}\PYG{p}{)} \PYG{c}{\PYGZsh{}Relation many\PYGZhy{}to\PYGZhy{}many \PYGZhy{}\PYGZgt{} Plusieurs options peuvent être choisies}
+\PYG{n}{id\PYGZus{}selected} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{ForeignKey}\PYG{p}{(}\PYG{n}{QcmChoice}\PYG{p}{,} \PYG{n}{null}\PYG{o}{=}\PYG{n+nb+bp}{True}\PYG{p}{)} \PYG{c}{\PYGZsh{}Relation many\PYGZhy{}to\PYGZhy{}one}
+\PYG{n}{id\PYGZus{}selected} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{ManyToManyField}\PYG{p}{(}\PYG{n}{QcmChoice}\PYG{p}{,} \PYG{n}{null}\PYG{o}{=}\PYG{n+nb+bp}{True}\PYG{p}{)} \PYG{c}{\PYGZsh{}Relation many\PYGZhy{}to\PYGZhy{}many}
 \end{Verbatim}
 
 L'argument \code{null} vaut ici \code{True} car il se peut que l'étudiant ne coche aucun choix. Dans ce cas-là, il n'obtiendra dans tous les cas aucun point.
