@@ -23,7 +23,7 @@ def create(request):
         
         return HttpResponseRedirect(reverse("quiz:complete", args=[quiz.get_id()]))
     else:
-        return render(request, 'quiz/new.html')
+        return render(request, 'quiz/create.html')
         
 def complete(request, n_quiz):
     # Si la requête est de type POST, on créer un nouveau formulaire et on le remplit avec les données de requête

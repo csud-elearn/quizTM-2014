@@ -1,58 +1,36 @@
-.linedarea {
-	display: inline-block;
-	padding: 0px;
-	margin: 0px;
-	width: 90%;
-	resize: none;
-	vertical-align: top;
-	outline: none;
-	border: none;
-	overflow: hidden;
-	font-size: 15px;
-	font-family: monospace;
-	line-height: normal;
-}
-
 .lines {
-	display: inline-block;
-	padding: 0px;
-	margin: 0px;
 	vertical-align: top;
-	resize: none;
-	font-size: 15px;
+	padding: 6px 12px;
 	padding-right: 7px;
-	border-right: 1px solid #81A8C1;
-	text-align: right;
-	width: 8%;
-	max-width: 40px;
-	font-family: monospace;
-	color: #b3b3b3;
+	padding-left: 7px;
+  	font-size: 14px;
+  	line-height: normal;
+  	color: #b3b3b3;
+  	background-color: #fff;
+  	border: 1px solid #ccc;
+  	border-radius: 4px;
+  	text-align: right;
+  	min-width: 40px;
+  	font-family: monospace;
+}
+
+textarea.linedarea {
+	overflow-y: hidden;
+	overflow-x: scroll;
+	resize: none;
 	line-height: normal;
+	font-family: monospace;
 }
 
-.scroll {
-	height: 400px;
-	overflow-y: scroll;
-	overflow-x: hidden;
-	border: 1px solid #81A8C1;
-	border-radius: 3px;
-	text-align: left;
-	padding: 0px;
-}
-
-#view {
+.viewbox, .errorsbox {
 	display: none;
 }
 
-#erreurs {
-	display: none;
+form > .btn-group {
+	margin-right: 20px;
 }
 
-#errors_p {
-	text-align: left;
-	border: 1px #BC3838 solid;
-	border-radius: 4px;
-	padding: 10px;
-	max-width: 100%;
-	color: #BC3838;
+.btn-group > .btn {
+	padding-left: 15px;
+	padding-right: 15px;
 }
