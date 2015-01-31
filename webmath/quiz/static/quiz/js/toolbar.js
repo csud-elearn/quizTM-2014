@@ -1,13 +1,14 @@
 (function() {
 $( document ).ready(function(){
-    $(".tag-insert").each(function(){
+    $(".tag-insert").each(function(){ // Parcours de tous les boutons de tags
         $(this).click(function(){
-            // Récupération du tag associé au bouton
             if ($(this).hasClass("tag-q")) {
-                // bool_linebrak vaut true car il faut s'assurer qu'il y ait une ligne vide avant
+                // Il faut 2 retours à la ligne pour créer un nouvelle question
+                // L'attribut data-tag contient le tag correspondant au bouton
                 insertTag($(this).attr("data-tag"), 2);
             }
             else if ($(this).hasClass("tag-p")) {
+                // Un seul retour est nécessaire
                 insertTag($(this).attr("data-tag"), 1);
             }
         });
@@ -16,11 +17,11 @@ $( document ).ready(function(){
 
 function insertTag(tag, n_linebreaks) {
     var pos = $("#zonetexte").caret(); // Position du curseur dans la textarea
-    var text = $("#zonetexte").val();
+    var text = $("#zonetexte").val(); // Texte avant la modification
     
-    var new_text = text;
+    var new_text = text; // Texte qui remplacera l'ancien
     
-    // Check des caractères à ajouter avant (retours à la ligne)
+    // Ajout de retours à la ligne s'il n'y en a pas déjà suffisamment
     while (new_text.slice(pos-n_linebreaks, pos) != "\n".repeat(n_linebreaks) && pos-n_linebreaks > 0 && pos < 100) {
         new_text = new_text.insert("\n", pos);
         pos ++;
@@ -30,14 +31,15 @@ function insertTag(tag, n_linebreaks) {
     new_text = new_text.insert(tag, pos);
     pos += tag.length;
     
-    // Check des caractères à ajouter après (espaces)
-    
+    // Ajout d'espace après le tag s'il n'y en a pas
     if (new_text.charAt(pos) != " ") {
         new_text = new_text.insert(" ", pos);
         pos ++;
     }
     
+    // Le curseur est replacé après tout le texte ajouté
     $("#zonetexte").caret(pos);
+    // Le contenu de la textarea est redéfini
     $("#zonetexte").val(new_text);
 }
 
@@ -47,7 +49,7 @@ String.prototype.insert = function(string, index) {
 };
 
 String.prototype.repeat = function(n) {
-    // Concatène la même chaîne n fois
+    // Retourne la chaîne répétée n fois
     var result = "";
     for (var i = 0; i < n; i++) {
         result += this;
