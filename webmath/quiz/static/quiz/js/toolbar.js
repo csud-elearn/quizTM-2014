@@ -22,7 +22,7 @@ function insertTag(tag, n_linebreaks) {
     var new_text = text; // Texte qui remplacera l'ancien
     
     // Ajout de retours à la ligne s'il n'y en a pas déjà suffisamment
-    while (new_text.slice(pos-n_linebreaks, pos) != "\n".repeat(n_linebreaks) && pos-n_linebreaks > 0 && pos < 100) {
+    while (new_text.slice(pos-n_linebreaks, pos) != "\n".repeat(n_linebreaks) && pos-n_linebreaks >= 0) {
         new_text = new_text.insert("\n", pos);
         pos ++;
     }
@@ -37,10 +37,10 @@ function insertTag(tag, n_linebreaks) {
         pos ++;
     }
     
-    // Le curseur est replacé après tout le texte ajouté
-    $("#quizcode").caret(pos);
     // Le contenu de la textarea est redéfini
     $("#quizcode").val(new_text);
+    // Le curseur est replacé après tout le texte ajouté
+    $("#quizcode").caret(pos);
 }
 
 String.prototype.insert = function(string, index) {
