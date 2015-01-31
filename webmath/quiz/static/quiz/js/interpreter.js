@@ -773,7 +773,7 @@
         var demo_text;
         demo_text = "## Cases à cocher\n* Option 1\n= Option 4\n= Option 5\n\n-- Liste déroulante\n* Option 2\n= Option 3\n\n?? Question simple\n= Réponse\n\n** Boutons radio\n* Option 1\n= Option 2\nerreur";
         $("#quizcode").val(demo_text);
-        update_lines(count(demo_text));
+        show_lines();
     }
     function main() {
         $("#bouton").click(start_render);

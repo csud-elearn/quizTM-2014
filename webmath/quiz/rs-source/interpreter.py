@@ -311,7 +311,7 @@ def demo(): #Permet d'insérer un exemple de format texte
 \n= Option 2\
 \nerreur"
     $("#quizcode").val(demo_text)
-    update_lines(count(demo_text))
+    show_lines()
 
 def main(): #Chaque bouton est lié à une méthode
     $("#bouton").click(start_render)

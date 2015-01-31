@@ -43,7 +43,7 @@ function insertTag(tag, n_linebreaks) {
     $("#quizcode").caret(pos);
     
     // Les numéros de lignes sont mis à jour
-    update_lines(count(new_text));
+    show_lines();
 }
 
 String.prototype.insert = function(string, index) {

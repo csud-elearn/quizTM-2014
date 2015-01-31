@@ -1,18 +1,22 @@
 var old_n_lines = 1;
-$( document ).ready(function() {
-    var initial_n_lines = parseInt($(".linedarea").attr("rows"))
-    $(".linedarea").on("input", function() { //La fonction est appelé à chaque fois qu'il y a un changement dans la textarea
-        var n_lines = count($(".linedarea").val()); //Nombres de lignes écrites dans la textarea
-        if (n_lines > initial_n_lines) {
-            $(".linedarea").attr("rows", n_lines); //Changement du nombre de lignes de la textarea pour l'adapter en fonction du contenu
-        }
+var initial_n_lines = 0;
 
-        if (n_lines != old_n_lines) { //Si le nombre de lignes n'a pas changé depuis la dernière fois, il est inutile de réafficher les numéros
-            update_lines(n_lines);
-        }
-        old_n_lines = n_lines;
-    });
+$( document ).ready(function() {
+    initial_n_lines = parseInt($(".linedarea").attr("rows"));
+    $(".linedarea").on("input", show_lines);
 });
+
+function show_lines() {
+    var n_lines = count($(".linedarea").val()); //Nombres de lignes écrites dans la textarea
+    if (n_lines > initial_n_lines) {
+        $(".linedarea").attr("rows", n_lines); //Changement du nombre de lignes de la textarea pour l'adapter en fonction du contenu
+    }
+
+    if (n_lines != old_n_lines) { //Si le nombre de lignes n'a pas changé depuis la dernière fois, il est inutile de réafficher les numéros
+        update_lines(n_lines);
+    }
+    old_n_lines = n_lines;
+}
 
 //Compte le nombre de lignes saisies par l'utilisateur
 function count(text) {
