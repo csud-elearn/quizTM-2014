@@ -12,9 +12,9 @@
 
 {% block page-content %}
 <div class="thumbnail">
-    <div class="caption-full">
-        <h1>{{ quiz.title }}</h1>
-        <form id="completeform" class="quizform" action="{% url 'quiz:complete' quiz.id %}" method="POST">
+    <form id="completeform" class="quizform" action="{% url 'quiz:complete' quiz.id %}" method="POST">
+        <div class="caption-full">
+            <h1>{{ quiz.title }}</h1>
             {% csrf_token %}
             <ul class="list-group">
                 {% for form in l_forms %}
@@ -34,7 +34,7 @@
                 {% endfor %}
             </ul>
             <button type="submit" class="btn btn-sm btn-primary">Soumettre les réponses</button>
-        </form>
-    </div>
+        </div>
+    </form>
 </div>
 {% endblock %}
