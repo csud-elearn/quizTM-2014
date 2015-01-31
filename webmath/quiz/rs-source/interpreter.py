@@ -313,15 +313,9 @@ def demo(): #Permet d'insérer un exemple de format texte
     $("#quizcode").val(demo_text)
     update_lines(count(demo_text))
 
-def bind():
-    b_questions = $(".tag-p")
-    b_properties = $(".tag-q")
-    b_questions.click()
-
 def main(): #Chaque bouton est lié à une méthode
     $("#bouton").click(start_render)
     $("#demo").click(demo)
     $("#submit").click(submit)
-    bind()
 
 jQuery(document).ready(main)
