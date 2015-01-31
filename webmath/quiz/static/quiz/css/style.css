@@ -25,9 +25,10 @@ h1, h2 {
 	display: inline-block;
 }
 
-.caption-full > div, .caption-full > .list-group, .caption-full > .table, .caption-full > .alert, .caption-full > button, div.input-group {
-	margin-bottom: 0px;
-	margin-top: 10px;
+.caption-full > .list-group, .caption-full > .table, .caption-full > .alert,
+.caption-full > .input-group, .caption-full > .btn, .caption-full > .form-control {
+	margin-bottom: 10px;
+	margin-top: 0px;
 }
 
 .errorsbox h2 {
@@ -36,6 +37,10 @@ h1, h2 {
 
 input.form-control, select.form-control {
 	margin-bottom: 0px;
+}
+
+.toolbar-group {
+	margin-bottom: 10px;
 }
 
 label, .label-span {
@@ -50,6 +55,7 @@ label {
 	opacity: 0;
 }
 
-.btn {
+.btn-default {
 	outline: none !important;
+	font-weight: bold;
 }
