@@ -759,7 +759,7 @@
     };
 
     function get_text() {
-        return $("#zonetexte").val();
+        return $("#quizcode").val();
     }
     function start_render() {
         var parse;
@@ -779,7 +779,7 @@
     function demo() {
         var demo_text;
         demo_text = "## Cases à cocher\n* Option 1\n= Option 4\n= Option 5\n\n-- Liste déroulante\n* Option 2\n= Option 3\n\n?? Question simple\n= Réponse\n\n** Boutons radio\n* Option 1\n= Option 2\nerreur";
-        $("#zonetexte").val(demo_text);
+        $("#quizcode").val(demo_text);
         update_lines(count(demo_text));
     }
     function bind() {

@@ -19,7 +19,7 @@
         <form id="createform" action="{% url 'quiz:create' %}" method="post">{% csrf_token %}
             <label for="title">Titre du quiz</label>
             <input type="text" class="form-control" id="title" name="title">
-            <label for="zonetexte">Texte du quiz</label>
+            <label for="quizcode">Texte du quiz</label>
             <div class="btn-group" role="group">
                 <div class="btn-group" role="group">
                     <a type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" title="Nouvelle question">
@@ -58,7 +58,7 @@
             </div>
             <div class="input-group">
                 <span class="input-group-addon lines" id="basic-addon1">1</span>
-                <textarea class="form-control linedarea" id="zonetexte" placeholder="Votre texte ici" rows="18" wrap="off" name="quizcode" aria-describedby="basic-addon1"></textarea>
+                <textarea class="form-control linedarea" id="quizcode" placeholder="Votre texte ici" rows="18" wrap="off" name="quizcode" aria-describedby="basic-addon1"></textarea>
             </div>
             <input type="hidden" id="quiz_json" name="json" />
         </form>

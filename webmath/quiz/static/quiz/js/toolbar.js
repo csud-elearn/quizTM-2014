@@ -16,8 +16,8 @@ $( document ).ready(function(){
 });
 
 function insertTag(tag, n_linebreaks) {
-    var pos = $("#zonetexte").caret(); // Position du curseur dans la textarea
-    var text = $("#zonetexte").val(); // Texte avant la modification
+    var pos = $("#quizcode").caret(); // Position du curseur dans la textarea
+    var text = $("#quizcode").val(); // Texte avant la modification
     
     var new_text = text; // Texte qui remplacera l'ancien
     
@@ -38,9 +38,9 @@ function insertTag(tag, n_linebreaks) {
     }
     
     // Le curseur est replacé après tout le texte ajouté
-    $("#zonetexte").caret(pos);
+    $("#quizcode").caret(pos);
     // Le contenu de la textarea est redéfini
-    $("#zonetexte").val(new_text);
+    $("#quizcode").val(new_text);
 }
 
 String.prototype.insert = function(string, index) {

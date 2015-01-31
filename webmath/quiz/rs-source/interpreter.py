@@ -201,7 +201,7 @@ class Parse:
                 "??" : SimpleQuestion,
                 "##" : QCM_Checkbox,
                 "**" : QCM_Radio,
-                "^^" : QCM_Select,
+                "^^" : QCM_Select
             }
             
             if questions_types[tag]:
@@ -277,7 +277,7 @@ class Parse:
         return "name_" + self.name
 
 def get_text(): #Retourne le contenu de la textarea
-    return $("#zonetexte").val()
+    return $("#quizcode").val()
 
 def start_render(): #Affiche l'aperçu
     parse = Parse(get_text()).render()
@@ -310,18 +310,18 @@ def demo(): #Permet d'insérer un exemple de format texte
 \n* Option 1\
 \n= Option 2\
 \nerreur"
-    $("#zonetexte").val(demo_text)
+    $("#quizcode").val(demo_text)
     update_lines(count(demo_text))
 
-#def bind():
-    #b_questions = $(".tag-p")
-    #b_properties = $(".tag-q")
-    #b_questions.click()
+def bind():
+    b_questions = $(".tag-p")
+    b_properties = $(".tag-q")
+    b_questions.click()
 
 def main(): #Chaque bouton est lié à une méthode
     $("#bouton").click(start_render)
     $("#demo").click(demo)
     $("#submit").click(submit)
-    #bind()
+    bind()
 
 jQuery(document).ready(main)
