@@ -41,6 +41,9 @@ function insertTag(tag, n_linebreaks) {
     $("#quizcode").val(new_text);
     // Le curseur est replacé après tout le texte ajouté
     $("#quizcode").caret(pos);
+    
+    // Les numéros de lignes sont mis à jour
+    update_lines(count(new_text));
 }
 
 String.prototype.insert = function(string, index) {
