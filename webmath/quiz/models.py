@@ -15,6 +15,14 @@ class Quiz(models.Model): #Infos générales sur le quiz
         
     def length(self):
         return len(SimpleQuestion.objects.filter(id_quiz=self)) + len(Qcm.objects.filter(id_quiz=self))
+        
+class QuizDraft(models.Model): #Brouillon contenant le code d'un quiz
+    title = models.CharField(max_length=100)
+    code = models.CharField(max_length=1000)
+    #id_prof
+    
+    def __str__(self):
+        return self.title
     
 class CompletedQuiz(models.Model): #Tentative de réponse au quiz par un élève
     submit_date = models.DateTimeField(auto_now_add=True)
