@@ -81,17 +81,18 @@ def listdrafts(request): # Permet de récupérer la liste des brouillons en json
     if request.method == "GET":
         drafts = QuizDraft.objects.all()
         
-        list_drafts = [] # Liste qui sera sérializée
-        
-        for d in drafts:
-            list_drafts.append({
-                "title" : d.title,
-                "id" : d.pk,
-            })
+        if len(drafts) > 0:
+            list_drafts = [] # Liste qui sera sérializée
             
-        json_string = json.dumps(list_drafts)
-    
-        return HttpResponse(json_string)
+            for d in drafts:
+                list_drafts.append({
+                    "title" : d.title,
+                    "id" : d.pk,
+                })
+                
+            json_string = json.dumps(list_drafts)
+        
+            return HttpResponse(json_string)
         
 def getdraft(request): # Permet de récupérer le titre et le code d'un brouillon en json
     if request.method == "GET":

@@ -14,6 +14,15 @@ h1, h2 {
 	margin-bottom: 5px;
 }
 
+.quizform input + label {
+	font-weight: normal;
+}
+
+.quizform span.label-span {
+	display: block;
+	font-weight: bold;
+}
+
 .error-line {
 	display: inline-block;
 	font-weight: bold;
@@ -25,37 +34,43 @@ h1, h2 {
 	display: inline-block;
 }
 
-.caption-full > .list-group, .caption-full > .table, .caption-full > .alert,
-.caption-full > .input-group, .caption-full > .btn, .caption-full > .form-control {
+.top-space {
+	margin: 0px;
+	margin-top: 10px;
+}
+
+.bottom-space {
+	margin: 0px;
 	margin-bottom: 10px;
-	margin-top: 0px;
+}
+
+.top-bottom-space {
+	
+	margin-bottom: 10px;
+	margin-top: 10px;
 }
 
 .errorsbox h2 {
 	color: #a94442;
 }
 
-input.form-control, select.form-control {
-	margin-bottom: 0px;
-}
-
-.toolbar-group {
-	margin-bottom: 10px;
-}
-
-label, .label-span {
-	margin-top: 10px;
-}
-
 label {
 	display: block;
 }
 
-.modal-backdrop.in {
-	opacity: 0;
-}
-
 .btn-default {
 	outline: none !important;
+	font-weight: bold;
+}
+
+.modal-body {
+	padding-bottom: 0px;
+}
+
+a {
+	cursor: pointer;
+}
+
+.bold {
 	font-weight: bold;
 }

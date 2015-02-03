@@ -256,7 +256,7 @@ class Parse:
     def tojson(self): #Renvoie la chaine json contenant toutes les caractéristiques du quiz
         json = ""
         if len(self.errors) > 0:
-            alert("Il y a encore des erreurs")
+            $("#alert-errors").modal("show")
         elif len(self.questions) == 0:
             alert("Contenu vide")
         else:

@@ -724,7 +724,7 @@
         var object_json, question, json;
         json = "";
         if (len(self.errors) > 0) {
-            alert("Il y a encore des erreurs");
+            $("#alert-errors").modal("show");
         } else if (len(self.questions) == 0) {
             alert("Contenu vide");
         } else {

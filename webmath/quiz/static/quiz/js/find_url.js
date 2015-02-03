@@ -21,9 +21,8 @@
             "display": "block"
         });
         $message_box.empty();
-        $message_box.attr({
-            "class": "alert alert-success"
-        });
+        $message_box.removeClass("alert-danger");
+        $message_box.addClass("alert-success");
         title = response["title"];
         url = response["url"];
         $("<a>", {
@@ -39,9 +38,8 @@
             "display": "block"
         });
         $message_box.empty();
-        $message_box.attr({
-            "class": "alert alert-danger"
-        }).append("Ce quiz n'existe pas ou a été supprimé");
+        $message_box.removeClass("alert-success");
+        $message_box.addClass("alert-danger").append("Ce quiz n'existe pas ou a été supprimé");
     }
     jQuery(document).ready(main);
 })();
