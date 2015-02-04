@@ -201,7 +201,7 @@ class Parse:
                 "??" : SimpleQuestion,
                 "##" : QCM_Checkbox,
                 "**" : QCM_Radio,
-                "^^" : QCM_Select,
+                "^^" : QCM_Select
             }
             
             if questions_types[tag]:
@@ -256,9 +256,9 @@ class Parse:
     def tojson(self): #Renvoie la chaine json contenant toutes les caractéristiques du quiz
         json = ""
         if len(self.errors) > 0:
-            alert("Il y a encore des erreurs")
+            utils.alert_dialog("Erreur", "Vous devez corriger les erreurs avant de pouvoir envoyer le quiz")
         elif len(self.questions) == 0:
-            alert("Contenu vide")
+            utils.alert_dialog("Erreur", "Votre quiz ne comporte aucune question")
         else:
             object_json = [] #Objet destiné à être converti en json
             for question in self.questions:
@@ -277,7 +277,7 @@ class Parse:
         return "name_" + self.name
 
 def get_text(): #Retourne le contenu de la textarea
-    return $("#zonetexte").val()
+    return $("#quizcode").val()
 
 def start_render(): #Affiche l'aperçu
     parse = Parse(get_text()).render()
@@ -285,9 +285,13 @@ def start_render(): #Affiche l'aperçu
 def submit(): #Soumet les données au serveur
     parse = Parse(get_text())
     json_string = parse.tojson()
+    title = $("#title").val()
     if json_string:
-        $("#quiz_json").val(json_string) #On ajoute le json dans un champ de formulaire caché
-        $("#createform").submit() #Le formulaire est soumis
+        if title:
+            $("#quiz_json").val(json_string) #On ajoute le json dans un champ de formulaire caché
+            $("#createform").submit() #Le formulaire est soumis
+        else:
+            utils.alert_dialog("Erreur", "Vous devez spécifier un titre pour votre quiz")
     else:
         parse.render()
 
@@ -310,18 +314,12 @@ def demo(): #Permet d'insérer un exemple de format texte
 \n* Option 1\
 \n= Option 2\
 \nerreur"
-    $("#zonetexte").val(demo_text)
-    update_lines(count(demo_text))
-
-#def bind():
-    #b_questions = $(".tag-p")
-    #b_properties = $(".tag-q")
-    #b_questions.click()
+    $("#quizcode").val(demo_text)
+    show_lines()
 
 def main(): #Chaque bouton est lié à une méthode
     $("#bouton").click(start_render)
     $("#demo").click(demo)
     $("#submit").click(submit)
-    #bind()
 
 jQuery(document).ready(main)

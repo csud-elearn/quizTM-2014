@@ -14,16 +14,6 @@
         }
         return range;
     }
-    function len(obj) {
-        if (obj instanceof Array || typeof obj === "string") return obj.length;
-        else {
-            var count = 0;
-            for (var i in obj) {
-                if (obj.hasOwnProperty(i)) count++;
-            }
-            return count;
-        }
-    }
     function _$rapyd$_in(val, arr) {
         if (arr instanceof Array || typeof arr === "string") return arr.indexOf(val) != -1;
         else {
@@ -42,12 +32,15 @@
         child.prototype = Object.create(parent.prototype);
         child.prototype.constructor = child;
     }
-    function _$rapyd$_bind(fn, thisArg) {
-        if (fn._orig) fn = fn._orig;
-        if (thisArg === false) return fn;
-        var ret = fn.bind(thisArg);
-        ret._orig = fn;
-        return ret;
+    function len(obj) {
+        if (obj instanceof Array || typeof obj === "string") return obj.length;
+        else {
+            var count = 0;
+            for (var i in obj) {
+                if (obj.hasOwnProperty(i)) count++;
+            }
+            return count;
+        }
     }
     var JSON, str;
             JSON = JSON || {};
@@ -93,10 +86,10 @@
         return function() {
             var args, kw, i;
             args = [].slice.call(arguments);
-            if (args.length && args.length < f.length) {
+            if (args.length) {
                 kw = args.pop();
-                if (typeof kw == "object") {
-                    for (i = 0; i < len(argNames); i++) {
+                if (typeof kw === "object") {
+                    for (i = 0; i < argNames.length; i++) {
                         if (_$rapyd$_in(argNames[i], dir(kw))) {
                             args[i] = kw[argNames[i]];
                         }
@@ -105,42 +98,50 @@
                     args.push(kw);
                 }
             }
-            return f.apply(f, args);
+            return f.apply(this, args);
         };
     }
-    function IndexError(message){
+    function IndexError() {
+        IndexError.prototype.__init__.apply(this, arguments);
+    }
+    _$rapyd$_extends(IndexError, Error);
+    IndexError.prototype.__init__ = function __init__(message){
         var self = this;
         if (typeof message === "undefined") message = "list index out of range";
         self.name = "IndexError";
         self.message = message;
     };
 
-    _$rapyd$_extends(IndexError, Error);
-
-    function TypeError(message){
+    function TypeError() {
+        TypeError.prototype.__init__.apply(this, arguments);
+    }
+    _$rapyd$_extends(TypeError, Error);
+    TypeError.prototype.__init__ = function __init__(message){
         var self = this;
         self.name = "TypeError";
         self.message = message;
     };
 
-    _$rapyd$_extends(TypeError, Error);
-
-    function ValueError(message){
+    function ValueError() {
+        ValueError.prototype.__init__.apply(this, arguments);
+    }
+    _$rapyd$_extends(ValueError, Error);
+    ValueError.prototype.__init__ = function __init__(message){
         var self = this;
         self.name = "ValueError";
         self.message = message;
     };
 
-    _$rapyd$_extends(ValueError, Error);
-
-    function AssertionError(message){
+    function AssertionError() {
+        AssertionError.prototype.__init__.apply(this, arguments);
+    }
+    _$rapyd$_extends(AssertionError, Error);
+    AssertionError.prototype.__init__ = function __init__(message){
         var self = this;
         if (typeof message === "undefined") message = "";
         self.name = "AssertionError";
         self.message = message;
     };
-
-    _$rapyd$_extends(AssertionError, Error);
 
     if (!Array.prototype.map) {
         
@@ -235,7 +236,7 @@
         }
         return false;
     }
-    String.prototype.find = Array.prototype.indexOf;
+    String.prototype.find = String.prototype.indexOf;
     String.prototype.strip = String.prototype.trim;
     String.prototype.lstrip = String.prototype.trimLeft;
     String.prototype.rstrip = String.prototype.trimRight;
@@ -266,7 +267,7 @@
     Array.prototype.index = function(index) {
         var val;
         val = this.find(index);
-        if (val == -1) {
+        if (val === -1) {
             throw new ValueError(str(index) + " is not in list");
         }
         return val;
@@ -346,7 +347,10 @@
             delete hash[key];
         }
     };
-    function QuestionAbstract(parent, text, line){
+    function QuestionAbstract() {
+        QuestionAbstract.prototype.__init__.apply(this, arguments);
+    }
+    QuestionAbstract.prototype.__init__ = function __init__(parent, text, line){
         var self = this;
         self.line = line;
         self.text = text;
@@ -358,8 +362,6 @@
         self.comment = "";
         self.points = 1;
     };
-
-
     QuestionAbstract.prototype.add_attribute = function add_attribute(tag, content){
         var self = this;
         if (self.tags_list[tag]) {
@@ -368,12 +370,10 @@
             self.parent.error("Tag inconnu");
         }
     };
-
     QuestionAbstract.prototype.add_comment = function add_comment(content){
         var self = this;
         self.comment += content;
     };
-
     QuestionAbstract.prototype.add_points = function add_points(n_points){
         var self = this;
         self.points = parseFloat(n_points);
@@ -381,7 +381,6 @@
             self.parent.error("La valeur en points doit être un nombre décimal");
         }
     };
-
     QuestionAbstract.prototype.properties = function properties(){
         var self = this;
         var properties;
@@ -393,20 +392,20 @@
         return properties;
     };
 
-    function SimpleQuestion(parent, text, line){
+    function SimpleQuestion() {
+        SimpleQuestion.prototype.__init__.apply(this, arguments);
+    }
+    _$rapyd$_extends(SimpleQuestion, QuestionAbstract);
+    SimpleQuestion.prototype.__init__ = function __init__(parent, text, line){
         var self = this;
         QuestionAbstract.prototype.constructor.call(self, parent, text, line);
         self.answers = [];
         self.tags_list["="] = self.add_answer;
     };
-
-    _$rapyd$_extends(SimpleQuestion, QuestionAbstract);
-
     SimpleQuestion.prototype.add_answer = function add_answer(content){
         var self = this;
         self.answers.append(content);
     };
-
     SimpleQuestion.prototype.render = function render(){
         var self = this;
         var id_input, $container;
@@ -423,7 +422,6 @@
             "class": "form-control"
         }).appendTo($container);
     };
-
     SimpleQuestion.prototype.properties = function properties(){
         var self = this;
         var properties;
@@ -432,7 +430,6 @@
         properties["answers"] = self.answers;
         return properties;
     };
-
     SimpleQuestion.prototype.check_question = function check_question(){
         var self = this;
         if (len(self.answers) < 1) {
@@ -440,7 +437,11 @@
         }
     };
 
-    function QCM_Checkbox(parent, text, line){
+    function QCM_Checkbox() {
+        QCM_Checkbox.prototype.__init__.apply(this, arguments);
+    }
+    _$rapyd$_extends(QCM_Checkbox, QuestionAbstract);
+    QCM_Checkbox.prototype.__init__ = function __init__(parent, text, line){
         var self = this;
         QuestionAbstract.prototype.constructor.call(self, parent, text, line);
         self.has_answer = false;
@@ -449,9 +450,6 @@
         self.tags_list["*"] = self.add_option;
         self.tags_list["="] = self.add_answer;
     };
-
-    _$rapyd$_extends(QCM_Checkbox, QuestionAbstract);
-
     QCM_Checkbox.prototype.add_option = function add_option(content){
         var self = this;
         self.options.append({
@@ -459,7 +457,6 @@
             "valid": false
         });
     };
-
     QCM_Checkbox.prototype.add_answer = function add_answer(content){
         var self = this;
         self.has_answer = true;
@@ -468,7 +465,6 @@
             "valid": true
         });
     };
-
     QCM_Checkbox.prototype.render = function render(){
         var self = this;
         var $container, name, id_option, option;
@@ -494,7 +490,6 @@
             $("<br />").appendTo($container);
         }
     };
-
     QCM_Checkbox.prototype.properties = function properties(){
         var self = this;
         var properties;
@@ -503,7 +498,6 @@
         properties["options"] = self.options;
         return properties;
     };
-
     QCM_Checkbox.prototype.check_question = function check_question(){
         var self = this;
         if (len(self.options) < 2) {
@@ -513,14 +507,15 @@
         }
     };
 
-    function QCM_Radio(parent, text, line){
+    function QCM_Radio() {
+        QCM_Radio.prototype.__init__.apply(this, arguments);
+    }
+    _$rapyd$_extends(QCM_Radio, QCM_Checkbox);
+    QCM_Radio.prototype.__init__ = function __init__(parent, text, line){
         var self = this;
         QCM_Checkbox.prototype.constructor.call(self, parent, text, line);
         self.input_type = "radio";
     };
-
-    _$rapyd$_extends(QCM_Radio, QCM_Checkbox);
-
     QCM_Radio.prototype.add_answer = function add_answer(content){
         var self = this;
         if (self.has_answer) {
@@ -533,7 +528,6 @@
             self.has_answer = true;
         }
     };
-
     QCM_Radio.prototype.properties = function properties(){
         var self = this;
         var properties;
@@ -543,10 +537,9 @@
     };
 
     function QCM_Select() {
-        QCM_Radio.prototype.constructor.apply(this, arguments);
+        QCM_Radio.prototype.__init__.apply(this, arguments);
     }
     _$rapyd$_extends(QCM_Select, QCM_Radio);
-
     QCM_Select.prototype.render = function render(){
         var self = this;
         var id_input, $container, $select, option;
@@ -568,7 +561,6 @@
             $("<option>").append(option.content).appendTo($select);
         }
     };
-
     QCM_Select.prototype.properties = function properties(){
         var self = this;
         var properties;
@@ -577,7 +569,10 @@
         return properties;
     };
 
-    function Parse(text){
+    function Parse() {
+        Parse.prototype.__init__.apply(this, arguments);
+    }
+    Parse.prototype.__init__ = function __init__(text){
         var self = this;
         self.questions = [];
         self.errors = [];
@@ -587,8 +582,6 @@
         self.question_parent = null;
         self.read(text);
     };
-
-
     Parse.prototype.read = function read(text){
         var self = this;
         var lines, split_lines, is_content, char, line, tag, content, line_is_question, question;
@@ -606,7 +599,7 @@
                 char = _$rapyd$_Iter9[_$rapyd$_Index9];
                 if (is_content) {
                     content += char;
-                } else if (char == " ") {
+                } else if (char === " ") {
                     is_content = true;
                 } else {
                     tag += char;
@@ -619,7 +612,7 @@
         }
         line_is_question = true;
         while (self.l < len(split_lines)) {
-            if (split_lines[self.l].tag == "") {
+            if (split_lines[self.l].tag === "") {
                 line_is_question = true;
                 self.l += 1;
             } else {
@@ -640,7 +633,6 @@
             question.check_question();
         }
     };
-
     Parse.prototype.new_question = function new_question(tag, contenu){
         var self = this;
         var questions_types;
@@ -662,7 +654,6 @@
             self.error("Contenu introuvable");
         }
     };
-
     Parse.prototype.new_attribute = function new_attribute(tag, contenu, line){
         var self = this;
         if (self.question_parent) {
@@ -673,7 +664,6 @@
             }
         }
     };
-
     Parse.prototype.render = function render(){
         var self = this;
         var question;
@@ -691,7 +681,6 @@
         }
         self.show_errors();
     };
-
     Parse.prototype.error = function error(message, line){
         var self = this;
         if (typeof line === "undefined") line = self.l;
@@ -700,7 +689,6 @@
             "message": message
         });
     };
-
     Parse.prototype.show_errors = function show_errors(){
         var self = this;
         var $errors_div, $container, error;
@@ -725,15 +713,14 @@
             $(".errorsbox").css("display", "none");
         }
     };
-
     Parse.prototype.tojson = function tojson(){
         var self = this;
         var object_json, question, json;
         json = "";
         if (len(self.errors) > 0) {
-            alert("Il y a encore des erreurs");
-        } else if (len(self.questions) == 0) {
-            alert("Contenu vide");
+            utils.alert_dialog("Erreur", "Vous devez corriger les erreurs avant de pouvoir envoyer le quiz");
+        } else if (len(self.questions) === 0) {
+            utils.alert_dialog("Erreur", "Votre quiz ne comporte aucune question");
         } else {
             object_json = [];
             var _$rapyd$_Iter13 = self.questions;
@@ -745,13 +732,11 @@
         }
         return json;
     };
-
     Parse.prototype.get_id = function get_id(){
         var self = this;
         self.id += 1;
         return "id_" + self.id;
     };
-
     Parse.prototype.get_name = function get_name(){
         var self = this;
         self.name += 1;
@@ -759,19 +744,24 @@
     };
 
     function get_text() {
-        return $("#zonetexte").val();
+        return $("#quizcode").val();
     }
     function start_render() {
         var parse;
         parse = new Parse(get_text()).render();
     }
     function submit() {
-        var parse, json_string;
+        var parse, json_string, title;
         parse = new Parse(get_text());
         json_string = parse.tojson();
+        title = $("#title").val();
         if (json_string) {
-            $("#quiz_json").val(json_string);
-            $("#createform").submit();
+            if (title) {
+                $("#quiz_json").val(json_string);
+                $("#createform").submit();
+            } else {
+                utils.alert_dialog("Erreur", "Vous devez spécifier un titre pour votre quiz");
+            }
         } else {
             parse.render();
         }
@@ -779,20 +769,13 @@
     function demo() {
         var demo_text;
         demo_text = "## Cases à cocher\n* Option 1\n= Option 4\n= Option 5\n\n-- Liste déroulante\n* Option 2\n= Option 3\n\n?? Question simple\n= Réponse\n\n** Boutons radio\n* Option 1\n= Option 2\nerreur";
-        $("#zonetexte").val(demo_text);
-        update_lines(count(demo_text));
-    }
-    function bind() {
-        var b_questions, b_properties;
-        b_questions = $(".tag-p");
-        b_properties = $(".tag-q");
-        b_questions.click();
+        $("#quizcode").val(demo_text);
+        show_lines();
     }
     function main() {
         $("#bouton").click(start_render);
         $("#demo").click(demo);
         $("#submit").click(submit);
-        _$rapyd$_bind();
     }
     jQuery(document).ready(main);
 })();

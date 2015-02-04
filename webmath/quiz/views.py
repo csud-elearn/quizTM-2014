@@ -4,7 +4,7 @@ import json
 from quiz.utils.save import SaveQuiz
 from quiz.utils.submit import QuizForms
 from quiz.forms import TextForm, CheckboxForm, RadioForm, SelectForm
-from quiz.models import Quiz
+from quiz.models import Quiz, QuizDraft
 
 # Create your views here.
 
@@ -51,15 +51,59 @@ def find(request):
     return render(request, 'quiz/find.html', {'l_quiz' : Quiz.objects.order_by('-creation_date')[:5]})
     
 def findquiz(request):
-    n_quiz = request.GET['quiz']
-    
-    try:
-        quiz = Quiz.objects.get(id=n_quiz)
-    except: #Si le quiz n'existe pas
-        return HttpResponse("")
+    if request.method == "GET":
+        n_quiz = request.GET['quiz']
+        
+        try:
+            quiz = Quiz.objects.get(id=n_quiz)
+        except: #Si le quiz n'existe pas
+            return HttpResponse("")
+        else:
+            url = reverse("quiz:complete", args=[n_quiz])
+            json_dict = {"url" : url, "title" : quiz.title}
+            json_string = json.dumps(json_dict)
+            
+        return HttpResponse(json_string)
     else:
-        url = reverse("quiz:complete", args=[n_quiz])
-        json_dict = {"url" : url, "title" : quiz.title}
+        return HttpResponse("")
+    
+def savedraft(request):
+    if request.method == "POST":
+        title = request.POST["title"]
+        code = request.POST["code"]
+        
+        draft = QuizDraft(title=title, code=code)
+        draft.save()
+        
+        return HttpResponse(str(draft.pk))
+        
+def listdrafts(request): # Permet de récupérer la liste des brouillons en json
+    if request.method == "GET":
+        drafts = QuizDraft.objects.all()
+        
+        if len(drafts) > 0:
+            list_drafts = [] # Liste qui sera sérializée
+            
+            for d in drafts:
+                list_drafts.append({
+                    "title" : d.title,
+                    "id" : d.pk,
+                })
+                
+            json_string = json.dumps(list_drafts)
+        
+            return HttpResponse(json_string)
+        
+def getdraft(request): # Permet de récupérer le titre et le code d'un brouillon en json
+    if request.method == "GET":
+        n_draft = request.GET['draft']
+        
+        quiz = get_object_or_404(QuizDraft, pk=n_draft)
+        
+        json_dict = {
+            "title" : quiz.title,
+            "code" : quiz.code,
+        }
         json_string = json.dumps(json_dict)
         
-    return HttpResponse(json_string)
+        return HttpResponse(json_string)

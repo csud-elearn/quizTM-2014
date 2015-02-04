@@ -12,11 +12,11 @@
 
 {% block page-content %}
 <div class="thumbnail">
-    <div class="caption-full">
-        <h1>{{ quiz.title }}</h1>
-        <form id="completeform" class="quizform" action="{% url 'quiz:complete' quiz.id %}" method="POST">
+    <form id="completeform" class="quizform" action="{% url 'quiz:complete' quiz.id %}" method="POST">
+        <div class="caption-full">
+            <h1>{{ quiz.title }}</h1>
             {% csrf_token %}
-            <ul class="list-group">
+            <ul class="list-group bottom-space">
                 {% for form in l_forms %}
                     <li class="q_container list-group-item">
                     {% if form.get_type == 0 %}
@@ -33,8 +33,8 @@
                     </li>
                 {% endfor %}
             </ul>
-            <button type="submit" class="btn btn-sm btn-primary">Soumettre les réponses</button>
-        </form>
-    </div>
+            <button type="submit" class="btn btn-sm btn-primary bottom-space">Soumettre les réponses</button>
+        </div>
+    </form>
 </div>
 {% endblock %}

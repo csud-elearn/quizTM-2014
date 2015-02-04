@@ -10,6 +10,8 @@ CREATE
 * Problème si il y a une virgule dans les points (parseFloat("5,5") renvoie 5)
 * L'utilisateur doit entrer un titre -> Vérification javascript lorsqu'on appuie sur le bouton
 * Lors de la création, changer la redirection pour faire qqch de correct
+* Définir l'action à réaliser lors de l'échec des appels ajax
+* Trouver un moyen de mieux gérer les boites de dialogue simples pour éviter d'avoir trop de code html
 
 A REFLECHIR
 * Faut-il implémenter de nouvelles tables pour les statistiques des quiz pour éviter de faire trop de requêtes ? Sous quelle forme implémenter cela ? --> Une table de statistiques avec une relation vers

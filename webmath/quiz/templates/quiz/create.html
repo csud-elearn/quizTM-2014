@@ -7,91 +7,163 @@
 {% block head %}
 <link rel="stylesheet" href="{% static 'quiz/css/create.css' %}">
 <script src="{% static 'quiz/js/textarea_lines.js' %}"></script>
+<script src="{% static 'quiz/js/jquery.caret.js' %}"></script>
+<script src="{% static 'quiz/js/toolbar.js' %}"></script>
 <script src="{% static 'quiz/js/interpreter.js' %}"></script>
 {% endblock %}
 
 {% block page-content %}
 <div class="thumbnail">
-    <div class="caption-full">
-        <h1>Nouveau quiz</h1>
-        <form id="createform" action="{% url 'quiz:create' %}" method="post">{% csrf_token %}
+    <form id="createform" action="{% url 'quiz:create' %}" method="post">{% csrf_token %}
+        <div class="caption-full">
+            <h1>Nouveau quiz</h1>
             <label for="title">Titre du quiz</label>
-            <input type="text" class="form-control" id="title" name="title">
-            <label for="zonetexte">Texte du quiz</label>
-            <div class="btn-group" role="group">
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" title="Nouvelle question">
-                          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a href="#" class="tag-q" data-tag="##">QCM sélection multiple</a></li>
-                      <li><a href="#" class="tag-q"data-tag="**">QCM sélection unique</a></li>
-                      <li><a href="#" class="tag-q" data-tag="^^">Liste déroulante</a></li>
-                      <li><a href="#" class="tag-q" data-tag="??">Champ de texte</a></li>
-                    </ul>
+            <input type="text" class="form-control bottom-space" id="title" name="title">
+            <label for="quizcode">Texte du quiz</label>
+            
+            <!-- Toolbar supérieure -->
+            <div class="btn-toolbar">
+                <!-- Première partie de la barre d'outils -->
+                <div class="btn-group bottom-space" role="group">
+                    <div class="btn-group" role="group">
+                        <a type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" title="Nouvelle question">
+                        <span class="glyphicon glyphicon-th-list"></span> Question <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a class="tag-insert tag-q" data-tag="##">QCM sélection multiple</a></li>
+                            <li><a class="tag-insert tag-q"data-tag="**">QCM sélection unique</a></li>
+                            <li><a class="tag-insert tag-q" data-tag="^^">Liste déroulante</a></li>
+                            <li><a class="tag-insert tag-q" data-tag="??">Champ de texte</a></li>
+                        </ul>
+                    </div>
+                    <a class="btn btn-default btn-sm tag-insert tag-p" title="Option / Réponse correcte" data-tag="=">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Correct
+                    </a>
+                    <a class="btn btn-default btn-sm tag-insert tag-p" title="Option incorrecte" data-tag="*">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Incorrect
+                    </a>
+                    <a class="btn btn-default btn-sm tag-insert tag-p" title="Commentaire pour la correction" data-tag="+">
+                        <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Commentaire
+                    </a>
+                    <a class="btn btn-default btn-sm tag-insert tag-p" title="Nombre de points sur la question" data-tag=".">
+                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span> Points
+                    </a>
                 </div>
-                <button type="button" class="btn btn-default btn-sm tag-p" title="Option / Réponse correcte" data-tag="=">
-                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                </button>
-                <button type="button" class="btn btn-default btn-sm tag-p" title="Option incorrecte" data-tag="*">
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                </button>
-                <button type="button" class="btn btn-default btn-sm tag-p" title="Commentaire pour la correction" data-tag="+">
-                    <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-                </button>
-                <button type="button" class="btn btn-default btn-sm tag-p" title="Nombre de points sur la question" data-tag=".">
-                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                </button>
+                
+                <!-- Deuxième partie de la barre d'outils -->
+                <div class="btn-group bottom-space">
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" title="Importer ou enregistrer un brouillon">
+                            <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Brouillon <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a class="" data-toggle="modal" id="importdraft-btn" data-target="#importdraft-box">Importer un brouillon</a></li>
+                            <li><a class="" data-toggle="modal" id="savedraft-btn" data-target="#savedraft-box">Enregistrer un brouillon</a></li>
+                        </ul>
+                    </div>
+                    <a class="btn btn-default btn-sm" id="demo" title="Quiz de démo">
+                        <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Démo
+                    </a>
+                    <a class="btn btn-default btn-sm" title="Afficher l'aide" data-toggle="modal" data-target="#help-box">
+                        <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Aide
+                    </a>
+                </div>
             </div>
-            <div class="btn-group" role="group">
-                <button type="button" class="btn btn-default btn-sm" title="Aperçu du quiz">
-                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                </button>
-                <button type="button" class="btn btn-default btn-sm" title="Enregistrer en brouillon">
-                    <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-                </button>
-                <button type="button" class="btn btn-default btn-sm" title="Enregistrer le quiz">
-                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
-                </button>
-            </div>
-            <div class="input-group">
+                
+            <!-- Zone de texte -->
+            <div class="input-group bottom-space">
                 <span class="input-group-addon lines" id="basic-addon1">1</span>
-                <textarea class="form-control linedarea" id="zonetexte" placeholder="Votre texte ici" rows="18" wrap="off" name="quizcode" aria-describedby="basic-addon1"></textarea>
+                <textarea class="form-control linedarea" id="quizcode" placeholder="Votre texte ici" rows="18" wrap="off" name="quizcode" aria-describedby="basic-addon1"></textarea>
             </div>
+            <a href="#viewbox" class="btn btn-primary btn-sm bottom-space" id="bouton" title="Aperçu du quiz">
+                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Aperçu
+            </a>
+            
+            <a class="btn btn-success btn-sm bottom-space" id="submit" title="Enregistrer le quiz">
+                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Enregistrer
+            </a>
+            
             <input type="hidden" id="quiz_json" name="json" />
-        </form>
-        <button type="button" id="bouton" class="btn btn-sm btn-primary">Aperçu</button>
-        <button type="button" id="demo" class="btn btn-sm btn-primary">Démo</button>
-        <button type="button" id="submit" class="btn btn-sm btn-primary">Envoyer</button>
-        <div class="modal fade bs-example-modal-sm">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        <p>One fine body&hellip;</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-    </div>
+        </div>
+    </form>
 </div>
-<div class="thumbnail viewbox">
+
+<!-- Aperçu -->
+<div class="thumbnail viewbox" id="viewbox">
     <div class="caption-full">
         <h2>Aperçu</h2>
-        <ul id="view_form" class="quizform list-group"></ul>
+        <ul id="view_form" class="quizform list-group bottom-space"></ul>
     </div>
 </div>
+
+<!-- Erreurs -->
 <div class="thumbnail errorsbox">
     <div class="caption-full">
         <h2>Erreurs</h2>
-        <div id="errors-div" class="alert alert-danger"></div>
+        <div id="errors-div" class="alert alert-danger bottom-space"></div>
+    </div>
+</div>
+
+<!-- Boites de dialogue -->
+<!-- Enregistrement de brouillons -->
+<div class="modal fade" id="savedraft-box">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Enregistrer un brouillon</h4>
+            </div>
+            <div class="modal-body">
+                <label for="draft-title">Nom du brouillon</label>
+                <input type="text" id="draft-title" class="form-control bottom-space"/>
+                <div class="alert bottom-space" id="save-status" style="display:none" role="alert"></div>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-danger" data-dismiss="modal">Fermer</a>
+                <a id="submitdraft-btn" class="btn btn-success">Enregistrer</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Import de brouillons -->
+<div class="modal fade" id="importdraft-box">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Importer un brouillon</h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Brouillons</div>
+                    <ul class="list-group" id="list-drafts">
+                        <li class="list-group-item list-group-item-warning">Aucun brouillon enregistré</li>
+                    </ul>
+                </div>
+            </div>
+                <div class="modal-footer">
+                <a class="btn btn-danger" data-dismiss="modal">Fermer</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Aide -->
+<div class="modal fade" id="help-box">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Aide</h4>
+            </div>
+            <div class="modal-body">
+                <p>Pour l'instant, débrouillez-vous</p>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-danger" data-dismiss="modal">Fermer</a>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
