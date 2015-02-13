@@ -36,14 +36,22 @@ def insert_tag(tag, n_linebreaks):
     while text_before != "\n".repeat(n_linebreaks) and pos-n_linebreaks >= 0:
         new_text = new_text.insert("\n", pos)
         pos += 1
+        text_before = new_text.slice(pos-n_linebreaks, pos)
 
     # Ajout du tag dans le texte
     new_text = new_text.insert(tag, pos)
     pos += len(tag)
+    
+    # Ajout d'espace après le tag s'il n'y en a pas
+    if new_text.charAt(pos) != " ":
+        new_text = new_text.insert(" ", pos)
+        pos += 1
 
     # Le contenu est redéfini et le curseur replacé après le tag inséré
     $("#quizcode").val(new_text)
     $("#quizcode").caret(pos)
+    
+    show_lines() # Mise à jour des numéros de lignes
 
 def open_savedraft():
     """
