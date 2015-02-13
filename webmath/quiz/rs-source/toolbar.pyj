@@ -1,0 +1,162 @@
+"""
+Lie les boutons de la barre d'outils aux actions correspondantes
+"""
+
+def toolbar_main():
+    $(".tag-insert").click_foreach(set_insert)
+    $("#savedraft-btn").click(open_savedraft)
+    $("#submitdraft-btn").click(submitdraft)
+    $("#importdraft-btn").click(get_draftlist)
+
+def set_insert():
+    """
+    Récupère le tag associé à chaque bouton et définit le nombre de retours à la ligne nécessaires
+    """
+
+    if $(this).hasClass("tag-q"):
+        insert_tag($(this).attr("data-tag"), 2)
+
+    elif $(this).hasClass("tag-p"):
+        insert_tag($(this).attr("data-tag"), 1)
+
+def insert_tag(tag, n_linebreaks):
+    """
+    Insère le tag dans la zone de texte en s'assurant qu'il y ait le nombre suffisant de retours de ligne
+    """
+
+    pos = $("#quizcode").caret() # Position du curseur dans la zone de texte
+    text = $("#quizcode").val() # Texte avant la modification
+
+    new_text = text # Texte qui remplacera l'ancien
+
+    # Portion de texte avant le tag censée contenir n retours
+    text_before = new_text.slice(pos-n_linebreaks, pos) # Le slicing avec [i:j] ne fonctionne pas avec RapydScript
+    
+    # Ajout de retours à la ligne avant le tag s'il n'y en a pas assez
+    while text_before != "\n".repeat(n_linebreaks) and pos-n_linebreaks >= 0:
+        new_text = new_text.insert("\n", pos)
+        pos += 1
+
+    # Ajout du tag dans le texte
+    new_text = new_text.insert(tag, pos)
+    pos += len(tag)
+
+    # Le contenu est redéfini et le curseur replacé après le tag inséré
+    $("#quizcode").val(new_text)
+    $("#quizcode").caret(pos)
+
+def open_savedraft():
+    """
+    Ouvre une boîte de dialogue permettant d'enregistrer un brouillon
+    """
+    $("#draft-title").val($("#title").val()) # Copie du titre du quiz
+    $("#save-status").css("display", "none") # Le message éventuellement affiché précédemment est masqué
+    $("#submitdraft-btn").css("display", "inline-block") # Réaffichage du bouton s'il était masqué
+
+def submitdraft():
+    """
+    Enregistre le brouillon sur le serveur par requête ajax POST
+    """
+    csrftoken = utils.getcookie('csrftoken') # Nécessaire avec django pour une requête POST
+    quizcode = $("#quizcode").val()
+    title = $("#draft-title").val()
+
+    if quizcode and title:
+        # Requête ajax POST pour enregistrer le brouillon
+        $.ajax({
+            "url": "/quiz/savedraft/",
+            "type": "POST",
+            "dataType": "text",
+            "data": "csrfmiddlewaretoken=" + csrftoken + "&title=" + title + "&code=" + quizcode,
+            "success": savedraft_success,
+            "error": savedraft_error,
+        })
+
+    else:
+        savedraft_warning() #Si un des champs est vide, affichage d'un warning
+
+def savedraft_message(message, bootstrap_color):
+    """
+    Affiche un message (success/error/warning) dans la boîte de dialogue
+    """
+    $status_box = $("#save-status")
+
+    # Suppression des fonds bootstrap précédents
+    $status_box.removeClass("alert-danger alert-warning alert-success")
+    $status_box.addClass(bootstrap_color) # Ajout du nouveau fond
+    $status_box.text(message)
+    $status_box.css("display", "block") # Réaffichage si masqué avant
+
+def savedraft_success():
+    "Enregistrement réussi"
+    savedraft_message("Brouillon enregistré", "alert-success")
+
+def savedraft_error():
+    "Échec de l'enregistrement"
+    savedraft_message("L'enregistrement a échoué. Veuillez vérifier votre connexion", "alert-danger")
+
+def savedraft_warning():
+    "Champs vides"
+    savedraft_message("Vous devez entrer un titre et ajouter du contenu au quiz", "alert-warning")
+
+def get_draftlist():
+    """
+    Récupère la liste des brouillons sur le serveur par requête ajax GET
+    """
+    $.ajax({
+        "url": "/quiz/listdrafts/",
+        "type": "GET",
+        "dataType": "json",
+        # "data": "",
+        "success": show_draftlist
+        # "error": savedraft_error,
+    })
+
+def show_draftlist(data):
+    """
+    Affiche la liste des brouillons dans une boîte de dialogue
+    """
+    $draftlist = $("#list-drafts")
+    $draftlist.children().remove()
+
+    for draft in data:
+        $("<a>", {
+            "class" : "list-group-item bold",
+            "data-id" : draft['id'], # Id du brouillon correspondant -> pour l'appel ajax
+            "data-dismiss" : "modal", # Pour fermer la boîte lors du clic
+        }).text(draft["title"]).appendTo($draftlist)
+
+    # Import du brouillon lors du clic
+    $draftlist.children().click_foreach(importdraft)
+
+def importdraft():
+    """
+    Récupère les données du brouillon par requête ajax GET
+    """
+    # Id du brouillon correspondant au bouton
+    draft_id = $(this).attr("data-id")
+
+    # Appel ajax GET
+    $.ajax({
+        "url": "/quiz/getdraft/",
+        "type": "GET",
+        "dataType": "json",
+        "data": "draft=" + draft_id,
+        "success": importdraft_success,
+        # "error": importdraft_error,
+    })
+
+def importdraft_success(data):
+    """
+    Modifie les champs du quiz avec les données récupérés par ajax
+    """
+    # Récupération des attributs
+    title = data['title']
+    code = data['code']
+
+    # Les champs sont modifiés avec les valeurs du brouillon
+    $("#title").val(title)
+    $("#quizcode").val(code)
+
+# Corps principal
+$(document).ready(toolbar_main)
