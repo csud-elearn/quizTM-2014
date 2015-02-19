@@ -51,6 +51,7 @@
         $("#draft-title").val($("#title").val());
         $("#save-status").css("display", "none");
         $("#submitdraft-btn").css("display", "inline-block");
+        $("#savedraft-box").modal("show");
     }
     function submitdraft() {
         var csrftoken, quizcode, title;
@@ -73,7 +74,7 @@
     }
     function savedraft_message(message, bootstrap_color) {
         var $status_box;
-        "\n    Affiche un message (success/error/warning) dans la boîte de dialogue\n    ";
+        "\n    Affiche un message relatif à la sauvegarde (success/error/warning) dans la boîte de dialogue\n    ";
         $status_box = $("#save-status");
         $status_box.removeClass("alert-danger alert-warning alert-success");
         $status_box.addClass(bootstrap_color);
@@ -116,6 +117,7 @@
             }).text(draft["title"]).appendTo($draftlist);
         }
         $draftlist.children().click_foreach(importdraft);
+        $("#importdraft-box").modal("show");
     }
     function importdraft() {
         var draft_id;

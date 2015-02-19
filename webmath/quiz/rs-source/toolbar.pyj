@@ -60,6 +60,8 @@ def open_savedraft():
     $("#draft-title").val($("#title").val()) # Copie du titre du quiz
     $("#save-status").css("display", "none") # Le message éventuellement affiché précédemment est masqué
     $("#submitdraft-btn").css("display", "inline-block") # Réaffichage du bouton s'il était masqué
+    
+    $("#savedraft-box").modal('show') # Affichage de la boîte
 
 def submitdraft():
     """
@@ -85,7 +87,7 @@ def submitdraft():
 
 def savedraft_message(message, bootstrap_color):
     """
-    Affiche un message (success/error/warning) dans la boîte de dialogue
+    Affiche un message relatif à la sauvegarde (success/error/warning) dans la boîte de dialogue
     """
     $status_box = $("#save-status")
 
@@ -119,6 +121,7 @@ def get_draftlist():
         "success": show_draftlist
         # "error": savedraft_error,
     })
+    
 
 def show_draftlist(data):
     """
@@ -136,6 +139,8 @@ def show_draftlist(data):
 
     # Import du brouillon lors du clic
     $draftlist.children().click_foreach(importdraft)
+    
+    $("#importdraft-box").modal('show') # Affichage de la boîte
 
 def importdraft():
     """
