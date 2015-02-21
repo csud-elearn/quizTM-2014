@@ -127,7 +127,7 @@ class Qcm(QuizQuestion):
         else:
             Form = forms.RadioForm
             
-        return Form(queryset=QcmChoice.objects.filter(id_qcm=self), prefix=self.number, text=self.text, *args, **kwargs)
+        return Form(queryset=QcmChoice.objects.filter(id_question=self), prefix=self.number, text=self.text, *args, **kwargs)
         
     def save_submit(self, data, completed):
         """
@@ -138,7 +138,7 @@ class Qcm(QuizQuestion):
         else:
             Model = QcmSubmitOne
             
-        submit = Model(id_submitted_quiz=completed, id_qcm=self)
+        submit = Model(id_submitted_quiz=completed, id_question=self)
         
         if self.multi_answers:
             submit.save() #Comme il peut s'agir d'une relation many to many, il faut sauvegarder et ajouter la relation après
@@ -148,7 +148,7 @@ class Qcm(QuizQuestion):
 class QcmChoice(models.Model): #Choix affichés pour un QCM
     text = models.CharField(max_length=50)
     valid = models.BooleanField() #Vaut True si la case doit être cochée
-    id_qcm = models.ForeignKey(Qcm)
+    id_question = models.ForeignKey(Qcm)
     
     def __str__(self):
         return self.text
@@ -175,7 +175,7 @@ class QcmChoice(models.Model): #Choix affichés pour un QCM
         Détermine si le choix a été sélectionné ou non
         """
         # Si la sélection peut comporter plusieurs choix
-        if self.id_qcm.multi_answers:
+        if self.id_question.multi_answers:
             # Récupération des données de la relation M to M
             selected = qcmsubmit.id_selected.all()
             if self in selected:
@@ -193,7 +193,7 @@ class QcmChoice(models.Model): #Choix affichés pour un QCM
         
 class QcmSubmit(models.Model):
     id_submitted_quiz = models.ForeignKey(CompletedQuiz) #Relation vers la tentative
-    id_qcm = models.ForeignKey(Qcm) #Relation vers la question : utile si aucune case est cochée
+    id_question = models.ForeignKey(Qcm) #Relation vers la question : utile si aucune case est cochée
         
     class Meta:
             abstract = True
