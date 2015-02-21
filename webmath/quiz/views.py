@@ -3,8 +3,9 @@ from django.core.urlresolvers import reverse
 import json
 from quiz.utils.save import SaveQuiz
 from quiz.utils.submit import QuizForms
+from quiz.utils.correct import CorrectQuiz
 from quiz.forms import TextForm, CheckboxForm, RadioForm, SelectForm
-from quiz.models import Quiz, QuizDraft
+from quiz.models import Quiz, QuizDraft, CompletedQuiz, SqSubmit, QcmSubmitMulti, QcmSubmitOne
 
 # Create your views here.
 
@@ -107,3 +108,13 @@ def getdraft(request): # Permet de récupérer le titre et le code d'un brouillo
         json_string = json.dumps(json_dict)
         
         return HttpResponse(json_string)
+        
+def correct(request, n_completed):
+    """
+    Corrige les réponses soumises par un étudiant
+    """
+    completed = get_object_or_404(CompletedQuiz, pk=n_completed)
+    
+    correctquiz = CorrectQuiz(completed)
+        
+    return render(request, 'quiz/correct.html', {'l_corrections' : correctquiz.get_corrections(), 'quiz' : completed.id_quiz})

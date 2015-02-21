@@ -11,4 +11,5 @@ urlpatterns = patterns('',
     url(r'^savedraft/', savedraft, name="savedraft"),
     url(r'^listdrafts/', listdrafts, name="listdrafts"),
     url(r'^getdraft/', getdraft, name="getdraft"),
+    url(r'^(\d+)/correct/', correct, name="correct"),
 )
