@@ -41,6 +41,7 @@ class CorrectSq(CorrectQuestion):
         CorrectQuestion.__init__(self, sqsubmit)
         
         self.submit = sqsubmit.text # Texte soumis par l'étudiant
+        self.type = 0 # Détermine la manière d'afficher la question dans le template
         
         # Les réponses correctes sont placés dans une liste sous forme de chaînes de charactères
         self.l_correct = sqsubmit.get_corrections()
@@ -58,16 +59,29 @@ class CorrectQcm(CorrectQuestion):
         
         self.l_correct_choices = []
         
+        # Détermination du type de questions pour l'affichage dans le template
+        if qcmsubmit.id_question.multi_answers:
+            self.type = 1
+        else:
+            if qcmsubmit.id_question.show_list:
+                self.type = 2
+            else:
+                self.type = 3
+        
         # Récupération des choix possibles dans la db
         l_choices = QcmChoice.objects.filter(id_question=qcmsubmit.id_question)
         
         for choice in l_choices:
             self.l_correct_choices.append(CorrectChoice(choice, qcmsubmit))
             
-        self.result(qcmsubmit) # Comptabilisation des points
+        self.calculate_result(qcmsubmit) # Comptabilisation des points
+    
+    def calculate_result(self, qcmsubmit):
+        pass
+
             
-def CorrectQcmMulti(CorrectQcm):
-    def result(self, qcmsubmit):
+class CorrectQcmMulti(CorrectQcm):
+    def calculate_result(self, qcmsubmit):
         """
         Attributs les points en fonction des réponses
         """
@@ -78,14 +92,15 @@ def CorrectQcmMulti(CorrectQcm):
             if choice.is_correct:
                 self.result += ppc
 
-def CorrectQcmOne(CorrectQcm):
-    def result(self, qcmsubmit):
+class CorrectQcmOne(CorrectQcm):
+    def calculate_result(self, qcmsubmit):
         """
         Attribue les points en fonction des réponses
         """
         # Si le choix sélectionné correspond au choix défini comme correct, tous les points sont attribués
-        if qcmsubmit.id_selected.valid:
-            self.result = self.points
+        if qcmsubmit.id_selected: # Il se peut que l'utilisateur n'ait rien sélectionné
+            if qcmsubmit.id_selected.valid:
+                self.result = self.points
 
 class CorrectChoice:
     def __init__(self, choice, qcmsubmit):

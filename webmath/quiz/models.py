@@ -176,10 +176,13 @@ class QcmChoice(models.Model): #Choix affichés pour un QCM
         """
         # Si la sélection peut comporter plusieurs choix
         if self.id_question.multi_answers:
-            # Récupération des données de la relation M to M
-            selected = qcmsubmit.id_selected.all()
-            if self in selected:
-                return True
+            if qcmsubmit.id_selected: # Il faut s'assurer qu'au moins un choix soit coché
+                # Récupération des données de la relation M to M
+                selected = qcmsubmit.id_selected.all()
+                if self in selected:
+                    return True
+                else:
+                    return False
             else:
                 return False
         # Si un seul élément peut être sélectionné
