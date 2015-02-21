@@ -1,0 +1,15 @@
+{% extends "quiz/base.html" %}
+{% load staticfiles %}
+
+{% block title %}Correction : {{ quiz.title }}{% endblock %}
+{% block side-complete %}active{% endblock %}
+
+{% block page-content %}
+<div class="thumbnail">
+    <form id="completeform" class="quizform" action="{% url 'quiz:complete' quiz.id %}" method="POST">
+        <div class="caption-full">
+            <h1>Correction : {{ quiz.title }}</h1>
+        </div>
+    </form>
+</div>
+{% endblock %}
