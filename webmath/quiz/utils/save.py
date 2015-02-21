@@ -53,7 +53,7 @@ class SaveQcm(SaveQuestion):
         text = option["content"]
         valid = option["valid"]
         
-        choice_db = QcmChoice(text=text, valid=valid, id_qcm=self.question_db)
+        choice_db = QcmChoice(text=text, valid=valid, id_question=self.question_db)
         choice_db.save()
 
 #Enregistre un qcm de type checkbox

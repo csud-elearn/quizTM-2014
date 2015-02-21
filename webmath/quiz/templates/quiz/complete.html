@@ -4,12 +4,6 @@
 {% block title %}{{ quiz.title }}{% endblock %}
 {% block side-complete %}active{% endblock %}
 
-{% block head %}
-<link rel="stylesheet" href="{% static 'quiz/css/newcreate.css' %}">
-<script src="{% static 'quiz/js/textarea_lines.js' %}"></script>
-<script src="{% static 'quiz/js/interpreter.js' %}"></script>
-{% endblock %}
-
 {% block page-content %}
 <div class="thumbnail">
     <form id="completeform" class="quizform" action="{% url 'quiz:complete' quiz.id %}" method="POST">

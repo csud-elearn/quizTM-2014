@@ -2,14 +2,12 @@ from quiz.forms import CheckboxForm, RadioForm, SelectForm, TextForm
 from quiz.models import SimpleQuestion, Qcm, SqSubmit, QcmChoice, QcmSubmitOne, QcmSubmitMulti, CompletedQuiz
 from itertools import chain
 
-TYPES = [SimpleQuestion, Qcm]
-
 class QuizForms:
     def __init__(self, quiz, data=None):
         self.quiz = quiz
         
         #On récupère toutes les questions dans la db et on les met dans une seule liste
-        queryset = list(chain(SimpleQuestion.objects.filter(id_quiz=quiz), Qcm.objects.filter(id_quiz=quiz)))
+        queryset = list(SimpleQuestion.objects.filter(id_quiz=quiz)) + list(Qcm.objects.filter(id_quiz=quiz))
         
         self.l_questions = [None] * len(queryset) #Construction d'une liste d'éléments vide qui contiendra les formulaires
         self.l_forms = [None] * len(queryset)
