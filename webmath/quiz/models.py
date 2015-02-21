@@ -28,6 +28,18 @@ class CompletedQuiz(models.Model): #Tentative de réponse au quiz par un élève
     submit_date = models.DateTimeField(auto_now_add=True)
     id_quiz = models.ForeignKey(Quiz) #Relation avec le quiz complété
     #id_student = models.ForeignKey('students.Student')
+    
+    def correct(self):
+        """
+        Corrige les questions soumises
+        """
+        questions_types = [QcmSubmitMulti, QcmSubmitOne, SqSubmit]
+        
+        for type_ in questions_types:
+            l_submits = type_.objects.filter(id_submitted_quiz=self)
+            
+            for submit in l_submits:
+                submit.correct()
 
 #    
 #Classes abstraites
@@ -71,8 +83,32 @@ class SqSubmit(models.Model): #Réponse soumise par un élève
     text = models.CharField(max_length=50)
     id_question = models.ForeignKey(SimpleQuestion) #Relation vers la question à laquelle l'élève a répondu
     id_submitted_quiz = models.ForeignKey(CompletedQuiz) #Relation vers la tentative
+    
+    def __str__(self):
+        return self.text
+        
+    def get_corrections(self):
+        """
+        Renvoie la liste des réponses correctes à la question
+        """
+        # Récupération des corrections de la question
+        l_sq_answer = SqAnswer.objects.filter(id_question=self.id_question)
+        
+        # Les réponses correctes (string) sont placés dans une liste
+        l_correct_text = [answer.text for answer in l_sq_answer]
+        
+        return l_correct_text
+        
+    def correct(self):
+        """
+        Détermine si la réponse soumise est correcte
+        """
+        if self.text in self.get_corrections():
+            return True
+        else:
+            return False
 
-#    
+# 
 #Tables concernant les QCM
 #
 
@@ -116,6 +152,44 @@ class QcmChoice(models.Model): #Choix affichés pour un QCM
     
     def __str__(self):
         return self.text
+        
+    def correct(self, qcmsubmit):
+        """
+        Détermine si la réponse soumise qcmsubmit est correcte ou non
+        """
+        # Si le choix est sélectionnée
+        if self.checked(qcmsubmit):
+            if self.valid: # Le choix est défini comme valide
+                return True
+            else: # Le choix est défini comme invalide
+                return False
+        # Si le choix n'est pas sélectionné
+        else: # Le choix n'est pas sélectionné
+            if self.valid: # Le choix est défini comme valide
+                return False
+            else: # Le choix est défini comme invalide
+                return True
+                
+    def checked(self, qcmsubmit):
+        """
+        Détermine si le choix a été sélectionné ou non
+        """
+        # Si la sélection peut comporter plusieurs choix
+        if self.id_qcm.multi_answers:
+            # Récupération des données de la relation M to M
+            selected = qcmsubmit.id_selected.all()
+            if self in selected:
+                return True
+            else:
+                return False
+        # Si un seul élément peut être sélectionné
+        else:
+            # Récupération du choix de la foreign key
+            selected = qcmsubmit.id_selected
+            if self == selected:
+                return True
+            else:
+                return False
         
 class QcmSubmit(models.Model):
     id_submitted_quiz = models.ForeignKey(CompletedQuiz) #Relation vers la tentative
