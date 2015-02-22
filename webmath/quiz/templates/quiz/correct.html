@@ -6,10 +6,54 @@
 
 {% block page-content %}
 <div class="thumbnail">
-    <form id="completeform" class="quizform" action="{% url 'quiz:complete' quiz.id %}" method="POST">
-        <div class="caption-full">
-            <h1>Correction : {{ quiz.title }}</h1>
-        </div>
-    </form>
+    <div class="caption-full">
+        <h1>Correction : {{ quiz.title }}</h1>
+        <ul class="quizform list-group bottom-space not-allowed">
+            {% for correction in correctquiz.l_corrections %}
+                <fieldset class="q_container list-group-item" disabled>
+                {% if correction.type == 0 %}
+                    <label>{{ correction.text }} <span class="danger">({{ correction.result }}/{{ correction.points }})</span></label>
+                    <input type=text class="form-control {{ correction.html_class }}" value="{{ correction.submit }}">
+                    {% if not correction.is_correct %}
+                        <div class="alert alert-success top-space">
+                        <span class="bold" >Réponse(s) possible(s) : </span>
+                        {% for correct in correction.l_correct %}
+                            <br>
+                            <span>{{ correct }}</span>
+                        {% endfor %}
+                        </div>
+                    {% endif %}
+
+                {% elif correction.type == 1 %}
+                    <span class="label-span">{{ correction.text }} <span class="danger">({{ correction.result }}/{{ correction.points }})</span></span>
+                    {% for choice in correction.l_correct_choices %}
+                        <input type="checkbox" class="{{ choice.html_class }}" {{ choice.attribute }}>
+                        <label>{{ choice.text }}</label>
+                        <br>
+                    {% endfor %}
+
+                {% elif correction.type == 2 %}
+                    <label>{{ correction.text }} <span class="danger">({{ correction.result }}/{{ correction.points }})</span></label>
+                    <select class="form-control {{ correction.html_class }}">
+                        <option>{{ correction.selected }}</option>
+                    </select>
+                    {% for choice in correction.l_correct_choices %}
+                        {% if not choice.is_checked and not choice.is_correct %}
+                            <div class="alert alert-success top-space"><span class="bold">Réponse correcte :</span><br>{{ choice.text }}</div>
+                        {% endif %}
+                    {% endfor %}
+
+                {% elif correction.type == 3 %}
+                    <span class="label-span">{{ correction.text }} <span class="danger">({{ correction.result }}/{{ correction.points }})</span></span>
+                    {% for choice in correction.l_correct_choices %}
+                        <input type="radio" class="{{ choice.html_class }}" {{ choice.attribute }}>
+                        <label>{{ choice.text }}</label>
+                        <br>
+                    {% endfor %}
+                {% endif %}
+                </fieldset>
+            {% endfor %}
+        </ul>
+    </div>
 </div>
 {% endblock %}
