@@ -45,3 +45,5 @@ class QuizForms:
         for question, form in zip(self.l_questions, self.l_forms):
             #Pour chaque question, on appelle la méthode avec en argument les données du formulaires correspondant et la référence vers la tentative de réponse
             question.save_submit(form.cleaned_data, completed)
+            
+        return completed
