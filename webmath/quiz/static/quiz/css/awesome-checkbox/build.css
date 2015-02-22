@@ -233,11 +233,3 @@ input:disabled.text-success, select:disabled.text-success {
 input:disabled + label{
     cursor: not-allowed;
 }
-
-.not-allowed {
-    cursor: not-allowed;
-}
-
-.not-allowed input, .not-allowed label {
-    cursor: not-allowed;
-}
