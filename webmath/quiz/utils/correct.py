@@ -21,6 +21,13 @@ class CorrectQuiz:
             
         for submit in l_submit_qcm_one:
             self.l_corrections[submit.id_question.number] = CorrectQcmOne(submit)
+        
+        self.total_result = 0
+        self.total_points = 0
+        
+        for correction in self.l_corrections:
+            self.total_result += correction.result
+            self.total_points += correction.points
             
     def get_corrections(self):
         """
