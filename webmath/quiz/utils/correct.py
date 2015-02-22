@@ -49,9 +49,11 @@ class CorrectSq(CorrectQuestion):
         # Comparaison par rapport à la correction
         if sqsubmit.correct():
             self.is_correct = True
+            self.html_class = "success"
             self.result = self.points # Si la réponse est juste, tous les points sont obtenus
         else:
             self.is_correct = False
+            self.html_class = "danger"
 
 class CorrectQcm(CorrectQuestion):
     def __init__(self, qcmsubmit):
@@ -73,6 +75,18 @@ class CorrectQcm(CorrectQuestion):
         
         for choice in l_choices:
             self.l_correct_choices.append(CorrectChoice(choice, qcmsubmit))
+        
+        # Pour une liste déroulante, seul le choix sélectionné est affiché
+        if qcmsubmit.id_question.show_list:
+            if qcmsubmit.id_selected:
+                self.selected = qcmsubmit.id_selected.text
+                if qcmsubmit.id_selected.valid:
+                    self.html_class = "success"
+                else:
+                    self.html_class = "danger"
+            else:
+                self.selected = ""
+                self.html_class = "danger"
             
         self.calculate_result(qcmsubmit) # Comptabilisation des points
     
@@ -107,3 +121,14 @@ class CorrectChoice:
         self.is_correct = choice.correct(qcmsubmit) # Vérification du choix
         self.is_checked = choice.checked(qcmsubmit) # Vaut true si le choix est sélectionné
         self.text = choice.text # Texte du choix
+        
+        # Attributs pour l'affichage de la correction
+        if self.is_correct:
+            self.html_class = "success"
+        else:
+            self.html_class = "danger"
+            
+        if self.is_checked:
+            self.attribute = "checked"
+        else:
+            self.attribute = ""
