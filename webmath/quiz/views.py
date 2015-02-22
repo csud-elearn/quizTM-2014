@@ -36,9 +36,9 @@ def complete(request, n_quiz):
         #On controle que les formulaires sont valides
         if quizforms.are_valid():
             
-            quizforms.save_answers() #Les réponses sont enregistrées dans la db
+            completed = quizforms.save_answers() #Les réponses sont enregistrées dans la db
             
-            return HttpResponseRedirect(reverse("quiz:index"))
+            return HttpResponseRedirect(reverse("quiz:correct", args=[completed.pk]))
 
     # Si la requête est de type GET, on affiche un formulaire vide
     else:
@@ -117,4 +117,4 @@ def correct(request, n_completed):
     
     correctquiz = CorrectQuiz(completed)
         
-    return render(request, 'quiz/correct.html', {'l_corrections' : correctquiz.get_corrections(), 'quiz' : completed.id_quiz})
+    return render(request, 'quiz/correct.html', {'correctquiz' : correctquiz, 'quiz' : completed.id_quiz})
