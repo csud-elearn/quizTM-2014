@@ -74,3 +74,15 @@ a {
 .bold {
 	font-weight: bold;
 }
+
+.content-hidden .panel-heading {
+	border: 0px;
+}
+
+.content-hidden .panel-body {
+	display: none;
+}
+
+.panel-click .panel-heading {
+	cursor: pointer;
+}
