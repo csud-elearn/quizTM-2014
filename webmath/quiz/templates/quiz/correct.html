@@ -15,12 +15,13 @@
                     <label>{{ correction.text }} <span class="danger">({{ correction.result }}/{{ correction.points }})</span></label>
                     <input type=text class="form-control {{ correction.html_class }}" value="{{ correction.submit }}">
                     {% if not correction.is_correct %}
-                        <div class="alert alert-success top-space">
-                        <span class="bold" >Réponse(s) possible(s) : </span>
-                        {% for correct in correction.l_correct %}
-                            <br>
-                            <span>{{ correct }}</span>
-                        {% endfor %}
+                        <div class="panel panel-success panel-click content-hidden top-space">
+                            <div class="panel-heading bold">Solution(s) <span class="caret"></span></div>
+                            <div class="panel-body">
+                            {% for correct in correction.l_correct %}
+                                <span>{{ correct }}</span><br>
+                            {% endfor %}
+                            </div>
                         </div>
                     {% endif %}
 
@@ -39,7 +40,10 @@
                     </select>
                     {% for choice in correction.l_correct_choices %}
                         {% if not choice.is_checked and not choice.is_correct %}
-                            <div class="alert alert-success top-space"><span class="bold">Réponse correcte :</span><br>{{ choice.text }}</div>
+                            <div class="panel panel-success panel-click content-hidden top-space">
+                                <div class="panel-heading bold">Solution <span class="caret"></span></div>
+                                <div class="panel-body">{{ choice.text }}</div>
+                            </div>
                         {% endif %}
                     {% endfor %}
 
@@ -51,8 +55,25 @@
                         <br>
                     {% endfor %}
                 {% endif %}
+                {% if correction.comment %}
+                    <div class="panel panel-default panel-click content-hidden top-space">
+                        <div class="panel-heading bold">Commentaire <span class="caret"></span></div>
+                        <div class="panel-body">{{ correction.comment }}</div>
+                    </div>
+                {% endif %}
+                <div class="panel panel-default panel-click content-hidden top-space">
+                    <div class="panel-heading bold">Statistiques <span class="caret"></span></div>
+                    <div class="panel-body">Taux de réussite des autres utilisateurs : ... %</div>
+                </div>
                 </fieldset>
             {% endfor %}
+            <div class="list-group-item">
+                <h2>Résultat</h3>
+                <p class="bold">Note globale : .../... </p>
+                <p class="bold">Note moyenne des autres utilisateurs : .../... </p>
+                <a class="btn btn-sm btn-warning top-space"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Signaler une erreur</a>
+                <a class="btn btn-sm btn-primary top-space" href="{% url 'quiz:find' %}"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Compléter un autre quiz</a>
+            </div>
         </ul>
     </div>
 </div>
