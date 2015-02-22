@@ -49,15 +49,14 @@ input[type="checkbox"]:checked + label::after {
 }
 
 input[type="checkbox"]:disabled + label {
-    opacity: 0.65;
+    opacity: 1;
 }
 
 input[type="checkbox"]:disabled + label::before {
     background-color: #eeeeee;
-    cursor: not-allowed;
 }
 
-input[type="checkbox"].primary:checked + label::before {
+input[type="checkbox"].primary + label::before {
     background-color: #428bca;
     border-color: #428bca;
 }
@@ -66,7 +65,7 @@ input[type="checkbox"].primary:checked + label::after {
     color: #fff;
 }
 
-input[type="checkbox"].danger:checked + label::before {
+input[type="checkbox"].danger + label::before {
     background-color: #d9534f;
     border-color: #d9534f;
 }
@@ -75,7 +74,7 @@ input[type="checkbox"].danger:checked + label::after {
     color: #fff;
 }
 
-input[type="checkbox"].info:checked + label::before {
+input[type="checkbox"].info + label::before {
     background-color: #5bc0de;
     border-color: #5bc0de;
 }
@@ -84,7 +83,7 @@ input[type="checkbox"].info:checked + label::after {
     color: #fff;
 }
 
-input[type="checkbox"].warning:checked + label::before {
+input[type="checkbox"].warning + label::before {
     background-color: #f0ad4e;
     border-color: #f0ad4e;
 }
@@ -93,7 +92,7 @@ input[type="checkbox"].warning:checked + label::after {
     color: #fff;
 }
 
-input[type="checkbox"].success:checked + label::before {
+input[type="checkbox"].success + label::before {
     background-color: #5cb85c;
     border-color: #5cb85c;
 }
@@ -162,7 +161,7 @@ input[type="radio"]:checked + label::after {
 }
 
 input[type="radio"]:disabled + label {
-    opacity: 0.65;
+    opacity: 1;
 }
 
 input[type="radio"]:disabled + label::before {
@@ -173,58 +172,72 @@ input[type="radio"].primary + label::after {
     background-color: #428bca;
 }
 
-input[type="radio"].primary:checked + label::before {
+input[type="radio"].primary + label::before {
     border-color: #428bca;
-}
-
-input[type="radio"].primary:checked + label::after {
-    background-color: #428bca;
 }
 
 input[type="radio"].danger + label::after {
     background-color: #d9534f;
 }
 
-input[type="radio"].danger:checked + label::before {
+input[type="radio"].danger + label::before {
     border-color: #d9534f;
-}
-
-input[type="radio"].danger:checked + label::after {
-    background-color: #d9534f;
 }
 
 input[type="radio"].info + label::after {
     background-color: #5bc0de;
 }
 
-input[type="radio"].info:checked + label::before {
+input[type="radio"].info + label::before {
     border-color: #5bc0de;
-}
-
-input[type="radio"].info:checked + label::after {
-    background-color: #5bc0de;
 }
 
 input[type="radio"].warning + label::after {
     background-color: #f0ad4e;
 }
 
-input[type="radio"].warning:checked + label::before {
+input[type="radio"].warning + label::before {
     border-color: #f0ad4e;
-}
-
-input[type="radio"].warning:checked + label::after {
-    background-color: #f0ad4e;
 }
 
 input[type="radio"].success + label::after {
     background-color: #5cb85c;
 }
 
-input[type="radio"].success:checked + label::before {
+input[type="radio"].success + label::before {
     border-color: #5cb85c;
 }
 
-input[type="radio"].success:checked + label::after {
+.danger {
+    color: #d9534f;
+    border-color: #d9534f;
+    font-weight: bold;
+}
+
+.success {
+    color: #5cb85c;
+    border-color: #5cb85c;
+    font-weight: bold;
+}
+
+input:disabled.text-danger, select:disabled.text-danger {
+    background-color: #d9534f;
+    color: #fff;
+}
+
+input:disabled.text-success, select:disabled.text-success {
     background-color: #5cb85c;
+    color: #fff;
+}
+
+input:disabled + label{
+    cursor: not-allowed;
+}
+
+.not-allowed {
+    cursor: not-allowed;
+}
+
+.not-allowed input, .not-allowed label {
+    cursor: not-allowed;
 }
