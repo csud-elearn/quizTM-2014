@@ -64,7 +64,11 @@
                 "url": "/quiz/savedraft/",
                 "type": "POST",
                 "dataType": "text",
-                "data": "csrfmiddlewaretoken=" + csrftoken + "&title=" + title + "&code=" + quizcode,
+                "data": {
+                    "csrfmiddlewaretoken": csrftoken,
+                    "title": title,
+                    "code": quizcode
+                },
                 "success": savedraft_success,
                 "error": savedraft_error
             });
@@ -127,7 +131,9 @@
             "url": "/quiz/getdraft/",
             "type": "GET",
             "dataType": "json",
-            "data": "draft=" + draft_id,
+            "data": {
+                "draft": draft_id
+            },
             "success": importdraft_success
         });
     }
