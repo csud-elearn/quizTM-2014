@@ -4,6 +4,7 @@ var initial_n_lines = 0;
 $( document ).ready(function() {
     initial_n_lines = parseInt($(".linedarea").attr("rows"));
     $(".linedarea").on("input", show_lines);
+    show_lines();
 });
 
 function show_lines() {

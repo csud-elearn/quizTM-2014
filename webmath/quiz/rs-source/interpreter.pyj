@@ -241,7 +241,7 @@ class Parse:
 
     def show_errors(self): #Affiche les différentes erreurs signalées dans le format texte
         if len(self.errors) > 0:
-            $(".errorsbox").css("display", "block")
+            $(".errorsbox").removeClass("panel-default content-hidden disabled").addClass("panel-danger")
 
             $errors_div = $("#errors-div")
             $errors_div.empty()
@@ -251,7 +251,7 @@ class Parse:
                 $("<div>", {"class" : "error-line"}).append("Ligne " + error.line).appendTo($container)
                 $("<div>", {"class" : "error-content"}).append(error.message).appendTo($container)
         else:
-            $(".errorsbox").css("display", "none")
+            $(".errorsbox").addClass("panel-default content-hidden disabled").removeClass("panel-danger")
             
     def tojson(self): #Renvoie la chaine json contenant toutes les caractéristiques du quiz
         json = ""

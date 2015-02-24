@@ -83,6 +83,11 @@
                 <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Enregistrer
             </a>
             
+            <div class="panel panel-default content-hidden bottom-space errorsbox disabled">
+                <div class="panel-heading bold">Erreurs <span class="caret"></span></div>
+                <div class="panel-body" id="errors-div"></div>
+            </div>
+            
             <input type="hidden" id="quiz_json" name="json" />
         </div>
     </form>
@@ -95,15 +100,6 @@
         <ul id="view_form" class="quizform list-group bottom-space"></ul>
     </div>
 </div>
-
-<!-- Erreurs -->
-<div class="thumbnail errorsbox">
-    <div class="caption-full">
-        <h2>Erreurs</h2>
-        <div id="errors-div" class="alert alert-danger bottom-space"></div>
-    </div>
-</div>
-
 <!-- Boites de dialogue -->
 <!-- Enregistrement de brouillons -->
 <div class="modal fade" id="savedraft-box">

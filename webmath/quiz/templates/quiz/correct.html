@@ -68,13 +68,13 @@
                 </fieldset>
             {% endfor %}
             <div class="list-group-item">
-                <h2>Résultat</h3>
+                <h2>Résultat</h2>
                 <p class="bold">Note globale : {{ correctquiz.total_result }}/{{ correctquiz.total_points }} </p>
                 <p class="bold">Note moyenne des autres utilisateurs : .../... </p>
-                <a class="btn btn-sm btn-warning top-space"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Signaler une erreur</a>
-                <a class="btn btn-sm btn-primary top-space" href="{% url 'quiz:find' %}"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Compléter un autre quiz</a>
             </div>
         </ul>
+        <a class="btn btn-sm btn-warning bottom-space"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Signaler une erreur</a>
+        <a class="btn btn-sm btn-primary bottom-space" href="{% url 'quiz:find' %}"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Compléter un autre quiz</a>
     </div>
 </div>
 {% endblock %}

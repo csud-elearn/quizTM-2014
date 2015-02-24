@@ -86,3 +86,7 @@ a {
 .panel-click .panel-heading {
 	cursor: pointer;
 }
+
+.disabled .panel-heading {
+	color: #A4A4A4;
+}

@@ -144,6 +144,7 @@
         code = data["code"];
         $("#title").val(title);
         $("#quizcode").val(code);
+        show_lines();
     }
     $(document).ready(toolbar_main);
 })();

@@ -176,6 +176,8 @@ def importdraft_success(data):
     # Les champs sont modifiés avec les valeurs du brouillon
     $("#title").val(title)
     $("#quizcode").val(code)
+    
+    show_lines()
 
 # Corps principal
 $(document).ready(toolbar_main)

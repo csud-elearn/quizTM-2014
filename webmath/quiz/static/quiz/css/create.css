@@ -22,8 +22,13 @@ textarea.linedarea {
 	font-family: monospace;
 }
 
-.viewbox, .errorsbox {
+.viewbox {
 	display: none;
+}
+
+.errorsbox .panel-body{
+	font-weight: bold;
+	color: #a94442;
 }
 
 form > .btn-group {

@@ -693,7 +693,7 @@
         var self = this;
         var $errors_div, $container, error;
         if (len(self.errors) > 0) {
-            $(".errorsbox").css("display", "block");
+            $(".errorsbox").removeClass("panel-default content-hidden disabled").addClass("panel-danger");
             $errors_div = $("#errors-div");
             $errors_div.empty();
             var _$rapyd$_Iter12 = self.errors;
@@ -710,7 +710,7 @@
                 }).append(error.message).appendTo($container);
             }
         } else {
-            $(".errorsbox").css("display", "none");
+            $(".errorsbox").addClass("panel-default content-hidden disabled").removeClass("panel-danger");
         }
     };
     Parse.prototype.tojson = function tojson(){
