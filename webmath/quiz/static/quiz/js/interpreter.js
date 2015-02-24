@@ -749,6 +749,7 @@
     function start_render() {
         var parse;
         parse = new Parse(get_text()).render();
+        MathJax.Hub.Queue([ "Typeset", MathJax.Hub ]);
     }
     function submit() {
         var parse, json_string, title;
