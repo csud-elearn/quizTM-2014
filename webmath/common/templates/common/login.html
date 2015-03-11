@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<head>
+    
+    <meta charset="utf-8" />
+    <title>Connexion</title>
+    
+</head>
+<body>
+    
+    <h1>Veuillez remplir les champs suivants:</h1>
+    
+    <button onclick="window.location.href='{% url 'common:register' %}'">S'inscrire</button>
+    
+    {% if erreur %}
+    <p><strong>Connexion échouée</strong></p>
+    {% endif %}
+    
+    {% if user.is_authenticated %}
+    Connexion réussie! Bienvenue {{ user.username }}!
+    <form method="post" action="{% url 'common:deconnexion' %}">
+        {% csrf_token %}
+        <button type="submit" />Se déconnecter</button>
+    </form>
+    
+    {% else %}
+    <form class="formLogin" method="post" action=".">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Se connecter"/>
+    </form>
+    {% endif %}
+        
+</body>

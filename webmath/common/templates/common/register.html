@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    </head>
+    <body>
+        <form method="POST" action="{% url 'common:register' %}">
+            {% csrf_token %}
+            {{ registerform }}
+            <button type="submit" class="btn btn-primary">Envoyer</button>
+        </form>
+    </body>
+</html>
+
+    
