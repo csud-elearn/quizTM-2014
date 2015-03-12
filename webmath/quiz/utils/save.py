@@ -28,6 +28,8 @@ class SaveSimpleQuestion(SaveQuestion):
         for answer in self.question["answers"]:
             self.add_answer(answer)
             
+        return self.question_db
+            
     def add_answer(self, text):
         answer_db = SqAnswer(text=text, id_question=self.question_db)
         answer_db.save()
@@ -48,6 +50,8 @@ class SaveQcm(SaveQuestion):
         
         for option in self.question["options"]:
             self.add_option(option)
+            
+        return self.question_db
             
     def add_option(self, option):
         text = option["content"]
@@ -88,13 +92,18 @@ class SaveQuiz:
         self.quiz_db.save()
         
         n_question = 0
+        global_points = 0
         
         for question in questions_list:
             q_type = question["type"] #Récupération du type de question
             Constructor = SaveQuiz.TYPES[q_type] 
             q = Constructor(self.quiz_db, question, n_question) #Instanciation à patir du constructeur correspondant
-            q.save_db()
+            q_db = q.save_db() # Sauvegarde dans la base de données
+            global_points += q_db.points
             n_question += 1
+            
+        self.quiz_db.points = global_points
+        self.quiz_db.save()
             
     def get_id(self):
         return self.quiz_db.pk

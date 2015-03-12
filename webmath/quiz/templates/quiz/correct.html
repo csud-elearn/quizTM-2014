@@ -1,13 +1,13 @@
 {% extends "quiz/base.html" %}
 {% load staticfiles %}
 
-{% block title %}Correction : {{ quiz.title }}{% endblock %}
+{% block title %}Correction - {{ quiz.title }}{% endblock %}
 {% block side-complete %}active{% endblock %}
 
 {% block page-content %}
 <div class="thumbnail">
     <div class="caption-full">
-        <h1>Correction : {{ quiz.title }}</h1>
+        <h1>Correction - {{ quiz.title }}</h1>
         <ul class="quizform list-group bottom-space not-allowed">
             {% for correction in correctquiz.l_corrections %}
                 <fieldset class="q_container list-group-item" disabled>

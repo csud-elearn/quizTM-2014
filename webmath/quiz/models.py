@@ -6,6 +6,7 @@ import quiz.forms as forms
 
 class Quiz(models.Model): #Infos générales sur le quiz
     title = models.CharField(max_length=100)
+    points = models.FloatField(default=0)
     creation_date = models.DateTimeField(auto_now_add=True)
     code = models.CharField(max_length=1000) #Format texte du quiz
     id_teacher = models.ForeignKey('common.Teacher')
@@ -27,6 +28,7 @@ class QuizDraft(models.Model): #Brouillon contenant le code d'un quiz
     
 class CompletedQuiz(models.Model): #Tentative de réponse au quiz par un élève
     submit_date = models.DateTimeField(auto_now_add=True)
+    result = models.FloatField(default=0)
     id_quiz = models.ForeignKey(Quiz) #Relation avec le quiz complété
     id_user = models.ForeignKey(User)
     
@@ -76,6 +78,8 @@ class SimpleQuestion(QuizQuestion):
         # Enregistrement du résultat (pour les statistiques)
         submit.result = self.save_result(submit)
         submit.save()
+        
+        return submit
         
     def save_result(self, submit):
         """
@@ -175,6 +179,8 @@ class Qcm(QuizQuestion):
         
         submit.result = self.save_result(submit)
         submit.save()
+        
+        return submit
         
     def save_result(self, submit):
         """

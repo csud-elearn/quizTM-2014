@@ -77,6 +77,7 @@
                 <div class="list-group">
                     <a href="{% url 'quiz:index' %}" class="list-group-item {% block side-home %}{% endblock %}">Accueil</a>
                     <a href="{% url 'quiz:find' %}" class="list-group-item {% block side-complete %}{% endblock %}">Compléter un quiz</a>
+                    <a href="{% url 'quiz:completed-quizzes' %}" class="list-group-item {% block side-completed %}{% endblock %}">Mes résolutions</a>
                     <a href="{% url 'quiz:create' %}" class="list-group-item {% block side-create %}{% endblock %}">Créer un quiz</a>
                 </div>
             </div>

@@ -42,8 +42,14 @@ class QuizForms:
         completed = CompletedQuiz(id_quiz=self.quiz, id_user=user)
         completed.save()
         
+        global_result = 0
+        
         for question, form in zip(self.l_questions, self.l_forms):
             #Pour chaque question, on appelle la méthode avec en argument les données du formulaires correspondant et la référence vers la tentative de réponse
-            question.save_submit(form.cleaned_data, completed)
+            submit = question.save_submit(form.cleaned_data, completed)
+            global_result += submit.result # Ajout des points obtenus
+            
+        completed.result = global_result
+        completed.save()
             
         return completed

@@ -1,0 +1,34 @@
+{% extends "quiz/base.html" %}
+{% load staticfiles %}
+
+{% block side-completed %}active{% endblock %}
+
+{% block title %}Mes résolutions{% endblock %}
+
+{% block page-content %}
+<div class="thumbnail">
+    <div class="caption-full">
+        <h1>Mes résolutions</h1>
+        <table class="table table-bordered bottom-space">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nom du quiz</th>
+                    <th>Date</th>
+                    <th>Résultat</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for completed in l_completed %}
+                <tr>
+                    <th scope="row">{{ completed.pk }}</th>
+                    <td><a href="{% url 'quiz:correct' completed.pk %}">{{ completed.id_quiz.title }}</a></td>
+                    <td>--</td>
+                    <td>{{ completed.result }}/{{ completed.id_quiz.points }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

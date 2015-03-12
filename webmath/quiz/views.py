@@ -125,3 +125,12 @@ def correct(request, n_completed):
     correctquiz = CorrectQuiz(completed)
         
     return render(request, 'quiz/correct.html', {'correctquiz' : correctquiz, 'quiz' : completed.id_quiz})
+    
+def completed_quizzes(request):
+    """
+    Affiche la liste des résolutions de quiz de l'élève
+    """
+    # Récupération des résolutions de l'élève dans la db
+    l_completed = CompletedQuiz.objects.filter(id_user=request.user)
+    
+    return render(request, 'quiz/completed-quizzes.html', {'l_completed' : l_completed})
