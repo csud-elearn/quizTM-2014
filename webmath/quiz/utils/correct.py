@@ -42,6 +42,7 @@ class CorrectQuestion:
         self.text = submit.id_question.text
         self.points = submit.id_question.points
         self.result = submit.result
+        self.average = submit.id_question.average_result()
 
 class CorrectSq(CorrectQuestion):
     def __init__(self, sqsubmit):

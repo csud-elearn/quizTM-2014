@@ -63,7 +63,7 @@
                 {% endif %}
                 <div class="panel panel-default panel-click content-hidden top-space">
                     <div class="panel-heading bold">Statistiques <span class="caret"></span></div>
-                    <div class="panel-body">Taux de réussite des autres utilisateurs : ... %</div>
+                    <div class="panel-body">Moyenne des autres utilisateurs : {{ correction.average }}/{{ correction.points }}</div>
                 </div>
                 </fieldset>
             {% endfor %}

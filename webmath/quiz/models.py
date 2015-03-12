@@ -85,6 +85,19 @@ class SimpleQuestion(QuizQuestion):
             result = self.points
             
         return result
+        
+    def average_result(self):
+        """
+        Renvoie le nombre moyen de points obtenus pour la question
+        """
+        l_submit = SqSubmit.objects.filter(id_question=self)
+        total_points = 0 # Points cumulés de toutes les résolutions
+        
+        for s in l_submit:
+            total_points += s.result
+            
+        average = total_points / len(l_submit)
+        return average
 
 class SqAnswer(models.Model): #Les réponses correctes
     text = models.CharField(max_length=50)
@@ -182,6 +195,24 @@ class Qcm(QuizQuestion):
                     result = self.points
         
         return result
+        
+    def average_result(self):
+        """
+        Renvoie le nombre moyen de points obtenus pour la question
+        """
+        if self.multi_answers:
+            model = QcmSubmitMulti
+        else:
+            model = QcmSubmitOne
+        
+        l_submit = model.objects.filter(id_question=self)
+        total_points = 0 # Points cumulés de toutes les résolutions
+        
+        for s in l_submit:
+            total_points += s.result
+            
+        average = total_points / len(l_submit)
+        return average
     
 class QcmChoice(models.Model): #Choix affichés pour un QCM
     text = models.CharField(max_length=50)
