@@ -5,13 +5,13 @@ from quiz.utils.submit import QuizForms
 from quiz.utils.correct import CorrectQuiz
 from quiz.forms import TextForm, CheckboxForm, RadioForm, SelectForm
 from quiz.models import Quiz, QuizDraft, CompletedQuiz, SqSubmit, QcmSubmitMulti, QcmSubmitOne
+from common.models import Teacher, Student
 from common.auth_utils import *
 from django.contrib.auth.decorators import login_required, user_passes_test
 import json
+import time
 
 def index(request):
-    print("utilisateur : " + str(request.user))
-    print(request.user.groups.all())
     return render(request, 'quiz/index.html')
 
 @login_required
@@ -24,7 +24,9 @@ def create(request):
         
         questions_list = json.loads(json_string) #Parsing du json
         
-        quiz = SaveQuiz(title, questions_list, quizcode) #Sauvegarde du quiz dans la db
+        teacher_account = Teacher.objects.get(user=request.user) #Compte prof correspondant à l'user
+        
+        quiz = SaveQuiz(title, questions_list, quizcode, teacher_account) #Sauvegarde du quiz dans la db
         
         return HttpResponseRedirect(reverse("quiz:complete", args=[quiz.get_id()]))
     else:
@@ -41,7 +43,9 @@ def complete(request, n_quiz):
         #On controle que les formulaires sont valides
         if quizforms.are_valid():
             
-            completed = quizforms.save_answers() #Les réponses sont enregistrées dans la db
+            student_account = Student.objects.get(user=request.user)
+            
+            completed = quizforms.save_answers(student_account) #Les réponses sont enregistrées dans la db
             
             return HttpResponseRedirect(reverse("quiz:correct", args=[completed.pk]))
 

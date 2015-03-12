@@ -11,10 +11,9 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
-            model_name='qcmsubmitone',
-            name='id_selected',
-            field=models.ForeignKey(blank=True, to='quiz.QcmChoice'),
-            preserve_default=True,
+        migrations.RenameField(
+            model_name='quiz',
+            old_name='id_prof',
+            new_name='id_teacher',
         ),
     ]

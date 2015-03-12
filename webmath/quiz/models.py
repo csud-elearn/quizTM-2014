@@ -7,7 +7,7 @@ class Quiz(models.Model): #Infos générales sur le quiz
     title = models.CharField(max_length=100)
     creation_date = models.DateTimeField(auto_now_add=True)
     code = models.CharField(max_length=1000) #Format texte du quiz
-    #id_prof = models.ForeignKey('teachers.Teacher')
+    id_teacher = models.ForeignKey('common.Teacher')
     #id_chapter = models.ForeignKey('teachers.Chapter')
     
     def __str__(self):
@@ -27,7 +27,7 @@ class QuizDraft(models.Model): #Brouillon contenant le code d'un quiz
 class CompletedQuiz(models.Model): #Tentative de réponse au quiz par un élève
     submit_date = models.DateTimeField(auto_now_add=True)
     id_quiz = models.ForeignKey(Quiz) #Relation avec le quiz complété
-    #id_student = models.ForeignKey('students.Student')
+    id_student = models.ForeignKey('common.Student')
     
     def correct(self):
         """
@@ -70,7 +70,21 @@ class SimpleQuestion(QuizQuestion):
         return forms.TextForm(text=self.text, prefix=self.number, *args, **kwargs)
         
     def save_submit(self, data, completed):
-        SqSubmit(text=data['answer'], id_question=self, id_submitted_quiz=completed).save()
+        submit = SqSubmit(text=data['answer'], id_question=self, id_submitted_quiz=completed)
+        
+        # Enregistrement du résultat (pour les statistiques)
+        submit.result = self.save_result(submit)
+        submit.save()
+        
+    def save_result(self, submit):
+        """
+        Comptabilise et enregistre les points pour la réponse soumise submit
+        """
+        result = 0
+        if submit.correct():
+            result = self.points
+            
+        return result
 
 class SqAnswer(models.Model): #Les réponses correctes
     text = models.CharField(max_length=50)
@@ -81,6 +95,7 @@ class SqAnswer(models.Model): #Les réponses correctes
 
 class SqSubmit(models.Model): #Réponse soumise par un élève
     text = models.CharField(max_length=50)
+    result = models.FloatField(default=0)
     id_question = models.ForeignKey(SimpleQuestion) #Relation vers la question à laquelle l'élève a répondu
     id_submitted_quiz = models.ForeignKey(CompletedQuiz) #Relation vers la tentative
     
@@ -143,7 +158,30 @@ class Qcm(QuizQuestion):
         if self.multi_answers:
             submit.save() #Comme il peut s'agir d'une relation many to many, il faut sauvegarder et ajouter la relation après
         submit.id_selected=data['answer']
+        
+        submit.result = self.save_result(submit)
         submit.save()
+        
+    def save_result(self, submit):
+        """
+        Comptabilise et enregistre les points pour la réponse soumise submit
+        """
+        result = 0
+        
+        if self.multi_answers:
+            l_choices = QcmChoice.objects.filter(id_question=self) # Récupération des choix de la question
+            ppc = self.points / len(l_choices) # Nombre de points attribués par choix correct
+            
+            # À chaque option correctement cochée, on ajoute les points au résultat
+            for c in l_choices:
+                if c.correct(submit):
+                    result += ppc
+        else:
+            if submit.id_selected:
+                if submit.id_selected.valid:
+                    result = self.points
+        
+        return result
     
 class QcmChoice(models.Model): #Choix affichés pour un QCM
     text = models.CharField(max_length=50)
@@ -195,6 +233,7 @@ class QcmChoice(models.Model): #Choix affichés pour un QCM
                 return False
         
 class QcmSubmit(models.Model):
+    result = models.FloatField(default=0)
     id_submitted_quiz = models.ForeignKey(CompletedQuiz) #Relation vers la tentative
     id_question = models.ForeignKey(Qcm) #Relation vers la question : utile si aucune case est cochée
         

@@ -83,8 +83,8 @@ class SaveQcmSelect(SaveQcm):
 class SaveQuiz:
     TYPES = [SaveSimpleQuestion, SaveQcmCheckbox, SaveQcmRadio, SaveQcmSelect]
     
-    def __init__(self, title, questions_list, quizcode):
-        self.quiz_db = Quiz(title=title, code=quizcode)
+    def __init__(self, title, questions_list, quizcode, teacher):
+        self.quiz_db = Quiz(title=title, code=quizcode, id_teacher=teacher)
         self.quiz_db.save()
         
         n_question = 0
