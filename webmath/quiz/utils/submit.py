@@ -35,11 +35,11 @@ class QuizForms:
         
         return valid
         
-    def save_answers(self, student):
+    def save_answers(self, user):
         """
         Sauvegarde dans la db les réponses soumises
         """
-        completed = CompletedQuiz(id_quiz=self.quiz, id_student=student)
+        completed = CompletedQuiz(id_quiz=self.quiz, id_user=user)
         completed.save()
         
         for question, form in zip(self.l_questions, self.l_forms):

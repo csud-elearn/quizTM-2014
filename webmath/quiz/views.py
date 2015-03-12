@@ -43,9 +43,7 @@ def complete(request, n_quiz):
         #On controle que les formulaires sont valides
         if quizforms.are_valid():
             
-            student_account = Student.objects.get(user=request.user)
-            
-            completed = quizforms.save_answers(student_account) #Les réponses sont enregistrées dans la db
+            completed = quizforms.save_answers(request.user) #Les réponses sont enregistrées dans la db
             
             return HttpResponseRedirect(reverse("quiz:correct", args=[completed.pk]))
 

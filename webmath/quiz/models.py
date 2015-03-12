@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 import quiz.forms as forms
 
 # Create your models here.
@@ -27,7 +28,7 @@ class QuizDraft(models.Model): #Brouillon contenant le code d'un quiz
 class CompletedQuiz(models.Model): #Tentative de réponse au quiz par un élève
     submit_date = models.DateTimeField(auto_now_add=True)
     id_quiz = models.ForeignKey(Quiz) #Relation avec le quiz complété
-    id_student = models.ForeignKey('common.Student')
+    id_user = models.ForeignKey(User)
     
     def correct(self):
         """
