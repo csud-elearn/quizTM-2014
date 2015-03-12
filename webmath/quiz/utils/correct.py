@@ -17,10 +17,10 @@ class CorrectQuiz:
             self.l_corrections[submit.id_question.number] = CorrectSq(submit)
             
         for submit in l_submit_qcm_multi:
-            self.l_corrections[submit.id_question.number] = CorrectQcmMulti(submit)
+            self.l_corrections[submit.id_question.number] = CorrectQcm(submit)
             
         for submit in l_submit_qcm_one:
-            self.l_corrections[submit.id_question.number] = CorrectQcmOne(submit)
+            self.l_corrections[submit.id_question.number] = CorrectQcm(submit)
         
         self.total_result = 0
         self.total_points = 0
@@ -41,7 +41,7 @@ class CorrectQuestion:
         self.comment = submit.id_question.comment
         self.text = submit.id_question.text
         self.points = submit.id_question.points
-        self.result = 0 # Nombre de points obtenus (incrémenté plus tard)
+        self.result = submit.result
 
 class CorrectSq(CorrectQuestion):
     def __init__(self, sqsubmit):
@@ -57,7 +57,6 @@ class CorrectSq(CorrectQuestion):
         if sqsubmit.correct():
             self.is_correct = True
             self.html_class = "success"
-            self.result = self.points # Si la réponse est juste, tous les points sont obtenus
         else:
             self.is_correct = False
             self.html_class = "danger"
@@ -94,34 +93,6 @@ class CorrectQcm(CorrectQuestion):
             else:
                 self.selected = ""
                 self.html_class = "danger"
-            
-        self.calculate_result(qcmsubmit) # Comptabilisation des points
-    
-    def calculate_result(self, qcmsubmit):
-        pass
-
-            
-class CorrectQcmMulti(CorrectQcm):
-    def calculate_result(self, qcmsubmit):
-        """
-        Attributs les points en fonction des réponses
-        """
-        ppc = self.points / len(self.l_correct_choices) # Nombre de points par choix
-        
-        # Pour chaque case cochée correctement, des points sont ajoutés
-        for choice in self.l_correct_choices:
-            if choice.is_correct:
-                self.result += ppc
-
-class CorrectQcmOne(CorrectQcm):
-    def calculate_result(self, qcmsubmit):
-        """
-        Attribue les points en fonction des réponses
-        """
-        # Si le choix sélectionné correspond au choix défini comme correct, tous les points sont attribués
-        if qcmsubmit.id_selected: # Il se peut que l'utilisateur n'ait rien sélectionné
-            if qcmsubmit.id_selected.valid:
-                self.result = self.points
 
 class CorrectChoice:
     def __init__(self, choice, qcmsubmit):
