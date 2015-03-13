@@ -16,7 +16,28 @@ class Quiz(models.Model): #Infos générales sur le quiz
         return self.title
         
     def length(self):
-        return len(SimpleQuestion.objects.filter(id_quiz=self)) + len(Qcm.objects.filter(id_quiz=self))
+        return len(self.get_questions())
+        
+    def get_questions(self):
+        return list(SimpleQuestion.objects.filter(id_quiz=self)) + list(Qcm.objects.filter(id_quiz=self))
+        
+    def average_result(self):
+        """
+        Renvoie le nombre moyen de points obtenus pour le quiz
+        """
+        total_result = 0
+        l_completed = CompletedQuiz.objects.filter(id_quiz=self)
+        
+        if len(l_completed) > 0: # Si il n'y a aucune résolution, impossible de diviser par zéro
+            for c in l_completed:
+                total_result += c.result
+                
+            average = total_result / len(l_completed)
+            
+            return round(average, 2)
+            
+        else:
+            return "--"
         
 class QuizDraft(models.Model): #Brouillon contenant le code d'un quiz
     title = models.CharField(max_length=100)
@@ -98,11 +119,16 @@ class SimpleQuestion(QuizQuestion):
         l_submit = SqSubmit.objects.filter(id_question=self)
         total_points = 0 # Points cumulés de toutes les résolutions
         
-        for s in l_submit:
-            total_points += s.result
+        if len(l_submit) > 0:
+            for s in l_submit:
+                total_points += s.result
+                
+            average = total_points / len(l_submit)
             
-        average = total_points / len(l_submit)
-        return average
+            return round(average, 2)
+            
+        else:
+            return "--"
 
 class SqAnswer(models.Model): #Les réponses correctes
     text = models.CharField(max_length=50)
@@ -215,11 +241,15 @@ class Qcm(QuizQuestion):
         l_submit = model.objects.filter(id_question=self)
         total_points = 0 # Points cumulés de toutes les résolutions
         
-        for s in l_submit:
-            total_points += s.result
+        if len(l_submit) > 0:
+            for s in l_submit:
+                total_points += s.result
+                
+            average = total_points / len(l_submit)
+            return round(average, 2)
             
-        average = total_points / len(l_submit)
-        return average
+        else:
+            return "--"
     
 class QcmChoice(models.Model): #Choix affichés pour un QCM
     text = models.CharField(max_length=50)

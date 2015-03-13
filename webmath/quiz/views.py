@@ -134,3 +134,13 @@ def completed_quizzes(request):
     l_completed = CompletedQuiz.objects.filter(id_user=request.user)
     
     return render(request, 'quiz/completed-quizzes.html', {'l_completed' : l_completed})
+    
+def created_quizzes(request):
+    """
+    Affiche la liste des quiz créés par le prof
+    """
+    # Récupération des quiz créés par le prof dans la db
+    teacher = Teacher.objects.get(user=request.user)
+    l_created = Quiz.objects.filter(id_teacher=teacher)
+    
+    return render(request, 'quiz/created-quizzes.html', {'l_created' : l_created})

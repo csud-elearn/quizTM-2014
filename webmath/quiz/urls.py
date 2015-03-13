@@ -13,5 +13,5 @@ urlpatterns = patterns('',
     url(r'^getdraft/', getdraft, name="getdraft"),
     url(r'^(\d+)/correct/', correct, name="correct"),
     url(r'^completed-quizzes/', completed_quizzes, name="completed-quizzes"),
-    # url(r'^created-quizzes/', created_quizzes, name="created-quizzes"),
+    url(r'^created-quizzes/', created_quizzes, name="created-quizzes"),
 )
