@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from common.models import Teacher
 import quiz.forms as forms
 
 # Create your models here.
@@ -42,7 +43,7 @@ class Quiz(models.Model): #Infos générales sur le quiz
 class QuizDraft(models.Model): #Brouillon contenant le code d'un quiz
     title = models.CharField(max_length=100)
     code = models.CharField(max_length=1000)
-    #id_prof
+    id_teacher = models.ForeignKey('common.Teacher')
     
     def __str__(self):
         return self.title

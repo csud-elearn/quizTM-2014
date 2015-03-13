@@ -58,8 +58,8 @@ def open_savedraft():
     Ouvre une boîte de dialogue permettant d'enregistrer un brouillon
     """
     $("#draft-title").val($("#title").val()) # Copie du titre du quiz
-    $("#save-status").css("display", "none") # Le message éventuellement affiché précédemment est masqué
-    $("#submitdraft-btn").css("display", "inline-block") # Réaffichage du bouton s'il était masqué
+    $("#save-status").hide() # Le message éventuellement affiché précédemment est masqué
+    $("#submitdraft-btn").show() # Réaffichage du bouton s'il était masqué
     
     $("#savedraft-box").modal('show') # Affichage de la boîte
 
@@ -104,6 +104,7 @@ def savedraft_message(message, bootstrap_color):
 def savedraft_success():
     "Enregistrement réussi"
     savedraft_message("Brouillon enregistré", "alert-success")
+    $("#submitdraft-btn").hide()
 
 def savedraft_error():
     "Échec de l'enregistrement"
@@ -122,8 +123,8 @@ def get_draftlist():
         "type": "GET",
         "dataType": "json",
         # "data": "",
-        "success": show_draftlist
-        # "error": savedraft_error,
+        "success": show_draftlist,
+        # "error": show_draftlist,
     })
     
 
@@ -132,17 +133,19 @@ def show_draftlist(data):
     Affiche la liste des brouillons dans une boîte de dialogue
     """
     $draftlist = $("#list-drafts")
-    $draftlist.children().remove()
-
-    for draft in data:
-        $("<a>", {
-            "class" : "list-group-item bold",
-            "data-id" : draft['id'], # Id du brouillon correspondant -> pour l'appel ajax
-            "data-dismiss" : "modal", # Pour fermer la boîte lors du clic
-        }).text(draft["title"]).appendTo($draftlist)
-
-    # Import du brouillon lors du clic
-    $draftlist.children().click_foreach(importdraft)
+    
+    console.log(data)
+    if len(data) > 0:
+        $draftlist.children().remove()
+        for draft in data:
+            $("<a>", {
+                "class" : "list-group-item bold",
+                "data-id" : draft['id'], # Id du brouillon correspondant -> pour l'appel ajax
+                "data-dismiss" : "modal", # Pour fermer la boîte lors du clic
+            }).text(draft["title"]).appendTo($draftlist)
+            
+        # Import du brouillon lors du clic
+        $draftlist.children().click_foreach(importdraft)
     
     $("#importdraft-box").modal('show') # Affichage de la boîte
 

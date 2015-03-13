@@ -49,8 +49,8 @@
     function open_savedraft() {
         "\n    Ouvre une boîte de dialogue permettant d'enregistrer un brouillon\n    ";
         $("#draft-title").val($("#title").val());
-        $("#save-status").css("display", "none");
-        $("#submitdraft-btn").css("display", "inline-block");
+        $("#save-status").hide();
+        $("#submitdraft-btn").show();
         $("#savedraft-box").modal("show");
     }
     function submitdraft() {
@@ -88,6 +88,7 @@
     function savedraft_success() {
         "Enregistrement réussi";
         savedraft_message("Brouillon enregistré", "alert-success");
+        $("#submitdraft-btn").hide();
     }
     function savedraft_error() {
         "Échec de l'enregistrement";
@@ -110,17 +111,20 @@
         var $draftlist, draft;
         "\n    Affiche la liste des brouillons dans une boîte de dialogue\n    ";
         $draftlist = $("#list-drafts");
-        $draftlist.children().remove();
-        var _$rapyd$_Iter0 = data;
-        for (var _$rapyd$_Index0 = 0; _$rapyd$_Index0 < _$rapyd$_Iter0.length; _$rapyd$_Index0++) {
-            draft = _$rapyd$_Iter0[_$rapyd$_Index0];
-            $("<a>", {
-                "class": "list-group-item bold",
-                "data-id": draft["id"],
-                "data-dismiss": "modal"
-            }).text(draft["title"]).appendTo($draftlist);
+        console.log(data);
+        if (len(data) > 0) {
+            $draftlist.children().remove();
+            var _$rapyd$_Iter0 = data;
+            for (var _$rapyd$_Index0 = 0; _$rapyd$_Index0 < _$rapyd$_Iter0.length; _$rapyd$_Index0++) {
+                draft = _$rapyd$_Iter0[_$rapyd$_Index0];
+                $("<a>", {
+                    "class": "list-group-item bold",
+                    "data-id": draft["id"],
+                    "data-dismiss": "modal"
+                }).text(draft["title"]).appendTo($draftlist);
+            }
+            $draftlist.children().click_foreach(importdraft);
         }
-        $draftlist.children().click_foreach(importdraft);
         $("#importdraft-box").modal("show");
     }
     function importdraft() {

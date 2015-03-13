@@ -57,7 +57,8 @@ def complete(request, n_quiz):
         
 def find(request):
     return render(request, 'quiz/find.html', {'l_quiz' : Quiz.objects.order_by('-creation_date')[:5]})
-    
+
+@login_required
 def findquiz(request):
     if request.method == "GET":
         n_quiz = request.GET['quiz']
@@ -74,34 +75,41 @@ def findquiz(request):
         return HttpResponse(json_string)
     else:
         return HttpResponse("")
-    
+
+@login_required
+@user_passes_test(is_teacher)
 def savedraft(request):
     if request.method == "POST":
         title = request.POST["title"]
         code = request.POST["code"]
+        user = Teacher.objects.get(user=request.user)
         
-        draft = QuizDraft(title=title, code=code)
+        draft = QuizDraft(title=title, code=code, id_teacher=user)
         draft.save()
         
         return HttpResponse(str(draft.pk))
         
+@login_required
+@user_passes_test(is_teacher)
 def listdrafts(request): # Permet de récupérer la liste des brouillons en json
     if request.method == "GET":
-        drafts = QuizDraft.objects.all()
+        teacher_account = Teacher.objects.get(user=request.user)
+        drafts = QuizDraft.objects.filter(id_teacher=teacher_account)
         
-        if len(drafts) > 0:
-            list_drafts = [] # Liste qui sera sérializée
+        list_drafts = [] # Liste qui sera sérializée
+        
+        for d in drafts:
+            list_drafts.append({
+                "title" : d.title,
+                "id" : d.pk,
+            })
             
-            for d in drafts:
-                list_drafts.append({
-                    "title" : d.title,
-                    "id" : d.pk,
-                })
-                
-            json_string = json.dumps(list_drafts)
-        
-            return HttpResponse(json_string)
-        
+        json_string = json.dumps(list_drafts)
+    
+        return HttpResponse(json_string)
+
+@login_required
+@user_passes_test(is_teacher)
 def getdraft(request): # Permet de récupérer le titre et le code d'un brouillon en json
     if request.method == "GET":
         n_draft = request.GET['draft']
@@ -125,7 +133,8 @@ def correct(request, n_completed):
     correctquiz = CorrectQuiz(completed)
         
     return render(request, 'quiz/correct.html', {'correctquiz' : correctquiz, 'quiz' : completed.id_quiz})
-    
+
+@login_required
 def completed_quizzes(request):
     """
     Affiche la liste des résolutions de quiz de l'élève
@@ -134,7 +143,9 @@ def completed_quizzes(request):
     l_completed = CompletedQuiz.objects.filter(id_user=request.user)
     
     return render(request, 'quiz/completed-quizzes.html', {'l_completed' : l_completed})
-    
+
+@login_required
+@user_passes_test(is_teacher)
 def created_quizzes(request):
     """
     Affiche la liste des quiz créés par le prof
@@ -144,3 +155,13 @@ def created_quizzes(request):
     l_created = Quiz.objects.filter(id_teacher=teacher)
     
     return render(request, 'quiz/created-quizzes.html', {'l_created' : l_created})
+    
+@login_required
+@user_passes_test(is_teacher)
+def advanced_stats(request, n_quiz):
+    """
+    Affiche les statistiques avancées du quiz en argument
+    """
+    quiz = get_object_or_404(Quiz, pk=n_quiz)
+    
+    return render(request, 'quiz/advanced_stats.html')
