@@ -50,6 +50,10 @@ h1, h2 {
 	margin-top: 10px;
 }
 
+.no-space {
+	margin:0px;
+}
+
 .errorsbox h2 {
 	color: #a94442;
 }
