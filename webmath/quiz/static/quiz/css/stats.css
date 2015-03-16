@@ -1,0 +1,51 @@
+.fixed-cols {
+    width: 30%;
+    display: inline-block;
+    vertical-align: top;
+    margin-right:0px;
+    overflow-x:scroll;
+    border-left:1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.fixed-cols tr {
+}
+
+.scrollable-cols {
+    width: 70%;
+    margin-left: -5px;
+    display: inline-block;
+    overflow-x:scroll;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+#questions-th {
+    position:absolute;
+}
+
+th, td {
+    border-left:0px !important;
+}
+
+table {
+    border-left:0px !important;
+}
+
+.contains-button {
+    padding:0px !important;
+    vertical-align:middle !important;
+    text-align:center;
+}
+
+th {
+	vertical-align: middle !important;
+}
+
+td {
+	border: 1px black solid;
+}
+
+th {
+	border: 2px black solid;
+}

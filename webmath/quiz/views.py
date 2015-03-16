@@ -163,5 +163,7 @@ def advanced_stats(request, n_quiz):
     Affiche les statistiques avancées du quiz en argument
     """
     quiz = get_object_or_404(Quiz, pk=n_quiz)
+    l_completed = CompletedQuiz.objects.filter(id_quiz=quiz)
+    quizforms = QuizForms(quiz)
     
-    return render(request, 'quiz/advanced_stats.html')
+    return render(request, 'quiz/advanced-stats.html', {'quiz' : quiz, 'l_completed' : l_completed, 'l_forms' : quizforms.get_forms()})

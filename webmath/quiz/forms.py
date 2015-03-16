@@ -1,10 +1,10 @@
 from django import forms
     
 class QuestionForm(forms.Form):
-    def __init__(self, text, *args, **kwargs):
+    def __init__(self, question, *args, **kwargs):
         forms.Form.__init__(self, *args, **kwargs)
         
-        self.text = text
+        self.question = question
         
 class CheckboxForm(QuestionForm):
     def __init__(self, queryset, *args, **kwargs):

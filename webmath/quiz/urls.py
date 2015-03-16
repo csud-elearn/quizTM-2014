@@ -14,4 +14,5 @@ urlpatterns = patterns('',
     url(r'^(\d+)/correct/', correct, name="correct"),
     url(r'^completed-quizzes/', completed_quizzes, name="completed-quizzes"),
     url(r'^created-quizzes/', created_quizzes, name="created-quizzes"),
+    url('^(\d+)/advanced-stats/', advanced_stats, name="advanced-stats"),
 )

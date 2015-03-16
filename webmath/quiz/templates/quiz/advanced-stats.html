@@ -1,0 +1,91 @@
+{% extends "quiz/base.html" %}
+{% load staticfiles %}
+
+{% block side-created %}active{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'quiz/css/stats.css' %}" type="text/css" />
+{% endblock %}
+
+{% block title %}Statistiques avancées{% endblock %}
+
+{% block page-content %}
+<div class="thumbnail">
+    <div class="caption-full">
+        <h1>Statistiques avancées - {{ quiz.title }}</h1>
+        <div class="fixed-cols bottom-space">
+            <table class="table table-bordered no-space table-hover table-responsive">
+                <thead>
+                    <tr>
+                        <th colspan="3">Points obtenus</th>
+                    </tr>
+                    <tr>
+                        <th>Étudiant</th>
+                        <th class="info">Total</th>
+                        <th>Correction</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="info">
+                        <th scope="row">Moyenne</th>
+                        <td>{{ quiz.average_result }}</td>
+                        <td class="contains-button"><a class="btn btn-xs btn-warning" disabled="disabled">Voir correction</a></td>
+                    </tr>
+                    {% for completed in l_completed %}
+                        <tr>
+                            <th scope="row">{{ completed.id_user }}</th>
+                            <td class="info">{{ completed.result }}</td>
+                            <td class="contains-button"><a href="{% url 'quiz:correct' completed.pk %}" class="btn btn-xs btn-warning">Voir correction</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="scrollable-cols bottom-space">
+            <table class="table table-bordered no-space table-hover table-responsive">
+                <thead>
+                    <tr>
+                        <th colspan="{{ quiz.length }}"><div id="questions-th">Questions</div><div style="opacity:0">0</div></th>
+                    </tr>
+                    <tr>
+                    {% for question in quiz.get_questions %}
+                        <th><div><a href="#question-{{ question.number }}">{{ question.number|add:"1" }}</a></div></th>
+                    {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for question in quiz.get_questions %}
+                        <td class="info">{{ question.average_result }}</td>
+                    {% endfor %}
+                    {% for completed in l_completed %}
+                        <tr>
+                        {% for question_submit in completed.get_questions_submits %}
+                            <td>{{ question_submit.result }}</td>
+                        {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        
+        <ul class="list-group bottom-space quizform">
+            {% for form in l_forms %}
+                <li id="question-{{ form.question.number }}" class="q_container list-group-item">
+                {% if form.get_type == 0 %}
+                    <span class="label-span">{{ form.question.number|add:"1" }}) {{ form.question.text }}</span>
+                    {% for option in form.answer %}
+                        {{ option.tag }}
+                        <label for="{{ option.id_for_label }}">{{ option.choice_label }}</label>
+                        <br />
+                    {% endfor %}
+                {% elif form.get_type == 1 %}
+                    <label for="{{ form.selected.id_for_label }}">{{ form.question.number|add:"1" }}) {{ form.question.text }}</label>
+                    {{ form.answer }}
+                {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
