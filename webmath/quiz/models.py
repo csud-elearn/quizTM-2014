@@ -20,7 +20,19 @@ class Quiz(models.Model): #Infos générales sur le quiz
         return len(self.get_questions())
         
     def get_questions(self):
-        return list(SimpleQuestion.objects.filter(id_quiz=self)) + list(Qcm.objects.filter(id_quiz=self))
+        """
+        Renvoie la liste des questions du quiz dans l'ordre
+        """
+        # Liste des questions non triée
+        l_questions = list(SimpleQuestion.objects.filter(id_quiz=self)) + list(Qcm.objects.filter(id_quiz=self))
+        
+        ordered_questions = [None] * len(l_questions) # Création d'une liste vide
+        
+        # Chaque question est placée à sa place dans la liste triée
+        for question in l_questions:
+            ordered_questions[question.number] = question
+            
+        return ordered_questions
         
     def average_result(self):
         """
@@ -65,6 +77,23 @@ class CompletedQuiz(models.Model): #Tentative de réponse au quiz par un élève
             
             for submit in l_submits:
                 submit.correct()
+                
+    def get_questions_submits(self):
+        """
+        Renvoie la liste des réponses soumises pour chaque question
+        """
+        # Liste des réponses non triées
+        l_submits = list(SqSubmit.objects.filter(id_submitted_quiz=self))\
+        + list(QcmSubmitOne.objects.filter(id_submitted_quiz=self))\
+        + list(QcmSubmitMulti.objects.filter(id_submitted_quiz=self))
+        
+        ordered_submits = [None] * len(l_submits)
+        
+        # Chaque réponse est placée au bon endroit dans la liste
+        for submit in l_submits:
+            ordered_submits[submit.id_question.number] = submit
+            
+        return ordered_submits
 
 #    
 #Classes abstraites
@@ -92,7 +121,7 @@ class SimpleQuestion(QuizQuestion):
         """
         Retourne un formulaire pour répondre à la question
         """
-        return forms.TextForm(text=self.text, prefix=self.number, *args, **kwargs)
+        return forms.TextForm(question=self, prefix=self.number, *args, **kwargs)
         
     def save_submit(self, data, completed):
         submit = SqSubmit(text=data['answer'], id_question=self, id_submitted_quiz=completed)
@@ -187,7 +216,7 @@ class Qcm(QuizQuestion):
         else:
             Form = forms.RadioForm
             
-        return Form(queryset=QcmChoice.objects.filter(id_question=self), prefix=self.number, text=self.text, *args, **kwargs)
+        return Form(queryset=QcmChoice.objects.filter(id_question=self), prefix=self.number, question=self, *args, **kwargs)
         
     def save_submit(self, data, completed):
         """

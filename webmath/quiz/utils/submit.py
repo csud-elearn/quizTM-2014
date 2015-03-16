@@ -5,17 +5,12 @@ from itertools import chain
 class QuizForms:
     def __init__(self, quiz, data=None):
         self.quiz = quiz
+            
+        self.l_questions = quiz.get_questions()
+        self.l_forms = []
         
-        #On récupère toutes les questions dans la db et on les met dans une seule liste
-        queryset = list(SimpleQuestion.objects.filter(id_quiz=quiz)) + list(Qcm.objects.filter(id_quiz=quiz))
-        
-        self.l_questions = [None] * len(queryset) #Construction d'une liste d'éléments vide qui contiendra les formulaires
-        self.l_forms = [None] * len(queryset)
-        
-        #On classe les questions par ordre d'apparition avec les formulaires correspondants
-        for question in queryset:
-            self.l_questions[question.number] = question
-            self.l_forms[question.number] = question.create_form(data=data)
+        for question in self.l_questions:
+            self.l_forms.append(question.create_form(data=data))
         
             
     def get_forms(self):
