@@ -42,9 +42,8 @@
             return count;
         }
     }
-    var JSON, str;
-            JSON = JSON || {};
-    if (!JSON.stringify) {
+    var str;
+            if (typeof JSON === "undefined") {
         
     JSON.stringify = function(obj) {
         var t = typeof (obj);
