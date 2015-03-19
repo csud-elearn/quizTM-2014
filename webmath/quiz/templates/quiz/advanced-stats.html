@@ -5,6 +5,7 @@
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'quiz/css/stats.css' %}" type="text/css" />
+<script type="text/javascript" src="{% static 'quiz/js/stats.js' %}"></script>
 {% endblock %}
 
 {% block title %}Statistiques avancées{% endblock %}
@@ -14,30 +15,32 @@
     <div class="caption-full">
         <h1>Statistiques avancées - {{ quiz.title }}</h1>
         <div class="fixed-cols bottom-space">
-            <table class="table table-bordered no-space table-hover table-responsive">
+            <table class="table table-bordered no-space table-responsive">
                 <thead>
                     <tr>
-                        <th colspan="3">Points obtenus</th>
+                        <th colspan="2">Statistiques</th>
                     </tr>
                     <tr>
                         <th>Étudiant</th>
-                        <th class="info">Total</th>
-                        <th>Correction</th>
+                        <th class="info">Total ({{quiz.points}})</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for completed in l_completed %}
+                        <tr>
+                            <th class="contains-button" scope="row">
+                                <a title="Afficher la correction détaillée" href="{% url 'quiz:correct' completed.pk %}" class="btn btn-xs btn-warning">
+                                    <span class="glyphicon glyphicon-check"></span>
+                                </a>
+                                {{ completed.id_user }}
+                            </th>
+                            <td class="info">{{ completed.result }}</td>
+                        </tr>
+                    {% endfor %}
                     <tr class="info">
                         <th scope="row">Moyenne</th>
                         <td>{{ quiz.average_result }}</td>
-                        <td class="contains-button"><a class="btn btn-xs btn-warning" disabled="disabled">Voir correction</a></td>
                     </tr>
-                    {% for completed in l_completed %}
-                        <tr>
-                            <th scope="row">{{ completed.id_user }}</th>
-                            <td class="info">{{ completed.result }}</td>
-                            <td class="contains-button"><a href="{% url 'quiz:correct' completed.pk %}" class="btn btn-xs btn-warning">Voir correction</a></td>
-                        </tr>
-                    {% endfor %}
                 </tbody>
             </table>
         </div>
@@ -49,14 +52,16 @@
                     </tr>
                     <tr>
                     {% for question in quiz.get_questions %}
-                        <th><div><a href="#question-{{ question.number }}">{{ question.number|add:"1" }}</a></div></th>
+                        <th class="contains-button">
+                            <a title="Afficher la question" class="btn btn-primary btn-xs show-question" data-show="#question-{{ question.number }}">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                            </a>
+                            {{ question.points }}
+                        </th>
                     {% endfor %}
                     </tr>
                 </thead>
                 <tbody>
-                    {% for question in quiz.get_questions %}
-                        <td class="info">{{ question.average_result }}</td>
-                    {% endfor %}
                     {% for completed in l_completed %}
                         <tr>
                         {% for question_submit in completed.get_questions_submits %}
@@ -64,14 +69,18 @@
                         {% endfor %}
                         </tr>
                     {% endfor %}
+                    <tr>
+                    {% for question in quiz.get_questions %}
+                        <td class="info">{{ question.average_result }}</td>
+                    {% endfor %}
+                    </tr>
                 </tbody>
             </table>
         </div>
-        
-        
-        <ul class="list-group bottom-space quizform">
+        <div class="quizform">
             {% for form in l_forms %}
-                <li id="question-{{ form.question.number }}" class="q_container list-group-item">
+                <div id="question-{{ form.question.number }}" class="q_container panel panel-default hidden-question bottom-space">
+                <div class="panel-body">
                 {% if form.get_type == 0 %}
                     <span class="label-span">{{ form.question.number|add:"1" }}) {{ form.question.text }}</span>
                     {% for option in form.answer %}
@@ -83,9 +92,10 @@
                     <label for="{{ form.selected.id_for_label }}">{{ form.question.number|add:"1" }}) {{ form.question.text }}</label>
                     {{ form.answer }}
                 {% endif %}
-                </li>
+                </div>
+                </div>
             {% endfor %}
-        </ul>
+        </div>
     </div>
 </div>
 {% endblock %}
