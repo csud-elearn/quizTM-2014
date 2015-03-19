@@ -42,9 +42,8 @@
             return count;
         }
     }
-    var JSON, str;
-            JSON = JSON || {};
-    if (!JSON.stringify) {
+    var str;
+            if (typeof JSON === "undefined") {
         
     JSON.stringify = function(obj) {
         var t = typeof (obj);
@@ -749,6 +748,7 @@
     function start_render() {
         var parse;
         parse = new Parse(get_text()).render();
+        MathJax.Hub.Queue([ "Typeset", MathJax.Hub ]);
     }
     function submit() {
         var parse, json_string, title;
