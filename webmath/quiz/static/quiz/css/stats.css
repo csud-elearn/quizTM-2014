@@ -20,6 +20,10 @@
     border-bottom: 1px solid #ddd;
 }
 
+.scrollable-cols th {
+    width: 60px;
+}
+
 #questions-th {
     position:absolute;
 }
@@ -33,9 +37,13 @@ table {
 }
 
 .contains-button {
-    padding:0px !important;
-    vertical-align:middle !important;
-    text-align:center;
+    padding-top:0px !important;
+    padding-bottom:0px !important;
+}
+
+td, th {
+    height: 38px !important;
+    white-space:nowrap;
 }
 
 th {
@@ -48,4 +56,8 @@ td {
 
 th {
 	border: 2px black solid;
+}
+
+.hidden-question {
+    display:none;
 }
