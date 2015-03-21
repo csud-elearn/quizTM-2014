@@ -9,7 +9,6 @@ from common.models import Teacher, Student
 from common.auth_utils import *
 from django.contrib.auth.decorators import login_required, user_passes_test
 import json
-import time
 
 def index(request):
     return render(request, 'quiz/index.html')
@@ -49,41 +48,70 @@ def complete(request, n_quiz):
 
     # Si la requête est de type GET, on affiche un formulaire vide
     else:
-        quiz = get_object_or_404(Quiz, id=n_quiz) #Récupération du quiz sélectionné dans la base de donnée
+        quiz = get_object_or_404(Quiz, id=n_quiz) #Récupération du quiz dans la db
         
         quizforms = QuizForms(quiz)
             
-        return render(request, 'quiz/complete.html', {'quiz': quiz, 'l_forms': quizforms.get_forms()})
+        return render(
+            request, 'quiz/complete.html',
+            {'quiz': quiz, 'l_forms': quizforms.get_forms()}
+        )
         
 def find(request):
-    return render(request, 'quiz/find.html', {'l_quiz' : Quiz.objects.order_by('-creation_date')[:5]})
+    return render(
+        request, 'quiz/find.html',
+        {'l_quiz' : Quiz.objects.order_by('-creation_date')[:5]}
+    )
 
-@login_required
 def findquiz(request):
+    """
+    Renvoie sous forme de json le titre et l'url du quiz dont l'url est donné
+    en paramètre de la requête GET.
+    
+    Cette vue est essentiellement destinée à être utilisé par une requête Ajax.
+    
+    Paramètres de la requête GET :
+    quiz --> Id du quiz recherché
+    """
     if request.method == "GET":
-        n_quiz = request.GET['quiz']
+        n_quiz = request.GET['quiz'] # id du quiz dans les argument de la requête
         
-        try:
-            quiz = Quiz.objects.get(id=n_quiz)
-        except: #Si le quiz n'existe pas
-            return HttpResponse("")
-        else:
-            url = reverse("quiz:complete", args=[n_quiz])
-            json_dict = {"url" : url, "title" : quiz.title}
-            json_string = json.dumps(json_dict)
+        quiz = get_object_or_404(Quiz, id=n_quiz) # Récupération du quiz dans la db
+        url = reverse("quiz:complete", args=[n_quiz]) # Construction de l'url du quiz
+        
+        # Création d'un dictionnaire contenant les informations à envoyer
+        json_dict = {
+            "url" : url,
+            "title" : quiz.title
+        }
+        json_string = json.dumps(json_dict) # Sérialisation en json
             
         return HttpResponse(json_string)
-    else:
-        return HttpResponse("")
 
 @login_required
 @user_passes_test(is_teacher)
 def savedraft(request):
+    """
+    Créé une nouvelle entrée dans la table QuizDraft. Le brouillon est associé
+    à l'utilisateur connecté et enregistre les valeurs données en paramètres pour
+    les colonnes title et code.
+    
+    Cette vue n'est disponible que si l'utilisateur connecté appartient au groupe
+    'teachers' et est essentiellement destinée à être utilisé par une requête Ajax.
+    
+    Paramètres de la requête POST :
+    title --> Titre du brouillon
+    code --> Code du quiz
+    """
     if request.method == "POST":
         title = request.POST["title"]
         code = request.POST["code"]
+        
+        # Récupération des données du professeur dans la base de données
+        # à partir de l'utilisateur connecté
         user = Teacher.objects.get(user=request.user)
         
+        # Enregistrement dans la base de données
         draft = QuizDraft(title=title, code=code, id_teacher=user)
         draft.save()
         
@@ -91,39 +119,62 @@ def savedraft(request):
         
 @login_required
 @user_passes_test(is_teacher)
-def listdrafts(request): # Permet de récupérer la liste des brouillons en json
+def listdrafts(request):
+    """
+    Renvoie le titre et l'id de tous les brouillons de l'utilisateur connecté
+    sous forme de json.
+    
+    Cette vue est essentiellement destinée à être utilisé par une requête Ajax.
+    """
     if request.method == "GET":
+        # Récupération du professeur à partir des données de l'utilisateur connecté
         teacher_account = Teacher.objects.get(user=request.user)
+        
+        # Récupération de tous les quiz appartenant au professeur connecté
         drafts = QuizDraft.objects.filter(id_teacher=teacher_account)
         
         list_drafts = [] # Liste qui sera sérializée
         
+        # Ajout de dictionnaires contenant les données des brouillons dans la liste
         for d in drafts:
             list_drafts.append({
                 "title" : d.title,
                 "id" : d.pk,
             })
             
-        json_string = json.dumps(list_drafts)
+        json_string = json.dumps(list_drafts) # Sérialisation de la liste
     
         return HttpResponse(json_string)
 
 @login_required
 @user_passes_test(is_teacher)
-def getdraft(request): # Permet de récupérer le titre et le code d'un brouillon en json
+def getdraft(request):
+    """
+    Renvoie sous forme de json le titre et le code correspondant au brouillon en
+    paramètre.
+    
+    Cette vue est essentiellement destinée à être utilisé par une requête Ajax.
+    
+    Paramètres de la requête GET :
+    draft --> id du brouillon
+    """
     if request.method == "GET":
         n_draft = request.GET['draft']
         
-        quiz = get_object_or_404(QuizDraft, pk=n_draft)
+        draft = get_object_or_404(QuizDraft, pk=n_draft)
+        teacher_account = Teacher.objects.get(user=request.user)
         
-        json_dict = {
-            "title" : quiz.title,
-            "code" : quiz.code,
-        }
-        json_string = json.dumps(json_dict)
-        
-        return HttpResponse(json_string)
-        
+        # On contrôle que le brouillon appartient au professeur connecté
+        if draft.id_teacher == teacher_account:
+            # Construction d'un dictionnaire contenant les données du brouillon
+            json_dict = {
+                "title" : draft.title,
+                "code" : draft.code,
+            }
+            json_string = json.dumps(json_dict) # Sérialisation du dictionnaire
+            
+            return HttpResponse(json_string)
+@login_required
 def correct(request, n_completed):
     """
     Corrige les réponses soumises par un étudiant

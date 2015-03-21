@@ -6,7 +6,7 @@ Modèle relationnel
 Introduction
 ************
 
-Une des premières étapes importantes dans le développement d'un site web est d'imaginer un modèle relationnel structuré permettant de stocker toutes les données générées par l'application et de les relier entre elles. Un modèle relationnel décrit les différentes tables de la base de donnée et les liens entre ces tables. Une table peut être comparée à un tableau contenant des informations. Chaque table comporte une ou plusieurs colonnes, chaque colonne stockant un type de données précisément défini (par exemple, un nombre entier ou une chaîne de caractères). Si on imagine une table contenant les données sur les utilisateurs d'un site, une colonne pourrait alors définir le pseudonyme d'un utilisateur et une autre son âge. On peut ensuite ajouter des lignes à une table, c'est à dire un ensemble de données dont chaque élément correspond à une colonne de la table. Dans l'exemple précédent, on ajouterait ainsi une ligne pour chaque utilisateur s'inscrivant sur le site. Chaque ligne est identifiée grâce à une clé primaire unique, habituellement sous la forme d'un entier, qui permet de créer des liens entre différentes lignes de différentes tables (appelées relations).
+Une des premières étapes importantes dans le développement d'un site web est l'élaboration d'un modèle relationnel structuré permettant de stocker toutes les données générées par l'application et de les relier entre elles. Un modèle relationnel décrit les différentes tables de la base de donnée et les liens entre ces tables. Une table peut être comparée à un tableau contenant des informations. Chaque table comporte une ou plusieurs colonnes, chaque colonne stockant un type de données précisément défini (par exemple, un nombre entier ou une chaîne de caractères). Si on imagine une table contenant les données sur les utilisateurs d'un site, une colonne pourrait alors contenir le pseudonyme d'un utilisateur et une autre son âge. On peut ensuite ajouter des lignes à une table, c'est à dire un ensemble de données dont chaque élément correspond à une colonne de la table. Dans l'exemple précédent, on ajouterait ainsi une ligne pour chaque utilisateur s'inscrivant sur le site. Chaque ligne est identifiée grâce à une clé primaire unique, habituellement sous la forme d'un entier, qui permet de créer des liens entre différentes lignes de différentes tables (appelées relations).
 
 Voici, présenté sous forme simplifiée à l'aide d'un tableau, comment on pourrait stocker les données concernant des quiz ainsi que leurs créateurs :
 
@@ -34,9 +34,9 @@ Voici, présenté sous forme simplifiée à l'aide d'un tableau, comment on pour
 | 3            | Comportement à l'infini  | 8                   | 2      |
 +--------------+--------------------------+---------------------+--------+
 
-Ici, le quiz #1 a comme titre *Fonctions exponentielles*, comporte 5 questions et a été créé par Marc (Utilisateur 3).
+Ici, le premier quiz a comme titre *Fonctions exponentielles*, comporte 5 questions et a été créé par Marc (Utilisateur 3).
 
-Une fois que le modèle relationnel a été élaboré, on peut créer une base de données sous forme informatique. Le langage SQL permet de créer les tables d'une base de données, d'y enregistrer des informations et de faire des requêtes (c'est à dire récupérer des données enregistrées). Un logiciel ou une application web peut ainsi communiquer avec une base de données et stocker les informations nécessaires de manière permanente.
+Une fois que le modèle relationnel a été élaboré, on peut créer une base de données sous forme de fichier. Le langage SQL permet de créer les tables d'une base de données, d'y enregistrer des informations et de faire des requêtes (c'est à dire récupérer des données enregistrées). Un logiciel ou une application web peut ainsi communiquer avec une base de données et stocker les informations nécessaires de manière permanente.
 
 Django offre la possibilité de créer une base de données et d'interagir celle-ci par le biais d'une API, on peut donc éviter l'utilisation du langage SQL et communiquer avec la base de données avec des objets et des méthodes Python.
 
@@ -53,9 +53,9 @@ Comme indiqué précédemment, Django fournit une interface de haut niveau pour 
 .. code-block:: python
 
     class Quiz(models.Model): #Infos générales sur le quiz
-        title = models.CharField(max_length=100) #Colonne contenant une chaîne de caractères de longueur max 100
+        title = models.CharField(max_length=100) #Colonne contenant une chaîne de caractères
         creation_date = models.DateTimeField() #Colonne contenant une date/heure
-        code = models.CharField(max_length=1000) #Colonne contenant une chaîne de caractères de longueur max 1000
+        code = models.CharField(max_length=1000) #Colonne contenant une chaîne de caractères
         
 Les fonctions comme :rst:dir:`CharField()` ou :rst:dir:`DateTimeField()` permettent de définir des champs d'un type de données précis. Une liste complète des types de champs est disponible sur la documentation officielle de Django : https://docs.djangoproject.com/en/1.7/ref/models/fields/#field-types
 
@@ -80,7 +80,7 @@ Quiz
 
 La table *Quiz* est la table centrale de l'application et toutes les autres tables s'organisent autour d'elle. Elle comporte trois colonnes : une contenant le titre, une autre contenant la date et l'heure de création (ajouté automatiquement lorsqu'un nouveau quiz est créé) ainsi qu'une colonne dans laquelle est stockée le code du quiz. L'intérêt de stocker ce code n'est pas forcément évident. Il est stocké afin de permettre à un professeur de créer un nouveau quiz à partir d'un quiz créé précédemment par lui-même ou un autre professeur (à condition que celui-ci l'ait rendu public). Le code peut ainsi être modifé pour ajouter des questions ou apporter une quelconque modification. Cette table comporte également une relation vers une table Teacher (qui ne fait pas partie de l'application de quiz) qui permet l'intégration dans le projet de groupe.
 
-* **Note :** la fonction de récupération de quiz existants n'est pas encore fonctionnelle.
+**Note :** la fonction de récupération de quiz existants n'est pas encore fonctionnelle.
 
 Avec django, il est possible d'initialiser automatiquement un champ :rst:dir:`DateTimeField` à la date/heure du moment où le modèle est instancié avec le paramètre :rst:dir:`auto_now_add`
 
@@ -110,9 +110,9 @@ Cette table reprend plusieurs colonnes de la table *SimpleQuestion*. C'est pourq
 
 .. code-block:: python
 
-    class QuizQuestion(models.Model): #Classe abstraite dont héritent tous les types de questions
+    class QuizQuestion(models.Model): #Classe abstraite dont héritent toutes les questions
         text = models.CharField(max_length=200) #Énoncé
-        comment = models.CharField(max_length=200, blank=True) #Commentaire affiché lors de la correction
+        comment = models.CharField(max_length=200, blank=True) #Commentaire
         points = models.FloatField(default=1)
         number = models.IntegerField() #Ordre de la question dans le quiz
         id_quiz = models.ForeignKey(Quiz)
@@ -124,8 +124,8 @@ Cette table reprend plusieurs colonnes de la table *SimpleQuestion*. C'est pourq
         pass #Cette table reprend simplement les mêmes colonnes que le modèle abstrait
         
     class Qcm(QuizQuestion):
-        multi_answers = models.BooleanField() #True si il est possible de cocher plusieurs choix
-        show_list = models.BooleanField() #True si les choix sont affichés sous forme de liste déroulante
+        multi_answers = models.BooleanField()
+        show_list = models.BooleanField()
         
 En plus des colonnes héritées, *Qcm* possède deux champs de types booléens : *multi_answers*, qui définit si plusieurs options peuvent être cochées ou non, et *show_list*, qui vaut :rst:dir:`True` si la question est affichée sous forme de liste déroulante. Si plusieurs options peuvent être cochées, la question sera dans tous les cas affichée à l'aide de cases à cocher.
 
@@ -135,7 +135,7 @@ QcmChoice
 
 Cette table contient les différents choix possibles pour la question définie par la relation vers *Qcm*. Elle est formée de deux champs, le premier contenant le texte du choix et l'autre définissant par un booléen s'il est correct ou non de cocher ce choix. Une question à choix multiples doit avoir au moins deux choix possibles et au moins un choix correct. Si *multi_answers* vaut :rst:dir:`False` dans *Qcm*, une seule option peut être correcte puisque l'étudiant n'a la possibilité de cocher qu'une seule option.
 
-* **Note :** D'un point de vue purement relationnel, comme il est indiqué sur le diagramme, cette table possède une relation vers une table qui sert d'intermédiaire entre *QcmChoice* et *QcmSubmitMulti*. Cette table intermédiaire crée en fait une relation de type *many-to-many*. L'implémentation de ce type de relation avec Django sera abordé plus loin.
+**Note :** D'un point de vue purement relationnel, comme il est indiqué sur le diagramme, cette table possède une relation vers une table qui sert d'intermédiaire entre *QcmChoice* et *QcmSubmitMulti*. Cette table intermédiaire crée en fait une relation de type *many-to-many*. L'implémentation de ce type de relation avec Django sera abordé plus loin.
 
 -------------
 CompletedQuiz
@@ -159,7 +159,7 @@ Dans Django, voici comment seront définies ces relations :
 
 .. code-block:: python
 
-    id_selected = models.ForeignKey(QcmChoice, null=True) #Relation many-to-one -> Une seule option choisie
-    id_selected = models.ManyToManyField(QcmChoice, null=True) #Relation many-to-many -> Plusieurs options peuvent être choisies
+    id_selected = models.ForeignKey(QcmChoice, null=True) #Relation many-to-one
+    id_selected = models.ManyToManyField(QcmChoice, null=True) #Relation many-to-many
     
 L'argument :rst:dir:`null` vaut ici :rst:dir:`True` car il se peut que l'étudiant ne coche aucun choix. Dans ce cas-là, il n'obtiendra dans tous les cas aucun point.

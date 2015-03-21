@@ -1,57 +1,125 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Modèle relationnel &mdash; documentation Développement d&#39;une application web de création de quiz 0.1</title>
-    
-    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/translations.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="documentation Développement d&#39;une application web de création de quiz 0.1" href="index.html" />
-    <link rel="prev" title="Organisation du code côté client" href="code-frontend.html" /> 
-  </head>
-  <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="Index général"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="code-frontend.html" title="Organisation du code côté client"
-             accesskey="P">précédent</a> |</li>
-        <li><a href="index.html">documentation Développement d&#39;une application web de création de quiz 0.1</a> &raquo;</li> 
-      </ul>
-    </div>  
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Modèle relationnel &mdash; documentation Développement d&#39;une application web de création de quiz 0.1</title>
+  
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body">
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="documentation Développement d&#39;une application web de création de quiz 0.1" href="index.html"/>
+        <link rel="prev" title="Description des fonctionnalités de l’application" href="functionalities.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="index.html" class="fa fa-home"> Développement d'une application web de création de quiz</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="rapydscript.html">Présentation de RapydScript</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rapydscript.html#pourquoi-utiliser-python-plutot-que-javascript">Pourquoi utiliser Python plutôt que Javascript ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rapydscript.html#differentes-manieres-d-aborder-le-probleme-coffeescript-brython-et-rapydscript">Différentes manières d&#8217;aborder le problème : CoffeeScript, Brython et RapydScript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rapydscript.html#introduction-a-rapydscript">Introduction à RapydScript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rapydscript.html#comparaison-du-code-source-et-du-code-genere">Comparaison du code source et du code généré</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functionalities.html">Description des fonctionnalités de l&#8217;application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="functionalities.html#professeurs">Professeurs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functionalities.html#etudiants">Étudiants</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Modèle relationnel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#utilisation-dans-l-application-de-creation-de-quiz">Utilisation dans l&#8217;application de création de quiz</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Développement d'une application web de création de quiz</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Modèle relationnel</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/database.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
             
   <div class="section" id="modele-relationnel">
 <h1>Modèle relationnel<a class="headerlink" href="#modele-relationnel" title="Lien permanent vers ce titre">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Une des premières étapes importantes dans le développement d&#8217;un site web est d&#8217;imaginer un modèle relationnel structuré permettant de stocker toutes les données générées par l&#8217;application et de les relier entre elles. Un modèle relationnel décrit les différentes tables de la base de donnée et les liens entre ces tables. Une table peut être comparée à un tableau contenant des informations. Chaque table comporte une ou plusieurs colonnes, chaque colonne stockant un type de données précisément défini (par exemple, un nombre entier ou une chaîne de caractères). Si on imagine une table contenant les données sur les utilisateurs d&#8217;un site, une colonne pourrait alors définir le pseudonyme d&#8217;un utilisateur et une autre son âge. On peut ensuite ajouter des lignes à une table, c&#8217;est à dire un ensemble de données dont chaque élément correspond à une colonne de la table. Dans l&#8217;exemple précédent, on ajouterait ainsi une ligne pour chaque utilisateur s&#8217;inscrivant sur le site. Chaque ligne est identifiée grâce à une clé primaire unique, habituellement sous la forme d&#8217;un entier, qui permet de créer des liens entre différentes lignes de différentes tables (appelées relations).</p>
+<p>Une des premières étapes importantes dans le développement d&#8217;un site web est l&#8217;élaboration d&#8217;un modèle relationnel structuré permettant de stocker toutes les données générées par l&#8217;application et de les relier entre elles. Un modèle relationnel décrit les différentes tables de la base de donnée et les liens entre ces tables. Une table peut être comparée à un tableau contenant des informations. Chaque table comporte une ou plusieurs colonnes, chaque colonne stockant un type de données précisément défini (par exemple, un nombre entier ou une chaîne de caractères). Si on imagine une table contenant les données sur les utilisateurs d&#8217;un site, une colonne pourrait alors contenir le pseudonyme d&#8217;un utilisateur et une autre son âge. On peut ensuite ajouter des lignes à une table, c&#8217;est à dire un ensemble de données dont chaque élément correspond à une colonne de la table. Dans l&#8217;exemple précédent, on ajouterait ainsi une ligne pour chaque utilisateur s&#8217;inscrivant sur le site. Chaque ligne est identifiée grâce à une clé primaire unique, habituellement sous la forme d&#8217;un entier, qui permet de créer des liens entre différentes lignes de différentes tables (appelées relations).</p>
 <p>Voici, présenté sous forme simplifiée à l&#8217;aide d&#8217;un tableau, comment on pourrait stocker les données concernant des quiz ainsi que leurs créateurs :</p>
 <p><strong>Table contenant les utilisateurs :</strong></p>
 <table border="1" class="docutils">
@@ -114,8 +182,8 @@
 </tr>
 </tbody>
 </table>
-<p>Ici, le quiz #1 a comme titre <em>Fonctions exponentielles</em>, comporte 5 questions et a été créé par Marc (Utilisateur 3).</p>
-<p>Une fois que le modèle relationnel a été élaboré, on peut créer une base de données sous forme informatique. Le langage SQL permet de créer les tables d&#8217;une base de données, d&#8217;y enregistrer des informations et de faire des requêtes (c&#8217;est à dire récupérer des données enregistrées). Un logiciel ou une application web peut ainsi communiquer avec une base de données et stocker les informations nécessaires de manière permanente.</p>
+<p>Ici, le premier quiz a comme titre <em>Fonctions exponentielles</em>, comporte 5 questions et a été créé par Marc (Utilisateur 3).</p>
+<p>Une fois que le modèle relationnel a été élaboré, on peut créer une base de données sous forme de fichier. Le langage SQL permet de créer les tables d&#8217;une base de données, d&#8217;y enregistrer des informations et de faire des requêtes (c&#8217;est à dire récupérer des données enregistrées). Un logiciel ou une application web peut ainsi communiquer avec une base de données et stocker les informations nécessaires de manière permanente.</p>
 <p>Django offre la possibilité de créer une base de données et d&#8217;interagir celle-ci par le biais d&#8217;une API, on peut donc éviter l&#8217;utilisation du langage SQL et communiquer avec la base de données avec des objets et des méthodes Python.</p>
 </div>
 <div class="section" id="utilisation-dans-l-application-de-creation-de-quiz">
@@ -124,9 +192,9 @@
 <h3>Implémentation dans Django<a class="headerlink" href="#implementation-dans-django" title="Lien permanent vers ce titre">¶</a></h3>
 <p>Comme indiqué précédemment, Django fournit une interface de haut niveau pour créer et interagir avec une base de données. On peut écrire nos tables avec une architecture orientée objet, que Django &#8220;traduira&#8221; ensuite en SQL. Ainsi, pour créer une table dans notre base de données, il suffit de définir une classe héritant de <tt class="xref rst rst-dir docutils literal"><span class="pre">models.Model</span></tt> et d&#8217;initialiser des variables de classes pour ajouter des colonnes à la tables. Ainsi, par exemple, pour implémenter une table contenant les données générales d&#8217;un quiz, il suffit d&#8217;écrire le code suivant :</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Quiz</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span> <span class="c">#Infos générales sur le quiz</span>
-    <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span> <span class="c">#Colonne contenant une chaîne de caractères de longueur max 100</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span> <span class="c">#Colonne contenant une chaîne de caractères</span>
     <span class="n">creation_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">()</span> <span class="c">#Colonne contenant une date/heure</span>
-    <span class="n">code</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span> <span class="c">#Colonne contenant une chaîne de caractères de longueur max 1000</span>
+    <span class="n">code</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span> <span class="c">#Colonne contenant une chaîne de caractères</span>
 </pre></div>
 </div>
 <p>Les fonctions comme <tt class="xref rst rst-dir docutils literal"><span class="pre">CharField()</span></tt> ou <tt class="xref rst rst-dir docutils literal"><span class="pre">DateTimeField()</span></tt> permettent de définir des champs d&#8217;un type de données précis. Une liste complète des types de champs est disponible sur la documentation officielle de Django : <a class="reference external" href="https://docs.djangoproject.com/en/1.7/ref/models/fields/#field-types">https://docs.djangoproject.com/en/1.7/ref/models/fields/#field-types</a></p>
@@ -144,9 +212,7 @@
 <div class="section" id="quiz">
 <h4>Quiz<a class="headerlink" href="#quiz" title="Lien permanent vers ce titre">¶</a></h4>
 <p>La table <em>Quiz</em> est la table centrale de l&#8217;application et toutes les autres tables s&#8217;organisent autour d&#8217;elle. Elle comporte trois colonnes : une contenant le titre, une autre contenant la date et l&#8217;heure de création (ajouté automatiquement lorsqu&#8217;un nouveau quiz est créé) ainsi qu&#8217;une colonne dans laquelle est stockée le code du quiz. L&#8217;intérêt de stocker ce code n&#8217;est pas forcément évident. Il est stocké afin de permettre à un professeur de créer un nouveau quiz à partir d&#8217;un quiz créé précédemment par lui-même ou un autre professeur (à condition que celui-ci l&#8217;ait rendu public). Le code peut ainsi être modifé pour ajouter des questions ou apporter une quelconque modification. Cette table comporte également une relation vers une table Teacher (qui ne fait pas partie de l&#8217;application de quiz) qui permet l&#8217;intégration dans le projet de groupe.</p>
-<ul class="simple">
-<li><strong>Note :</strong> la fonction de récupération de quiz existants n&#8217;est pas encore fonctionnelle.</li>
-</ul>
+<p><strong>Note :</strong> la fonction de récupération de quiz existants n&#8217;est pas encore fonctionnelle.</p>
 <p>Avec django, il est possible d&#8217;initialiser automatiquement un champ <tt class="xref rst rst-dir docutils literal"><span class="pre">DateTimeField</span></tt> à la date/heure du moment où le modèle est instancié avec le paramètre <tt class="xref rst rst-dir docutils literal"><span class="pre">auto_now_add</span></tt></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">creation_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">auto_now_add</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
@@ -164,9 +230,9 @@
 <h4>Qcm<a class="headerlink" href="#qcm" title="Lien permanent vers ce titre">¶</a></h4>
 <p>La table Qcm permet de stocker les informations générales à propos des questions à choix multiples. Ces questions sont affichées sous forme de boutons radio, de cases à cocher ou de liste déroulante.
 Cette table reprend plusieurs colonnes de la table <em>SimpleQuestion</em>. C&#8217;est pourquoi ces deux tables héritent en fait du même modèle dans django :</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">QuizQuestion</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span> <span class="c">#Classe abstraite dont héritent tous les types de questions</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">QuizQuestion</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span> <span class="c">#Classe abstraite dont héritent toutes les questions</span>
     <span class="n">text</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span> <span class="c">#Énoncé</span>
-    <span class="n">comment</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c">#Commentaire affiché lors de la correction</span>
+    <span class="n">comment</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c">#Commentaire</span>
     <span class="n">points</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">number</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">()</span> <span class="c">#Ordre de la question dans le quiz</span>
     <span class="n">id_quiz</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Quiz</span><span class="p">)</span>
@@ -178,8 +244,8 @@ Cette table reprend plusieurs colonnes de la table <em>SimpleQuestion</em>. C&#8
     <span class="k">pass</span> <span class="c">#Cette table reprend simplement les mêmes colonnes que le modèle abstrait</span>
 
 <span class="k">class</span> <span class="nc">Qcm</span><span class="p">(</span><span class="n">QuizQuestion</span><span class="p">):</span>
-    <span class="n">multi_answers</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">()</span> <span class="c">#True si il est possible de cocher plusieurs choix</span>
-    <span class="n">show_list</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">()</span> <span class="c">#True si les choix sont affichés sous forme de liste déroulante</span>
+    <span class="n">multi_answers</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">()</span>
+    <span class="n">show_list</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>En plus des colonnes héritées, <em>Qcm</em> possède deux champs de types booléens : <em>multi_answers</em>, qui définit si plusieurs options peuvent être cochées ou non, et <em>show_list</em>, qui vaut <tt class="xref rst rst-dir docutils literal"><span class="pre">True</span></tt> si la question est affichée sous forme de liste déroulante. Si plusieurs options peuvent être cochées, la question sera dans tous les cas affichée à l&#8217;aide de cases à cocher.</p>
@@ -187,9 +253,7 @@ Cette table reprend plusieurs colonnes de la table <em>SimpleQuestion</em>. C&#8
 <div class="section" id="qcmchoice">
 <h4>QcmChoice<a class="headerlink" href="#qcmchoice" title="Lien permanent vers ce titre">¶</a></h4>
 <p>Cette table contient les différents choix possibles pour la question définie par la relation vers <em>Qcm</em>. Elle est formée de deux champs, le premier contenant le texte du choix et l&#8217;autre définissant par un booléen s&#8217;il est correct ou non de cocher ce choix. Une question à choix multiples doit avoir au moins deux choix possibles et au moins un choix correct. Si <em>multi_answers</em> vaut <tt class="xref rst rst-dir docutils literal"><span class="pre">False</span></tt> dans <em>Qcm</em>, une seule option peut être correcte puisque l&#8217;étudiant n&#8217;a la possibilité de cocher qu&#8217;une seule option.</p>
-<ul class="simple">
-<li><strong>Note :</strong> D&#8217;un point de vue purement relationnel, comme il est indiqué sur le diagramme, cette table possède une relation vers une table qui sert d&#8217;intermédiaire entre <em>QcmChoice</em> et <em>QcmSubmitMulti</em>. Cette table intermédiaire crée en fait une relation de type <em>many-to-many</em>. L&#8217;implémentation de ce type de relation avec Django sera abordé plus loin.</li>
-</ul>
+<p><strong>Note :</strong> D&#8217;un point de vue purement relationnel, comme il est indiqué sur le diagramme, cette table possède une relation vers une table qui sert d&#8217;intermédiaire entre <em>QcmChoice</em> et <em>QcmSubmitMulti</em>. Cette table intermédiaire crée en fait une relation de type <em>many-to-many</em>. L&#8217;implémentation de ce type de relation avec Django sera abordé plus loin.</p>
 </div>
 <div class="section" id="completedquiz">
 <h4>CompletedQuiz<a class="headerlink" href="#completedquiz" title="Lien permanent vers ce titre">¶</a></h4>
@@ -203,8 +267,8 @@ Cette table reprend plusieurs colonnes de la table <em>SimpleQuestion</em>. C&#8
 <h4>QcmSubmitOne et QcmSubmitMulti<a class="headerlink" href="#qcmsubmitone-et-qcmsubmitmulti" title="Lien permanent vers ce titre">¶</a></h4>
 <p>Ces deux tables sont très similaires. <em>QcmSubmitOne</em> contient une relation vers l&#8217;option sélectionnée par l&#8217;étudiant dans une question à choix multiples avec <em>multi_answers</em> valant <tt class="xref rst rst-dir docutils literal"><span class="pre">False</span></tt>, tandis que <em>QcmSubmitMulti</em> peut contenir des relations vers plusieurs options, quand <em>multi_answers</em> vaut <tt class="xref rst rst-dir docutils literal"><span class="pre">True</span></tt>. Il s&#8217;agit donc dans le premier cas d&#8217;une relation <em>many-to-one</em>, puique plusieurs lignes (réponses fournies par différents élèves) peuvent pointer vers la même option. Dans le deuxième cas, c&#8217;est une relation de type <em>many-to-many</em>, puisque plusieurs lignes peuvent pointer vers plusieurs options.</p>
 <p>Dans Django, voici comment seront définies ces relations :</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">id_selected</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">QcmChoice</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c">#Relation many-to-one -&gt; Une seule option choisie</span>
-<span class="n">id_selected</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="n">QcmChoice</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c">#Relation many-to-many -&gt; Plusieurs options peuvent être choisies</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">id_selected</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">QcmChoice</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c">#Relation many-to-one</span>
+<span class="n">id_selected</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="n">QcmChoice</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c">#Relation many-to-many</span>
 </pre></div>
 </div>
 <p>L&#8217;argument <tt class="xref rst rst-dir docutils literal"><span class="pre">null</span></tt> vaut ici <tt class="xref rst rst-dir docutils literal"><span class="pre">True</span></tt> car il se peut que l&#8217;étudiant ne coche aucun choix. Dans ce cas-là, il n&#8217;obtiendra dans tous les cas aucun point.</p>
@@ -215,74 +279,68 @@ Cette table reprend plusieurs colonnes de la table <em>SimpleQuestion</em>. C&#8
 
 
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table des Matières</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Modèle relationnel</a><ul>
-<li><a class="reference internal" href="#introduction">Introduction</a></li>
-<li><a class="reference internal" href="#utilisation-dans-l-application-de-creation-de-quiz">Utilisation dans l&#8217;application de création de quiz</a><ul>
-<li><a class="reference internal" href="#implementation-dans-django">Implémentation dans Django</a></li>
-<li><a class="reference internal" href="#schema-global">Schéma global</a></li>
-<li><a class="reference internal" href="#explications-des-tables">Explications des tables</a><ul>
-<li><a class="reference internal" href="#quiz">Quiz</a></li>
-<li><a class="reference internal" href="#simplequestion">SimpleQuestion</a></li>
-<li><a class="reference internal" href="#sqanswer">SqAnswer</a></li>
-<li><a class="reference internal" href="#qcm">Qcm</a></li>
-<li><a class="reference internal" href="#qcmchoice">QcmChoice</a></li>
-<li><a class="reference internal" href="#completedquiz">CompletedQuiz</a></li>
-<li><a class="reference internal" href="#sqsubmit">SqSubmit</a></li>
-<li><a class="reference internal" href="#qcmsubmitone-et-qcmsubmitmulti">QcmSubmitOne et QcmSubmitMulti</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="functionalities.html" class="btn btn-neutral" title="Description des fonctionnalités de l’application"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
 
-  <h4>Sujet précédent</h4>
-  <p class="topless"><a href="code-frontend.html"
-                        title="Chapitre précédent">Organisation du code côté client</a></p>
-  <h3>Cette page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/database.txt"
-           rel="nofollow">Montrer la source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
-  <h3>Recherche rapide</h3>
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Saisissez un mot clef ou un nom de module, classe ou fonction.
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Benoît Léo Maillard.
     </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="Index général"
-             >index</a></li>
-        <li class="right" >
-          <a href="code-frontend.html" title="Organisation du code côté client"
-             >précédent</a> |</li>
-        <li><a href="index.html">documentation Développement d&#39;une application web de création de quiz 0.1</a> &raquo;</li> 
-      </ul>
-    </div>
-    <div class="footer">
-        &copy; Copyright 2014, Benoît Léo Maillard.
-      Créé avec <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
-    </div>
-  </body>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
 </html>
