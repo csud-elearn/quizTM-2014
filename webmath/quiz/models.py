@@ -6,6 +6,9 @@ import quiz.forms as forms
 # Create your models here.
 
 class Quiz(models.Model): #Infos générales sur le quiz
+    """
+    Test
+    """
     title = models.CharField(max_length=100)
     points = models.FloatField(default=0)
     creation_date = models.DateTimeField(auto_now_add=True)

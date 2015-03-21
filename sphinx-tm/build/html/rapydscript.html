@@ -76,6 +76,11 @@
 <li class="toctree-l2"><a class="reference internal" href="functionalities.html#etudiants">Étudiants</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="source.html">Documentation du code source</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="source.html#module-quiz.views">views.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source.html#module-quiz.models">models.py</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="database.html">Modèle relationnel</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="database.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="database.html#utilisation-dans-l-application-de-creation-de-quiz">Utilisation dans l&#8217;application de création de quiz</a></li>
@@ -163,7 +168,7 @@
 <span class="nx">maximum</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">18</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>On peut voir les opérations qu&#8217;a fait RapydScript &#8220;traduire&#8221; le code source en Javascript : Remplacer le mot clé <tt class="xref rst rst-dir docutils literal"><span class="pre">def</span></tt> par <tt class="xref rst rst-dir docutils literal"><span class="pre">function</span></tt>, ajouter les accolades qui englobent la fonction et les structures <tt class="xref rst rst-dir docutils literal"><span class="pre">if</span></tt>, ajouter des parenthèses autour des conditions et ajouter un <tt class="xref rst rst-dir docutils literal"><span class="pre">;</span></tt> à la fin de chaque instruction. On remarque aussi que les commentaires ont été supprimés, puisqu&#8217;ils sont seulement utiles dans le code source. Le code ainsi produit peut maintenant être éxecuté dans n&#8217;importe quel navigateur.</p>
+<p>On peut voir les opérations qu&#8217;a fait RapydScript &#8220;traduire&#8221; le code source en Javascript : Remplacer le mot clé <code class="xref rst rst-dir docutils literal"><span class="pre">def</span></code> par <code class="xref rst rst-dir docutils literal"><span class="pre">function</span></code>, ajouter les accolades qui englobent la fonction et les structures <code class="xref rst rst-dir docutils literal"><span class="pre">if</span></code>, ajouter des parenthèses autour des conditions et ajouter un <code class="xref rst rst-dir docutils literal"><span class="pre">;</span></code> à la fin de chaque instruction. On remarque aussi que les commentaires ont été supprimés, puisqu&#8217;ils sont seulement utiles dans le code source. Le code ainsi produit peut maintenant être éxecuté dans n&#8217;importe quel navigateur.</p>
 <p>Cet exemple montre cependant un cas assez peu significatif de la puissance de RapydScript puisque le code Javascript correspondant au code source est quasiment identique. Mais RapydScript permet aussi de compiler du code typiqement Python, comme par exemple des boucles for, qui n&#8217;ont pas d&#8217;équivalent en javascript.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">names_list</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Paul&quot;</span><span class="p">,</span> <span class="s">&quot;Marie&quot;</span><span class="p">,</span> <span class="s">&quot;Pierre&quot;</span><span class="p">,</span> <span class="s">&quot;Lucie&quot;</span><span class="p">]</span>
 
@@ -206,11 +211,11 @@
 <span class="n">objet</span><span class="o">.</span><span class="n">informations</span><span class="p">()</span> <span class="c">#Retourne &quot;Nom : Objet 2 /// Nombre : 5&quot;</span>
 </pre></div>
 </div>
-<p>Il n&#8217;est par contre pas possible de définir des variables de classes avec RapydScript (si on définit une variable de classe, RapydScript l&#8217;ignore simplement). Cela est dû au fait qu&#8217;en Javascript, un objet n&#8217;est pas une instance d&#8217;une classe comme en Python, mais une copie d&#8217;un objet prototype. En Python, une variable de classe est en fait un attribut de l&#8217;objet <tt class="xref rst rst-dir docutils literal"><span class="pre">Class</span></tt>. Il n&#8217;y a donc qu&#8217;une seul espace en mémoire pour cette variable. En Javascript, tous les attributs du prototype sont copiées à chaque fois qu&#8217;un objet est créé et il n&#8217;y a aucun équivalent aux variables de classe.</p>
+<p>Il n&#8217;est par contre pas possible de définir des variables de classes avec RapydScript (si on définit une variable de classe, RapydScript l&#8217;ignore simplement). Cela est dû au fait qu&#8217;en Javascript, un objet n&#8217;est pas une instance d&#8217;une classe comme en Python, mais une copie d&#8217;un objet prototype. En Python, une variable de classe est en fait un attribut de l&#8217;objet <code class="xref rst rst-dir docutils literal"><span class="pre">Class</span></code>. Il n&#8217;y a donc qu&#8217;une seul espace en mémoire pour cette variable. En Javascript, tous les attributs du prototype sont copiées à chaque fois qu&#8217;un objet est créé et il n&#8217;y a aucun équivalent aux variables de classe.</p>
 </div>
 <div class="section" id="utilisation-de-la-bibliotheque-standard-python">
 <h4>Utilisation de la bibliothèque standard Python<a class="headerlink" href="#utilisation-de-la-bibliotheque-standard-python" title="Lien permanent vers ce titre">¶</a></h4>
-<p>Avec RapydScript, il est possible d&#8217;utiliser dans le code des fonctions provenant de différentes sources. La première est la bibilothèque standard de Python, c&#8217;est à dire les fonctions natives Python, telles que <tt class="xref rst rst-dir docutils literal"><span class="pre">print()</span></tt>, <tt class="xref rst rst-dir docutils literal"><span class="pre">len()</span></tt> ou <tt class="xref rst rst-dir docutils literal"><span class="pre">range()</span></tt>.</p>
+<p>Avec RapydScript, il est possible d&#8217;utiliser dans le code des fonctions provenant de différentes sources. La première est la bibilothèque standard de Python, c&#8217;est à dire les fonctions natives Python, telles que <code class="xref rst rst-dir docutils literal"><span class="pre">print()</span></code>, <code class="xref rst rst-dir docutils literal"><span class="pre">len()</span></code> ou <code class="xref rst rst-dir docutils literal"><span class="pre">range()</span></code>.</p>
 <p>Pour utiliser les fonctions de la bibliothèque standard Python, il faut placer l&#8217;instruction suivante au début du fichier Python :</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">stdlib</span>
 </pre></div>
@@ -224,7 +229,7 @@
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">moduletest</span>
 </pre></div>
 </div>
-<p>Lors de la compilation, RapydScript va rassembler tous les fichiers du code source dans un même fichier Javascript, ce qui facilite aussi l&#8217;insertion du script dans un fichier HTML. Il est important de noter, cependant, que l&#8217;import d&#8217;un module ne rend pas ses fonctions disponibles dans un namespace distinct (ce qui est le cas en Python par contre). Par exemple, pour appeler la fonction <tt class="xref rst rst-dir docutils literal"><span class="pre">test()</span></tt> du module de l&#8217;exemple précédent, voici comment procéder :</p>
+<p>Lors de la compilation, RapydScript va rassembler tous les fichiers du code source dans un même fichier Javascript, ce qui facilite aussi l&#8217;insertion du script dans un fichier HTML. Il est important de noter, cependant, que l&#8217;import d&#8217;un module ne rend pas ses fonctions disponibles dans un namespace distinct (ce qui est le cas en Python par contre). Par exemple, pour appeler la fonction <code class="xref rst rst-dir docutils literal"><span class="pre">test()</span></code> du module de l&#8217;exemple précédent, voici comment procéder :</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">moduletest</span>
 
 <span class="n">test</span><span class="p">()</span> <span class="c">#Correct</span>
@@ -324,7 +329,7 @@ add_text(&quot;Hello World&quot;)
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
       <script type="text/javascript" src="_static/translations.js"></script>
-      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
