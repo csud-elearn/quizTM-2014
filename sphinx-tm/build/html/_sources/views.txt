@@ -1,0 +1,6 @@
+############################
+Documentation du code source
+############################
+
+.. automodule:: views
+    :members:
