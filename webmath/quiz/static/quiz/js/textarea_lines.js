@@ -12,6 +12,10 @@ function show_lines() {
     if (n_lines > initial_n_lines) {
         $(".linedarea").attr("rows", n_lines); //Changement du nombre de lignes de la textarea pour l'adapter en fonction du contenu
     }
+    else {
+        // Il faut s'assurer que la textarea rétrécit si on enlève plusieurs lignes à la fois
+        $(".linedarea").attr("rows", initial_n_lines);
+    }
 
     if (n_lines != old_n_lines) { //Si le nombre de lignes n'a pas changé depuis la dernière fois, il est inutile de réafficher les numéros
         update_lines(n_lines);
