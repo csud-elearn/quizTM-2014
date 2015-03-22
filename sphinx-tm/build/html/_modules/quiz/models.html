@@ -130,7 +130,7 @@
 
 <div class="viewcode-block" id="Quiz"><a class="viewcode-back" href="../../source.html#quiz.models.Quiz">[docs]</a><span class="k">class</span> <span class="nc">Quiz</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span> <span class="c">#Infos générales sur le quiz</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Test</span>
+<span class="sd">    </span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
     <span class="n">points</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -142,12 +142,16 @@
     <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span>
         
-    <span class="k">def</span> <span class="nf">length</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Quiz.length"><a class="viewcode-back" href="../../source.html#quiz.models.Quiz.length">[docs]</a>    <span class="k">def</span> <span class="nf">length</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retourne le nombre de questions qui composent le quiz.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_questions</span><span class="p">())</span>
-        
+        </div>
 <div class="viewcode-block" id="Quiz.get_questions"><a class="viewcode-back" href="../../source.html#quiz.models.Quiz.get_questions">[docs]</a>    <span class="k">def</span> <span class="nf">get_questions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Renvoie la liste des questions du quiz dans l&#39;ordre</span>
+<span class="sd">        Récupère la liste de toutes les questions du quiz et les trie dans l&#39;ordre</span>
+<span class="sd">        d&#39;apparition dans le quiz.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c"># Liste des questions non triée</span>
         <span class="n">l_questions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">SimpleQuestion</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">id_quiz</span><span class="o">=</span><span class="bp">self</span><span class="p">))</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">Qcm</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">id_quiz</span><span class="o">=</span><span class="bp">self</span><span class="p">))</span>
@@ -162,15 +166,19 @@
         </div>
 <div class="viewcode-block" id="Quiz.average_result"><a class="viewcode-back" href="../../source.html#quiz.models.Quiz.average_result">[docs]</a>    <span class="k">def</span> <span class="nf">average_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Renvoie le nombre moyen de points obtenus pour le quiz</span>
+<span class="sd">        Récupère dans la base de données toutes les résolutions se rattachant</span>
+<span class="sd">        au quiz en question puis calcule la moyenne des résultats obtenus sur la base</span>
+<span class="sd">        du résultat de chaque élève et le nombre de résolutions envoyées.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">total_result</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">total_result</span> <span class="o">=</span> <span class="mi">0</span> <span class="c"># Somme des points obtenus pour toutes les résolutions</span>
+        <span class="c"># Récupération des résolutions concernant le quiz dans la base de donnnées</span>
         <span class="n">l_completed</span> <span class="o">=</span> <span class="n">CompletedQuiz</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">id_quiz</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
         
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">l_completed</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span> <span class="c"># Si il n&#39;y a aucune résolution, impossible de diviser par zéro</span>
             <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">l_completed</span><span class="p">:</span>
                 <span class="n">total_result</span> <span class="o">+=</span> <span class="n">c</span><span class="o">.</span><span class="n">result</span>
                 
+            <span class="c"># Moyenne arithmétique</span>
             <span class="n">average</span> <span class="o">=</span> <span class="n">total_result</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">l_completed</span><span class="p">)</span>
             
             <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="n">average</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
@@ -196,13 +204,8 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Corrige les questions soumises</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">questions_types</span> <span class="o">=</span> <span class="p">[</span><span class="n">QcmSubmitMulti</span><span class="p">,</span> <span class="n">QcmSubmitOne</span><span class="p">,</span> <span class="n">SqSubmit</span><span class="p">]</span>
-        
-        <span class="k">for</span> <span class="n">type_</span> <span class="ow">in</span> <span class="n">questions_types</span><span class="p">:</span>
-            <span class="n">l_submits</span> <span class="o">=</span> <span class="n">type_</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">id_submitted_quiz</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
-            
-            <span class="k">for</span> <span class="n">submit</span> <span class="ow">in</span> <span class="n">l_submits</span><span class="p">:</span>
-                <span class="n">submit</span><span class="o">.</span><span class="n">correct</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">submit</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_questions_submits</span><span class="p">():</span>
+            <span class="n">submit</span><span class="o">.</span><span class="n">correct</span><span class="p">()</span>
                 </div>
 <div class="viewcode-block" id="CompletedQuiz.get_questions_submits"><a class="viewcode-back" href="../../source.html#quiz.models.CompletedQuiz.get_questions_submits">[docs]</a>    <span class="k">def</span> <span class="nf">get_questions_submits</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>

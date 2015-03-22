@@ -202,7 +202,7 @@
 <span class="sd">    Pour finir, l&#39;utilisateur est redirigé vers la page de correction correspondant</span>
 <span class="sd">    aux réponses envoyées précédemment.</span>
 <span class="sd">    </span>
-<span class="sd">    **Paramètres de la requête HTTP POST \:&quot;&quot;</span>
+<span class="sd">    **Paramètres de la requête HTTP POST \:**</span>
 <span class="sd">    </span>
 <span class="sd">    * Ces paramètres dépendent du type et du nombre de questions qui constituent le quiz.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -451,7 +451,7 @@
 <span class="nd">@user_passes_test</span><span class="p">(</span><span class="n">is_teacher</span><span class="p">)</span>
 <div class="viewcode-block" id="advanced_stats"><a class="viewcode-back" href="../../source.html#quiz.views.advanced_stats">[docs]</a><span class="k">def</span> <span class="nf">advanced_stats</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">n_quiz</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Récupère toutes les résolutions associés au quiz avec l&#39;id ``n_quiz`` et affiche</span>
+<span class="sd">    Récupère toutes les résolutions associés au quiz avec l&#39;id ``n_quiz`` dans la base de données et affiche</span>
 <span class="sd">    des statistques précises montrant le résultat personnel des élèves pour chaque question.</span>
 <span class="sd">    </span>
 <span class="sd">    Un objet ``QuizForms`` qui créé des formulaires Django pour toutes les question</span>

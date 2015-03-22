@@ -2,8 +2,6 @@
 Documentation du code source
 ############################
 
-ahahahahhahahahahhahahah
-
 ********
 views.py
 ********

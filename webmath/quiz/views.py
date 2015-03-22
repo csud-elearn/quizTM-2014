@@ -79,7 +79,7 @@ def complete(request, n_quiz):
     Pour finir, l'utilisateur est redirigé vers la page de correction correspondant
     aux réponses envoyées précédemment.
     
-    **Paramètres de la requête HTTP POST \:""
+    **Paramètres de la requête HTTP POST \:**
     
     * Ces paramètres dépendent du type et du nombre de questions qui constituent le quiz.
     """
@@ -328,7 +328,7 @@ def created_quizzes(request):
 @user_passes_test(is_teacher)
 def advanced_stats(request, n_quiz):
     """
-    Récupère toutes les résolutions associés au quiz avec l'id ``n_quiz`` et affiche
+    Récupère toutes les résolutions associés au quiz avec l'id ``n_quiz`` dans la base de données et affiche
     des statistques précises montrant le résultat personnel des élèves pour chaque question.
     
     Un objet ``QuizForms`` qui créé des formulaires Django pour toutes les question
