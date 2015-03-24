@@ -5,6 +5,6 @@ Application de création de quiz
    :maxdepth: 2
    
    rapydscript
-   functionalities
+   doc-user
    source
    database

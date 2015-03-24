@@ -1,5 +1,5 @@
 ################################################
-Description des fonctionnalités de l'application
+Documentation utilisateur
 ################################################
 
 ***********
@@ -10,32 +10,50 @@ Professeurs
 Création de quiz
 ================
 
-.. figure:: figures/create.png
+.. figure:: figures/create-doc.png
     :align: center
+    
+----------------------------------------------------
+Ajout d'une question et définition de ses caractéristiques
+----------------------------------------------------
 
-Les professeurs peuvent créer un quiz en utilisant un format texte de type Markdown pour créer différents types de questions et y attribuer certaines caractéristiques. Cet éditeur de quiz se présente se présente sous la forme d'une zone de texte dans laquelle le professeur peut entrer le code du quiz. Au début de chaque ligne, le prof entre un tag pour préciser la fonction de la ligne, chaque tag a une signification différente. Le tag doit être séparé de la suite de la ligne par un espace.
+------------------------------------
+Affichage de l'aperçu et des erreurs
+------------------------------------
 
-+-----+-----------------------------------------------------------------------------+
-| Tag | Signification                                                               |
-+=====+=============================================================================+
-| ##  | Question à choix multiple avec plusieurs options qui peuvent être choisies  |
-+-----+-----------------------------------------------------------------------------+
-| \*\*| Question à choix multiple avec une seule option qui peut être choisie       |
-+-----+-----------------------------------------------------------------------------+
-| ^^  | Liste déroulante avec une option sélectionnable                             |
-+-----+-----------------------------------------------------------------------------+
-| ??  | Question avec un champ de texte à remplir                                   |
-+-----+-----------------------------------------------------------------------------+
-| \*  | Option invalide dans un QCM                                                 |
-+-----+-----------------------------------------------------------------------------+
-| =   | Option valide dans un QCM                                                   |
-+-----+-----------------------------------------------------------------------------+
-| =   | Réponse correcte dans une question à champ de texte                         |
-+-----+-----------------------------------------------------------------------------+
-| .   | Permet de définir le nombre de points sur la question (par défaut, 1)       |
-+-----+-----------------------------------------------------------------------------+
-| \+  | Ajout d'un commentaire d'explication qui sera affiché lors de la correction |
-+-----+-----------------------------------------------------------------------------+
+--------------------------
+Affichage de mathématiques
+--------------------------
+
+-------------------------------------------
+Enregistrement et importation de brouillons
+-------------------------------------------
+
+-----------------------
+Envoi définitif du quiz
+-----------------------
+
++--------+-----------------------------------------------------------------------------+
+| Balise | Signification                                                               |
++========+=============================================================================+
+| ##     | Question à choix multiple avec plusieurs options qui peuvent être choisies  |
++--------+-----------------------------------------------------------------------------+
+| \*\*   | Question à choix multiple avec une seule option qui peut être choisie       |
++--------+-----------------------------------------------------------------------------+
+| ^^     | Liste déroulante avec une option sélectionnable                             |
++--------+-----------------------------------------------------------------------------+
+| ??     | Question avec un champ de texte à remplir                                   |
++--------+-----------------------------------------------------------------------------+
+| \*     | Option invalide dans un QCM                                                 |
++--------+-----------------------------------------------------------------------------+
+| =      | Option valide dans un QCM                                                   |
++--------+-----------------------------------------------------------------------------+
+| =      | Réponse correcte dans une question à champ de texte                         |
++--------+-----------------------------------------------------------------------------+
+| .      | Permet de définir le nombre de points sur la question (par défaut, 1)       |
++--------+-----------------------------------------------------------------------------+
+| \+     | Ajout d'un commentaire d'explication qui sera affiché lors de la correction |
++--------+-----------------------------------------------------------------------------+
 
 
 Voici un exemple de quiz comprenant 4 questions :

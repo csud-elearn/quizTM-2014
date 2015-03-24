@@ -86,7 +86,10 @@ class CompletedQuiz(models.Model): #Tentative de réponse au quiz par un élève
                 
     def get_questions_submits(self):
         """
-        Renvoie la liste des réponses soumises pour chaque question
+        Renvoie la liste des entrées des tables ``SqSubmit``, ``QcmSubmitOne`` et
+        ``QcmSubmitMulti`` correspondant à chacune des questions du quiz auquel
+        l'élève a répondu. Cette liste est triée selon l'ordre d'apparition des
+        questions correspondant aux entrées concernées.
         """
         # Liste des réponses non triées
         l_submits = list(SqSubmit.objects.filter(id_submitted_quiz=self))\
@@ -345,7 +348,7 @@ class QcmSubmit(models.Model):
             abstract = True
         
 class QcmSubmitOne(QcmSubmit):
-    id_selected = models.ForeignKey(QcmChoice, null=True) #Choix sélectionnés par l'élève dans un QCM à bouton radio ou liste déroulante
+    id_selected = models.ForeignKey(QcmChoice, null=True) #Choix sélectionnés par l'élève dans un QCM à bouton radio
     
 class QcmSubmitMulti(QcmSubmit): 
     id_selected = models.ManyToManyField(QcmChoice, null=True) #Choix sélectionnés par l'élève dans un QCM à cases à cocher
