@@ -6,6 +6,9 @@ import quiz.forms as forms
 # Create your models here.
 
 class Quiz(models.Model): #Infos générales sur le quiz
+    """
+    
+    """
     title = models.CharField(max_length=100)
     points = models.FloatField(default=0)
     creation_date = models.DateTimeField(auto_now_add=True)
@@ -17,11 +20,15 @@ class Quiz(models.Model): #Infos générales sur le quiz
         return self.title
         
     def length(self):
+        """
+        Retourne le nombre de questions qui composent le quiz.
+        """
         return len(self.get_questions())
         
     def get_questions(self):
         """
-        Renvoie la liste des questions du quiz dans l'ordre
+        Récupère la liste de toutes les questions du quiz et les trie dans l'ordre
+        d'apparition dans le quiz.
         """
         # Liste des questions non triée
         l_questions = list(SimpleQuestion.objects.filter(id_quiz=self)) + list(Qcm.objects.filter(id_quiz=self))
@@ -36,15 +43,19 @@ class Quiz(models.Model): #Infos générales sur le quiz
         
     def average_result(self):
         """
-        Renvoie le nombre moyen de points obtenus pour le quiz
+        Récupère dans la base de données toutes les résolutions se rattachant
+        au quiz en question puis calcule la moyenne des résultats obtenus sur la base
+        du résultat de chaque élève et le nombre de résolutions envoyées.
         """
-        total_result = 0
+        total_result = 0 # Somme des points obtenus pour toutes les résolutions
+        # Récupération des résolutions concernant le quiz dans la base de donnnées
         l_completed = CompletedQuiz.objects.filter(id_quiz=self)
         
         if len(l_completed) > 0: # Si il n'y a aucune résolution, impossible de diviser par zéro
             for c in l_completed:
                 total_result += c.result
                 
+            # Moyenne arithmétique
             average = total_result / len(l_completed)
             
             return round(average, 2)
@@ -70,17 +81,15 @@ class CompletedQuiz(models.Model): #Tentative de réponse au quiz par un élève
         """
         Corrige les questions soumises
         """
-        questions_types = [QcmSubmitMulti, QcmSubmitOne, SqSubmit]
-        
-        for type_ in questions_types:
-            l_submits = type_.objects.filter(id_submitted_quiz=self)
-            
-            for submit in l_submits:
-                submit.correct()
+        for submit in self.get_questions_submits():
+            submit.correct()
                 
     def get_questions_submits(self):
         """
-        Renvoie la liste des réponses soumises pour chaque question
+        Renvoie la liste des entrées des tables ``SqSubmit``, ``QcmSubmitOne`` et
+        ``QcmSubmitMulti`` correspondant à chacune des questions du quiz auquel
+        l'élève a répondu. Cette liste est triée selon l'ordre d'apparition des
+        questions correspondant aux entrées concernées.
         """
         # Liste des réponses non triées
         l_submits = list(SqSubmit.objects.filter(id_submitted_quiz=self))\
@@ -139,6 +148,12 @@ class SimpleQuestion(QuizQuestion):
         return forms.TextForm(question=self, prefix=self.number, *args, **kwargs)
         
     def save_submit(self, data, completed):
+        """
+        Créé une entrée dans la table ``SqSubmit`` pour stocker la réponse soumise
+        relative à la question. L'accès aux données du formulaire Django correspondant à
+        la question se fait par le dictionnaire ``data`` en argument.
+        """
+        # Création de l'entrée dans la base de données avec les arguments correspondants
         submit = SqSubmit(text=data['answer'], id_question=self, id_submitted_quiz=completed)
         
         # Enregistrement du résultat (pour les statistiques)
@@ -190,6 +205,20 @@ class SqSubmit(models.Model): #Réponse soumise par un élève
     
     def __str__(self):
         return self.text
+        
+    def save_result(self):
+        """
+        Comptabilise et enregistre les points obtenus. Si la réponse soumise
+        est correcte, tous les points sont attribués. Dans le cas contraire,
+        aucun point n'est attribué.
+        """
+        
+        result = 0
+        if self.correct():
+            result = self.id_question.points
+        
+        self.result = result
+        self.save()
         
     def get_corrections(self):
         """
@@ -363,7 +392,7 @@ class QcmSubmit(models.Model):
             abstract = True
         
 class QcmSubmitOne(QcmSubmit):
-    id_selected = models.ForeignKey(QcmChoice, null=True) #Choix sélectionnés par l'élève dans un QCM à bouton radio ou liste déroulante
+    id_selected = models.ForeignKey(QcmChoice, null=True) #Choix sélectionnés par l'élève dans un QCM à bouton radio
     
 class QcmSubmitMulti(QcmSubmit): 
     id_selected = models.ManyToManyField(QcmChoice, null=True) #Choix sélectionnés par l'élève dans un QCM à cases à cocher

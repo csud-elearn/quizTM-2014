@@ -1,0 +1,535 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>quiz.models &mdash; documentation Développement d&#39;une application web de création de quiz 0.1</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="documentation Développement d&#39;une application web de création de quiz 0.1" href="../../index.html"/>
+        <link rel="up" title="Code du module" href="../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../../index.html" class="fa fa-home"> Développement d'une application web de création de quiz</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../rapydscript.html">Présentation de RapydScript</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../rapydscript.html#pourquoi-utiliser-python-plutot-que-javascript">Pourquoi utiliser Python plutôt que Javascript ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rapydscript.html#differentes-manieres-d-aborder-le-probleme-coffeescript-brython-et-rapydscript">Différentes manières d&#8217;aborder le problème : CoffeeScript, Brython et RapydScript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rapydscript.html#introduction-a-rapydscript">Introduction à RapydScript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rapydscript.html#comparaison-du-code-source-et-du-code-genere">Comparaison du code source et du code généré</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../doc-user.html">Documentation utilisateur</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../doc-user.html#professeurs">Professeurs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../doc-user.html#etudiants">Étudiants</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../source.html">Documentation du code source</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../source.html#module-quiz.views">views.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source.html#module-quiz.models">models.py</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../database.html">Modèle relationnel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../database.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../database.html#utilisation-dans-l-application-de-creation-de-quiz">Utilisation dans l&#8217;application de création de quiz</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">Développement d'une application web de création de quiz</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Code du module</a> &raquo;</li>
+      
+    <li>quiz.models</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <h1>Code source de quiz.models</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
+<span class="kn">from</span> <span class="nn">common.models</span> <span class="kn">import</span> <span class="n">Teacher</span>
+<span class="kn">import</span> <span class="nn">quiz.forms</span> <span class="kn">as</span> <span class="nn">forms</span>
+
+<span class="c"># Create your models here.</span>
+
+<div class="viewcode-block" id="Quiz"><a class="viewcode-back" href="../../source.html#quiz.models.Quiz">[docs]</a><span class="k">class</span> <span class="nc">Quiz</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span> <span class="c">#Infos générales sur le quiz</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">points</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">creation_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">auto_now_add</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">code</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span> <span class="c">#Format texte du quiz</span>
+    <span class="n">id_teacher</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">&#39;common.Teacher&#39;</span><span class="p">)</span>
+    <span class="c">#id_chapter = models.ForeignKey(&#39;teachers.Chapter&#39;)</span>
+    
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span>
+        
+<div class="viewcode-block" id="Quiz.length"><a class="viewcode-back" href="../../source.html#quiz.models.Quiz.length">[docs]</a>    <span class="k">def</span> <span class="nf">length</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retourne le nombre de questions qui composent le quiz.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_questions</span><span class="p">())</span>
+        </div>
+<div class="viewcode-block" id="Quiz.get_questions"><a class="viewcode-back" href="../../source.html#quiz.models.Quiz.get_questions">[docs]</a>    <span class="k">def</span> <span class="nf">get_questions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Récupère la liste de toutes les questions du quiz et les trie dans l&#39;ordre</span>
+<span class="sd">        d&#39;apparition dans le quiz.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c"># Liste des questions non triée</span>
+        <span class="n">l_questions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">SimpleQuestion</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">id_quiz</span><span class="o">=</span><span class="bp">self</span><span class="p">))</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">Qcm</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">id_quiz</span><span class="o">=</span><span class="bp">self</span><span class="p">))</span>
+        
+        <span class="n">ordered_questions</span> <span class="o">=</span> <span class="p">[</span><span class="bp">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">l_questions</span><span class="p">)</span> <span class="c"># Création d&#39;une liste vide</span>
+        
+        <span class="c"># Chaque question est placée à sa place dans la liste triée</span>
+        <span class="k">for</span> <span class="n">question</span> <span class="ow">in</span> <span class="n">l_questions</span><span class="p">:</span>
+            <span class="n">ordered_questions</span><span class="p">[</span><span class="n">question</span><span class="o">.</span><span class="n">number</span><span class="p">]</span> <span class="o">=</span> <span class="n">question</span>
+            
+        <span class="k">return</span> <span class="n">ordered_questions</span>
+        </div>
+<div class="viewcode-block" id="Quiz.average_result"><a class="viewcode-back" href="../../source.html#quiz.models.Quiz.average_result">[docs]</a>    <span class="k">def</span> <span class="nf">average_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Récupère dans la base de données toutes les résolutions se rattachant</span>
+<span class="sd">        au quiz en question puis calcule la moyenne des résultats obtenus sur la base</span>
+<span class="sd">        du résultat de chaque élève et le nombre de résolutions envoyées.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">total_result</span> <span class="o">=</span> <span class="mi">0</span> <span class="c"># Somme des points obtenus pour toutes les résolutions</span>
+        <span class="c"># Récupération des résolutions concernant le quiz dans la base de donnnées</span>
+        <span class="n">l_completed</span> <span class="o">=</span> <span class="n">CompletedQuiz</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">id_quiz</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">l_completed</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span> <span class="c"># Si il n&#39;y a aucune résolution, impossible de diviser par zéro</span>
+            <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">l_completed</span><span class="p">:</span>
+                <span class="n">total_result</span> <span class="o">+=</span> <span class="n">c</span><span class="o">.</span><span class="n">result</span>
+                
+            <span class="c"># Moyenne arithmétique</span>
+            <span class="n">average</span> <span class="o">=</span> <span class="n">total_result</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">l_completed</span><span class="p">)</span>
+            
+            <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="n">average</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+            
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s">&quot;--&quot;</span>
+        </div></div>
+<div class="viewcode-block" id="QuizDraft"><a class="viewcode-back" href="../../source.html#quiz.models.QuizDraft">[docs]</a><span class="k">class</span> <span class="nc">QuizDraft</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span> <span class="c">#Brouillon contenant le code d&#39;un quiz</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">code</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+    <span class="n">id_teacher</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">&#39;common.Teacher&#39;</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span>
+    </div>
+<div class="viewcode-block" id="CompletedQuiz"><a class="viewcode-back" href="../../source.html#quiz.models.CompletedQuiz">[docs]</a><span class="k">class</span> <span class="nc">CompletedQuiz</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span> <span class="c">#Tentative de réponse au quiz par un élève</span>
+    <span class="n">submit_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">auto_now_add</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">id_quiz</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Quiz</span><span class="p">)</span> <span class="c">#Relation avec le quiz complété</span>
+    <span class="n">id_user</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="CompletedQuiz.correct"><a class="viewcode-back" href="../../source.html#quiz.models.CompletedQuiz.correct">[docs]</a>    <span class="k">def</span> <span class="nf">correct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Corrige les questions soumises</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">submit</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_questions_submits</span><span class="p">():</span>
+            <span class="n">submit</span><span class="o">.</span><span class="n">correct</span><span class="p">()</span>
+                </div>
+<div class="viewcode-block" id="CompletedQuiz.get_questions_submits"><a class="viewcode-back" href="../../source.html#quiz.models.CompletedQuiz.get_questions_submits">[docs]</a>    <span class="k">def</span> <span class="nf">get_questions_submits</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Renvoie la liste des réponses soumises pour chaque question</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c"># Liste des réponses non triées</span>
+        <span class="n">l_submits</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">SqSubmit</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">id_submitted_quiz</span><span class="o">=</span><span class="bp">self</span><span class="p">))</span>\
+        <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">QcmSubmitOne</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">id_submitted_quiz</span><span class="o">=</span><span class="bp">self</span><span class="p">))</span>\
+        <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">QcmSubmitMulti</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">id_submitted_quiz</span><span class="o">=</span><span class="bp">self</span><span class="p">))</span>
+        
+        <span class="n">ordered_submits</span> <span class="o">=</span> <span class="p">[</span><span class="bp">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">l_submits</span><span class="p">)</span>
+        
+        <span class="c"># Chaque réponse est placée au bon endroit dans la liste</span>
+        <span class="k">for</span> <span class="n">submit</span> <span class="ow">in</span> <span class="n">l_submits</span><span class="p">:</span>
+            <span class="n">ordered_submits</span><span class="p">[</span><span class="n">submit</span><span class="o">.</span><span class="n">id_question</span><span class="o">.</span><span class="n">number</span><span class="p">]</span> <span class="o">=</span> <span class="n">submit</span>
+            
+        <span class="k">return</span> <span class="n">ordered_submits</span>
+
+<span class="c">#    </span>
+<span class="c">#Classes abstraites</span>
+<span class="c">#</span>
+</div></div>
+<span class="k">class</span> <span class="nc">QuizQuestion</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span> <span class="c">#Classe abstraite dont héritent toutes les questions</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span> <span class="c">#Énoncé</span>
+    <span class="n">comment</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c">#Commentaire affiché lors de la correction</span>
+    <span class="n">points</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">()</span> <span class="c">#Ordre de la question dans le quiz</span>
+    <span class="n">id_quiz</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Quiz</span><span class="p">)</span>
+    
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">abstract</span> <span class="o">=</span> <span class="bp">True</span>
+        
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">text</span>
+
+<span class="c">#</span>
+<span class="c">#Tables concernant les questions simples</span>
+<span class="c">#</span>
+        
+<div class="viewcode-block" id="SimpleQuestion"><a class="viewcode-back" href="../../source.html#quiz.models.SimpleQuestion">[docs]</a><span class="k">class</span> <span class="nc">SimpleQuestion</span><span class="p">(</span><span class="n">QuizQuestion</span><span class="p">):</span>
+<div class="viewcode-block" id="SimpleQuestion.create_form"><a class="viewcode-back" href="../../source.html#quiz.models.SimpleQuestion.create_form">[docs]</a>    <span class="k">def</span> <span class="nf">create_form</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retourne un formulaire pour répondre à la question</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">forms</span><span class="o">.</span><span class="n">TextForm</span><span class="p">(</span><span class="n">question</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">number</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        </div>
+    <span class="k">def</span> <span class="nf">save_submit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">completed</span><span class="p">):</span>
+        <span class="n">submit</span> <span class="o">=</span> <span class="n">SqSubmit</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;answer&#39;</span><span class="p">],</span> <span class="n">id_question</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">id_submitted_quiz</span><span class="o">=</span><span class="n">completed</span><span class="p">)</span>
+        
+        <span class="c"># Enregistrement du résultat (pour les statistiques)</span>
+        <span class="n">submit</span><span class="o">.</span><span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">save_result</span><span class="p">(</span><span class="n">submit</span><span class="p">)</span>
+        <span class="n">submit</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        
+        <span class="k">return</span> <span class="n">submit</span>
+        
+<div class="viewcode-block" id="SimpleQuestion.save_result"><a class="viewcode-back" href="../../source.html#quiz.models.SimpleQuestion.save_result">[docs]</a>    <span class="k">def</span> <span class="nf">save_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">submit</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Comptabilise et enregistre les points pour la réponse soumise submit</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">submit</span><span class="o">.</span><span class="n">correct</span><span class="p">():</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span>
+            
+        <span class="k">return</span> <span class="n">result</span>
+        </div>
+<div class="viewcode-block" id="SimpleQuestion.average_result"><a class="viewcode-back" href="../../source.html#quiz.models.SimpleQuestion.average_result">[docs]</a>    <span class="k">def</span> <span class="nf">average_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Renvoie le nombre moyen de points obtenus pour la question</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">l_submit</span> <span class="o">=</span> <span class="n">SqSubmit</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">id_question</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">total_points</span> <span class="o">=</span> <span class="mi">0</span> <span class="c"># Points cumulés de toutes les résolutions</span>
+        
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">l_submit</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">l_submit</span><span class="p">:</span>
+                <span class="n">total_points</span> <span class="o">+=</span> <span class="n">s</span><span class="o">.</span><span class="n">result</span>
+                
+            <span class="n">average</span> <span class="o">=</span> <span class="n">total_points</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">l_submit</span><span class="p">)</span>
+            
+            <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="n">average</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+            
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s">&quot;--&quot;</span>
+</div></div>
+<div class="viewcode-block" id="SqAnswer"><a class="viewcode-back" href="../../source.html#quiz.models.SqAnswer">[docs]</a><span class="k">class</span> <span class="nc">SqAnswer</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span> <span class="c">#Les réponses correctes</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+    <span class="n">id_question</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">SimpleQuestion</span><span class="p">)</span> <span class="c">#Relation vers la question</span>
+    
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">text</span>
+</div>
+<div class="viewcode-block" id="SqSubmit"><a class="viewcode-back" href="../../source.html#quiz.models.SqSubmit">[docs]</a><span class="k">class</span> <span class="nc">SqSubmit</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span> <span class="c">#Réponse soumise par un élève</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">id_question</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">SimpleQuestion</span><span class="p">)</span> <span class="c">#Relation vers la question à laquelle l&#39;élève a répondu</span>
+    <span class="n">id_submitted_quiz</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">CompletedQuiz</span><span class="p">)</span> <span class="c">#Relation vers la tentative</span>
+    
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">text</span>
+        
+<div class="viewcode-block" id="SqSubmit.get_corrections"><a class="viewcode-back" href="../../source.html#quiz.models.SqSubmit.get_corrections">[docs]</a>    <span class="k">def</span> <span class="nf">get_corrections</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Renvoie la liste des réponses correctes à la question</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c"># Récupération des corrections de la question</span>
+        <span class="n">l_sq_answer</span> <span class="o">=</span> <span class="n">SqAnswer</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">id_question</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">id_question</span><span class="p">)</span>
+        
+        <span class="c"># Les réponses correctes (string) sont placés dans une liste</span>
+        <span class="n">l_correct_text</span> <span class="o">=</span> <span class="p">[</span><span class="n">answer</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">answer</span> <span class="ow">in</span> <span class="n">l_sq_answer</span><span class="p">]</span>
+        
+        <span class="k">return</span> <span class="n">l_correct_text</span>
+        </div>
+<div class="viewcode-block" id="SqSubmit.correct"><a class="viewcode-back" href="../../source.html#quiz.models.SqSubmit.correct">[docs]</a>    <span class="k">def</span> <span class="nf">correct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Détermine si la réponse soumise est correcte</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_corrections</span><span class="p">():</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+
+<span class="c"># </span>
+<span class="c">#Tables concernant les QCM</span>
+<span class="c">#</span>
+</div></div>
+<div class="viewcode-block" id="Qcm"><a class="viewcode-back" href="../../source.html#quiz.models.Qcm">[docs]</a><span class="k">class</span> <span class="nc">Qcm</span><span class="p">(</span><span class="n">QuizQuestion</span><span class="p">):</span>
+    <span class="n">multi_answers</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">()</span> <span class="c">#True si il est possible de cocher plusieurs choix</span>
+    <span class="n">show_list</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">()</span> <span class="c">#True si les choix sont affichés sous forme de liste déroulante</span>
+    
+<div class="viewcode-block" id="Qcm.create_form"><a class="viewcode-back" href="../../source.html#quiz.models.Qcm.create_form">[docs]</a>    <span class="k">def</span> <span class="nf">create_form</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retourne un formulaire pour répondre à la question</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">multi_answers</span><span class="p">:</span>
+            <span class="n">Form</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CheckboxForm</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">show_list</span><span class="p">:</span>
+            <span class="n">Form</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">SelectForm</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">Form</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">RadioForm</span>
+            
+        <span class="k">return</span> <span class="n">Form</span><span class="p">(</span><span class="n">queryset</span><span class="o">=</span><span class="n">QcmChoice</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">id_question</span><span class="o">=</span><span class="bp">self</span><span class="p">),</span> <span class="n">prefix</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">number</span><span class="p">,</span> <span class="n">question</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        </div>
+<div class="viewcode-block" id="Qcm.save_submit"><a class="viewcode-back" href="../../source.html#quiz.models.Qcm.save_submit">[docs]</a>    <span class="k">def</span> <span class="nf">save_submit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">completed</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Enregistre les réponses soumises à la question</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">multi_answers</span><span class="p">:</span>
+            <span class="n">Model</span> <span class="o">=</span> <span class="n">QcmSubmitMulti</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">Model</span> <span class="o">=</span> <span class="n">QcmSubmitOne</span>
+            
+        <span class="n">submit</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">id_submitted_quiz</span><span class="o">=</span><span class="n">completed</span><span class="p">,</span> <span class="n">id_question</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">multi_answers</span><span class="p">:</span>
+            <span class="n">submit</span><span class="o">.</span><span class="n">save</span><span class="p">()</span> <span class="c">#Comme il peut s&#39;agir d&#39;une relation many to many, il faut sauvegarder et ajouter la relation après</span>
+        <span class="n">submit</span><span class="o">.</span><span class="n">id_selected</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;answer&#39;</span><span class="p">]</span>
+        
+        <span class="n">submit</span><span class="o">.</span><span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">save_result</span><span class="p">(</span><span class="n">submit</span><span class="p">)</span>
+        <span class="n">submit</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        
+        <span class="k">return</span> <span class="n">submit</span>
+        </div>
+<div class="viewcode-block" id="Qcm.save_result"><a class="viewcode-back" href="../../source.html#quiz.models.Qcm.save_result">[docs]</a>    <span class="k">def</span> <span class="nf">save_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">submit</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Comptabilise et enregistre les points pour la réponse soumise submit</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">multi_answers</span><span class="p">:</span>
+            <span class="n">l_choices</span> <span class="o">=</span> <span class="n">QcmChoice</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">id_question</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span> <span class="c"># Récupération des choix de la question</span>
+            <span class="n">ppc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">l_choices</span><span class="p">)</span> <span class="c"># Nombre de points attribués par choix correct</span>
+            
+            <span class="c"># À chaque option correctement cochée, on ajoute les points au résultat</span>
+            <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">l_choices</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">correct</span><span class="p">(</span><span class="n">submit</span><span class="p">):</span>
+                    <span class="n">result</span> <span class="o">+=</span> <span class="n">ppc</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">submit</span><span class="o">.</span><span class="n">id_selected</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">submit</span><span class="o">.</span><span class="n">id_selected</span><span class="o">.</span><span class="n">valid</span><span class="p">:</span>
+                    <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span>
+        
+        <span class="k">return</span> <span class="n">result</span>
+        </div>
+<div class="viewcode-block" id="Qcm.average_result"><a class="viewcode-back" href="../../source.html#quiz.models.Qcm.average_result">[docs]</a>    <span class="k">def</span> <span class="nf">average_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Renvoie le nombre moyen de points obtenus pour la question</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">multi_answers</span><span class="p">:</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="n">QcmSubmitMulti</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="n">QcmSubmitOne</span>
+        
+        <span class="n">l_submit</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">id_question</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">total_points</span> <span class="o">=</span> <span class="mi">0</span> <span class="c"># Points cumulés de toutes les résolutions</span>
+        
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">l_submit</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">l_submit</span><span class="p">:</span>
+                <span class="n">total_points</span> <span class="o">+=</span> <span class="n">s</span><span class="o">.</span><span class="n">result</span>
+                
+            <span class="n">average</span> <span class="o">=</span> <span class="n">total_points</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">l_submit</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="n">average</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+            
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s">&quot;--&quot;</span>
+    </div></div>
+<div class="viewcode-block" id="QcmChoice"><a class="viewcode-back" href="../../source.html#quiz.models.QcmChoice">[docs]</a><span class="k">class</span> <span class="nc">QcmChoice</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span> <span class="c">#Choix affichés pour un QCM</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+    <span class="n">valid</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">()</span> <span class="c">#Vaut True si la case doit être cochée</span>
+    <span class="n">id_question</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Qcm</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">text</span>
+        
+<div class="viewcode-block" id="QcmChoice.correct"><a class="viewcode-back" href="../../source.html#quiz.models.QcmChoice.correct">[docs]</a>    <span class="k">def</span> <span class="nf">correct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qcmsubmit</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Détermine si la réponse soumise qcmsubmit est correcte ou non</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c"># Si le choix est sélectionnée</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">checked</span><span class="p">(</span><span class="n">qcmsubmit</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">valid</span><span class="p">:</span> <span class="c"># Le choix est défini comme valide</span>
+                <span class="k">return</span> <span class="bp">True</span>
+            <span class="k">else</span><span class="p">:</span> <span class="c"># Le choix est défini comme invalide</span>
+                <span class="k">return</span> <span class="bp">False</span>
+        <span class="c"># Si le choix n&#39;est pas sélectionné</span>
+        <span class="k">else</span><span class="p">:</span> <span class="c"># Le choix n&#39;est pas sélectionné</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">valid</span><span class="p">:</span> <span class="c"># Le choix est défini comme valide</span>
+                <span class="k">return</span> <span class="bp">False</span>
+            <span class="k">else</span><span class="p">:</span> <span class="c"># Le choix est défini comme invalide</span>
+                <span class="k">return</span> <span class="bp">True</span>
+                </div>
+<div class="viewcode-block" id="QcmChoice.checked"><a class="viewcode-back" href="../../source.html#quiz.models.QcmChoice.checked">[docs]</a>    <span class="k">def</span> <span class="nf">checked</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qcmsubmit</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Détermine si le choix a été sélectionné ou non</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c"># Si la sélection peut comporter plusieurs choix</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">id_question</span><span class="o">.</span><span class="n">multi_answers</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">qcmsubmit</span><span class="o">.</span><span class="n">id_selected</span><span class="p">:</span> <span class="c"># Il faut s&#39;assurer qu&#39;au moins un choix soit coché</span>
+                <span class="c"># Récupération des données de la relation M to M</span>
+                <span class="n">selected</span> <span class="o">=</span> <span class="n">qcmsubmit</span><span class="o">.</span><span class="n">id_selected</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+                <span class="k">if</span> <span class="bp">self</span> <span class="ow">in</span> <span class="n">selected</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="bp">True</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="bp">False</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">False</span>
+        <span class="c"># Si un seul élément peut être sélectionné</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c"># Récupération du choix de la foreign key</span>
+            <span class="n">selected</span> <span class="o">=</span> <span class="n">qcmsubmit</span><span class="o">.</span><span class="n">id_selected</span>
+            <span class="k">if</span> <span class="bp">self</span> <span class="o">==</span> <span class="n">selected</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">True</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">False</span>
+        </div></div>
+<span class="k">class</span> <span class="nc">QcmSubmit</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">id_submitted_quiz</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">CompletedQuiz</span><span class="p">)</span> <span class="c">#Relation vers la tentative</span>
+    <span class="n">id_question</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Qcm</span><span class="p">)</span> <span class="c">#Relation vers la question : utile si aucune case est cochée</span>
+        
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+            <span class="n">abstract</span> <span class="o">=</span> <span class="bp">True</span>
+        
+<div class="viewcode-block" id="QcmSubmitOne"><a class="viewcode-back" href="../../source.html#quiz.models.QcmSubmitOne">[docs]</a><span class="k">class</span> <span class="nc">QcmSubmitOne</span><span class="p">(</span><span class="n">QcmSubmit</span><span class="p">):</span>
+    <span class="n">id_selected</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">QcmChoice</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c">#Choix sélectionnés par l&#39;élève dans un QCM à bouton radio ou liste déroulante</span>
+    </div>
+<div class="viewcode-block" id="QcmSubmitMulti"><a class="viewcode-back" href="../../source.html#quiz.models.QcmSubmitMulti">[docs]</a><span class="k">class</span> <span class="nc">QcmSubmitMulti</span><span class="p">(</span><span class="n">QcmSubmit</span><span class="p">):</span> 
+    <span class="n">id_selected</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="n">QcmChoice</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c">#Choix sélectionnés par l&#39;élève dans un QCM à cases à cocher</span></div>
+</pre></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Benoît Léo Maillard.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

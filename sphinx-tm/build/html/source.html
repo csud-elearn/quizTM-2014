@@ -1,0 +1,531 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Documentation du code source &mdash; documentation Développement d&#39;une application web de création de quiz 0.1</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="documentation Développement d&#39;une application web de création de quiz 0.1" href="index.html"/>
+        <link rel="next" title="Modèle relationnel" href="database.html"/>
+        <link rel="prev" title="Description des fonctionnalités de l’application" href="functionalities.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="index.html" class="fa fa-home"> Développement d'une application web de création de quiz</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="rapydscript.html">Présentation de RapydScript</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rapydscript.html#pourquoi-utiliser-python-plutot-que-javascript">Pourquoi utiliser Python plutôt que Javascript ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rapydscript.html#differentes-manieres-d-aborder-le-probleme-coffeescript-brython-et-rapydscript">Différentes manières d&#8217;aborder le problème : CoffeeScript, Brython et RapydScript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rapydscript.html#introduction-a-rapydscript">Introduction à RapydScript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rapydscript.html#comparaison-du-code-source-et-du-code-genere">Comparaison du code source et du code généré</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functionalities.html">Description des fonctionnalités de l&#8217;application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="functionalities.html#professeurs">Professeurs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functionalities.html#etudiants">Étudiants</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Documentation du code source</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-quiz.views">views.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-quiz.models">models.py</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="database.html">Modèle relationnel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="database.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html#utilisation-dans-l-application-de-creation-de-quiz">Utilisation dans l&#8217;application de création de quiz</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Développement d'une application web de création de quiz</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Documentation du code source</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/source.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="documentation-du-code-source">
+<h1>Documentation du code source<a class="headerlink" href="#documentation-du-code-source" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="section" id="module-quiz.views">
+<span id="views-py"></span><h2>views.py<a class="headerlink" href="#module-quiz.views" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="function">
+<dt id="quiz.views.advanced_stats">
+<code class="descclassname">quiz.views.</code><code class="descname">advanced_stats</code><span class="sig-paren">(</span><em>request</em>, <em>n_quiz</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/views.html#advanced_stats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.views.advanced_stats" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Récupère toutes les résolutions associés au quiz avec l&#8217;id <code class="docutils literal"><span class="pre">n_quiz</span></code> dans la base de données et affiche
+des statistques précises montrant le résultat personnel des élèves pour chaque question.</p>
+<p>Un objet <code class="docutils literal"><span class="pre">QuizForms</span></code> qui créé des formulaires Django pour toutes les question
+du quiz est instancié pour permettre au professeur de visionner 
+chaque question du quiz. Ce formulaire ne peut pas être envoyé et sert
+uniquement à l&#8217;affichage.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="quiz.views.complete">
+<code class="descclassname">quiz.views.</code><code class="descname">complete</code><span class="sig-paren">(</span><em>request</em>, <em>n_quiz</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/views.html#complete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.views.complete" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Cette vue est destinée à la résolution des quiz. Comme <code class="docutils literal"><span class="pre">create</span></code>, son comportement
+change selon qu&#8217;il s&#8217;agisse d&#8217;une requête HTTP de type GET ou de type POST.</p>
+<p>Dans le cas d&#8217;une requête de type GET, la vue se contente de récupérer le quiz
+correspondant à l&#8217;id <code class="docutils literal"><span class="pre">n_quiz</span></code> et d&#8217;instancier un objet <code class="docutils literal"><span class="pre">QuizForms</span></code> à partir
+du quiz sélectionné. Cet objet prend en charge la création de tous les formulaires
+Django nécessaires pour compléter le quiz (un formulaire Django par question).
+Ces formulaires Django sont ensuite récupérés par l&#8217;intermédiaire de la méthode
+<code class="docutils literal"><span class="pre">.get_forms()</span></code> et placés dans le contexte de la fonction <code class="docutils literal"><span class="pre">render</span></code>.</p>
+<p>La requête de type POST est utilisée pour l&#8217;enregistrement des réponses soumises
+au quiz par un étudiant. Là aussi, on utilise la classe <code class="docutils literal"><span class="pre">QuizForms</span></code>, sauf que
+l&#8217;instanciation se fait avec un deuxième argument, <code class="docutils literal"><span class="pre">data</span></code>. Cet argument contient
+en fait les données soumises par le biais des formulaires Django lorsque un
+étudiant complète le quiz. Pour s&#8217;assurer de la validité de ces données, on
+utilise la méthode <code class="docutils literal"><span class="pre">.are_valid</span></code> de la classe <code class="docutils literal"><span class="pre">QuizForms</span></code>. Une fois le
+contrôle effectué, la méthode <code class="docutils literal"><span class="pre">.save_answers</span></code> se charge d&#8217;ajouter de nouvelles
+entrées dans la base de donnée pour stocker les réponses soumises par l&#8217;étudiant.
+Pour finir, l&#8217;utilisateur est redirigé vers la page de correction correspondant
+aux réponses envoyées précédemment.</p>
+<p><strong>Paramètres de la requête HTTP POST :</strong></p>
+<ul class="simple">
+<li>Ces paramètres dépendent du type et du nombre de questions qui constituent le quiz.</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="quiz.views.completed_quizzes">
+<code class="descclassname">quiz.views.</code><code class="descname">completed_quizzes</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/views.html#completed_quizzes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.views.completed_quizzes" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Récupère dans la base de données toutes les entrées de la table <code class="docutils literal"><span class="pre">CompletedQuiz</span></code>
+appartenant à l&#8217;utilisateur connecté et affiche des informations générales comme
+le nombre de points obtenus et un lien pour afficher la correction des réponses.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="quiz.views.correct">
+<code class="descclassname">quiz.views.</code><code class="descname">correct</code><span class="sig-paren">(</span><em>request</em>, <em>n_completed</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/views.html#correct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.views.correct" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Récupère dans la base de données l&#8217;entrée de la table <code class="docutils literal"><span class="pre">CompletedQuiz</span></code> avec
+l&#8217;id <code class="docutils literal"><span class="pre">n_completed</span></code> et affiche une correction détaillée des réponses soumises
+par l&#8217;étudiant.</p>
+<p>L&#8217;objet <code class="docutils literal"><span class="pre">CorrectQuiz</span></code> regroupe et calcule toutes les informations nécessaires
+à l&#8217;affichage du quiz. Cet objet est ensuite placé dans le contexte de la fonctions
+<code class="docutils literal"><span class="pre">render</span></code> et fournit ainsi un accès facilité aux données de la correction depuis
+le template.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="quiz.views.create">
+<code class="descclassname">quiz.views.</code><code class="descname">create</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/views.html#create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.views.create" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Cette vue sert à la fois à l&#8217;affichage de l&#8217;outil de création de quiz et à
+l&#8217;enregistrement de nouveaux quiz.</p>
+<p>S&#8217;il s&#8217;agit d&#8217;une requête HTTP GET, elle renvoie simplement le template de
+création de quiz contenant un formulaire vide.</p>
+<p>Au contraire, s&#8217;il la requête HTTP est de type POST, la vue se charge d&#8217;enregistrer
+le nouveau quiz dans la base de données en instanciant un objet de la classe
+<code class="docutils literal"><span class="pre">SaveQuiz</span></code> avec en argument les paramètres de la requête HTTP et le compte
+utilisateur du créateur du quiz. Cette
+classe se charge ensuite de créer les entrées nécessaires dans les différentes tables de
+la base de données.</p>
+<p>Une fois le quiz enregistré, la vue redirige l&#8217;utilisateur vers la page de
+résolution du quiz qui vient d&#8217;être créé.</p>
+<p><strong>Paramètres de la requête HTTP POST :</strong></p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">title</span></code> : Le titre du quiz</li>
+<li><code class="docutils literal"><span class="pre">json</span></code> : Les données des questions du quiz structurées sous forme de json. Le json sera ensuite parsé par la classe <code class="docutils literal"><span class="pre">SaveQuiz</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">quizcode</span></code> : Le format texte du quiz, interprété côté client pour construire le json</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="quiz.views.created_quizzes">
+<code class="descclassname">quiz.views.</code><code class="descname">created_quizzes</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/views.html#created_quizzes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.views.created_quizzes" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Récupère dans la base de données toutes les entrées de la table <code class="docutils literal"><span class="pre">Quiz</span></code> créées
+par le professeur connecté. Les données des quiz sont utilisées pour afficher
+le résultat moyen des étudiants pour le quiz, la date de création ainsi qu&#8217;un lien vers la page de
+résolution du quiz ou vers les statistiques avancées.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="quiz.views.find">
+<code class="descclassname">quiz.views.</code><code class="descname">find</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/views.html#find"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.views.find" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Récupère dans la base de données les derniers quiz créés par des professeurs
+et renvoie un template contenant des informations générales sur ces quiz et
+un lien pour y accéder.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="quiz.views.findquiz">
+<code class="descclassname">quiz.views.</code><code class="descname">findquiz</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/views.html#findquiz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.views.findquiz" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Renvoie sous forme de json le titre et l&#8217;url pour accéder au quiz dont l&#8217;id est donné
+en paramètre de la requête GET.</p>
+<p>L&#8217;url du quiz est construite à l&#8217;aide de la méthode <code class="docutils literal"><span class="pre">reverse(vue,</span> <span class="pre">arguments)</span></code>
+fournie par Django.
+Le premier argument est une chaîne de caractère composé du nom de l&#8217;application
+et du nom de la vue (dans les urls) respectant le schéma suivant :
+<code class="docutils literal"><span class="pre">&quot;nom_app:nom_vue&quot;</span></code>. L&#8217;argument <code class="docutils literal"><span class="pre">args</span></code> est une liste contenant les arguments
+de l&#8217;URL de la page souhaitée. Ici, il s&#8217;agit simplement de l&#8217;ID du quiz recherché.</p>
+<p>Cette vue est essentiellement destinée à être utilisé par une requête Ajax
+depuis la vue <code class="docutils literal"><span class="pre">find</span></code>.</p>
+<p><strong>Exemple de json renvoyé par la vue :</strong></p>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Un quiz sympathique&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;/quiz/1/complete/&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Paramètres de la requête HTTP GET:</strong></p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">quiz</span></code> : Id du quiz recherché</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="quiz.views.getdraft">
+<code class="descclassname">quiz.views.</code><code class="descname">getdraft</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/views.html#getdraft"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.views.getdraft" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Renvoie sous forme de json le titre et le code correspondant au brouillon en
+paramètre.</p>
+<p>Cette vue est essentiellement destinée à être utilisé par une requête Ajax.</p>
+<p><strong>Exemple de données d&#8217;un brouillon en json :</strong></p>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Brouillon 1&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;code&quot;</span><span class="p">:</span> <span class="s2">&quot;## Cases à cocher\n * Option 1\n= Option 4\n= Option 5&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Paramètres de la requête HTTP GET :</strong></p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">draft</span></code> : Id du brouillon</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="quiz.views.listdrafts">
+<code class="descclassname">quiz.views.</code><code class="descname">listdrafts</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/views.html#listdrafts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.views.listdrafts" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Renvoie le titre et l&#8217;id de tous les brouillons de l&#8217;utilisateur connecté
+sous forme de json.</p>
+<p><strong>Exemple de json renvoyé dans le cas d&#8217;un professeur ayant
+enregistré deux brouillons :</strong></p>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">[</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Brouillon 1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Brouillon 2&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Cette vue est essentiellement destinée à être utilisé par requête Ajax.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="quiz.views.savedraft">
+<code class="descclassname">quiz.views.</code><code class="descname">savedraft</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/views.html#savedraft"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.views.savedraft" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Créé une nouvelle entrée dans la table <code class="docutils literal"><span class="pre">QuizDraft</span></code>. Le brouillon est associé
+à l&#8217;utilisateur connecté et enregistre les valeurs données en paramètres pour
+les colonnes <code class="docutils literal"><span class="pre">title</span></code> et <code class="docutils literal"><span class="pre">code</span></code>.</p>
+<p>Cette vue n&#8217;est disponible que si l&#8217;utilisateur connecté appartient au groupe
+&#8216;teachers&#8217;.</p>
+<p><strong>Paramètres de la requête HTTP POST:</strong></p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">title</span></code> : Titre du brouillon</li>
+<li><code class="docutils literal"><span class="pre">code</span></code> : Code du quiz</li>
+</ul>
+</dd></dl>
+
+</div>
+<div class="section" id="module-quiz.models">
+<span id="models-py"></span><h2>models.py<a class="headerlink" href="#module-quiz.models" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="class">
+<dt id="quiz.models.CompletedQuiz">
+<em class="property">class </em><code class="descclassname">quiz.models.</code><code class="descname">CompletedQuiz</code><span class="sig-paren">(</span><em>id</em>, <em>submit_date</em>, <em>result</em>, <em>id_quiz_id</em>, <em>id_user_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#CompletedQuiz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.CompletedQuiz" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><dl class="method">
+<dt id="quiz.models.CompletedQuiz.correct">
+<code class="descname">correct</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#CompletedQuiz.correct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.CompletedQuiz.correct" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Corrige les questions soumises</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quiz.models.CompletedQuiz.get_questions_submits">
+<code class="descname">get_questions_submits</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#CompletedQuiz.get_questions_submits"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.CompletedQuiz.get_questions_submits" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Renvoie la liste des réponses soumises pour chaque question</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="quiz.models.Qcm">
+<em class="property">class </em><code class="descclassname">quiz.models.</code><code class="descname">Qcm</code><span class="sig-paren">(</span><em>id</em>, <em>text</em>, <em>comment</em>, <em>points</em>, <em>number</em>, <em>id_quiz_id</em>, <em>multi_answers</em>, <em>show_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#Qcm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.Qcm" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><dl class="method">
+<dt id="quiz.models.Qcm.average_result">
+<code class="descname">average_result</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#Qcm.average_result"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.Qcm.average_result" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Renvoie le nombre moyen de points obtenus pour la question</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quiz.models.Qcm.create_form">
+<code class="descname">create_form</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#Qcm.create_form"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.Qcm.create_form" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Retourne un formulaire pour répondre à la question</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quiz.models.Qcm.save_result">
+<code class="descname">save_result</code><span class="sig-paren">(</span><em>submit</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#Qcm.save_result"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.Qcm.save_result" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Comptabilise et enregistre les points pour la réponse soumise submit</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quiz.models.Qcm.save_submit">
+<code class="descname">save_submit</code><span class="sig-paren">(</span><em>data</em>, <em>completed</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#Qcm.save_submit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.Qcm.save_submit" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Enregistre les réponses soumises à la question</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="quiz.models.QcmChoice">
+<em class="property">class </em><code class="descclassname">quiz.models.</code><code class="descname">QcmChoice</code><span class="sig-paren">(</span><em>id</em>, <em>text</em>, <em>valid</em>, <em>id_question_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#QcmChoice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.QcmChoice" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><dl class="method">
+<dt id="quiz.models.QcmChoice.checked">
+<code class="descname">checked</code><span class="sig-paren">(</span><em>qcmsubmit</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#QcmChoice.checked"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.QcmChoice.checked" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Détermine si le choix a été sélectionné ou non</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quiz.models.QcmChoice.correct">
+<code class="descname">correct</code><span class="sig-paren">(</span><em>qcmsubmit</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#QcmChoice.correct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.QcmChoice.correct" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Détermine si la réponse soumise qcmsubmit est correcte ou non</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="quiz.models.QcmSubmitMulti">
+<em class="property">class </em><code class="descclassname">quiz.models.</code><code class="descname">QcmSubmitMulti</code><span class="sig-paren">(</span><em>id</em>, <em>result</em>, <em>id_submitted_quiz_id</em>, <em>id_question_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#QcmSubmitMulti"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.QcmSubmitMulti" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quiz.models.QcmSubmitOne">
+<em class="property">class </em><code class="descclassname">quiz.models.</code><code class="descname">QcmSubmitOne</code><span class="sig-paren">(</span><em>id</em>, <em>result</em>, <em>id_submitted_quiz_id</em>, <em>id_question_id</em>, <em>id_selected_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#QcmSubmitOne"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.QcmSubmitOne" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quiz.models.Quiz">
+<em class="property">class </em><code class="descclassname">quiz.models.</code><code class="descname">Quiz</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#Quiz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.Quiz" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><dl class="method">
+<dt id="quiz.models.Quiz.average_result">
+<code class="descname">average_result</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#Quiz.average_result"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.Quiz.average_result" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Récupère dans la base de données toutes les résolutions se rattachant
+au quiz en question puis calcule la moyenne des résultats obtenus sur la base
+du résultat de chaque élève et le nombre de résolutions envoyées.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quiz.models.Quiz.get_questions">
+<code class="descname">get_questions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#Quiz.get_questions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.Quiz.get_questions" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Récupère la liste de toutes les questions du quiz et les trie dans l&#8217;ordre
+d&#8217;apparition dans le quiz.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quiz.models.Quiz.length">
+<code class="descname">length</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#Quiz.length"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.Quiz.length" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Retourne le nombre de questions qui composent le quiz.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="quiz.models.QuizDraft">
+<em class="property">class </em><code class="descclassname">quiz.models.</code><code class="descname">QuizDraft</code><span class="sig-paren">(</span><em>id</em>, <em>title</em>, <em>code</em>, <em>id_teacher_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#QuizDraft"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.QuizDraft" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quiz.models.SimpleQuestion">
+<em class="property">class </em><code class="descclassname">quiz.models.</code><code class="descname">SimpleQuestion</code><span class="sig-paren">(</span><em>id</em>, <em>text</em>, <em>comment</em>, <em>points</em>, <em>number</em>, <em>id_quiz_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SimpleQuestion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SimpleQuestion" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><dl class="method">
+<dt id="quiz.models.SimpleQuestion.average_result">
+<code class="descname">average_result</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SimpleQuestion.average_result"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SimpleQuestion.average_result" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Renvoie le nombre moyen de points obtenus pour la question</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quiz.models.SimpleQuestion.create_form">
+<code class="descname">create_form</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SimpleQuestion.create_form"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SimpleQuestion.create_form" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Retourne un formulaire pour répondre à la question</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quiz.models.SimpleQuestion.save_result">
+<code class="descname">save_result</code><span class="sig-paren">(</span><em>submit</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SimpleQuestion.save_result"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SimpleQuestion.save_result" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Comptabilise et enregistre les points pour la réponse soumise submit</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="quiz.models.SqAnswer">
+<em class="property">class </em><code class="descclassname">quiz.models.</code><code class="descname">SqAnswer</code><span class="sig-paren">(</span><em>id</em>, <em>text</em>, <em>id_question_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SqAnswer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SqAnswer" title="Lien permanent vers cette définition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quiz.models.SqSubmit">
+<em class="property">class </em><code class="descclassname">quiz.models.</code><code class="descname">SqSubmit</code><span class="sig-paren">(</span><em>id</em>, <em>text</em>, <em>result</em>, <em>id_question_id</em>, <em>id_submitted_quiz_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SqSubmit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SqSubmit" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><dl class="method">
+<dt id="quiz.models.SqSubmit.correct">
+<code class="descname">correct</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SqSubmit.correct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SqSubmit.correct" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Détermine si la réponse soumise est correcte</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quiz.models.SqSubmit.get_corrections">
+<code class="descname">get_corrections</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SqSubmit.get_corrections"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SqSubmit.get_corrections" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Renvoie la liste des réponses correctes à la question</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="database.html" class="btn btn-neutral float-right" title="Modèle relationnel">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="functionalities.html" class="btn btn-neutral" title="Description des fonctionnalités de l’application"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Benoît Léo Maillard.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
