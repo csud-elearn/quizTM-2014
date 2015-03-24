@@ -94,6 +94,21 @@ class CompletedQuiz(models.Model): #Tentative de réponse au quiz par un élève
             ordered_submits[submit.id_question.number] = submit
             
         return ordered_submits
+        
+    def update_result(self):
+        """
+        Met à jour le nombre de points obtenus pour la résolution du quiz en entier
+        en fonction des points obtenus pour chaque réponse soumise aux questions
+        du quiz.
+        """
+        result = 0
+        
+        # Ajout des points pour chaque réponse soumise
+        for submit in get_questions_submits():
+            result += submit.result
+            
+        self.result = result # Le nombre de points obtenus est modifié
+        self.save()
 
 #    
 #Classes abstraites
@@ -196,7 +211,16 @@ class SqSubmit(models.Model): #Réponse soumise par un élève
             return True
         else:
             return False
-
+            
+    def set_as_correct(self):
+        """
+        Si la réponse soumise à la question avait été définie comme incorrecte
+        lors de la correction automatique, cette méthode permet d'attribuer tout
+        de même tous les points pour la réponse.
+        """
+        # On attribue au résultat le nombre de points de la question 
+        self.result = self.id_question.points
+        self.save()
 # 
 #Tables concernant les QCM
 #
