@@ -157,20 +157,20 @@ class SimpleQuestion(QuizQuestion):
         submit = SqSubmit(text=data['answer'], id_question=self, id_submitted_quiz=completed)
         
         # Enregistrement du résultat (pour les statistiques)
-        submit.result = self.save_result(submit)
+        submit.save_result()
         submit.save()
         
         return submit
         
-    def save_result(self, submit):
-        """
-        Comptabilise et enregistre les points pour la réponse soumise submit
-        """
-        result = 0
-        if submit.correct():
-            result = self.points
+    # def save_result(self, submit):
+    #     """
+    #     Comptabilise et enregistre les points pour la réponse soumise submit
+    #     """
+    #     result = 0
+    #     if submit.correct():
+    #         result = self.points
             
-        return result
+    #     return result
         
     def average_result(self):
         """
@@ -286,31 +286,31 @@ class Qcm(QuizQuestion):
             submit.save() #Comme il peut s'agir d'une relation many to many, il faut sauvegarder et ajouter la relation après
         submit.id_selected=data['answer']
         
-        submit.result = self.save_result(submit)
+        submit.save_result()
         submit.save()
         
         return submit
         
-    def save_result(self, submit):
-        """
-        Comptabilise et enregistre les points pour la réponse soumise submit
-        """
-        result = 0
+    # def save_result(self, submit):
+    #     """
+    #     Comptabilise et enregistre les points pour la réponse soumise submit
+    #     """
+    #     result = 0
         
-        if self.multi_answers:
-            l_choices = QcmChoice.objects.filter(id_question=self) # Récupération des choix de la question
-            ppc = self.points / len(l_choices) # Nombre de points attribués par choix correct
+    #     if self.multi_answers:
+    #         l_choices = QcmChoice.objects.filter(id_question=self) # Récupération des choix de la question
+    #         ppc = self.points / len(l_choices) # Nombre de points attribués par choix correct
             
-            # À chaque option correctement cochée, on ajoute les points au résultat
-            for c in l_choices:
-                if c.correct(submit):
-                    result += ppc
-        else:
-            if submit.id_selected:
-                if submit.id_selected.valid:
-                    result = self.points
+    #         # À chaque option correctement cochée, on ajoute les points au résultat
+    #         for c in l_choices:
+    #             if c.correct(submit):
+    #                 result += ppc
+    #     else:
+    #         if submit.id_selected:
+    #             if submit.id_selected.valid:
+    #                 result = self.points
         
-        return result
+    #     return result
         
     def average_result(self):
         """
@@ -333,6 +333,9 @@ class Qcm(QuizQuestion):
             
         else:
             return "--"
+            
+    def get_choices(self):
+        return QcmChoice.objects.filter(id_question=self)
     
 class QcmChoice(models.Model): #Choix affichés pour un QCM
     text = models.CharField(max_length=50)
@@ -394,5 +397,37 @@ class QcmSubmit(models.Model):
 class QcmSubmitOne(QcmSubmit):
     id_selected = models.ForeignKey(QcmChoice, null=True) #Choix sélectionnés par l'élève dans un QCM à bouton radio
     
+    def save_result(self):
+        """
+        Comptabilise
+        """
+        result = 0
+        
+        if self.id_selected: # On s'assure qu'une option a été sélectionnée
+            if self.id_selected.valid: # Si l'option sélectionnée est la réponse valide
+                result = self.id_question.points
+        
+        # Le résultat est enregistré
+        self.result = result
+        self.save()
+    
 class QcmSubmitMulti(QcmSubmit): 
     id_selected = models.ManyToManyField(QcmChoice, null=True) #Choix sélectionnés par l'élève dans un QCM à cases à cocher
+    
+    def save_result(self):
+        """
+        """
+        result = 0
+        l_choices = self.id_question.get_choices() # Choix de la question
+        
+        # Nombre de points atribués par choix correct
+        ppc = self.id_question.points / len(l_choices)
+        
+        # À chaque option correctement cochée, on ajoute les points au résultat
+        for choice in l_choices:
+            if choice.correct(self):
+                result += ppc
+        
+        # Le résultat est enregistré  
+        self.result = result
+        self.save()
