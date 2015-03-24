@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>{% block title %}Accueil{% endblock %}</title>
+    <title>{% block title %}{% endblock %}</title>
 
     <!-- Bootstrap -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
@@ -65,7 +65,7 @@
                         <a href="http://webmath-thirteenfoil8.c9.io/exercises/">Exercices</a>
                     </li>
                     <li>
-                        <a href="{% url 'quiz:index' %}">Quiz</a>
+                        <a href="{% url 'quiz:find' %}">Quiz</a>
                     </li>
                 </ul>
             </div>
@@ -82,7 +82,6 @@
             <div class="col-md-3">
                 <p class="lead">Quiz</p>
                 <div class="list-group">
-                    <a href="{% url 'quiz:index' %}" class="list-group-item {% block side-home %}{% endblock %}">Accueil</a>
                     <a href="{% url 'quiz:find' %}" class="list-group-item {% block side-complete %}{% endblock %}">Compléter un quiz</a>
                     <a href="{% url 'quiz:completed-quizzes' %}" class="list-group-item {% block side-completed %}{% endblock %}">Mes résolutions</a>
                     <a href="{% url 'quiz:created-quizzes' %}" class="list-group-item {% block side-created %}{% endblock %}">Mes quiz</a>

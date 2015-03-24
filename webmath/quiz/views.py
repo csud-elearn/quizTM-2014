@@ -11,9 +11,6 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 import json
 import time
 
-def index(request):
-    return render(request, 'quiz/index.html')
-
 @login_required
 @user_passes_test(is_teacher)
 def create(request):
