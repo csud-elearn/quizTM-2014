@@ -42,12 +42,50 @@
                     <a class="btn btn-default btn-sm tag-insert tag-p" title="Option incorrecte" data-tag="*">
                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Incorrect
                     </a>
-                    <a class="btn btn-default btn-sm tag-insert tag-p" title="Commentaire pour la correction" data-tag="+">
-                        <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Commentaire
-                    </a>
-                    <a class="btn btn-default btn-sm tag-insert tag-p" title="Nombre de points sur la question" data-tag=".">
-                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span> Points
-                    </a>
+                    <div class="btn-group" role="group">
+                        <a type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" title="Affichage de mathématiques">
+                            <span class="glyphicon glyphicon-pencil"></span> Mathématiques <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li role="presentation" class="dropdown-header">Ajouter une formule</li>
+                            <li>
+                                <a class="tag-insert tag-math" title="Affichage dans le texte" data-tag1="\(" data-tag2="\)">
+                                    <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span> Formule in-line
+                                </a>
+                            </li>
+                            <li>
+                                <a class="tag-insert tag-math" title="Affichage agrandi et centré" data-tag1="$$" data-tag2="$$">
+                                    <span class="glyphicon glyphicon-picture" aria-hidden="true"></span> Formule display
+                                </a>
+                            </li>
+                            <li role="presentation" class="divider"></li>
+                            <li role="presentation" class="dropdown-header">Symboles et expressions</li>
+                            <li><a class="tag-insert tag-math" data-tag1="^{" data-tag2="}">Puissance \(x^{n}\)</a></li>
+                            <li><a class="tag-insert tag-math" data-tag1="\sqrt[" data-tag2="]{}">Racine \(\sqrt[n]{x}\)</a></li>
+                            <li><a class="tag-insert tag-math" data-tag1="_{" data-tag2="}">Indice \(x_{n}\)</a></li>
+                            <li><a class="tag-insert tag-math" data-tag1="\log_{" data-tag2="}()">Logarithme \(\log_{n}(x)\)</a></li>
+                            <li><a class="tag-insert tag-math" data-tag1="\Leftrightarrow" data-tag2="">Équivalence \(\Leftrightarrow\)</a></li>
+                            <li><a class="tag-insert tag-math" data-tag1="\lim_{x\to " data-tag2="}">Limite \(\lim_{x\to +\infty}\)</a></li>
+                            <li><a class="tag-insert tag-math" data-tag1="\frac{" data-tag2="}{}">Fraction \(\frac{a}{b}\)</a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <a type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" title="Autres options">
+                            <span class="glyphicon glyphicon-cog"></span> Autres <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a class="tag-insert tag-p" title="Commentaire pour la correction" data-tag="+">
+                                    <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Commentaire
+                                </a>
+                            </li>
+                            <li>
+                                <a class="tag-insert tag-p" title="Nombre de points sur la question" data-tag=".">
+                                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span> Points
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 
                 <!-- Deuxième partie de la barre d'outils -->

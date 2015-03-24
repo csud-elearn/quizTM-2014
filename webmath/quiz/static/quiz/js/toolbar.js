@@ -22,7 +22,19 @@
             insert_tag($(this).attr("data-tag"), 2);
         } else if ($(this).hasClass("tag-p")) {
             insert_tag($(this).attr("data-tag"), 1);
+        } else if ($(this).hasClass("tag-math")) {
+            insert_math($(this).attr("data-tag1"), $(this).attr("data-tag2"));
         }
+    }
+    function insert_math(tag1, tag2) {
+        var text, new_text, pos;
+        pos = $("#quizcode").caret();
+        text = $("#quizcode").val();
+        new_text = text;
+        new_text = new_text.insert(tag1 + tag2, pos);
+        pos += len(tag1);
+        $("#quizcode").val(new_text);
+        $("#quizcode").caret(pos);
     }
     function insert_tag(tag, n_linebreaks) {
         var text, text_before, new_text, pos;

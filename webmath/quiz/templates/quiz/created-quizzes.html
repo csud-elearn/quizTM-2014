@@ -33,7 +33,7 @@
                     <td>{{ quiz.length }}</td>
                     <td>{{ quiz.average_result }}</td>
                     <td>{{ quiz.points }}</td>
-                    <td><a href="{% url 'quiz:advanced-stats' quiz.pk %}" class="btn btn-xs btn-warning">Voir les stats</a></td>
+                    <td><a href="{% url 'quiz:advanced-stats' quiz.pk %}" class="btn btn-xs btn-warning"><span class="glyphicon glyphicon-stats"></span> Voir les stats</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
