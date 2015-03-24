@@ -133,6 +133,12 @@ class SimpleQuestion(QuizQuestion):
         return forms.TextForm(question=self, prefix=self.number, *args, **kwargs)
         
     def save_submit(self, data, completed):
+        """
+        Créé une entrée dans la table ``SqSubmit`` pour stocker la réponse soumise
+        relative à la question. L'accès aux données du formulaire Django correspondant à
+        la question se fait par le dictionnaire ``data`` en argument.
+        """
+        # Création de l'entrée dans la base de données avec les arguments correspondants
         submit = SqSubmit(text=data['answer'], id_question=self, id_submitted_quiz=completed)
         
         # Enregistrement du résultat (pour les statistiques)
@@ -184,6 +190,20 @@ class SqSubmit(models.Model): #Réponse soumise par un élève
     
     def __str__(self):
         return self.text
+        
+    def save_result(self):
+        """
+        Comptabilise et enregistre les points obtenus. Si la réponse soumise
+        est correcte, tous les points sont attribués. Dans le cas contraire,
+        aucun point n'est attribué.
+        """
+        
+        result = 0
+        if self.correct():
+            result = self.id_question.points
+        
+        self.result = result
+        self.save()
         
     def get_corrections(self):
         """
