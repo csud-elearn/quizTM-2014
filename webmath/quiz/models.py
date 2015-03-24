@@ -104,7 +104,7 @@ class CompletedQuiz(models.Model): #Tentative de réponse au quiz par un élève
         result = 0
         
         # Ajout des points pour chaque réponse soumise
-        for submit in get_questions_submits():
+        for submit in self.get_questions_submits():
             result += submit.result
             
         self.result = result # Le nombre de points obtenus est modifié
