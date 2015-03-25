@@ -144,6 +144,13 @@ class QuizQuestion(models.Model): #Classe abstraite dont héritent toutes les qu
 #
         
 class SimpleQuestion(QuizQuestion):
+    def get_wrong_answers(self):
+        """
+        Retourne la liste de toutes les réponses incorrectes soumises pour la question.
+        """
+        # Les réponses incorrectes sont celles qui ont obtenu 0 point
+        return SqSubmit.objects.filter(id_question=self).filter(result=0)
+        
     def create_form(self, *args, **kwargs):
         """
         Retourne un formulaire pour répondre à la question

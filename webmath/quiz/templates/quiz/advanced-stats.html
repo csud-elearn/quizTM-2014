@@ -22,7 +22,7 @@
                     </tr>
                     <tr>
                         <th>Étudiant</th>
-                        <th class="info">Total ({{quiz.points}})</th>
+                        <th class="info">Total</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,12 +34,12 @@
                                 </a>
                                 {{ completed.id_user }}
                             </th>
-                            <td class="info">{{ completed.result }}</td>
+                            <td class="info">{{ completed.result }} <span class="bold">/ {{ completed.id_quiz.points }}</span></td>
                         </tr>
                     {% endfor %}
                     <tr class="info">
                         <th scope="row">Moyenne</th>
-                        <td>{{ quiz.average_result }}</td>
+                        <td>{{ quiz.average_result }} <span class="bold">/ {{ quiz.points }}</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -48,15 +48,14 @@
             <table class="table table-bordered no-space table-hover table-responsive">
                 <thead>
                     <tr>
-                        <th colspan="{{ quiz.length }}"><div id="questions-th">Questions</div><div style="opacity:0">0</div></th>
+                        <th colspan="{{ quiz.length }}"><div id="questions-th">Points obtenus par question</div><div style="opacity:0">0</div></th>
                     </tr>
                     <tr>
                     {% for question in quiz.get_questions %}
                         <th class="contains-button">
                             <a title="Afficher la question" class="btn btn-primary btn-xs show-question" data-show="#question-{{ question.number }}">
-                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="glyphicon glyphicon-eye-open"></span> Afficher
                             </a>
-                            {{ question.points }}
                         </th>
                     {% endfor %}
                     </tr>
@@ -65,13 +64,13 @@
                     {% for completed in l_completed %}
                         <tr>
                         {% for question_submit in completed.get_questions_submits %}
-                            <td>{{ question_submit.result }}</td>
+                            <td>{{ question_submit.result }} <span class="bold">/ {{ question_submit.id_question.points }}</span></td>
                         {% endfor %}
                         </tr>
                     {% endfor %}
                     <tr>
                     {% for question in quiz.get_questions %}
-                        <td class="info">{{ question.average_result }}</td>
+                        <td class="info">{{ question.average_result }} <span class="bold">/ {{ question.points }}</span></td>
                     {% endfor %}
                     </tr>
                 </tbody>
@@ -80,7 +79,7 @@
         <div class="quizform">
             {% for form in l_forms %}
                 <div id="question-{{ form.question.number }}" class="q_container panel panel-default hidden-question bottom-space">
-                <div class="panel-body">
+                <div class="caption-full">
                 {% if form.get_type == 0 %}
                     <span class="label-span">{{ form.question.number|add:"1" }}) {{ form.question.text }}</span>
                     {% for option in form.answer %}
@@ -91,6 +90,23 @@
                 {% elif form.get_type == 1 %}
                     <label for="{{ form.selected.id_for_label }}">{{ form.question.number|add:"1" }}) {{ form.question.text }}</label>
                     {{ form.answer }}
+                    {% if form.question.get_wrong_answers %}
+                        <div class="panel panel-danger top-bottom-space">
+                            <div class="panel-heading bold">Réponses incorrectes proposées</div>
+                            <ul class="list-group">
+                                {% for wrong in form.question.get_wrong_answers %}
+                                {% if wrong.text %}
+                                    <li class="list-group-item">
+                                        <a class="btn btn-success btn-xs add-correct-answer" title="Admettre en tant que réponse valide" data-answer-id="{{ wrong.pk }}">
+                                            <span class="glyphicon glyphicon-check"></span>
+                                        </a>
+                                        {{ wrong.text }}
+                                    </li>
+                                {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
                 {% endif %}
                 </div>
                 </div>
