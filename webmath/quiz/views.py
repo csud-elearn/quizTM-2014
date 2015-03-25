@@ -341,3 +341,12 @@ def advanced_stats(request, n_quiz):
     quizforms = QuizForms(quiz)
     
     return render(request, 'quiz/advanced-stats.html', {'quiz' : quiz, 'l_completed' : l_completed, 'l_forms' : quizforms.get_forms()})
+    
+@login_required
+@user_passes_test(is_teacher)
+def add_correct_answer(request):
+    if request.method == "POST":
+        submit = SqSubmit.objects.get(pk=request.POST["answer"])
+        submit.set_as_correct()
+        
+        return HttpResponse(submit.pk)
