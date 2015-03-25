@@ -6,9 +6,6 @@ import quiz.forms as forms
 # Create your models here.
 
 class Quiz(models.Model): #Infos générales sur le quiz
-    """
-    
-    """
     title = models.CharField(max_length=100)
     points = models.FloatField(default=0)
     creation_date = models.DateTimeField(auto_now_add=True)
@@ -395,7 +392,7 @@ class QcmChoice(models.Model): #Choix affichés pour un QCM
     def __str__(self):
         return self.text
         
-    def correct(self, qcmsubmit):
+    def correct_submit(self, qcmsubmit):
         """
         Détermine si la réponse soumise qcmsubmit est correcte ou non
         """
@@ -475,7 +472,7 @@ class QcmSubmitMulti(QcmSubmit):
         
         # À chaque option correctement cochée, on ajoute les points au résultat
         for choice in l_choices:
-            if choice.correct(self):
+            if choice.correct_submit(self):
                 result += ppc
         
         # Le résultat est enregistré  

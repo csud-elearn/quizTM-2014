@@ -93,7 +93,7 @@ class CorrectQcm(CorrectQuestion):
 
 class CorrectChoice:
     def __init__(self, choice, qcmsubmit):
-        self.is_correct = choice.correct(qcmsubmit) # Vérification du choix
+        self.is_correct = choice.correct_submit(qcmsubmit) # Vérification du choix
         self.is_checked = choice.checked(qcmsubmit) # Vaut true si le choix est sélectionné
         self.text = choice.text # Texte du choix
         
