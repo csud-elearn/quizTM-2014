@@ -147,9 +147,26 @@ class SimpleQuestion(QuizQuestion):
     def get_wrong_answers(self):
         """
         Retourne la liste de toutes les réponses incorrectes soumises pour la question.
+        Pour éviter les doublons, les réponses équivalentes sont renvoyées une seule fois.
+        Par exemple, si deux réponses valent "5", seule la première sera renvoyée par
+        cette fonction. Les réponses vides sont aussi exclues.
         """
         # Les réponses incorrectes sont celles qui ont obtenu 0 point
-        return SqSubmit.objects.filter(id_question=self).filter(result=0)
+        l_wrong = SqSubmit.objects.filter(id_question=self).filter(result=0)
+        
+        l_text = [] # Liste contenant les textes des réponses ajoutés
+        l_wrong_filtered = [] # Liste contenant les réponses sans doublons
+
+        for wrong in l_wrong:
+            # Si le texte de la réponse est dans la liste des textes déjà ajoutés,
+            # la réponse n'est pas ajoutée dans la liste sans doublons
+            if wrong.text not in l_text and wrong.text:
+                l_text.append(wrong.text)
+                l_wrong_filtered.append(wrong)
+        
+        
+        print(l_wrong_filtered)
+        return l_wrong_filtered
         
     def create_form(self, *args, **kwargs):
         """

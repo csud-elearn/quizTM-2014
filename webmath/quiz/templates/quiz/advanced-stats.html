@@ -6,6 +6,7 @@
 {% block head %}
 <link rel="stylesheet" href="{% static 'quiz/css/stats.css' %}" type="text/css" />
 <script type="text/javascript" src="{% static 'quiz/js/stats.js' %}"></script>
+<script type="text/javascript">var quiz_id = {{ quiz.pk }}</script>
 {% endblock %}
 
 {% block title %}Statistiques avancées{% endblock %}
@@ -14,6 +15,8 @@
 <div class="thumbnail">
     <div class="caption-full">
         <h1>Statistiques avancées - {{ quiz.title }}</h1>
+        <div id="tables-container">
+        <div id="stats-tables">
         <div class="fixed-cols bottom-space">
             <table class="table table-bordered no-space table-responsive">
                 <thead>
@@ -53,7 +56,7 @@
                     <tr>
                     {% for question in quiz.get_questions %}
                         <th class="contains-button">
-                            <a title="Afficher la question" class="btn btn-primary btn-xs show-question" data-show="#question-{{ question.number }}">
+                            <a title="Afficher la question" href="#quiz-info" class="btn btn-primary btn-xs show-question" data-show="#question-{{ question.number }}">
                                 <span class="glyphicon glyphicon-eye-open"></span> Afficher
                             </a>
                         </th>
@@ -76,28 +79,43 @@
                 </tbody>
             </table>
         </div>
+        </div>
+        </div>
         <div class="quizform">
+            <div id="quiz-info" class="panel panel-info">
+                <div class="panel-heading bold">Informations générales sur le quiz</div>
+                <ul class="list-group"></ul>
+                    <li class="list-group-item"><span class="bold">Date de création :</span> {{ quiz.creation_date }}</li>
+                    <li class="list-group-item"><span class="bold">Nombre de résolutions :</span> </li>
+                    <li class="list-group-item"><span class="bold">Dernière résolution :</span> </li>
+                    <li class="list-group-item">Pour afficher l'énoncé d'une question, utilisez les boutons bleus dans le tableau <a class="btn btn-xs btn-success" id="show-all">Afficher toutes les questions</a></li>
+                </ul>
+            </div>
             {% for form in l_forms %}
                 <div id="question-{{ form.question.number }}" class="q_container panel panel-default hidden-question bottom-space">
                 <div class="caption-full">
                 {% if form.get_type == 0 %}
+                    <div class="bottom-space">
                     <span class="label-span">{{ form.question.number|add:"1" }}) {{ form.question.text }}</span>
                     {% for option in form.answer %}
                         {{ option.tag }}
                         <label for="{{ option.id_for_label }}">{{ option.choice_label }}</label>
                         <br />
                     {% endfor %}
+                    </div>
                 {% elif form.get_type == 1 %}
+                <div class="bottom-space">
                     <label for="{{ form.selected.id_for_label }}">{{ form.question.number|add:"1" }}) {{ form.question.text }}</label>
                     {{ form.answer }}
+                </div>
                     {% if form.question.get_wrong_answers %}
-                        <div class="panel panel-danger top-bottom-space">
+                        <div class="panel panel-danger bottom-space">
                             <div class="panel-heading bold">Réponses incorrectes proposées</div>
                             <ul class="list-group">
                                 {% for wrong in form.question.get_wrong_answers %}
                                 {% if wrong.text %}
                                     <li class="list-group-item">
-                                        <a class="btn btn-success btn-xs add-correct-answer" title="Admettre en tant que réponse valide" data-answer-id="{{ wrong.pk }}">
+                                        <a class="btn btn-danger btn-xs add-correct-answer" title="Admettre en tant que réponse valide" data-answer-id="{{ wrong.pk }}">
                                             <span class="glyphicon glyphicon-check"></span>
                                         </a>
                                         {{ wrong.text }}
