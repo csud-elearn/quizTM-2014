@@ -77,12 +77,12 @@ class CompletedQuiz(models.Model): #Tentative de réponse au quiz par un élève
     id_quiz = models.ForeignKey(Quiz) #Relation avec le quiz complété
     id_user = models.ForeignKey(User)
     
-    def correct(self):
-        """
-        Corrige les questions soumises
-        """
-        for submit in self.get_questions_submits():
-            submit.correct()
+    # def correct(self):
+    #     """
+    #     Corrige les questions soumises
+    #     """
+    #     for submit in self.get_questions_submits():
+    #         submit.correct()
                 
     def get_questions_submits(self):
         """
@@ -104,11 +104,14 @@ class CompletedQuiz(models.Model): #Tentative de réponse au quiz par un élève
             
         return ordered_submits
         
-    def update_result(self):
+    def update_total_result(self):
         """
         Met à jour le nombre de points obtenus pour la résolution du quiz en entier
         en fonction des points obtenus pour chaque réponse soumise aux questions
         du quiz.
+        
+        Cette méthode peut être utilisée lorsqu'une entrée dans ``SqAnswer`` a été
+        ajoutée pour mettre à jour les statistques en fonction des changements.
         """
         result = 0
         
@@ -189,7 +192,22 @@ class SimpleQuestion(QuizQuestion):
             
         else:
             return "--"
-
+            
+    def update_question_results(self):
+        """
+        Permet de réévaluer toutes les réponses soumises pour la question après
+        l'ajout d'une solution correcte pour corriger les statistiques.
+        """
+        # Liste des réponses soumises à la question
+        l_question_submits = SqSubmit.objects.filter(id_question=self)
+        
+        # Les points pour chaque réponse sont recomptabilisés
+        for submit in l_question_submits:
+            submit.save_result()
+            # Le résultat global de chaque résolution du quiz comportant
+            # cette question est mis à jour
+            submit.id_submitted_quiz.update_total_result()
+            
 class SqAnswer(models.Model): #Les réponses correctes
     text = models.CharField(max_length=50)
     id_question = models.ForeignKey(SimpleQuestion) #Relation vers la question
@@ -222,7 +240,8 @@ class SqSubmit(models.Model): #Réponse soumise par un élève
         
     def get_corrections(self):
         """
-        Renvoie la liste des réponses correctes à la question
+        Renvoie les solutions correctes pour la question sous forme de liste de
+        chaînes de charactères
         """
         # Récupération des corrections de la question
         l_sq_answer = SqAnswer.objects.filter(id_question=self.id_question)
@@ -234,7 +253,8 @@ class SqSubmit(models.Model): #Réponse soumise par un élève
         
     def correct(self):
         """
-        Détermine si la réponse soumise est correcte
+        Détermine si la réponse soumise est correcte est vérifiant qu'elle se
+        se trouve dans la liste des solutions correctes.
         """
         if self.text in self.get_corrections():
             return True
@@ -244,12 +264,18 @@ class SqSubmit(models.Model): #Réponse soumise par un élève
     def set_as_correct(self):
         """
         Si la réponse soumise à la question avait été définie comme incorrecte
-        lors de la correction automatique, cette méthode permet d'attribuer tout
-        de même tous les points pour la réponse.
+        lors de la correction automatique, cette méthode permet d'ajouter la réponse
+        soumise aux solutions correctes de la question.
+        
+        Toutes les réponses soumises pour la question sont ensuite rééavluées pour
+        mettre à jour les statistiques.
         """
-        # On attribue au résultat le nombre de points de la question 
-        self.result = self.id_question.points
-        self.save()
+        # Nouvelle entrée dans la db pour ajouter la solution
+        new_answer = SqAnswer(text=self.text, id_question=self.id_question)
+        new_answer.save()
+        
+        # Recomptabilisation des points pour toutes les réponses soumises à la question
+        self.id_question.update_question_results()
 # 
 #Tables concernant les QCM
 #
