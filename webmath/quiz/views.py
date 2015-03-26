@@ -101,7 +101,7 @@ def complete(request, n_quiz):
             
         return render(
             request, 'quiz/complete.html',
-            {'quiz': quiz, 'l_forms': quizforms.l_forms()}
+            {'quiz': quiz, 'l_forms': quizforms.l_forms}
         )
         
 def find(request):
@@ -345,7 +345,7 @@ def advanced_stats(request, n_quiz):
     # dans le template
     quizforms = QuizForms(quiz)
     
-    return render(request, 'quiz/advanced-stats.html', {'quiz' : quiz, 'l_completed' : l_completed, 'l_forms' : quizforms.get_forms()})
+    return render(request, 'quiz/advanced-stats.html', {'quiz' : quiz, 'l_completed' : l_completed, 'l_forms' : quizforms.l_forms})
     
 @login_required
 @user_passes_test(is_teacher)
