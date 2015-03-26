@@ -2,7 +2,6 @@ from django.shortcuts import render, HttpResponse, HttpResponseRedirect, get_obj
 from django.core.urlresolvers import reverse
 from quiz.utils.save import SaveQuiz
 from quiz.utils.submit import QuizForms
-from quiz.utils.correct import CorrectQuiz
 from quiz.forms import TextForm, CheckboxForm, RadioForm, SelectForm
 from quiz.models import Quiz, QuizDraft, CompletedQuiz, SqSubmit, QcmSubmitMulti, QcmSubmitOne
 from common.models import Teacher, Student
@@ -63,15 +62,15 @@ def complete(request, n_quiz):
     du quiz sélectionné. Cet objet prend en charge la création de tous les formulaires
     Django nécessaires pour compléter le quiz (un formulaire Django par question).
     Ces formulaires Django sont ensuite récupérés par l'intermédiaire de la méthode
-    ``.get_forms()`` et placés dans le contexte de la fonction ``render``.
+    ``.get_forms()`` et placés dans le contexte de la fonction ``render()``.
     
     La requête de type POST est utilisée pour l'enregistrement des réponses soumises
     au quiz par un étudiant. Là aussi, on utilise la classe ``QuizForms``, sauf que
     l'instanciation se fait avec un deuxième argument, ``data``. Cet argument contient
     en fait les données soumises par le biais des formulaires Django lorsque un
     étudiant complète le quiz. Pour s'assurer de la validité de ces données, on
-    utilise la méthode ``.are_valid`` de la classe ``QuizForms``. Une fois le
-    contrôle effectué, la méthode ``.save_answers`` se charge d'ajouter de nouvelles
+    utilise la méthode ``.are_valid()`` de la classe ``QuizForms``. Une fois le
+    contrôle effectué, la méthode ``.save_answers()`` se charge d'ajouter de nouvelles
     entrées dans la base de donnée pour stocker les réponses soumises par l'étudiant.
     Pour finir, l'utilisateur est redirigé vers la page de correction correspondant
     aux réponses envoyées précédemment.
@@ -89,7 +88,8 @@ def complete(request, n_quiz):
         #On controle que les formulaires sont valides
         if quizforms.are_valid():
             
-            completed = quizforms.save_answers(request.user) #Les réponses sont enregistrées dans la db
+            #Les réponses sont enregistrées dans la db par l'intermédiaire de la méthode .save_answers()
+            completed = quizforms.save_answers(request.user)
             
             return HttpResponseRedirect(reverse("quiz:correct", args=[completed.pk]))
 
@@ -101,7 +101,7 @@ def complete(request, n_quiz):
             
         return render(
             request, 'quiz/complete.html',
-            {'quiz': quiz, 'l_forms': quizforms.get_forms()}
+            {'quiz': quiz, 'l_forms': quizforms.l_forms()}
         )
         
 def find(request):
@@ -290,9 +290,14 @@ def correct(request, n_completed):
     
     # Instanciation d'un objet CorrectQuiz qui contiendra toutes les informations
     # nécessaires à l'affichage de la correction
-    correctquiz = CorrectQuiz(completed)
+    # correctquiz = CorrectQuiz(completed)
+    
+    l_corrections = []
+    
+    for submit in completed.get_questions_submits():
+        l_corrections.append(submit.build_correct())
         
-    return render(request, 'quiz/correct.html', {'correctquiz' : correctquiz, 'quiz' : completed.id_quiz})
+    return render(request, 'quiz/correct.html', {'completed' : completed, 'quiz' : completed.id_quiz, 'l_corrections' : l_corrections})
 
 @login_required
 def completed_quizzes(request):

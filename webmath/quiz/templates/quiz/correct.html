@@ -9,7 +9,7 @@
     <div class="caption-full">
         <h1>Correction - {{ quiz.title }}</h1>
         <ul class="quizform list-group bottom-space not-allowed">
-            {% for correction in correctquiz.l_corrections %}
+            {% for correction in l_corrections %}
                 <fieldset class="q_container list-group-item" disabled>
                 {% if correction.type == 0 %}
                     <label>{{ correction.text }} <span class="danger pull-right">{{ correction.result }}/{{ correction.points }}</span></label>
@@ -69,7 +69,7 @@
             {% endfor %}
             <div class="list-group-item">
                 <h2>Résultat</h2>
-                <p class="bold">Note globale : {{ correctquiz.total_result }}/{{ correctquiz.total_points }} </p>
+                <p class="bold">Note globale : {{ completed.result }}/{{ quiz.points }} </p>
                 <p class="bold">Note moyenne des autres utilisateurs : {{ quiz.average_result }}/{{ quiz.points }} </p>
             </div>
         </ul>

@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from common.models import Teacher
 import quiz.forms as forms
+from quiz.utils.correct import *
 
 # Create your models here.
 
@@ -297,6 +298,15 @@ class SqSubmit(models.Model): #Réponse soumise par un élève
         
         # Recomptabilisation des points pour toutes les réponses soumises à la question
         self.id_question.update_question_results()
+        
+    def build_correct(self):
+        """
+        Instancie et retourne un objet ``CorrectSq`` correspondant à la réponse soumise.CompletedQuiz
+        La classe ``CorrectSq`` permet un accès plus rapide aux données nécessaires à
+        l'affichage de la correction.
+        """
+        # Instanciation de l'objet. L'argument est la réponse soumise à corriger (self)
+        return CorrectSq(self)
 # 
 #Tables concernant les QCM
 #
@@ -440,6 +450,15 @@ class QcmSubmit(models.Model):
         
     class Meta:
             abstract = True
+            
+    def build_correct(self):
+        """
+        Instancie et retourne un objet ``CorrectQcm`` correspondant à la réponse soumise.CompletedQuiz
+        La classe ``CorrectQcm`` permet un accès plus rapide aux données nécessaires à
+        l'affichage de la correction.
+        """
+        # Instanciation de l'objet. L'argument est la réponse soumise à corriger (self)
+        return CorrectQcm(self)
         
 class QcmSubmitOne(QcmSubmit):
     id_selected = models.ForeignKey(QcmChoice, null=True) #Choix sélectionnés par l'élève dans un QCM à bouton radio

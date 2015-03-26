@@ -76,6 +76,9 @@ class SaveQcmRadio(SaveQcm):
         self.multi_answers = False
         self.show_list = False
 
+####
+#### Element de liste déroulante à supprimer
+####
 #Enregistre un qcm de type liste déroulante
 class SaveQcmSelect(SaveQcm):
     def __init__(self, quiz_db, question, n):
