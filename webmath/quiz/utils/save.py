@@ -4,91 +4,95 @@ from quiz.models import *
 
 #Classe abstraite pour toutes les questions
 class SaveQuestion:
-    def __init__(self, quiz_db, question, n):
-        self.question = question
-        
-        self.text = question["text"]
-        self.comment = question["comment"]
-        self.points = question["points"]
-        self.id_quiz = quiz_db
-        self.number = n
-
-#Enregistre une question simple
-class SaveSimpleQuestion(SaveQuestion):
-    def save_db(self):
-        self.question_db = SimpleQuestion( #Enregistrement dans la table avec les paramètres
-            text=self.text,
-            comment=self.comment,
-            number=self.number,
-            id_quiz=self.id_quiz,
-            points=self.points
+    """
+    Classe abstraite qui créé une nouvelle question dans la base de données avec
+    les attributs communs à tous les types de questions. La méthode ``.save()``
+    n'est pas encore utilisée car certains attributs doivent encore être ajoutés
+    dans les classes filles.
+    
+    La table concernée peut être :py:class:`models.SimpleQuestion` ou :py:class:`models.Qcm`.
+    Cela dépend de l'argument ``Model`` qui définit la classe à utiliser. 
+    
+    L'argument ``question`` est un dictionnaire contenant les données sur la question.
+    Les arguments `quiz_db`` et ``n`` correspondent respectivement à la référence
+    du quiz dans la table :py:class:models.Quiz`` et à l'index de la position
+    de la question.
+    """
+    def __init__(self, question, Model, quiz_db, n):
+        # Création de la nouvelle entrée sans utiliser la méthode .save()
+        self.question_db = Model(
+            text=question["text"],
+            comment=question["comment"],
+            points=question["points"],
+            number=n,
+            id_quiz=quiz_db
         )
+
+class SaveSimpleQuestion(SaveQuestion):
+    """
+    Enregistre une question à réponse courte dans la base de données. Tous les champs
+    de la base de données ont déjà été définis par :py:class:`SaveQuestion`,
+    la méthode ``.save()`` peut donc être utilisée directement. Les différentes
+    solutions sont ensuite sauvegardées.
+    """
+    def __init__(self, question, *args, **kwargs):
+        SaveQuestion.__init__(self, question, *args, **kwargs)
+        
+        # Enregistrement dans la base de données
         self.question_db.save()
         
-        for answer in self.question["answers"]:
+        # Ajout des réponses
+        for answer in question["answers"]:
             self.add_answer(answer)
             
-        return self.question_db
-            
     def add_answer(self, text):
+        """
+        Ajoute une solution à la question en créant un champ dans la table 
+        :py:class:`models.SqAnswer`
+        """
         answer_db = SqAnswer(text=text, id_question=self.question_db)
         answer_db.save()
 
 #Classe abstraite pour tous les QCM
 class SaveQcm(SaveQuestion):
-    def save_db(self):
-        self.question_db = Qcm(
-            text=self.text, 
-            comment=self.comment, 
-            number=self.number, 
-            id_quiz=self.id_quiz, 
-            multi_answers=self.multi_answers, 
-            show_list=self.show_list, 
-            points=self.points
-        )
+    """
+    Enregistre une question à choix multiples dans la base de données. S'il s'agit
+    d'une question à réponses correctes multiples, il faut assigner la valeur ``True``
+    à l'attribut ``multi_answers``. Par défaut, celui-ci reçoit la valeur ``False``.
+    Les différentes options à sélectionner sont également enregistrées.
+    """
+    def __init__(self, question, *args, **kwargs):
+        SaveQuestion.__init__(self, question, *args, **kwargs)
+        
+        if question["type"] == 1:
+            self.question_db.multi_answers = True
+        
         self.question_db.save()
         
-        for option in self.question["options"]:
+        for option in question["options"]:
             self.add_option(option)
             
-        return self.question_db
-            
     def add_option(self, option):
+        """
+        Ajoute une option à la question en créant une nouvelle entrée dans la table
+        :py:class:`models.QcmChoice`.
+        """
         text = option["content"]
         valid = option["valid"]
         
         choice_db = QcmChoice(text=text, valid=valid, id_question=self.question_db)
         choice_db.save()
 
-#Enregistre un qcm de type checkbox
-class SaveQcmCheckbox(SaveQcm):
-    def __init__(self, quiz_db, question, n):
-        SaveQcm.__init__(self, quiz_db, question, n)
-        
-        self.multi_answers = True
-        self.show_list = False
-
-#Enregistre un qcm de type radio
-class SaveQcmRadio(SaveQcm):
-    def __init__(self, quiz_db, question, n):
-        SaveQcm.__init__(self, quiz_db, question, n)
-        
-        self.multi_answers = False
-        self.show_list = False
-
-####
-#### Element de liste déroulante à supprimer
-####
-#Enregistre un qcm de type liste déroulante
-class SaveQcmSelect(SaveQcm):
-    def __init__(self, quiz_db, question, n):
-        SaveQcm.__init__(self, quiz_db, question, n)
-        
-        self.multi_answers = False
-        self.show_list = True
-
 class SaveQuiz:
-    TYPES = [SaveSimpleQuestion, SaveQcmCheckbox, SaveQcmRadio, SaveQcmSelect]
+    """
+    Classe permettant l'enregistrement d'un quiz et de toutes ses questions dans
+    la base de données. Une première entrée :py:class:`models.Quiz` est enregistrée
+    puis les données des questions sont sauvegardées par l'intermédiaire des classes
+    :py:class:`SaveSimpleQuestion` et :py:class:`SaveQcm`.
+    
+    """
+    TYPES = [SaveSimpleQuestion, SaveQcm, SaveQcm]
+    MODELS = [SimpleQuestion, Qcm, Qcm]
     
     def __init__(self, title, questions_list, quizcode, teacher):
         self.quiz_db = Quiz(title=title, code=quizcode, id_teacher=teacher)
@@ -99,14 +103,14 @@ class SaveQuiz:
         
         for question in questions_list:
             q_type = question["type"] #Récupération du type de question
-            Constructor = SaveQuiz.TYPES[q_type] 
-            q = Constructor(self.quiz_db, question, n_question) #Instanciation à patir du constructeur correspondant
-            q_db = q.save_db() # Sauvegarde dans la base de données
-            global_points += q_db.points
+            
+            Constructor = SaveQuiz.TYPES[q_type]
+            Model = SaveQuiz.MODELS[q_type]
+            
+            Constructor(question=question, Model=Model, quiz_db=self.quiz_db, n=n_question) #Instanciation à patir du constructeur correspondant
+            
+            global_points += question["points"]
             n_question += 1
             
         self.quiz_db.points = global_points
         self.quiz_db.save()
-            
-    def get_id(self):
-        return self.quiz_db.pk

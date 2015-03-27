@@ -7,6 +7,14 @@ from quiz.utils.correct import *
 # Create your models here.
 
 class Quiz(models.Model): #Infos générales sur le quiz
+    """
+    Table dont le rôle est de stocker les informations générales sur le quiz telles
+    que le titre du quiz, le nombre maximal de points pouvant être obtenus ou la date
+    et l'heure de sa création.
+    
+    Tous les modèles contenant les données des questions du quiz incluent une clé
+    étrangère reliant la question avec la table ```Quiz``.
+    """
     title = models.CharField(max_length=100)
     points = models.FloatField(default=0)
     creation_date = models.DateTimeField(auto_now_add=True)
@@ -61,7 +69,11 @@ class Quiz(models.Model): #Infos générales sur le quiz
         else:
             return "--"
         
-class QuizDraft(models.Model): #Brouillon contenant le code d'un quiz
+class QuizDraft(models.Model):
+    """
+    La table ``QuizDraft`` sert à stocker les brouillons. Elle contient le titre
+    du brouillon, le code ainsi qu'une relation vers le créateur du brouillon.
+    """
     title = models.CharField(max_length=100)
     code = models.CharField(max_length=1000)
     id_teacher = models.ForeignKey('common.Teacher')
@@ -69,27 +81,26 @@ class QuizDraft(models.Model): #Brouillon contenant le code d'un quiz
     def __str__(self):
         return self.title
     
-class CompletedQuiz(models.Model): #Tentative de réponse au quiz par un élève
+class CompletedQuiz(models.Model):
+    """
+    Contient 
+    """
     submit_date = models.DateTimeField(auto_now_add=True)
     result = models.FloatField(default=0)
     id_quiz = models.ForeignKey(Quiz) #Relation avec le quiz complété
     id_user = models.ForeignKey(User)
-    
-    # def correct(self):
-    #     """
-    #     Corrige les questions soumises
-    #     """
-    #     for submit in self.get_questions_submits():
-    #         submit.correct()
                 
     def get_questions_submits(self):
         """
         Renvoie la liste des entrées des tables ``SqSubmit``, ``QcmSubmitOne`` et
-        ``QcmSubmitMulti`` correspondant à chacune des questions du quiz auquel
-        l'élève a répondu. Cette liste est triée selon l'ordre d'apparition des
-        questions correspondant aux entrées concernées.
+        ``QcmSubmitMulti`` correspondant à la résolution ``self``.
+        Chaque élément de cette liste représente concrètement la réponse soumise à
+        une question du quiz.
+        
+        Cette liste est triée selon l'ordre d'apparition des questions correspondant
+        réponses proposées.
         """
-        # Liste des réponses non triées
+        # Les éléments sont récupérés et placés dans une liste non-triée
         l_submits = list(SqSubmit.objects.filter(id_submitted_quiz=self))\
         + list(QcmSubmitOne.objects.filter(id_submitted_quiz=self))\
         + list(QcmSubmitMulti.objects.filter(id_submitted_quiz=self))
@@ -108,8 +119,15 @@ class CompletedQuiz(models.Model): #Tentative de réponse au quiz par un élève
         en fonction des points obtenus pour chaque réponse soumise aux questions
         du quiz.
         
-        Cette méthode peut être utilisée lorsqu'une entrée dans ``SqAnswer`` a été
-        ajoutée pour mettre à jour les statistques en fonction des changements.
+        Pour comptabiliser le nombre total de points obtenus, cette méthode parcourt
+        la liste des réponses apportées avec la méthode :py:meth:`CompletedQuiz.get_questions_submits()`
+        appliquée à la résolution en question.
+        calcule la somme des points obtenus pour chacune des questions.
+        
+        Cette méthode peut être utilisée lorsqu'une résolution vient d'être soumise
+        par un élève pour comptabiliser une première fois les points obtenus ou 
+        lorsqu'une entrée dans :py:class:`SqAnswer` a été ajoutée pour mettre à jour les
+        statistques en fonction des changements.
         """
         result = 0
         
@@ -144,10 +162,15 @@ class QuizQuestion(models.Model): #Classe abstraite dont héritent toutes les qu
 class SimpleQuestion(QuizQuestion):
     def get_wrong_answers(self):
         """
-        Retourne la liste de toutes les réponses incorrectes soumises pour la question.
+        Retourne la liste de toutes les réponses incorrectes soumises pour la question ``self``.
         Pour éviter les doublons, les réponses équivalentes sont renvoyées une seule fois.
-        Par exemple, si deux réponses valent "5", seule la première sera renvoyée par
-        cette fonction. Les réponses vides sont aussi exclues.
+        Par exemple, si deux réponses valent ``"5"``, seule la première sera renvoyée par
+        cette méthode.
+        
+        Comme cette méthode est utilisée pour afficher les réponses soumises incorrectes pouvant
+        potentiellement être définies comme correctes par la suite au cas où le 
+        professeur les juge acceptables, les réponses vides sont aussi exclues 
+        puisqu'il n'y aurait pas de sens à les admettre dans les solutions.
         """
         # Les réponses incorrectes sont celles qui ont obtenu 0 point
         l_wrong = SqSubmit.objects.filter(id_question=self).filter(result=0)
@@ -162,21 +185,37 @@ class SimpleQuestion(QuizQuestion):
                 l_text.append(wrong.text)
                 l_wrong_filtered.append(wrong)
         
-        
-        print(l_wrong_filtered)
         return l_wrong_filtered
         
     def create_form(self, *args, **kwargs):
         """
-        Retourne un formulaire pour répondre à la question
+        Instancie un formulaire Django personnalisé de type ``TextForm`` correspondant
+        à la question. Ce type de formulaire est défini dans py:mod:`forms` et spécialement
+        conçu pour les questions à réponse courte. 
+        
+        Lors de l'instanciation, plusieurs arguments sont fournis. Premièrement,
+        on indique la question ``self`` pour que des informations supplémentaires
+        la concernant puissent éventuellement être obtenues depuis le formulaire.CompletedQuiz
+        Ensuite, l'index de la position de la question dans le quiz est attribué à
+        l'argument ``prefix``. Cet argument permet d'identifier la question correspondant
+        au formulaire lorsque les données entrées par l'utilisateur sont récupérées.
         """
         return forms.TextForm(question=self, prefix=self.number, *args, **kwargs)
         
     def save_submit(self, data, completed):
         """
-        Créé une entrée dans la table ``SqSubmit`` pour stocker la réponse soumise
-        relative à la question. L'accès aux données du formulaire Django correspondant à
-        la question se fait par le dictionnaire ``data`` en argument.
+        Cette méthode permet d'enregistrer dans la base de données une réponse soumise
+        par l'utilisateur à la question ``self`` en créant une entrée dans la table
+        ``SqSubmit``.
+        
+        L'argument ``data`` est dictionnaire contenant les paramètres de la 
+        requête HTTP qui concernent le formulaire créé pour la question. On peut donc
+        facilement accéder au texte entré par l'élève avec la clé ``'answer'``.
+        
+        L'argument ``completed`` contient la référence vers l'élément de la table
+        ``CompletedQuiz`` qui comprend les données de la résolution de l'élève. On
+        peut ainsi facilement relier l'entrée créée dans ``SqSubmit`` avec la résolution
+        de l'élève.
         """
         # Création de l'entrée dans la base de données avec les arguments correspondants
         submit = SqSubmit(text=data['answer'], id_question=self, id_submitted_quiz=completed)
@@ -187,19 +226,15 @@ class SimpleQuestion(QuizQuestion):
         
         return submit
         
-    # def save_result(self, submit):
-    #     """
-    #     Comptabilise et enregistre les points pour la réponse soumise submit
-    #     """
-    #     result = 0
-    #     if submit.correct():
-    #         result = self.points
-            
-    #     return result
-        
     def average_result(self):
         """
-        Renvoie le nombre moyen de points obtenus pour la question
+        Renvoie le nombre moyen de points obtenus pour la question en se basant sur
+        le nombre total de réponses soumises et sur la somme de tous les points obtenus.
+        La moyenne est ensuite arrondie à deux chiffres après la virgule pour éviter
+        tout problème d'affichage.
+        
+        Au cas où aucune réponse n'a encore été soumise, cette méthode retourne
+        simplement la chaîne ``--`` qui peut directement être utilisée dans le template.
         """
         l_submit = SqSubmit.objects.filter(id_question=self)
         total_points = 0 # Points cumulés de toutes les résolutions
@@ -219,6 +254,12 @@ class SimpleQuestion(QuizQuestion):
         """
         Permet de réévaluer toutes les réponses soumises pour la question après
         l'ajout d'une solution correcte pour corriger les statistiques.
+        
+        Pour ceci, la méthode récupère la liste des réponses soumises à la question
+        dans la table ``SqSubmit``. Elle applique la méthode ``.save_result`` à 
+        chacune d'entre elles. De plus,
+        comme le résultat de la résolution peut changer, il faut aussi mettre à jour
+        le résultat total obtenu pour la résolution (table ``CompletedQuiz``) liée à chaque réponse soumise.
         """
         # Liste des réponses soumises à la question
         l_question_submits = SqSubmit.objects.filter(id_question=self)
@@ -248,7 +289,7 @@ class SqSubmit(models.Model): #Réponse soumise par un élève
         
     def save_result(self):
         """
-        Comptabilise et enregistre les points obtenus. Si la réponse soumise
+        Comptabilise et enregistre les points obtenus pour la réponse soumise. Si la réponse soumise
         est correcte, tous les points sont attribués. Dans le cas contraire,
         aucun point n'est attribué.
         """
@@ -262,7 +303,7 @@ class SqSubmit(models.Model): #Réponse soumise par un élève
         
     def get_corrections(self):
         """
-        Renvoie les solutions correctes pour la question sous forme de liste de
+        Renvoie la liste des solutions correctes pour la question sous forme de liste de
         chaînes de charactères
         """
         # Récupération des corrections de la question
@@ -275,7 +316,7 @@ class SqSubmit(models.Model): #Réponse soumise par un élève
         
     def correct(self):
         """
-        Détermine si la réponse soumise est correcte est vérifiant qu'elle se
+        Détermine si la réponse soumise est correcte en vérifiant qu'elle se
         se trouve dans la liste des solutions correctes.
         """
         if self.text in self.get_corrections():
@@ -289,7 +330,7 @@ class SqSubmit(models.Model): #Réponse soumise par un élève
         lors de la correction automatique, cette méthode permet d'ajouter la réponse
         soumise aux solutions correctes de la question.
         
-        Toutes les réponses soumises pour la question sont ensuite rééavluées pour
+        Toutes les réponses soumises pour la question sont ensuite réeavaluées pour
         mettre à jour les statistiques.
         """
         # Nouvelle entrée dans la db pour ajouter la solution
@@ -301,8 +342,8 @@ class SqSubmit(models.Model): #Réponse soumise par un élève
         
     def build_correct(self):
         """
-        Instancie et retourne un objet ``CorrectSq`` correspondant à la réponse soumise.CompletedQuiz
-        La classe ``CorrectSq`` permet un accès plus rapide aux données nécessaires à
+        Instancie et retourne un objet ``CorrectSq`` correspondant à la réponse soumise ``self``.
+        La classe :py:class:``CorrectSq`` permet un accès plus rapide aux données nécessaires à
         l'affichage de la correction.
         """
         # Instanciation de l'objet. L'argument est la réponse soumise à corriger (self)
@@ -312,17 +353,20 @@ class SqSubmit(models.Model): #Réponse soumise par un élève
 #
 
 class Qcm(QuizQuestion):
-    multi_answers = models.BooleanField() #True si il est possible de cocher plusieurs choix
-    show_list = models.BooleanField() #True si les choix sont affichés sous forme de liste déroulante
+    multi_answers = models.BooleanField(default=False) #True si il est possible de cocher plusieurs choix
     
     def create_form(self, *args, **kwargs):
         """
-        Retourne un formulaire pour répondre à la question
+        Retourne un formulaire Django permettant à un étudiant de répondre à la question
+        ``self``. Le formulaire sera de type ``RadioForm`` si un seul choix
+        peut être sélectionné et de type ``CheckboxForm`` si la question autorise
+        l'étudiant à cocher plusieurs options.
+        
+        Les arguments fournis lors de l'instanciation du formulaire sont analogues
+        à ceux qui sont donnés pour l'instanciation d'un ``TextForm`` dans :py:meth:`SimpleQuestion.create_form`.
         """
         if self.multi_answers:
             Form = forms.CheckboxForm
-        elif self.show_list:
-            Form = forms.SelectForm
         else:
             Form = forms.RadioForm
             
@@ -330,7 +374,13 @@ class Qcm(QuizQuestion):
         
     def save_submit(self, data, completed):
         """
-        Enregistre les réponses soumises à la question
+        Enregistre une nouvelle entrée dans la table :py:class:`QcmSubmitMulti`
+        ou :py:class:`QcmSubmitOne` selon qu'il s'agisse d'une question avec
+        plusieurs options correctes ou une seule. Ces tables permettent de stocker
+        le(s) choix sélectionné(s) par l'étudiant pour la question ``self``.
+        
+        La récupération des données du formulaire à partir de l'argument ``data``
+        et l'instanciation du modèle est analogue à la manipulation effectuée dans :py:meth:`SimpleQuestion.save_submit`
         """
         if self.multi_answers:
             Model = QcmSubmitMulti
@@ -340,7 +390,9 @@ class Qcm(QuizQuestion):
         submit = Model(id_submitted_quiz=completed, id_question=self)
         
         if self.multi_answers:
-            submit.save() #Comme il peut s'agir d'une relation many to many, il faut sauvegarder et ajouter la relation après
+            submit.save()
+        
+        #Comme il peut s'agir d'une relation many to many, il faut sauvegarder et ajouter la relation après
         submit.id_selected=data['answer']
         
         submit.save_result()
@@ -348,30 +400,11 @@ class Qcm(QuizQuestion):
         
         return submit
         
-    # def save_result(self, submit):
-    #     """
-    #     Comptabilise et enregistre les points pour la réponse soumise submit
-    #     """
-    #     result = 0
-        
-    #     if self.multi_answers:
-    #         l_choices = QcmChoice.objects.filter(id_question=self) # Récupération des choix de la question
-    #         ppc = self.points / len(l_choices) # Nombre de points attribués par choix correct
-            
-    #         # À chaque option correctement cochée, on ajoute les points au résultat
-    #         for c in l_choices:
-    #             if c.correct(submit):
-    #                 result += ppc
-    #     else:
-    #         if submit.id_selected:
-    #             if submit.id_selected.valid:
-    #                 result = self.points
-        
-    #     return result
-        
     def average_result(self):
         """
-        Renvoie le nombre moyen de points obtenus pour la question
+        Récupère toutes les réponses soumises pour la question et renvoie la moyenne
+        arrondie à deux chiffres après la virgule sur la base du nombre de réponses
+        proposées et sur la somme des résultats obtenus.
         """
         if self.multi_answers:
             model = QcmSubmitMulti
@@ -404,7 +437,12 @@ class QcmChoice(models.Model): #Choix affichés pour un QCM
         
     def correct_submit(self, qcmsubmit):
         """
-        Détermine si la réponse soumise qcmsubmit est correcte ou non
+        Détermine le choix ``self`` a été coché correctement dans la réponse
+        soumise ``qcmsubmit``. Si l'option a été cochée et qu'elle est définie
+        comme valide, la méthode renvoie ``True``. Si l'option est cochée mais
+        définie comme invalide, la valeur de retour sera cette fois ``False``.
+        Si l'élève n'a pas coché l'option, le raisonnement se fera de manière analogue
+        mais dans le sens inverse.
         """
         # Si le choix est sélectionnée
         if self.checked(qcmsubmit):
@@ -421,7 +459,19 @@ class QcmChoice(models.Model): #Choix affichés pour un QCM
                 
     def checked(self, qcmsubmit):
         """
-        Détermine si le choix a été sélectionné ou non
+        Détermine si le choix a été sélectionné ou non dans la réponse soumise
+        ``qcmsubmit``.
+        
+        S'il la question peut admettre plusieurs options correctes, deux conditions doivent
+        être remplies. D'abord, au moins un choix doit avoir été coché dans ``qcmsubmit``.
+        Cette vérification est nécessaire car le champ ``qcmsubmit.id_selected`` peut
+        valoir ``null`` dans la base de données. Ensuite, il suffit de regarder
+        si le choix se trouve dans la liste des options sélectionnés avec la méthode
+        ``qcmsubmit.id_selected.all()``.
+        
+        Dans le cas d'une question avec une seule réponse correcte, la méthode
+        vérifie simplement que l'élément sélectionné corresponde au choix défini comme
+        correct.
         """
         # Si la sélection peut comporter plusieurs choix
         if self.id_question.multi_answers:
@@ -453,9 +503,9 @@ class QcmSubmit(models.Model):
             
     def build_correct(self):
         """
-        Instancie et retourne un objet ``CorrectQcm`` correspondant à la réponse soumise.CompletedQuiz
-        La classe ``CorrectQcm`` permet un accès plus rapide aux données nécessaires à
-        l'affichage de la correction.
+        Instancie et retourne un objet :py:class:`utils.correct.CorrectQcm` correspondant à la réponse soumise.
+        La classe :py:class:`utils.correct.CorrectQcm` permet un accès plus rapide aux données nécessaires
+        à l'affichage de la solution depuis le template.
         """
         # Instanciation de l'objet. L'argument est la réponse soumise à corriger (self)
         return CorrectQcm(self)
@@ -465,7 +515,10 @@ class QcmSubmitOne(QcmSubmit):
     
     def save_result(self):
         """
-        Comptabilise
+        Comptabilise et enregistre les points obtenus par raport au choix sélectionné.
+        
+        Si le choix sélectionné correspond à la solution, tous les points sont attribués.
+        Si aucune option n'est choisie, l'étudiant obtient automatiquement zéro point.
         """
         result = 0
         
@@ -482,6 +535,13 @@ class QcmSubmitMulti(QcmSubmit):
     
     def save_result(self):
         """
+        Comptabilise et enregistre les points obtenus par rapport aux choix cochés.
+        
+        Cette méthode parcourt tous les choix possibles pour la question
+        ``self.id_question`` récupérés avec :py:meth:`Qcm.get_choices`. Pour chaque
+        choix, elle utilise la méthode :py:meth:`QcmChoice.correct_submit` pour
+        vérifier que le choix a été coché correctement. L'étudiant obtient une partir
+        des points pour chaque choix correct.
         """
         result = 0
         l_choices = self.id_question.get_choices() # Choix de la question

@@ -1,4 +1,13 @@
+"""
+Ensemble d'objets pour permettre un accès facilité aux données nécessaires à
+l'affichage des corrections
+"""
+
 class CorrectQuestion:
+    """
+    Définit des raccourcis pour accéder aux attributs communs à tous les types
+    de questions.
+    """
     def __init__(self, submit):
         # Définition des caractéristiques de base des corrections à afficher
         self.comment = submit.id_question.comment
@@ -8,6 +17,13 @@ class CorrectQuestion:
         self.average = submit.id_question.average_result()
 
 class CorrectSq(CorrectQuestion):
+    """
+    Fournit des attributs spécifiques à la correction des questions à réponse courte.
+    L'attribut ``type`` permet d'identifier dans le template le type de question
+    dont il s'agit et de déterminer la manière d'afficher la correction.
+    
+    Pour une question à réponse courte, ``type`` vaut ``0``.
+    """
     def __init__(self, sqsubmit):
         CorrectQuestion.__init__(self, sqsubmit)
         
@@ -26,45 +42,36 @@ class CorrectSq(CorrectQuestion):
             self.html_class = "danger"
 
 class CorrectQcm(CorrectQuestion):
+    """
+    Facilite l'affichage de la correction des questions à choix multiples par
+    l'intermédiaire de raccourcis et instancie des objets de type :py:class:`CorrectChoice`.
+    
+    L'attribut ``type`` vaut ``1`` pour les QCM à réponses multiples, ``2`` pour
+    les listes déroulantes et ``3`` pour les QCM à réponse unique.
+    """
     def __init__(self, qcmsubmit):
         CorrectQuestion.__init__(self, qcmsubmit)
         
         self.l_correct_choices = [] # Contient les objets CorrectChoice
 
-####
-#### Elements de liste déroulante à supprimer
-####
         # Détermination du type de questions pour l'affichage dans le template
         if qcmsubmit.id_question.multi_answers:
             self.type = 1
         else:
-            if qcmsubmit.id_question.show_list:
-                self.type = 2
-            else:
-                self.type = 3
+            self.type = 2
         
         # Choix possibles pour la question
         l_choices = qcmsubmit.id_question.get_choices()
         
         for choice in l_choices:
             self.l_correct_choices.append(CorrectChoice(choice, qcmsubmit))
-            
-####
-#### Supprimer ce bloc (concerne les listes déroulantes) 
-####
-        # Pour une liste déroulante, seul le choix sélectionné est affiché
-        if qcmsubmit.id_question.show_list:
-            if qcmsubmit.id_selected:
-                self.selected = qcmsubmit.id_selected.text
-                if qcmsubmit.id_selected.valid:
-                    self.html_class = "success"
-                else:
-                    self.html_class = "danger"
-            else:
-                self.selected = ""
-                self.html_class = "danger"
 
 class CorrectChoice:
+    """
+    Fournis des raccourcis pour accéder aux données des choix de QCM à corriger.
+    Cette classe permet d'indiquer le texte à afficher avec le choix, de déterminer
+    s'il a été coché et s'il est correct.
+    """
     def __init__(self, choice, qcmsubmit):
         self.is_correct = choice.correct_submit(qcmsubmit) # Vérification du choix
         self.is_checked = choice.checked(qcmsubmit) # Vaut true si le choix est sélectionné
