@@ -535,39 +535,6 @@
         return properties;
     };
 
-    function QCM_Select() {
-        QCM_Radio.prototype.__init__.apply(this, arguments);
-    }
-    _$rapyd$_extends(QCM_Select, QCM_Radio);
-    QCM_Select.prototype.render = function render(){
-        var self = this;
-        var id_input, $container, $select, option;
-        id_input = self.parent.get_id();
-        $container = $("<li>", {
-            "class": "q_container list-group-item"
-        }).appendTo(self.parent.$render);
-        $("<label>", {
-            "for": id_input
-        }).append(self.text).appendTo($container);
-        $select = $("<select>", {
-            "class": "form-control",
-            "id": id_input
-        }).appendTo($container);
-        $("<option>").append("---------").appendTo($select);
-        var _$rapyd$_Iter7 = self.options;
-        for (var _$rapyd$_Index7 = 0; _$rapyd$_Index7 < _$rapyd$_Iter7.length; _$rapyd$_Index7++) {
-            option = _$rapyd$_Iter7[_$rapyd$_Index7];
-            $("<option>").append(option.content).appendTo($select);
-        }
-    };
-    QCM_Select.prototype.properties = function properties(){
-        var self = this;
-        var properties;
-        properties = QCM_Radio.prototype.properties.call(self);
-        properties["type"] = 3;
-        return properties;
-    };
-
     function Parse() {
         Parse.prototype.__init__.apply(this, arguments);
     }
@@ -587,15 +554,15 @@
         lines = text.split("\n");
         split_lines = [];
         self.l = 0;
-        var _$rapyd$_Iter8 = lines;
-        for (var _$rapyd$_Index8 = 0; _$rapyd$_Index8 < _$rapyd$_Iter8.length; _$rapyd$_Index8++) {
-            line = _$rapyd$_Iter8[_$rapyd$_Index8];
+        var _$rapyd$_Iter7 = lines;
+        for (var _$rapyd$_Index7 = 0; _$rapyd$_Index7 < _$rapyd$_Iter7.length; _$rapyd$_Index7++) {
+            line = _$rapyd$_Iter7[_$rapyd$_Index7];
             tag = "";
             content = "";
             is_content = false;
-            var _$rapyd$_Iter9 = line;
-            for (var _$rapyd$_Index9 = 0; _$rapyd$_Index9 < _$rapyd$_Iter9.length; _$rapyd$_Index9++) {
-                char = _$rapyd$_Iter9[_$rapyd$_Index9];
+            var _$rapyd$_Iter8 = line;
+            for (var _$rapyd$_Index8 = 0; _$rapyd$_Index8 < _$rapyd$_Iter8.length; _$rapyd$_Index8++) {
+                char = _$rapyd$_Iter8[_$rapyd$_Index8];
                 if (is_content) {
                     content += char;
                 } else if (char === " ") {
@@ -626,9 +593,9 @@
                 self.l += 1;
             }
         }
-        var _$rapyd$_Iter10 = self.questions;
-        for (var _$rapyd$_Index10 = 0; _$rapyd$_Index10 < _$rapyd$_Iter10.length; _$rapyd$_Index10++) {
-            question = _$rapyd$_Iter10[_$rapyd$_Index10];
+        var _$rapyd$_Iter9 = self.questions;
+        for (var _$rapyd$_Index9 = 0; _$rapyd$_Index9 < _$rapyd$_Iter9.length; _$rapyd$_Index9++) {
+            question = _$rapyd$_Iter9[_$rapyd$_Index9];
             question.check_question();
         }
     };
@@ -640,8 +607,7 @@
             questions_types = {
                 "??": SimpleQuestion,
                 "##": QCM_Checkbox,
-                "**": QCM_Radio,
-                "^^": QCM_Select
+                "**": QCM_Radio
             };
             if (questions_types[tag]) {
                 self.question_parent = new questions_types[tag](self, contenu, self.l);
@@ -670,9 +636,9 @@
             $(".viewbox").css("display", "block");
             self.$render = $("#view_form");
             self.$render.empty();
-            var _$rapyd$_Iter11 = self.questions;
-            for (var _$rapyd$_Index11 = 0; _$rapyd$_Index11 < _$rapyd$_Iter11.length; _$rapyd$_Index11++) {
-                question = _$rapyd$_Iter11[_$rapyd$_Index11];
+            var _$rapyd$_Iter10 = self.questions;
+            for (var _$rapyd$_Index10 = 0; _$rapyd$_Index10 < _$rapyd$_Iter10.length; _$rapyd$_Index10++) {
+                question = _$rapyd$_Iter10[_$rapyd$_Index10];
                 question.render();
             }
         } else {
@@ -695,9 +661,9 @@
             $(".errorsbox").removeClass("panel-default content-hidden disabled").addClass("panel-danger");
             $errors_div = $("#errors-div");
             $errors_div.empty();
-            var _$rapyd$_Iter12 = self.errors;
-            for (var _$rapyd$_Index12 = 0; _$rapyd$_Index12 < _$rapyd$_Iter12.length; _$rapyd$_Index12++) {
-                error = _$rapyd$_Iter12[_$rapyd$_Index12];
+            var _$rapyd$_Iter11 = self.errors;
+            for (var _$rapyd$_Index11 = 0; _$rapyd$_Index11 < _$rapyd$_Iter11.length; _$rapyd$_Index11++) {
+                error = _$rapyd$_Iter11[_$rapyd$_Index11];
                 $container = $("<div>", {
                     "class": "error-container"
                 }).appendTo($errors_div);
@@ -722,9 +688,9 @@
             utils.alert_dialog("Erreur", "Votre quiz ne comporte aucune question");
         } else {
             object_json = [];
-            var _$rapyd$_Iter13 = self.questions;
-            for (var _$rapyd$_Index13 = 0; _$rapyd$_Index13 < _$rapyd$_Iter13.length; _$rapyd$_Index13++) {
-                question = _$rapyd$_Iter13[_$rapyd$_Index13];
+            var _$rapyd$_Iter12 = self.questions;
+            for (var _$rapyd$_Index12 = 0; _$rapyd$_Index12 < _$rapyd$_Iter12.length; _$rapyd$_Index12++) {
+                question = _$rapyd$_Iter12[_$rapyd$_Index12];
                 object_json.append(question.properties());
             }
             json = JSON.stringify(object_json);

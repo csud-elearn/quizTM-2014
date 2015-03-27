@@ -125,22 +125,6 @@ class QCM_Radio(QCM_Checkbox):
 
         return properties
 
-class QCM_Select(QCM_Radio): #Question à liste déroulante. Seule le rendu change par rapport à QCM_Radio
-    def render(self):
-        id_input = self.parent.get_id()
-        $container = $("<li>", {"class" : "q_container list-group-item"}).appendTo(self.parent.$render)
-        $("<label>", {"for" : id_input}).append(self.text).appendTo($container)
-        $select = $("<select>", {"class" : "form-control", "id" : id_input}).appendTo($container)
-        $("<option>").append("---------").appendTo($select) #Ajout d'une option vide
-        for option in self.options:
-            $("<option>").append(option.content).appendTo($select)
-            
-    def properties(self): #Renvoie les caractéristiques de la question pour la construction du json
-        properties = QCM_Radio.properties(self)
-        properties["type"] = 3
-
-        return properties
-
 class Parse:
     def __init__(self, text):
         self.questions = [] #Listes contenant les objets questions du quiz
@@ -201,7 +185,6 @@ class Parse:
                 "??" : SimpleQuestion,
                 "##" : QCM_Checkbox,
                 "**" : QCM_Radio,
-                "^^" : QCM_Select
             }
             
             if questions_types[tag]:

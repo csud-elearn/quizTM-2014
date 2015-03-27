@@ -34,20 +34,6 @@
                     {% endfor %}
 
                 {% elif correction.type == 2 %}
-                    <label>{{ correction.text }} <span class="danger pull-right">{{ correction.result }}/{{ correction.points }}</span></label>
-                    <select class="form-control {{ correction.html_class }}">
-                        <option>{{ correction.selected }}</option>
-                    </select>
-                    {% for choice in correction.l_correct_choices %}
-                        {% if not choice.is_checked and not choice.is_correct %}
-                            <div class="panel panel-success panel-click content-hidden top-space">
-                                <div class="panel-heading bold">Solution <span class="caret"></span></div>
-                                <div class="panel-body">{{ choice.text }}</div>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-
-                {% elif correction.type == 3 %}
                     <span class="label-span">{{ correction.text }} <span class="danger pull-right">{{ correction.result }}/{{ correction.points }}</span></span>
                     {% for choice in correction.l_correct_choices %}
                         <input type="radio" class="{{ choice.html_class }}" {{ choice.attribute }}>
