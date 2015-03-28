@@ -51,7 +51,7 @@ class QuizForms:
         du quiz et les formulaires correspondants. Pour chaque question, elle appelle
         la méthode ``.save_submit()`` avec en argument les données récupérées à partir
         du formulaire associé à la question. La méthode ``.save_submit()`` se charge
-        ensuite de sauvegarder les données concernant les réponses soumises aux différentes
+        de sauvegarder les données concernant les réponses soumises aux différentes
         questions. La manière de traiter ces données dépendera du type de question
         dont il s'agit. On peut appliquer la méthode ``.save_submit()`` à chacune
         des questions du quiz sans se soucier du type car son comportement est défini

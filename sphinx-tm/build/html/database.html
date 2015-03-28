@@ -70,14 +70,18 @@
 <li class="toctree-l2"><a class="reference internal" href="rapydscript.html#comparaison-du-code-source-et-du-code-genere">Comparaison du code source et du code généré</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="functionalities.html">Description des fonctionnalités de l&#8217;application</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="functionalities.html#professeurs">Professeurs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="functionalities.html#etudiants">Étudiants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc-user.html">Documentation utilisateur</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc-user.html#professeurs">Professeurs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-user.html#etudiants">Étudiants</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="source.html">Documentation du code source</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="source.html#module-quiz.views">views.py</a></li>
 <li class="toctree-l2"><a class="reference internal" href="source.html#module-quiz.models">models.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source.html#module-quiz.forms">forms.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source.html#module-quiz.utils.submit">utils/submit.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source.html#module-quiz.utils.correct">utils/correct.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source.html#module-quiz.utils.save">utils/save.py</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Modèle relationnel</a><ul>
@@ -124,8 +128,8 @@
 <h1>Modèle relationnel<a class="headerlink" href="#modele-relationnel" title="Lien permanent vers ce titre">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Une des premières étapes importantes dans le développement d&#8217;un site web est l&#8217;élaboration d&#8217;un modèle relationnel structuré permettant de stocker toutes les données générées par l&#8217;application et de les relier entre elles. Un modèle relationnel décrit les différentes tables de la base de donnée et les liens entre ces tables. Une table peut être comparée à un tableau contenant des informations. Chaque table comporte une ou plusieurs colonnes, chaque colonne stockant un type de données précisément défini (par exemple, un nombre entier ou une chaîne de caractères). Si on imagine une table contenant les données sur les utilisateurs d&#8217;un site, une colonne pourrait alors contenir le pseudonyme d&#8217;un utilisateur et une autre son âge. On peut ensuite ajouter des lignes à une table, c&#8217;est à dire un ensemble de données dont chaque élément correspond à une colonne de la table. Dans l&#8217;exemple précédent, on ajouterait ainsi une ligne pour chaque utilisateur s&#8217;inscrivant sur le site. Chaque ligne est identifiée grâce à une clé primaire unique, habituellement sous la forme d&#8217;un entier, qui permet de créer des liens entre différentes lignes de différentes tables (appelées relations).</p>
-<p>Voici, présenté sous forme simplifiée à l&#8217;aide d&#8217;un tableau, comment on pourrait stocker les données concernant des quiz ainsi que leurs créateurs :</p>
+<p>Une des premières étapes importantes dans le développement d&#8217;un site web est l&#8217;élaboration d&#8217;un modèle relationnel structuré permettant de stocker toutes les données générées par l&#8217;application et de les relier entre elles. Un modèle relationnel décrit les différentes tables de la base de données et les liens entre ces tables. Une table peut être comparée à un tableau contenant des informations. Chaque table comporte une ou plusieurs colonnes, chaque colonne stockant un type de données précisément défini, par exemple un nombre entier ou une chaîne de caractères. Si on imagine une table contenant les données sur les utilisateurs d&#8217;un site, une colonne pourrait alors contenir le pseudonyme d&#8217;un utilisateur et une autre son âge. On peut ensuite ajouter des entrées dans une table, c&#8217;est à dire un ensemble de données dont chaque élément correspond à une colonne de la table. Dans l&#8217;exemple précédent, on ajouterait ainsi une ligne pour chaque utilisateur s&#8217;inscrivant sur le site. Chaque ligne est identifiée grâce à une clé primaire unique, habituellement sous la forme d&#8217;un entier, qui permet de créer des liens entre différentes lignes de différentes tables. Ces liens entre différentes tables sont appelées relations.</p>
+<p>Voici, présenté sous forme simplifiée à l&#8217;aide d&#8217;un tableau, comment on pourrait stocker les données concernant des quiz et leurs créateurs :</p>
 <p><strong>Table contenant les utilisateurs :</strong></p>
 <table border="1" class="docutils">
 <colgroup>
@@ -157,52 +161,47 @@
 <p><strong>Table contenant les quiz :</strong></p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="20%" />
-<col width="38%" />
-<col width="30%" />
-<col width="12%" />
+<col width="29%" />
+<col width="54%" />
+<col width="17%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Clé primaire</th>
 <th class="head">Titre du quiz</th>
-<th class="head">Nombre de questions</th>
 <th class="head">Auteur</th>
 </tr>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>1</td>
 <td>Fonctions exponentielles</td>
-<td>5</td>
 <td>3</td>
 </tr>
 <tr class="row-odd"><td>2</td>
 <td>Logarithmes</td>
-<td>9</td>
 <td>3</td>
 </tr>
 <tr class="row-even"><td>3</td>
 <td>Comportement à l&#8217;infini</td>
-<td>8</td>
 <td>2</td>
 </tr>
 </tbody>
 </table>
 <p>Ici, le premier quiz a comme titre <em>Fonctions exponentielles</em>, comporte 5 questions et a été créé par Marc (Utilisateur 3).</p>
-<p>Une fois que le modèle relationnel a été élaboré, on peut créer une base de données sous forme de fichier. Le langage SQL permet de créer les tables d&#8217;une base de données, d&#8217;y enregistrer des informations et de faire des requêtes (c&#8217;est à dire récupérer des données enregistrées). Un logiciel ou une application web peut ainsi communiquer avec une base de données et stocker les informations nécessaires de manière permanente.</p>
-<p>Django offre la possibilité de créer une base de données et d&#8217;interagir celle-ci par le biais d&#8217;une API, on peut donc éviter l&#8217;utilisation du langage SQL et communiquer avec la base de données avec des objets et des méthodes Python.</p>
+<p>Une fois que le modèle relationnel a été élaboré, on peut créer une base de données sous forme de fichier. Le langage SQL permet de créer les tables d&#8217;une base de données, d&#8217;y enregistrer des informations et de faire des requêtes, c&#8217;est à dire récupérer des données enregistrées. Un logiciel ou une application web peut ainsi communiquer avec une base de données et stocker les informations nécessaires de manière permanente.</p>
+<p>Django offre la possibilité de créer une base de données et d&#8217;interagir avec celle-ci par le biais d&#8217;une ORM (Object Relational Mapper), on peut donc éviter l&#8217;utilisation du langage SQL et communiquer avec la base de données avec des objets et des méthodes Python. Cet aspect de Django sera abordé un peu plus loin.</p>
 </div>
 <div class="section" id="utilisation-dans-l-application-de-creation-de-quiz">
 <h2>Utilisation dans l&#8217;application de création de quiz<a class="headerlink" href="#utilisation-dans-l-application-de-creation-de-quiz" title="Lien permanent vers ce titre">¶</a></h2>
 <div class="section" id="implementation-dans-django">
 <h3>Implémentation dans Django<a class="headerlink" href="#implementation-dans-django" title="Lien permanent vers ce titre">¶</a></h3>
-<p>Comme indiqué précédemment, Django fournit une interface de haut niveau pour créer et interagir avec une base de données. On peut écrire nos tables avec une architecture orientée objet, que Django &#8220;traduira&#8221; ensuite en SQL. Ainsi, pour créer une table dans notre base de données, il suffit de définir une classe héritant de <code class="xref rst rst-dir docutils literal"><span class="pre">models.Model</span></code> et d&#8217;initialiser des variables de classes pour ajouter des colonnes à la tables. Ainsi, par exemple, pour implémenter une table contenant les données générales d&#8217;un quiz, il suffit d&#8217;écrire le code suivant :</p>
+<p>Comme indiqué précédemment, Django fournit une interface de haut niveau pour créer et interagir avec une base de données. On peut écrire nos tables avec une architecture orientée objet, que Django &#8220;traduira&#8221; ensuite en SQL. Ainsi, pour créer une table dans notre base de données, il suffit de définir une classe héritant de <code class="docutils literal"><span class="pre">models.Model</span></code> et d&#8217;initialiser des variables de classes pour ajouter des colonnes à la tables. Ainsi, par exemple, pour implémenter une table contenant les données générales d&#8217;un quiz, il suffit d&#8217;écrire le code suivant :</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Quiz</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span> <span class="c">#Infos générales sur le quiz</span>
     <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span> <span class="c">#Colonne contenant une chaîne de caractères</span>
     <span class="n">creation_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">()</span> <span class="c">#Colonne contenant une date/heure</span>
     <span class="n">code</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span> <span class="c">#Colonne contenant une chaîne de caractères</span>
 </pre></div>
 </div>
-<p>Les fonctions comme <code class="xref rst rst-dir docutils literal"><span class="pre">CharField()</span></code> ou <code class="xref rst rst-dir docutils literal"><span class="pre">DateTimeField()</span></code> permettent de définir des champs d&#8217;un type de données précis. Une liste complète des types de champs est disponible sur la documentation officielle de Django : <a class="reference external" href="https://docs.djangoproject.com/en/1.7/ref/models/fields/#field-types">https://docs.djangoproject.com/en/1.7/ref/models/fields/#field-types</a></p>
+<p>Les objets comme <code class="docutils literal"><span class="pre">CharField()</span></code> ou <code class="docutils literal"><span class="pre">DateTimeField()</span></code> permettent de définir des champs d&#8217;un type de données précis. Une liste complète des types de champs est disponible sur la documentation officielle de Django : <a class="reference external" href="https://docs.djangoproject.com/en/1.7/ref/models/fields/#field-types">https://docs.djangoproject.com/en/1.7/ref/models/fields/#field-types</a></p>
 </div>
 <div class="section" id="schema-global">
 <h3>Schéma global<a class="headerlink" href="#schema-global" title="Lien permanent vers ce titre">¶</a></h3>
@@ -215,24 +214,27 @@
 <div class="section" id="explications-des-tables">
 <h3>Explications des tables<a class="headerlink" href="#explications-des-tables" title="Lien permanent vers ce titre">¶</a></h3>
 <div class="section" id="quiz">
-<h4>Quiz<a class="headerlink" href="#quiz" title="Lien permanent vers ce titre">¶</a></h4>
-<p>La table <em>Quiz</em> est la table centrale de l&#8217;application et toutes les autres tables s&#8217;organisent autour d&#8217;elle. Elle comporte trois colonnes : une contenant le titre, une autre contenant la date et l&#8217;heure de création (ajouté automatiquement lorsqu&#8217;un nouveau quiz est créé) ainsi qu&#8217;une colonne dans laquelle est stockée le code du quiz. L&#8217;intérêt de stocker ce code n&#8217;est pas forcément évident. Il est stocké afin de permettre à un professeur de créer un nouveau quiz à partir d&#8217;un quiz créé précédemment par lui-même ou un autre professeur (à condition que celui-ci l&#8217;ait rendu public). Le code peut ainsi être modifé pour ajouter des questions ou apporter une quelconque modification. Cette table comporte également une relation vers une table Teacher (qui ne fait pas partie de l&#8217;application de quiz) qui permet l&#8217;intégration dans le projet de groupe.</p>
-<p><strong>Note :</strong> la fonction de récupération de quiz existants n&#8217;est pas encore fonctionnelle.</p>
-<p>Avec django, il est possible d&#8217;initialiser automatiquement un champ <code class="xref rst rst-dir docutils literal"><span class="pre">DateTimeField</span></code> à la date/heure du moment où le modèle est instancié avec le paramètre <code class="xref rst rst-dir docutils literal"><span class="pre">auto_now_add</span></code></p>
+<h4><code class="docutils literal"><span class="pre">Quiz</span></code><a class="headerlink" href="#quiz" title="Lien permanent vers ce titre">¶</a></h4>
+<p>La table <code class="docutils literal"><span class="pre">Quiz</span></code> est la table centrale de l&#8217;application et toutes les autres tables s&#8217;organisent autour d&#8217;elle. Elle comporte trois colonnes importantes : une contenant le titre, une autre contenant la date et l&#8217;heure de création (ajouté automatiquement lorsqu&#8217;un nouveau quiz est créé) ainsi qu&#8217;une colonne dans laquelle est stockée le nombre maximal de points pouvant être obtenus pour le quiz en question. Cette table comporte également une relation vers une table Teacher  qui permet l&#8217;intégration dans le projet de groupe.</p>
+<p>Avec django, il est possible d&#8217;initialiser automatiquement un champ <code class="docutils literal"><span class="pre">DateTimeField</span></code> à la date/heure du moment où le modèle est instancié avec le paramètre <code class="docutils literal"><span class="pre">auto_now_add</span></code></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">creation_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">auto_now_add</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="section" id="quizdraft">
+<h4><code class="docutils literal"><span class="pre">QuizDraft</span></code><a class="headerlink" href="#quizdraft" title="Lien permanent vers ce titre">¶</a></h4>
+<p>Cette table est un peu isolée dans le schéma relationnel et n&#8217;a qu&#8217;une fonction : enregistrer le code qu&#8217;un quiz qu&#8217;un professeur n&#8217;a pas terminé et lui offrir la possibilité de le récupérer plus tard pour continuer son travail. Outre la relation vers la table <code class="docutils literal"><span class="pre">Teacher</span></code> et la colonne stockant le code du quiz, une colonne permet de stocker un titre pour pouvoir identifier rapidement un brouillon.</p>
+</div>
 <div class="section" id="simplequestion">
-<h4>SimpleQuestion<a class="headerlink" href="#simplequestion" title="Lien permanent vers ce titre">¶</a></h4>
-<p>Cette table contient les informations générales sur les questions simples du quiz. Ces questions sont présentées sous la forme d&#8217;un simple champ de texte lorsqu&#8217;un élève complète le quiz. Une première colonne <em>title</em> stocke l&#8217;énoncé de la question, <em>comment</em> permet d&#8217;inclure un commentaire affiché lors de la correction automatique du quiz (par exemple la démonstration d&#8217;une égalité), <em>points</em> définit le nombre de points attribués sur cette question et <em>number</em> enregistre l&#8217;ordre auquel doit apparaître la question dans le quiz. Une relation désigne le quiz qui intègre la question.</p>
+<h4><code class="docutils literal"><span class="pre">SimpleQuestion</span></code><a class="headerlink" href="#simplequestion" title="Lien permanent vers ce titre">¶</a></h4>
+<p>Cette table contient les informations générales sur les questions simples du quiz. Ces questions sont présentées sous la forme d&#8217;un simple champ de texte lorsqu&#8217;un élève complète le quiz. Une première colonne <code class="docutils literal"><span class="pre">title</span></code> stocke l&#8217;énoncé de la question, <code class="docutils literal"><span class="pre">comment</span></code> permet d&#8217;inclure un commentaire affiché lors de la correction automatique du quiz (par exemple la démonstration d&#8217;une égalité), <code class="docutils literal"><span class="pre">points</span></code> définit le nombre de points attribués sur cette question et <code class="docutils literal"><span class="pre">number</span></code> enregistre l&#8217;ordre auquel doit apparaître la question dans le quiz. Une relation désigne le quiz qui intègre la question.</p>
 </div>
 <div class="section" id="sqanswer">
-<h4>SqAnswer<a class="headerlink" href="#sqanswer" title="Lien permanent vers ce titre">¶</a></h4>
+<h4><code class="docutils literal"><span class="pre">SqAnswer</span></code><a class="headerlink" href="#sqanswer" title="Lien permanent vers ce titre">¶</a></h4>
 <p>Cette table contient simplement la solution de la question définie par la relation vers la table <em>SimpleQuestion</em>. Il est important de noter qu&#8217;il peut y avoir plusieurs solutions possibles pour une question et c&#8217;est la raison pour laquelle la solution n&#8217;est pas simplement stockée dans une colonne de <em>SimpleQuestion</em>.</p>
 </div>
 <div class="section" id="qcm">
-<h4>Qcm<a class="headerlink" href="#qcm" title="Lien permanent vers ce titre">¶</a></h4>
+<h4><code class="docutils literal"><span class="pre">Qcm</span></code><a class="headerlink" href="#qcm" title="Lien permanent vers ce titre">¶</a></h4>
 <p>La table Qcm permet de stocker les informations générales à propos des questions à choix multiples. Ces questions sont affichées sous forme de boutons radio, de cases à cocher ou de liste déroulante.
 Cette table reprend plusieurs colonnes de la table <em>SimpleQuestion</em>. C&#8217;est pourquoi ces deux tables héritent en fait du même modèle dans django :</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">QuizQuestion</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span> <span class="c">#Classe abstraite dont héritent toutes les questions</span>
@@ -250,33 +252,33 @@ Cette table reprend plusieurs colonnes de la table <em>SimpleQuestion</em>. C&#8
 
 <span class="k">class</span> <span class="nc">Qcm</span><span class="p">(</span><span class="n">QuizQuestion</span><span class="p">):</span>
     <span class="n">multi_answers</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">()</span>
-    <span class="n">show_list</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>En plus des colonnes héritées, <em>Qcm</em> possède deux champs de types booléens : <em>multi_answers</em>, qui définit si plusieurs options peuvent être cochées ou non, et <em>show_list</em>, qui vaut <code class="xref rst rst-dir docutils literal"><span class="pre">True</span></code> si la question est affichée sous forme de liste déroulante. Si plusieurs options peuvent être cochées, la question sera dans tous les cas affichée à l&#8217;aide de cases à cocher.</p>
+<p>En plus des colonnes héritées de <code class="docutils literal"><span class="pre">QuizQuestion`</span></code>, <code class="docutils literal"><span class="pre">Qcm</span></code> possède un champ de type booléen. Il s&#8217;agit de <code class="docutils literal"><span class="pre">multi_answers</span></code>, qui détermine si plusieurs options peuvent êres cochées ou non. Si ce champ vaut <code class="docutils literal"><span class="pre">True</span></code>, la question sera affiché sous forme de cases à cocher en HTML. Dans le cas contraire, elle sera affichée à l&#8217;aide de boutons radio.</p>
 </div>
 <div class="section" id="qcmchoice">
-<h4>QcmChoice<a class="headerlink" href="#qcmchoice" title="Lien permanent vers ce titre">¶</a></h4>
-<p>Cette table contient les différents choix possibles pour la question définie par la relation vers <em>Qcm</em>. Elle est formée de deux champs, le premier contenant le texte du choix et l&#8217;autre définissant par un booléen s&#8217;il est correct ou non de cocher ce choix. Une question à choix multiples doit avoir au moins deux choix possibles et au moins un choix correct. Si <em>multi_answers</em> vaut <code class="xref rst rst-dir docutils literal"><span class="pre">False</span></code> dans <em>Qcm</em>, une seule option peut être correcte puisque l&#8217;étudiant n&#8217;a la possibilité de cocher qu&#8217;une seule option.</p>
-<p><strong>Note :</strong> D&#8217;un point de vue purement relationnel, comme il est indiqué sur le diagramme, cette table possède une relation vers une table qui sert d&#8217;intermédiaire entre <em>QcmChoice</em> et <em>QcmSubmitMulti</em>. Cette table intermédiaire crée en fait une relation de type <em>many-to-many</em>. L&#8217;implémentation de ce type de relation avec Django sera abordé plus loin.</p>
+<h4><code class="docutils literal"><span class="pre">QcmChoice</span></code><a class="headerlink" href="#qcmchoice" title="Lien permanent vers ce titre">¶</a></h4>
+<p>Cette table contient les différents choix possibles pour la question définie par la relation vers <code class="docutils literal"><span class="pre">Qcm</span></code>. Elle est formée de deux champs, le premier contenant le texte du choix et l&#8217;autre définissant par un booléen s&#8217;il est correct ou non de cocher ce choix. Une question à choix multiples doit avoir au moins deux choix possibles et au moins un choix correct. Si <code class="docutils literal"><span class="pre">multi_answers</span></code> vaut <code class="docutils literal"><span class="pre">False</span></code> dans <code class="docutils literal"><span class="pre">Qcm</span></code>, une seule option peut être correcte puisque l&#8217;étudiant n&#8217;a la possibilité de cocher qu&#8217;une seule option.</p>
+<p><strong>Note :</strong> D&#8217;un point de vue purement relationnel, comme il est indiqué sur le diagramme, cette table possède une relation vers une table qui sert d&#8217;intermédiaire entre <em>QcmChoice</em> et <code class="docutils literal"><span class="pre">QcmSubmitMulti</span></code>. Cette table intermédiaire crée en fait une relation de type <em>Complexe-Complexe</em>. L&#8217;implémentation de ce type de relation avec Django sera abordé plus loin.</p>
 </div>
 <div class="section" id="completedquiz">
-<h4>CompletedQuiz<a class="headerlink" href="#completedquiz" title="Lien permanent vers ce titre">¶</a></h4>
-<p>Comme on peut le voir sur le diagramme, à l&#8217;instar de <em>Quiz</em>, cette table occupe aussi un rôle central dans le modèle relationnel. Elle permet de faire le lien entre un quiz créé par un professeur et les réponses soumises à ce quiz par les étudiants. Elle possède donc une relation vers une table <em>Student</em> (encore une fois extérieure à l&#8217;application). De l&#8217;autre côté, cette table pointe vers <em>Quiz</em> et définit logiquement le quiz auquel l&#8217;étudiant a répondu. Un seul champ est présent : la date et l&#8217;heure de la soumission des réponses.</p>
+<h4><code class="docutils literal"><span class="pre">CompletedQuiz</span></code><a class="headerlink" href="#completedquiz" title="Lien permanent vers ce titre">¶</a></h4>
+<p>Comme on peut le voir sur le diagramme, à l&#8217;instar de <code class="docutils literal"><span class="pre">Quiz</span></code>, cette table occupe aussi un rôle central dans le modèle relationnel. Elle permet de faire le lien entre un quiz créé par un professeur et les réponses soumises à ce quiz par les étudiants. Elle possède donc une relation vers une table <code class="docutils literal"><span class="pre">Student</span></code>, qui définit l&#8217;étudiant ayant répondu au quiz. De l&#8217;autre côté, cette table pointe vers <code class="docutils literal"><span class="pre">Quiz</span></code> et définit logiquement le quiz auquel l&#8217;étudiant a répondu. Un seul champ est présent : la date et l&#8217;heure de la soumission des réponses.</p>
 </div>
 <div class="section" id="sqsubmit">
-<h4>SqSubmit<a class="headerlink" href="#sqsubmit" title="Lien permanent vers ce titre">¶</a></h4>
-<p>Il s&#8217;agit simplement de la réponse apportée à une question simple. La table a donc un champ <em>text</em> qui contient la réponse soumise par l&#8217;élève. Elle possède aussi deux relations, une vers <em>SimpleQuestion</em> pour préciser la question auquel l&#8217;élève a répondu, et une autre vers <em>CompletedQuiz</em>. La réponse soumise par l&#8217;élève sera ensuite comparée à(aux) solution(s) enregistrées pour déterminer si les points sont attribués ou non.</p>
+<h4><code class="docutils literal"><span class="pre">SqSubmit</span></code><a class="headerlink" href="#sqsubmit" title="Lien permanent vers ce titre">¶</a></h4>
+<p>Il s&#8217;agit simplement de la réponse apportée à une question simple. La table a donc un champ <code class="docutils literal"><span class="pre">text</span></code> qui contient la réponse soumise par l&#8217;élève et un champ <code class="docutils literal"><span class="pre">result</span></code> qui stocke le nombre de points obtenus pour la question. Elle possède aussi deux relations, une vers <code class="docutils literal"><span class="pre">SimpleQuestion</span></code> pour préciser la question auquel l&#8217;élève a répondu, et une autre vers <em>CompletedQuiz</em>. La réponse soumise par l&#8217;élève sera ensuite comparée à(aux) solution(s) enregistrées pour déterminer si les points sont attribués ou non.</p>
 </div>
 <div class="section" id="qcmsubmitone-et-qcmsubmitmulti">
-<h4>QcmSubmitOne et QcmSubmitMulti<a class="headerlink" href="#qcmsubmitone-et-qcmsubmitmulti" title="Lien permanent vers ce titre">¶</a></h4>
-<p>Ces deux tables sont très similaires. <em>QcmSubmitOne</em> contient une relation vers l&#8217;option sélectionnée par l&#8217;étudiant dans une question à choix multiples avec <em>multi_answers</em> valant <code class="xref rst rst-dir docutils literal"><span class="pre">False</span></code>, tandis que <em>QcmSubmitMulti</em> peut contenir des relations vers plusieurs options, quand <em>multi_answers</em> vaut <code class="xref rst rst-dir docutils literal"><span class="pre">True</span></code>. Il s&#8217;agit donc dans le premier cas d&#8217;une relation <em>many-to-one</em>, puique plusieurs lignes (réponses fournies par différents élèves) peuvent pointer vers la même option. Dans le deuxième cas, c&#8217;est une relation de type <em>many-to-many</em>, puisque plusieurs lignes peuvent pointer vers plusieurs options.</p>
+<h4><code class="docutils literal"><span class="pre">QcmSubmitOne</span> <span class="pre">et</span> <span class="pre">QcmSubmitMulti</span></code><a class="headerlink" href="#qcmsubmitone-et-qcmsubmitmulti" title="Lien permanent vers ce titre">¶</a></h4>
+<p>Ces deux tables sont très similaires. <code class="docutils literal"><span class="pre">QcmSubmitOne</span></code> contient une relation vers l&#8217;option sélectionnée par l&#8217;étudiant dans une question à choix multiples avec <em>multi_answers</em> valant <code class="docutils literal"><span class="pre">False`</span></code>, tandis que <code class="docutils literal"><span class="pre">QcmSubmitMulti</span></code> peut contenir des relations vers plusieurs options, quand <code class="docutils literal"><span class="pre">multi_answers</span></code> vaut <code class="docutils literal"><span class="pre">True</span></code>. Il s&#8217;agit donc dans le premier cas d&#8217;une relation <em>Complexe-Simple</em>, puique plusieurs lignes peuvent pointer vers la même option. Dans le deuxième cas, c&#8217;est une relation de type <em>Complexe-Complexe</em>, puisque plusieurs lignes peuvent pointer vers plusieurs options.</p>
 <p>Dans Django, voici comment seront définies ces relations :</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">id_selected</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">QcmChoice</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c">#Relation many-to-one</span>
-<span class="n">id_selected</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="n">QcmChoice</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c">#Relation many-to-many</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">id_selected</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">QcmChoice</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c">#Relation Complexe-Simple</span>
+<span class="n">id_selected</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="n">QcmChoice</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c">#Relation Complexe-Complexe</span>
 </pre></div>
 </div>
-<p>L&#8217;argument <code class="xref rst rst-dir docutils literal"><span class="pre">null</span></code> vaut ici <code class="xref rst rst-dir docutils literal"><span class="pre">True</span></code> car il se peut que l&#8217;étudiant ne coche aucun choix. Dans ce cas-là, il n&#8217;obtiendra dans tous les cas aucun point.</p>
+<p>L&#8217;argument <code class="docutils literal"><span class="pre">null</span></code> vaut ici <code class="docutils literal"><span class="pre">True</span></code> car il se peut que l&#8217;étudiant ne coche aucun choix. Dans ce cas-là, il n&#8217;obtiendra dans tous les cas aucun point.</p>
+<p>En plus de ces relations, ces tables enregistrent aussi le nombre de points obtenus par l&#8217;étudiant pour la question dans la colonne <code class="docutils literal"><span class="pre">result</span></code>.</p>
 </div>
 </div>
 </div>

@@ -540,7 +540,7 @@ class QcmSubmitMulti(QcmSubmit):
         Cette méthode parcourt tous les choix possibles pour la question
         ``self.id_question`` récupérés avec :py:meth:`Qcm.get_choices`. Pour chaque
         choix, elle utilise la méthode :py:meth:`QcmChoice.correct_submit` pour
-        vérifier que le choix a été coché correctement. L'étudiant obtient une partir
+        vérifier que le choix a été coché correctement. L'étudiant obtient une part
         des points pour chaque choix correct.
         """
         result = 0

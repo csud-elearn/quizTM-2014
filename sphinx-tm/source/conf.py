@@ -188,14 +188,14 @@ htmlhelp_basename = 'Dveloppementduneapplicationwebdecrationdequizdoc'
 # -- Options for LaTeX output ---------------------------------------------
 
 latex_elements = {
-# The paper size ('letterpaper' or 'a4paper').
-#'papersize': 'letterpaper',
-
-# The font size ('10pt', '11pt' or '12pt').
-#'pointsize': '10pt',
-
-# Additional stuff for the LaTeX preamble.
-#'preamble': '',
+   'papersize':"a4",
+   'author': "Benoît Léo Maillard",
+   'date': "27 mars 2015",
+   'title': "Développement d'une application de quiz",
+   'release' : "",
+   'releasename' : "Travail de maturité",
+   'fontpkg': '\\usepackage{times}',
+   'babel': '\\usepackage[francais]{babel}',
 }
 
 # Grouping the document tree into LaTeX files. List of tuples

@@ -78,6 +78,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../../source.html">Documentation du code source</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../source.html#module-quiz.views">views.py</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../source.html#module-quiz.models">models.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source.html#module-quiz.forms">forms.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source.html#module-quiz.utils.submit">utils/submit.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source.html#module-quiz.utils.correct">utils/correct.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source.html#module-quiz.utils.save">utils/save.py</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../database.html">Modèle relationnel</a><ul>
@@ -125,16 +129,11 @@
 <span class="kn">from</span> <span class="nn">django.core.urlresolvers</span> <span class="kn">import</span> <span class="n">reverse</span>
 <span class="kn">from</span> <span class="nn">quiz.utils.save</span> <span class="kn">import</span> <span class="n">SaveQuiz</span>
 <span class="kn">from</span> <span class="nn">quiz.utils.submit</span> <span class="kn">import</span> <span class="n">QuizForms</span>
-<span class="kn">from</span> <span class="nn">quiz.utils.correct</span> <span class="kn">import</span> <span class="n">CorrectQuiz</span>
-<span class="kn">from</span> <span class="nn">quiz.forms</span> <span class="kn">import</span> <span class="n">TextForm</span><span class="p">,</span> <span class="n">CheckboxForm</span><span class="p">,</span> <span class="n">RadioForm</span><span class="p">,</span> <span class="n">SelectForm</span>
 <span class="kn">from</span> <span class="nn">quiz.models</span> <span class="kn">import</span> <span class="n">Quiz</span><span class="p">,</span> <span class="n">QuizDraft</span><span class="p">,</span> <span class="n">CompletedQuiz</span><span class="p">,</span> <span class="n">SqSubmit</span><span class="p">,</span> <span class="n">QcmSubmitMulti</span><span class="p">,</span> <span class="n">QcmSubmitOne</span>
 <span class="kn">from</span> <span class="nn">common.models</span> <span class="kn">import</span> <span class="n">Teacher</span><span class="p">,</span> <span class="n">Student</span>
 <span class="kn">from</span> <span class="nn">common.auth_utils</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">django.contrib.auth.decorators</span> <span class="kn">import</span> <span class="n">login_required</span><span class="p">,</span> <span class="n">user_passes_test</span>
 <span class="kn">import</span> <span class="nn">json</span>
-
-<span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;quiz/index.html&#39;</span><span class="p">)</span>
 
 <span class="nd">@login_required</span>
 <span class="nd">@user_passes_test</span><span class="p">(</span><span class="n">is_teacher</span><span class="p">)</span>
@@ -148,7 +147,7 @@
 <span class="sd">    </span>
 <span class="sd">    Au contraire, s&#39;il la requête HTTP est de type POST, la vue se charge d&#39;enregistrer</span>
 <span class="sd">    le nouveau quiz dans la base de données en instanciant un objet de la classe</span>
-<span class="sd">    ``SaveQuiz`` avec en argument les paramètres de la requête HTTP et le compte</span>
+<span class="sd">    :py:class:`.utils.save.SaveQuiz` avec en argument les paramètres de la requête HTTP et le compte</span>
 <span class="sd">    utilisateur du créateur du quiz. Cette</span>
 <span class="sd">    classe se charge ensuite de créer les entrées nécessaires dans les différentes tables de</span>
 <span class="sd">    la base de données.</span>
@@ -174,7 +173,7 @@
         <span class="n">quiz</span> <span class="o">=</span> <span class="n">SaveQuiz</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">questions_list</span><span class="p">,</span> <span class="n">quizcode</span><span class="p">,</span> <span class="n">teacher_account</span><span class="p">)</span> <span class="c">#Sauvegarde du quiz dans la db</span>
         
         <span class="c"># Redirection vers la page de résolution du quiz créé</span>
-        <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&quot;quiz:complete&quot;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">quiz</span><span class="o">.</span><span class="n">get_id</span><span class="p">()]))</span>
+        <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&quot;quiz:complete&quot;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">quiz</span><span class="o">.</span><span class="n">quiz_db</span><span class="o">.</span><span class="n">pk</span><span class="p">]))</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;quiz/create.html&#39;</span><span class="p">)</span>
 </div>
@@ -185,19 +184,19 @@
 <span class="sd">    change selon qu&#39;il s&#39;agisse d&#39;une requête HTTP de type GET ou de type POST.</span>
 <span class="sd">    </span>
 <span class="sd">    Dans le cas d&#39;une requête de type GET, la vue se contente de récupérer le quiz</span>
-<span class="sd">    correspondant à l&#39;id ``n_quiz`` et d&#39;instancier un objet ``QuizForms`` à partir</span>
+<span class="sd">    avec la clé primaire ``n_quiz`` et d&#39;instancier un objet :py:class:`utils.submit.QuizForms` à partir</span>
 <span class="sd">    du quiz sélectionné. Cet objet prend en charge la création de tous les formulaires</span>
 <span class="sd">    Django nécessaires pour compléter le quiz (un formulaire Django par question).</span>
 <span class="sd">    Ces formulaires Django sont ensuite récupérés par l&#39;intermédiaire de la méthode</span>
-<span class="sd">    ``.get_forms()`` et placés dans le contexte de la fonction ``render``.</span>
+<span class="sd">    ``.get_forms()`` et placés dans le contexte de la fonction ``render()``.</span>
 <span class="sd">    </span>
 <span class="sd">    La requête de type POST est utilisée pour l&#39;enregistrement des réponses soumises</span>
 <span class="sd">    au quiz par un étudiant. Là aussi, on utilise la classe ``QuizForms``, sauf que</span>
 <span class="sd">    l&#39;instanciation se fait avec un deuxième argument, ``data``. Cet argument contient</span>
 <span class="sd">    en fait les données soumises par le biais des formulaires Django lorsque un</span>
 <span class="sd">    étudiant complète le quiz. Pour s&#39;assurer de la validité de ces données, on</span>
-<span class="sd">    utilise la méthode ``.are_valid`` de la classe ``QuizForms``. Une fois le</span>
-<span class="sd">    contrôle effectué, la méthode ``.save_answers`` se charge d&#39;ajouter de nouvelles</span>
+<span class="sd">    utilise la méthode :py:meth:`submit.QuizForms.are_valid` de la classe ``QuizForms``. Une fois le</span>
+<span class="sd">    contrôle effectué, la méthode ``.save_answers()`` se charge d&#39;ajouter de nouvelles</span>
 <span class="sd">    entrées dans la base de donnée pour stocker les réponses soumises par l&#39;étudiant.</span>
 <span class="sd">    Pour finir, l&#39;utilisateur est redirigé vers la page de correction correspondant</span>
 <span class="sd">    aux réponses envoyées précédemment.</span>
@@ -215,7 +214,8 @@
         <span class="c">#On controle que les formulaires sont valides</span>
         <span class="k">if</span> <span class="n">quizforms</span><span class="o">.</span><span class="n">are_valid</span><span class="p">():</span>
             
-            <span class="n">completed</span> <span class="o">=</span> <span class="n">quizforms</span><span class="o">.</span><span class="n">save_answers</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span> <span class="c">#Les réponses sont enregistrées dans la db</span>
+            <span class="c">#Les réponses sont enregistrées dans la db par l&#39;intermédiaire de la méthode .save_answers()</span>
+            <span class="n">completed</span> <span class="o">=</span> <span class="n">quizforms</span><span class="o">.</span><span class="n">save_answers</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
             
             <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s">&quot;quiz:correct&quot;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">completed</span><span class="o">.</span><span class="n">pk</span><span class="p">]))</span>
 
@@ -227,7 +227,7 @@
             
         <span class="k">return</span> <span class="n">render</span><span class="p">(</span>
             <span class="n">request</span><span class="p">,</span> <span class="s">&#39;quiz/complete.html&#39;</span><span class="p">,</span>
-            <span class="p">{</span><span class="s">&#39;quiz&#39;</span><span class="p">:</span> <span class="n">quiz</span><span class="p">,</span> <span class="s">&#39;l_forms&#39;</span><span class="p">:</span> <span class="n">quizforms</span><span class="o">.</span><span class="n">get_forms</span><span class="p">()}</span>
+            <span class="p">{</span><span class="s">&#39;quiz&#39;</span><span class="p">:</span> <span class="n">quiz</span><span class="p">,</span> <span class="s">&#39;l_forms&#39;</span><span class="p">:</span> <span class="n">quizforms</span><span class="o">.</span><span class="n">l_forms</span><span class="p">}</span>
         <span class="p">)</span>
         </div>
 <div class="viewcode-block" id="find"><a class="viewcode-back" href="../../source.html#quiz.views.find">[docs]</a><span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
@@ -243,15 +243,15 @@
 </div>
 <div class="viewcode-block" id="findquiz"><a class="viewcode-back" href="../../source.html#quiz.views.findquiz">[docs]</a><span class="k">def</span> <span class="nf">findquiz</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Renvoie sous forme de json le titre et l&#39;url pour accéder au quiz dont l&#39;id est donné</span>
+<span class="sd">    Renvoie sous forme de json le titre et l&#39;url pour accéder au quiz dont la clé primaire est donnée</span>
 <span class="sd">    en paramètre de la requête GET.</span>
 <span class="sd">    </span>
 <span class="sd">    L&#39;url du quiz est construite à l&#39;aide de la méthode ``reverse(vue, arguments)``</span>
 <span class="sd">    fournie par Django.</span>
-<span class="sd">    Le premier argument est une chaîne de caractère composé du nom de l&#39;application</span>
+<span class="sd">    Le premier argument de la fonction ``reverse()`` est une chaîne de caractère composée du nom de l&#39;application Django</span>
 <span class="sd">    et du nom de la vue (dans les urls) respectant le schéma suivant :</span>
 <span class="sd">    ``&quot;nom_app:nom_vue&quot;``. L&#39;argument ``args`` est une liste contenant les arguments</span>
-<span class="sd">    de l&#39;URL de la page souhaitée. Ici, il s&#39;agit simplement de l&#39;ID du quiz recherché.</span>
+<span class="sd">    de l&#39;URL de la page souhaitée. Ici, il s&#39;agit simplement de la clé primaire du quiz recherché.</span>
 <span class="sd">    </span>
 <span class="sd">    Cette vue est essentiellement destinée à être utilisé par une requête Ajax</span>
 <span class="sd">    depuis la vue ``find``.</span>
@@ -265,9 +265,9 @@
 <span class="sd">            &quot;url&quot;: &quot;/quiz/1/complete/&quot;</span>
 <span class="sd">        }</span>
 <span class="sd">    </span>
-<span class="sd">    **Paramètres de la requête HTTP GET\:**</span>
+<span class="sd">    **Paramètres de la requête HTTP GET \:**</span>
 <span class="sd">    </span>
-<span class="sd">    * ``quiz`` : Id du quiz recherché</span>
+<span class="sd">    * ``quiz`` : Clé primaire du quiz recherché</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s">&quot;GET&quot;</span><span class="p">:</span>
         <span class="n">n_quiz</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="p">[</span><span class="s">&#39;quiz&#39;</span><span class="p">]</span> <span class="c"># id du quiz dans les argument de la requête</span>
@@ -295,7 +295,7 @@
 <span class="sd">    Cette vue n&#39;est disponible que si l&#39;utilisateur connecté appartient au groupe</span>
 <span class="sd">    &#39;teachers&#39;.</span>
 <span class="sd">    </span>
-<span class="sd">    **Paramètres de la requête HTTP POST\:**</span>
+<span class="sd">    **Paramètres de la requête HTTP POST \:**</span>
 <span class="sd">    </span>
 <span class="sd">    * ``title`` : Titre du brouillon</span>
 <span class="sd">    * ``code`` : Code du quiz</span>
@@ -318,7 +318,7 @@
 <span class="nd">@user_passes_test</span><span class="p">(</span><span class="n">is_teacher</span><span class="p">)</span>
 <div class="viewcode-block" id="listdrafts"><a class="viewcode-back" href="../../source.html#quiz.views.listdrafts">[docs]</a><span class="k">def</span> <span class="nf">listdrafts</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Renvoie le titre et l&#39;id de tous les brouillons de l&#39;utilisateur connecté</span>
+<span class="sd">    Renvoie le titre et la clé primaire de tous les brouillons de l&#39;utilisateur connecté</span>
 <span class="sd">    sous forme de json.</span>
 <span class="sd">    </span>
 <span class="sd">    **Exemple de json renvoyé dans le cas d&#39;un professeur ayant</span>
@@ -379,7 +379,7 @@
 <span class="sd">    </span>
 <span class="sd">    **Paramètres de la requête HTTP GET \:**</span>
 <span class="sd">    </span>
-<span class="sd">    * ``draft`` : Id du brouillon</span>
+<span class="sd">    * ``draft`` : Clé primaire du brouillon</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s">&quot;GET&quot;</span><span class="p">:</span>
         <span class="n">n_draft</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="p">[</span><span class="s">&#39;draft&#39;</span><span class="p">]</span>
@@ -402,7 +402,7 @@
 <div class="viewcode-block" id="correct"><a class="viewcode-back" href="../../source.html#quiz.views.correct">[docs]</a><span class="k">def</span> <span class="nf">correct</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">n_completed</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Récupère dans la base de données l&#39;entrée de la table ``CompletedQuiz`` avec</span>
-<span class="sd">    l&#39;id ``n_completed`` et affiche une correction détaillée des réponses soumises</span>
+<span class="sd">    la clé primaire ``n_completed`` et affiche une correction détaillée des réponses soumises</span>
 <span class="sd">    par l&#39;étudiant.</span>
 <span class="sd">    </span>
 <span class="sd">    L&#39;objet ``CorrectQuiz`` regroupe et calcule toutes les informations nécessaires</span>
@@ -416,9 +416,14 @@
     
     <span class="c"># Instanciation d&#39;un objet CorrectQuiz qui contiendra toutes les informations</span>
     <span class="c"># nécessaires à l&#39;affichage de la correction</span>
-    <span class="n">correctquiz</span> <span class="o">=</span> <span class="n">CorrectQuiz</span><span class="p">(</span><span class="n">completed</span><span class="p">)</span>
+    <span class="c"># correctquiz = CorrectQuiz(completed)</span>
+    
+    <span class="n">l_corrections</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">submit</span> <span class="ow">in</span> <span class="n">completed</span><span class="o">.</span><span class="n">get_questions_submits</span><span class="p">():</span>
+        <span class="n">l_corrections</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">submit</span><span class="o">.</span><span class="n">build_correct</span><span class="p">())</span>
         
-    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;quiz/correct.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;correctquiz&#39;</span> <span class="p">:</span> <span class="n">correctquiz</span><span class="p">,</span> <span class="s">&#39;quiz&#39;</span> <span class="p">:</span> <span class="n">completed</span><span class="o">.</span><span class="n">id_quiz</span><span class="p">})</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;quiz/correct.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;completed&#39;</span> <span class="p">:</span> <span class="n">completed</span><span class="p">,</span> <span class="s">&#39;quiz&#39;</span> <span class="p">:</span> <span class="n">completed</span><span class="o">.</span><span class="n">id_quiz</span><span class="p">,</span> <span class="s">&#39;l_corrections&#39;</span> <span class="p">:</span> <span class="n">l_corrections</span><span class="p">})</span>
 </div>
 <span class="nd">@login_required</span>
 <div class="viewcode-block" id="completed_quizzes"><a class="viewcode-back" href="../../source.html#quiz.views.completed_quizzes">[docs]</a><span class="k">def</span> <span class="nf">completed_quizzes</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
@@ -451,8 +456,8 @@
 <span class="nd">@user_passes_test</span><span class="p">(</span><span class="n">is_teacher</span><span class="p">)</span>
 <div class="viewcode-block" id="advanced_stats"><a class="viewcode-back" href="../../source.html#quiz.views.advanced_stats">[docs]</a><span class="k">def</span> <span class="nf">advanced_stats</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">n_quiz</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Récupère toutes les résolutions associés au quiz avec l&#39;id ``n_quiz`` dans la base de données et affiche</span>
-<span class="sd">    des statistques précises montrant le résultat personnel des élèves pour chaque question.</span>
+<span class="sd">    Récupère toutes les résolutions associés au quiz avec la clé primaire ``n_quiz`` dans la base de données et affiche</span>
+<span class="sd">    des statistiques précises montrant le résultat personnel des élèves pour chaque question.</span>
 <span class="sd">    </span>
 <span class="sd">    Un objet ``QuizForms`` qui créé des formulaires Django pour toutes les question</span>
 <span class="sd">    du quiz est instancié pour permettre au professeur de visionner </span>
@@ -466,7 +471,28 @@
     <span class="c"># dans le template</span>
     <span class="n">quizforms</span> <span class="o">=</span> <span class="n">QuizForms</span><span class="p">(</span><span class="n">quiz</span><span class="p">)</span>
     
-    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;quiz/advanced-stats.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;quiz&#39;</span> <span class="p">:</span> <span class="n">quiz</span><span class="p">,</span> <span class="s">&#39;l_completed&#39;</span> <span class="p">:</span> <span class="n">l_completed</span><span class="p">,</span> <span class="s">&#39;l_forms&#39;</span> <span class="p">:</span> <span class="n">quizforms</span><span class="o">.</span><span class="n">get_forms</span><span class="p">()})</span></div>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;quiz/advanced-stats.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;quiz&#39;</span> <span class="p">:</span> <span class="n">quiz</span><span class="p">,</span> <span class="s">&#39;l_completed&#39;</span> <span class="p">:</span> <span class="n">l_completed</span><span class="p">,</span> <span class="s">&#39;l_forms&#39;</span> <span class="p">:</span> <span class="n">quizforms</span><span class="o">.</span><span class="n">l_forms</span><span class="p">})</span>
+    </div>
+<span class="nd">@login_required</span>
+<span class="nd">@user_passes_test</span><span class="p">(</span><span class="n">is_teacher</span><span class="p">)</span>
+<div class="viewcode-block" id="add_correct_answer"><a class="viewcode-back" href="../../source.html#quiz.views.add_correct_answer">[docs]</a><span class="k">def</span> <span class="nf">add_correct_answer</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Cette fonctionnalité donne la possibilité de définir comme correcte une réponse</span>
+<span class="sd">    soumise par l&#39;étudiant à une question courte et de l&#39;ajouter aux solutions de</span>
+<span class="sd">    la question en créant une nouvelle entrée dans la table ``SqAnswer``.</span>
+<span class="sd">    </span>
+<span class="sd">    Cette vue n&#39;est utilisée que par l&#39;intermédiaire d&#39;une requête Ajax et n&#39;est</span>
+<span class="sd">    accessible que si l&#39;utilisateur est un professeur.</span>
+<span class="sd">    </span>
+<span class="sd">    **Paramètres de la requête HTTP POST \:**</span>
+<span class="sd">    </span>
+<span class="sd">    * ``answer`` : Clé primaire de l&#39;entrée dans la table ``SqSubmit`` qui doit être ajoutée aux solutions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s">&quot;POST&quot;</span><span class="p">:</span>
+        <span class="n">submit</span> <span class="o">=</span> <span class="n">SqSubmit</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">[</span><span class="s">&quot;answer&quot;</span><span class="p">])</span>
+        <span class="n">submit</span><span class="o">.</span><span class="n">set_as_correct</span><span class="p">()</span>
+        
+        <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">submit</span><span class="o">.</span><span class="n">pk</span><span class="p">)</span></div>
 </pre></div>
 
           </div>
