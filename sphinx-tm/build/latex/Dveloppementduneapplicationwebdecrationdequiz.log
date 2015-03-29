@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.1.14)  27 MAR 2015 06:46
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.1.14)  29 MAR 2015 10:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -973,93 +973,220 @@ LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <9> not available
 
 ]
 Chapitre 2.
-<create-doc.png, id=176, 1355.0625pt x 1023.825pt>
-File: create-doc.png Graphic file (type png)
- <use create-doc.png>
-Package pdftex.def Info: create-doc.png used on input line 338.
-(pdftex.def)             Requested size: 1355.0592pt x 1023.8225pt.
-File: create-doc.png Graphic file (type png)
+<create.png, id=176, 879.285pt x 942.52126pt>
+File: create.png Graphic file (type png)
+ <use create.png>
+Package pdftex.def Info: create.png used on input line 338.
+(pdftex.def)             Requested size: 879.28287pt x 942.51897pt.
+File: create.png Graphic file (type png)
 
-<use create-doc.png>
-Package pdftex.def Info: create-doc.png used on input line 338.
-(pdftex.def)             Requested size: 469.755pt x 354.92284pt.
- [7 <./create-doc.png>]
+<use create.png>
+Package pdftex.def Info: create.png used on input line 338.
+(pdftex.def)             Requested size: 469.755pt x 503.53201pt.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <9> not available
 (Font)              Font shape `T1/phv/b/n' tried instead on input line 349.
- [8] [9]
-<question-mathjax.png, id=203, 652.4375pt x 128.48pt>
-File: question-mathjax.png Graphic file (type png)
+ [7] [8 <./create.png>]
+<short.png, id=192, 662.475pt x 122.4575pt>
+File: short.png Graphic file (type png)
+ <use short.png>
+Package pdftex.def Info: short.png used on input line 437.
+(pdftex.def)             Requested size: 662.47339pt x 122.45718pt.
+File: short.png Graphic file (type png)
+ <use short.png>
+Package pdftex.def Info: short.png used on input line 437.
+(pdftex.def)             Requested size: 469.755pt x 86.8333pt.
 
-<use question-mathjax.png>
-Package pdftex.def Info: question-mathjax.png used on input line 481.
-(pdftex.def)             Requested size: 652.4359pt x 128.47968pt.
-File: question-mathjax.png Graphic file (type png)
- <use question-mathjax.png>
-Package pdftex.def Info: question-mathjax.png used on input line 481.
-(pdftex.def)             Requested size: 469.755pt x 92.50943pt.
+<radio.png, id=193, 662.475pt x 137.51375pt>
+File: radio.png Graphic file (type png)
+ <use radio.png>
+Package pdftex.def Info: radio.png used on input line 447.
+(pdftex.def)             Requested size: 662.47339pt x 137.51341pt.
+File: radio.png Graphic file (type png)
+ <use radio.png>
+Package pdftex.def Info: radio.png used on input line 447.
+(pdftex.def)             Requested size: 469.755pt x 97.50954pt.
 
-<find.png, id=204, 903.375pt x 451.6875pt>
+<checkbox.png, id=194, 662.475pt x 137.51375pt>
+File: checkbox.png Graphic file (type png)
+ <use checkbox.png>
+Package pdftex.def Info: checkbox.png used on input line 457.
+(pdftex.def)             Requested size: 662.47339pt x 137.51341pt.
+File: checkbox.png Graphic file (type png)
+
+<use checkbox.png>
+Package pdftex.def Info: checkbox.png used on input line 457.
+(pdftex.def)             Requested size: 469.755pt x 97.50954pt.
+ [9 <./short.png>]
+<math-menu.png, id=205, 308.15125pt x 374.39874pt>
+File: math-menu.png Graphic file (type png)
+ <use math-menu.png>
+Package pdftex.def Info: math-menu.png used on input line 478.
+(pdftex.def)             Requested size: 308.15048pt x 374.39783pt.
+File: math-menu.png Graphic file (type png)
+
+<use math-menu.png>
+Package pdftex.def Info: math-menu.png used on input line 478.
+(pdftex.def)             Requested size: 308.15048pt x 374.39783pt.
+ [10 <./radio.png> <./checkbox.png>] [11 <./math-menu.png>]
+File: checkbox.png Graphic file (type png)
+
+<use checkbox.png>
+Package pdftex.def Info: checkbox.png used on input line 496.
+(pdftex.def)             Requested size: 662.47339pt x 137.51341pt.
+File: checkbox.png Graphic file (type png)
+ <use checkbox.png>
+Package pdftex.def Info: checkbox.png used on input line 496.
+(pdftex.def)             Requested size: 469.755pt x 97.50954pt.
+
+<draft-save.png, id=219, 622.325pt x 227.85126pt>
+File: draft-save.png Graphic file (type png)
+ <use draft-save.png>
+Package pdftex.def Info: draft-save.png used on input line 508.
+(pdftex.def)             Requested size: 622.32347pt x 227.8507pt.
+File: draft-save.png Graphic file (type png)
+
+<use draft-save.png>
+Package pdftex.def Info: draft-save.png used on input line 508.
+(pdftex.def)             Requested size: 469.755pt x 171.9936pt.
+ <draft-import.png, id=220, 622.325pt x 303.1325pt>
+File: draft-import.png Graphic file (type png)
+
+<use draft-import.png>
+Package pdftex.def Info: draft-import.png used on input line 515.
+(pdftex.def)             Requested size: 622.32347pt x 303.13176pt.
+File: draft-import.png Graphic file (type png)
+ <use draft-import.png>
+Package pdftex.def Info: draft-import.png used on input line 515.
+(pdftex.def)             Requested size: 469.755pt x 228.8197pt.
+
+<my-quiz.png, id=221, 1906.12125pt x 929.4725pt>
+File: my-quiz.png Graphic file (type png)
+ <use my-quiz.png>
+Package pdftex.def Info: my-quiz.png used on input line 533.
+(pdftex.def)             Requested size: 1906.11662pt x 929.47025pt.
+File: my-quiz.png Graphic file (type png)
+
+<use my-quiz.png>
+Package pdftex.def Info: my-quiz.png used on input line 533.
+(pdftex.def)             Requested size: 469.755pt x 229.063pt.
+ [12 <./draft-save.png>]
+<stats.png, id=229, 879.285pt x 674.52pt>
+File: stats.png Graphic file (type png)
+ <use stats.png>
+Package pdftex.def Info: stats.png used on input line 543.
+(pdftex.def)             Requested size: 879.28287pt x 674.51836pt.
+File: stats.png Graphic file (type png)
+ <use stats.png>
+Package pdftex.def Info: stats.png used on input line 543.
+(pdftex.def)             Requested size: 469.755pt x 360.35516pt.
+
+[13 <./draft-import.png> <./my-quiz.png>] [14 <./stats.png>]
+<add-solution.png, id=244, 857.2025pt x 326.21875pt>
+File: add-solution.png Graphic file (type png)
+ <use add-solution.png>
+Package pdftex.def Info: add-solution.png used on input line 554.
+(pdftex.def)             Requested size: 857.20041pt x 326.21794pt.
+File: add-solution.png Graphic file (type png)
+
+<use add-solution.png>
+Package pdftex.def Info: add-solution.png used on input line 554.
+(pdftex.def)             Requested size: 469.755pt x 178.76878pt.
+ <find.png, id=245, 878.28125pt x 497.86pt>
+File: find.png Graphic file (type png)
+
+<use find.png>
+Package pdftex.def Info: find.png used on input line 567.
+(pdftex.def)             Requested size: 878.27911pt x 497.85878pt.
 File: find.png Graphic file (type png)
  <use find.png>
-Package pdftex.def Info: find.png used on input line 512.
-(pdftex.def)             Requested size: 903.3728pt x 451.68639pt.
-File: find.png Graphic file (type png)
- <use find.png>
-Package pdftex.def Info: find.png used on input line 512.
-(pdftex.def)             Requested size: 469.755pt x 234.87885pt.
+Package pdftex.def Info: find.png used on input line 567.
+(pdftex.def)             Requested size: 469.755pt x 266.28789pt.
 
-[10 <./question-mathjax.png>] <complete.png, id=217, 903.375pt x 715.17188pt>
+<complete.png, id=246, 878.28125pt x 683.55376pt>
+File: complete.png Graphic file (type png)
+ <use complete.png>
+Package pdftex.def Info: complete.png used on input line 577.
+(pdftex.def)             Requested size: 878.27911pt x 683.5521pt.
 File: complete.png Graphic file (type png)
 
 <use complete.png>
-Package pdftex.def Info: complete.png used on input line 526.
-(pdftex.def)             Requested size: 903.3728pt x 715.17012pt.
-File: complete.png Graphic file (type png)
- <use complete.png>
-Package pdftex.def Info: complete.png used on input line 526.
-(pdftex.def)             Requested size: 469.755pt x 371.89151pt.
- [11 <./find.png>] [12 <./complete.png>]
-Chapitre 3.
-LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <10> not available
-(Font)              Font shape `T1/pcr/b/n' tried instead on input line 540.
-[13
+Package pdftex.def Info: complete.png used on input line 577.
+(pdftex.def)             Requested size: 469.755pt x 365.609pt.
+ <correct.png, id=247, 879.285pt x 697.60625pt>
+File: correct.png Graphic file (type png)
+
+<use correct.png>
+Package pdftex.def Info: correct.png used on input line 586.
+(pdftex.def)             Requested size: 879.28287pt x 697.60454pt.
+File: correct.png Graphic file (type png)
+ <use correct.png>
+Package pdftex.def Info: correct.png used on input line 586.
+(pdftex.def)             Requested size: 469.755pt x 372.68875pt.
+ <mobile-1.png, id=248, 361.35pt x 642.4pt>
+File: mobile-1.png Graphic file (type png)
+
+<use mobile-1.png>
+Package pdftex.def Info: mobile-1.png used on input line 593.
+(pdftex.def)             Requested size: 361.34912pt x 642.39844pt.
+File: mobile-1.png Graphic file (type png)
+ <use mobile-1.png>
+Package pdftex.def Info: mobile-1.png used on input line 593.
+(pdftex.def)             Requested size: 361.34912pt x 642.39844pt.
+
+<completed.png, id=249, 878.28125pt x 251.94125pt>
+File: completed.png Graphic file (type png)
+ <use completed.png>
+Package pdftex.def Info: completed.png used on input line 601.
+(pdftex.def)             Requested size: 878.27911pt x 251.94063pt.
+File: completed.png Graphic file (type png)
+
+<use completed.png>
+Package pdftex.def Info: completed.png used on input line 601.
+(pdftex.def)             Requested size: 469.755pt x 134.75455pt.
+ [15 <./add-solution.png>] [16 <./find.png> <./complete.png>] [17 <./correct.pn
+g>] [18 <./mobile-1.png (PNG copy)>] [19 <./completed.png>]
+[20
 
 ]
+Chapitre 3.
+LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <10> not available
+(Font)              Font shape `T1/pcr/b/n' tried instead on input line 614.
+[21]
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <10> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 642.
- [14] [15]
-Underfull \hbox (badness 10000) in paragraph at lines 935--940
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 716.
+ [22] [23]
+Underfull \hbox (badness 10000) in paragraph at lines 1009--1014
 []\T1/ptm/m/n/10 Cette mé-thode par-court tous les choix pos-sibles pour la que
 s-tion \T1/pcr/m/n/10 self.id_question
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 935--940
+Underfull \hbox (badness 10000) in paragraph at lines 1009--1014
 \T1/ptm/m/n/10 ré-cu-pé-rés avec \T1/pcr/m/n/10 Qcm.get_choices()\T1/ptm/m/n/10
  . Pour chaque choix, elle uti-lise la mé-thode
  []
 
-[16] [17] [18] [19] [20]
+[24] [25] [26] [27] [28]
 Chapitre 4.
-[21
+[29
 
-] <quiz-models.png, id=345, 1191.45125pt x 794.97pt>
+] <quiz-models.png, id=400, 1191.45125pt x 794.97pt>
 File: quiz-models.png Graphic file (type png)
  <use quiz-models.png>
-Package pdftex.def Info: quiz-models.png used on input line 1521.
+Package pdftex.def Info: quiz-models.png used on input line 1595.
 (pdftex.def)             Requested size: 1191.44835pt x 794.96806pt.
 File: quiz-models.png Graphic file (type png)
 
 <use quiz-models.png>
-Package pdftex.def Info: quiz-models.png used on input line 1521.
+Package pdftex.def Info: quiz-models.png used on input line 1595.
 (pdftex.def)             Requested size: 469.755pt x 313.43352pt.
- [22] [23 <./quiz-models.png>] [24] [25] [26
+ [30] [31 <./quiz-models.png>] [32] [33] [34
 
-] [27
+] [35
 
 
 ]
-(./Dveloppementduneapplicationwebdecrationdequiz.ind [28
+(./Dveloppementduneapplicationwebdecrationdequiz.ind [36
 
 
 ]
@@ -1077,7 +1204,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 50--51
 []\T1/ptm/m/n/10 get_wrong_answers() (mé-thode
  []
 
-[29
+[37
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 103--104
@@ -1089,28 +1216,28 @@ Underfull \hbox (badness 10000) in paragraph at lines 104--105
 []\T1/ptm/m/n/10 update_total_result() (mé-thode
  []
 
-[30
+[38
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1627.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1627.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1701.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1701.
  (./Dveloppementduneapplicationwebdecrationdequiz.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1627.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1627.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1701.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1701.
 
 Package rerunfilecheck Info: File `Dveloppementduneapplicationwebdecrationdequi
 z.out' has not changed.
-(rerunfilecheck)             Checksum: 1B77300E0C2021E0438CF23F1DD13A37;1382.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1627.
+(rerunfilecheck)             Checksum: 031F61AC4D815E1848089D78A63F1AF4;1382.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1701.
  ) 
 Here is how much of TeX's memory you used:
- 9962 strings out of 494999
- 142170 string characters out of 6180228
- 238420 words of memory out of 5000000
- 12744 multiletter control sequences out of 15000+600000
+ 10022 strings out of 494999
+ 142971 string characters out of 6180228
+ 238307 words of memory out of 5000000
+ 12786 multiletter control sequences out of 15000+600000
  67624 words of font info for 75 fonts, out of 8000000 for 9000
  15 hyphenation exceptions out of 8191
- 36i,12n,45p,1330b,547s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,12n,45p,1330b,545s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
@@ -1120,11 +1247,11 @@ uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb>
 texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1
 /urw/times/utmri8a.pfb>
-Output written on Dveloppementduneapplicationwebdecrationdequiz.pdf (34 pages, 
-339917 bytes).
+Output written on Dveloppementduneapplicationwebdecrationdequiz.pdf (42 pages, 
+543002 bytes).
 PDF statistics:
- 539 PDF objects out of 1000 (max. 8388607)
- 477 compressed objects within 5 object streams
- 162 named destinations out of 1000 (max. 500000)
- 206 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 599 PDF objects out of 1000 (max. 8388607)
+ 505 compressed objects within 6 object streams
+ 169 named destinations out of 1000 (max. 500000)
+ 261 words of extra memory for PDF output out of 10000 (max. 10000000)
 

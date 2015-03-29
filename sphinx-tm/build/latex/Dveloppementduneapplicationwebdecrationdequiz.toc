@@ -17,46 +17,45 @@
 \contentsline {chapter}{\numberline {2}Documentation utilisateur}{7}{chapter.2}
 \contentsline {section}{\numberline {2.1}Professeurs}{7}{section.2.1}
 \contentsline {subsection}{\numberline {2.1.1}Cr\IeC {\'e}ation de quiz}{7}{subsection.2.1.1}
-\contentsline {subsubsection}{Cr\IeC {\'e}ation d'une question et d\IeC {\'e}finition de ses caract\IeC {\'e}ristiques}{8}{subsubsection*.10}
-\contentsline {paragraph}{Explication des balises}{8}{paragraph*.11}
-\contentsline {paragraph}{Exemple de quiz avec le syst\IeC {\`e}me de balisage}{8}{paragraph*.12}
+\contentsline {subsubsection}{Cr\IeC {\'e}ation d'une question et d\IeC {\'e}finition de ses caract\IeC {\'e}ristiques}{7}{subsubsection*.10}
+\contentsline {paragraph}{Explication des balises}{7}{paragraph*.11}
+\contentsline {paragraph}{Exemple de quiz avec le syst\IeC {\`e}me de balisage}{7}{paragraph*.12}
 \contentsline {paragraph}{Types de questions}{9}{paragraph*.13}
 \contentsline {subparagraph}{Question \IeC {\`a} r\IeC {\'e}ponse courte}{9}{subparagraph*.14}
 \contentsline {subparagraph}{Question \IeC {\`a} choix multiples avec un seul choix valide}{9}{subparagraph*.15}
 \contentsline {subparagraph}{Question \IeC {\`a} choix multiples avec un seul choix valide}{9}{subparagraph*.16}
-\contentsline {subsubsection}{Affichage de l'aper\IeC {\c c}u et des erreurs}{9}{subsubsection*.17}
-\contentsline {subsubsection}{Affichage de math\IeC {\'e}matiques}{9}{subsubsection*.18}
-\contentsline {subsubsection}{Enregistrement et importation de brouillons}{10}{subsubsection*.19}
-\contentsline {subsubsection}{Envoi d\IeC {\'e}finitif du quiz}{10}{subsubsection*.20}
-\contentsline {subsection}{\numberline {2.1.2}Suivi des \IeC {\'e}l\IeC {\`e}ves}{10}{subsection.2.1.2}
-\contentsline {subsubsection}{Liste des quiz cr\IeC {\'e}\IeC {\'e}s par un professeur}{10}{subsubsection*.21}
-\contentsline {subsubsection}{Affichage des statistiques avanc\IeC {\'e}es}{10}{subsubsection*.22}
-\contentsline {subsubsection}{Consultation des corrections}{10}{subsubsection*.23}
-\contentsline {section}{\numberline {2.2}\IeC {\'E}tudiants}{10}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Trouver un quiz}{10}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Compl\IeC {\'e}ter un quiz et correction automatique}{11}{subsection.2.2.2}
-\contentsline {subsection}{\numberline {2.2.3}Suivi personnel}{11}{subsection.2.2.3}
-\contentsline {chapter}{\numberline {3}Documentation du code source}{13}{chapter.3}
-\contentsline {section}{\numberline {3.1}views.py}{13}{section.3.1}
-\contentsline {section}{\numberline {3.2}models.py}{15}{section.3.2}
-\contentsline {section}{\numberline {3.3}forms.py}{18}{section.3.3}
-\contentsline {section}{\numberline {3.4}utils/submit.py}{19}{section.3.4}
-\contentsline {section}{\numberline {3.5}utils/correct.py}{19}{section.3.5}
-\contentsline {section}{\numberline {3.6}utils/save.py}{19}{section.3.6}
-\contentsline {chapter}{\numberline {4}Mod\IeC {\`e}le relationnel}{21}{chapter.4}
-\contentsline {section}{\numberline {4.1}Introduction}{21}{section.4.1}
-\contentsline {section}{\numberline {4.2}Utilisation dans l'application de cr\IeC {\'e}ation de quiz}{22}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Impl\IeC {\'e}mentation dans Django}{22}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Sch\IeC {\'e}ma global}{22}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Explications des tables}{22}{subsection.4.2.3}
-\contentsline {subsubsection}{\texttt {Quiz}}{22}{subsubsection*.88}
-\contentsline {subsubsection}{\texttt {QuizDraft}}{22}{subsubsection*.89}
-\contentsline {subsubsection}{\texttt {SimpleQuestion}}{23}{subsubsection*.90}
-\contentsline {subsubsection}{\texttt {SqAnswer}}{23}{subsubsection*.91}
-\contentsline {subsubsection}{\texttt {Qcm}}{23}{subsubsection*.92}
-\contentsline {subsubsection}{\texttt {QcmChoice}}{24}{subsubsection*.93}
-\contentsline {subsubsection}{\texttt {CompletedQuiz}}{24}{subsubsection*.94}
-\contentsline {subsubsection}{\texttt {SqSubmit}}{24}{subsubsection*.95}
-\contentsline {subsubsection}{\texttt {QcmSubmitOne et QcmSubmitMulti}}{24}{subsubsection*.96}
-\contentsline {chapter}{Index des modules Python}{27}{section*.97}
-\contentsline {chapter}{Index}{29}{section*.98}
+\contentsline {subsubsection}{Affichage de l'aper\IeC {\c c}u et des erreurs}{10}{subsubsection*.17}
+\contentsline {subsubsection}{Affichage de math\IeC {\'e}matiques}{10}{subsubsection*.18}
+\contentsline {subsubsection}{Enregistrement et importation de brouillons}{12}{subsubsection*.19}
+\contentsline {subsubsection}{Envoi d\IeC {\'e}finitif du quiz}{12}{subsubsection*.20}
+\contentsline {subsection}{\numberline {2.1.2}Suivi des \IeC {\'e}l\IeC {\`e}ves}{13}{subsection.2.1.2}
+\contentsline {subsubsection}{Liste des quiz cr\IeC {\'e}\IeC {\'e}s par un professeur}{13}{subsubsection*.21}
+\contentsline {subsubsection}{Affichage des statistiques avanc\IeC {\'e}es}{13}{subsubsection*.22}
+\contentsline {section}{\numberline {2.2}\IeC {\'E}tudiants}{15}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Trouver un quiz}{15}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Compl\IeC {\'e}ter un quiz et correction automatique}{15}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}Historique des r\IeC {\'e}solutions}{19}{subsection.2.2.3}
+\contentsline {chapter}{\numberline {3}Documentation du code source}{21}{chapter.3}
+\contentsline {section}{\numberline {3.1}views.py}{21}{section.3.1}
+\contentsline {section}{\numberline {3.2}models.py}{23}{section.3.2}
+\contentsline {section}{\numberline {3.3}forms.py}{26}{section.3.3}
+\contentsline {section}{\numberline {3.4}utils/submit.py}{27}{section.3.4}
+\contentsline {section}{\numberline {3.5}utils/correct.py}{27}{section.3.5}
+\contentsline {section}{\numberline {3.6}utils/save.py}{27}{section.3.6}
+\contentsline {chapter}{\numberline {4}Mod\IeC {\`e}le relationnel}{29}{chapter.4}
+\contentsline {section}{\numberline {4.1}Introduction}{29}{section.4.1}
+\contentsline {section}{\numberline {4.2}Utilisation dans l'application de cr\IeC {\'e}ation de quiz}{30}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Impl\IeC {\'e}mentation dans Django}{30}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Sch\IeC {\'e}ma global}{30}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Explications des tables}{30}{subsection.4.2.3}
+\contentsline {subsubsection}{\texttt {Quiz}}{30}{subsubsection*.87}
+\contentsline {subsubsection}{\texttt {QuizDraft}}{30}{subsubsection*.88}
+\contentsline {subsubsection}{\texttt {SimpleQuestion}}{31}{subsubsection*.89}
+\contentsline {subsubsection}{\texttt {SqAnswer}}{31}{subsubsection*.90}
+\contentsline {subsubsection}{\texttt {Qcm}}{31}{subsubsection*.91}
+\contentsline {subsubsection}{\texttt {QcmChoice}}{32}{subsubsection*.92}
+\contentsline {subsubsection}{\texttt {CompletedQuiz}}{32}{subsubsection*.93}
+\contentsline {subsubsection}{\texttt {SqSubmit}}{32}{subsubsection*.94}
+\contentsline {subsubsection}{\texttt {QcmSubmitOne et QcmSubmitMulti}}{32}{subsubsection*.95}
+\contentsline {chapter}{Index des modules Python}{35}{section*.96}
+\contentsline {chapter}{Index}{37}{section*.97}

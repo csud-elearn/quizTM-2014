@@ -180,7 +180,8 @@ Suivi des élèves
 Liste des quiz créés par un professeur
 --------------------------------------
 
-IMAGE ICI
+.. figure:: figures/my-quiz.png
+    :align: center
 
 Dans l'onglet *Mes quiz*, le professeur peut consulter la liste des quiz qu'il a créé avec des informations générales sur ceux-ci comme la moyenne de points obtenus pour chaque quiz. Grâce au bouton *Voir les stats*, il peut accéder aux statistiques avancées d'un quiz en particulier.
 
@@ -237,5 +238,8 @@ La page pour compléter un quiz ainsi que celle de la correction sont optimisée
 ==========================
 Historique des résolutions
 ==========================
+
+.. figure:: figures/completed.png
+    :align: center
 
 Les étudiants ont aussi la possibilité de garder une trace de tous les quiz qu'ils ont complétés. Dans l'onglet *Mes résolutions* sont présentées toutes les résolutions apportées par l'élève à un quiz. Diverses informations complémentaires sont également disponibles, telles que la date et l'heure de la résolution ou le nombre de points obtenus. En cliquant sur un élément de la liste, l'étudiant est redirigé vers la page de correction de la résolution et peut ainsi voir les éventuelles erreurs qu'il a commis.
