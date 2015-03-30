@@ -1,2 +1,0 @@
-Manuel d'utilisation de RapydScript
------------------------------------

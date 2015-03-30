@@ -63,11 +63,11 @@
           
           
               <ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rapydscript.html">Présentation de RapydScript</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="rapydscript.html#pourquoi-utiliser-python-plutot-que-javascript">Pourquoi utiliser Python plutôt que Javascript ?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rapydscript.html#differentes-manieres-d-aborder-le-probleme-coffeescript-brython-et-rapydscript">Différentes manières d&#8217;aborder le problème : CoffeeScript, Brython et RapydScript</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rapydscript.html#introduction-a-rapydscript">Introduction à RapydScript</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rapydscript.html#comparaison-du-code-source-et-du-code-genere">Comparaison du code source et du code généré</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="doc-user.html">Documentation utilisateur</a><ul>
@@ -75,18 +75,28 @@
 <li class="toctree-l2"><a class="reference internal" href="doc-user.html#etudiants">Étudiants</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="source.html">Documentation du code source</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="source.html#module-quiz.views">views.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="source.html#module-quiz.models">models.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="source.html#module-quiz.forms">forms.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="source.html#module-quiz.utils.submit">utils/submit.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="source.html#module-quiz.utils.correct">utils/correct.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="source.html#module-quiz.utils.save">utils/save.py</a></li>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Fonctionnement général de l&#8217;application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="global.html#url">URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="global.html#organisation-des-fichiers-de-l-application">Organisation des fichiers de l&#8217;application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="global.html#bibliotheques-et-frameworks-utilises-dans-l-application">Bibliothèques et frameworks utilisés dans l&#8217;application</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="database.html">Modèle relationnel</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="database.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="database.html#utilisation-dans-l-application-de-creation-de-quiz">Utilisation dans l&#8217;application de création de quiz</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="source.html">Vues Django</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="source.html#concept-de-vue-dans-django">Concept de vue dans Django</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source.html#vues-de-l-application">Vues de l&#8217;application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source.html#les-formulaires">Les formulaires</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source.html#le-package-utils">Le package <strong>utils</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="front-end.html">Outil d&#8217;édition de quiz avec RapydScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusion.html">Conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="end.html">Annexes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="end.html#webographie">Webographie</a></li>
 </ul>
 </li>
 </ul>
@@ -129,9 +139,14 @@
  <a href="#A"><strong>A</strong></a>
  | <a href="#B"><strong>B</strong></a>
  | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
  | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
  | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#P"><strong>P</strong></a>
  | <a href="#Q"><strong>Q</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
@@ -143,7 +158,25 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="source.html#quiz.utils.save.SaveSimpleQuestion.add_answer">add_answer() (méthode quiz.utils.save.SaveSimpleQuestion)</a>
+  <dt><a href="front-end.html#QCM_Checkbox.add_answer">add_answer() (méthode QCM_Checkbox)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="front-end.html#SimpleQuestion.add_answer">(méthode SimpleQuestion)</a>
+  </dt>
+
+        
+  <dt><a href="source.html#quiz.utils.save.SaveSimpleQuestion.add_answer">(méthode quiz.utils.save.SaveSimpleQuestion)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="front-end.html#QuestionAbstract.add_attribute">add_attribute() (méthode QuestionAbstract)</a>
+  </dt>
+
+      
+  <dt><a href="front-end.html#QuestionAbstract.add_comment">add_comment() (méthode QuestionAbstract)</a>
   </dt>
 
       
@@ -151,11 +184,21 @@
   </dt>
 
       
-  <dt><a href="source.html#quiz.utils.save.SaveQcm.add_option">add_option() (méthode quiz.utils.save.SaveQcm)</a>
+  <dt><a href="front-end.html#QCM_Checkbox.add_option">add_option() (méthode QCM_Checkbox)</a>
   </dt>
 
+      <dd><dl>
+        
+  <dt><a href="source.html#quiz.utils.save.SaveQcm.add_option">(méthode quiz.utils.save.SaveQcm)</a>
+  </dt>
+
+      </dl></dd>
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="front-end.html#QuestionAbstract.add_points">add_points() (méthode QuestionAbstract)</a>
+  </dt>
+
       
   <dt><a href="source.html#quiz.views.advanced_stats">advanced_stats() (dans le module quiz.views)</a>
   </dt>
@@ -165,16 +208,16 @@
   </dt>
 
       
-  <dt><a href="source.html#quiz.models.Qcm.average_result">average_result() (méthode quiz.models.Qcm)</a>
+  <dt><a href="database.html#quiz.models.Qcm.average_result">average_result() (méthode quiz.models.Qcm)</a>
   </dt>
 
       <dd><dl>
         
-  <dt><a href="source.html#quiz.models.Quiz.average_result">(méthode quiz.models.Quiz)</a>
+  <dt><a href="database.html#quiz.models.Quiz.average_result">(méthode quiz.models.Quiz)</a>
   </dt>
 
         
-  <dt><a href="source.html#quiz.models.SimpleQuestion.average_result">(méthode quiz.models.SimpleQuestion)</a>
+  <dt><a href="database.html#quiz.models.SimpleQuestion.average_result">(méthode quiz.models.SimpleQuestion)</a>
   </dt>
 
       </dl></dd>
@@ -185,9 +228,15 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="source.html#quiz.models.SqSubmit.build_correct">build_correct() (méthode quiz.models.SqSubmit)</a>
+  <dt><a href="database.html#quiz.models.QcmSubmit.build_correct">build_correct() (méthode quiz.models.QcmSubmit)</a>
   </dt>
 
+      <dd><dl>
+        
+  <dt><a href="database.html#quiz.models.SqSubmit.build_correct">(méthode quiz.models.SqSubmit)</a>
+  </dt>
+
+      </dl></dd>
   </dl></td>
 </tr></table>
 
@@ -195,11 +244,21 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
+  <dt><a href="front-end.html#QCM_Checkbox.check_question">check_question() (méthode QCM_Checkbox)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="front-end.html#SimpleQuestion.check_question">(méthode SimpleQuestion)</a>
+  </dt>
+
+      </dl></dd>
+      
   <dt><a href="source.html#quiz.forms.CheckboxForm">CheckboxForm (classe dans quiz.forms)</a>
   </dt>
 
       
-  <dt><a href="source.html#quiz.models.QcmChoice.checked">checked() (méthode quiz.models.QcmChoice)</a>
+  <dt><a href="database.html#quiz.models.QcmChoice.checked">checked() (méthode quiz.models.QcmChoice)</a>
   </dt>
 
       
@@ -211,7 +270,7 @@
   </dt>
 
       
-  <dt><a href="source.html#quiz.models.CompletedQuiz">CompletedQuiz (classe dans quiz.models)</a>
+  <dt><a href="database.html#quiz.models.CompletedQuiz">CompletedQuiz (classe dans quiz.models)</a>
   </dt>
 
       
@@ -220,12 +279,12 @@
 
       <dd><dl>
         
-  <dt><a href="source.html#quiz.models.SqSubmit.correct">(méthode quiz.models.SqSubmit)</a>
+  <dt><a href="database.html#quiz.models.SqSubmit.correct">(méthode quiz.models.SqSubmit)</a>
   </dt>
 
       </dl></dd>
       
-  <dt><a href="source.html#quiz.models.QcmChoice.correct_submit">correct_submit() (méthode quiz.models.QcmChoice)</a>
+  <dt><a href="database.html#quiz.models.QcmChoice.correct_submit">correct_submit() (méthode quiz.models.QcmChoice)</a>
   </dt>
 
   </dl></td>
@@ -251,17 +310,37 @@
   </dt>
 
       
-  <dt><a href="source.html#quiz.models.Qcm.create_form">create_form() (méthode quiz.models.Qcm)</a>
+  <dt><a href="database.html#quiz.models.Qcm.create_form">create_form() (méthode quiz.models.Qcm)</a>
   </dt>
 
       <dd><dl>
         
-  <dt><a href="source.html#quiz.models.SimpleQuestion.create_form">(méthode quiz.models.SimpleQuestion)</a>
+  <dt><a href="database.html#quiz.models.SimpleQuestion.create_form">(méthode quiz.models.SimpleQuestion)</a>
   </dt>
 
       </dl></dd>
       
   <dt><a href="source.html#quiz.views.created_quizzes">created_quizzes() (dans le module quiz.views)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="front-end.html#demo">demo() (fonction de base)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="front-end.html#Parse.error">error() (méthode Parse)</a>
   </dt>
 
   </dl></td>
@@ -287,15 +366,15 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="source.html#quiz.models.SqSubmit.get_corrections">get_corrections() (méthode quiz.models.SqSubmit)</a>
+  <dt><a href="database.html#quiz.models.SqSubmit.get_corrections">get_corrections() (méthode quiz.models.SqSubmit)</a>
   </dt>
 
       
-  <dt><a href="source.html#quiz.models.Quiz.get_questions">get_questions() (méthode quiz.models.Quiz)</a>
+  <dt><a href="database.html#quiz.models.Quiz.get_questions">get_questions() (méthode quiz.models.Quiz)</a>
   </dt>
 
       
-  <dt><a href="source.html#quiz.models.CompletedQuiz.get_questions_submits">get_questions_submits() (méthode quiz.models.CompletedQuiz)</a>
+  <dt><a href="database.html#quiz.models.CompletedQuiz.get_questions_submits">get_questions_submits() (méthode quiz.models.CompletedQuiz)</a>
   </dt>
 
   </dl></td>
@@ -315,7 +394,7 @@
 
       </dl></dd>
       
-  <dt><a href="source.html#quiz.models.SimpleQuestion.get_wrong_answers">get_wrong_answers() (méthode quiz.models.SimpleQuestion)</a>
+  <dt><a href="database.html#quiz.models.SimpleQuestion.get_wrong_answers">get_wrong_answers() (méthode quiz.models.SimpleQuestion)</a>
   </dt>
 
       
@@ -329,7 +408,7 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="source.html#quiz.models.Quiz.length">length() (méthode quiz.models.Quiz)</a>
+  <dt><a href="database.html#quiz.models.Quiz.length">length() (méthode quiz.models.Quiz)</a>
   </dt>
 
   </dl></td>
@@ -341,41 +420,99 @@
   </dl></td>
 </tr></table>
 
-<h2 id="Q">Q</h2>
+<h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="source.html#quiz.models.Qcm">Qcm (classe dans quiz.models)</a>
+  <dt><a href="front-end.html#main">main() (fonction de base)</a>
   </dt>
 
-      
-  <dt><a href="source.html#quiz.models.QcmChoice">QcmChoice (classe dans quiz.models)</a>
-  </dt>
+  </dl></td>
+</tr></table>
 
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="source.html#quiz.models.QcmSubmitMulti">QcmSubmitMulti (classe dans quiz.models)</a>
-  </dt>
-
-      
-  <dt><a href="source.html#quiz.models.QcmSubmitOne">QcmSubmitOne (classe dans quiz.models)</a>
-  </dt>
-
-      
-  <dt><a href="source.html#quiz.forms.QuestionForm">QuestionForm (classe dans quiz.forms)</a>
-  </dt>
-
-      
-  <dt><a href="source.html#quiz.models.Quiz">Quiz (classe dans quiz.models)</a>
-  </dt>
-
-      
-  <dt><a href="source.html#module-quiz.forms">quiz.forms (module)</a>
+  <dt><a href="front-end.html#Parse.new_attribute">new_attribute() (méthode Parse)</a>
   </dt>
 
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="source.html#module-quiz.models">quiz.models (module)</a>
+  <dt><a href="front-end.html#Parse.new_question">new_question() (méthode Parse)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="front-end.html#Parse">Parse (classe de base)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="front-end.html#QuestionAbstract.properties">properties() (méthode QuestionAbstract)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="Q">Q</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="database.html#quiz.models.Qcm">Qcm (classe dans quiz.models)</a>
+  </dt>
+
+      
+  <dt><a href="front-end.html#QCM_Checkbox">QCM_Checkbox (classe de base)</a>
+  </dt>
+
+      
+  <dt><a href="front-end.html#QCM_Radio">QCM_Radio (classe de base)</a>
+  </dt>
+
+      
+  <dt><a href="front-end.html#QCM_Radio.add_answer">QCM_Radio.add_answer (classe de base)</a>
+  </dt>
+
+      
+  <dt><a href="database.html#quiz.models.QcmChoice">QcmChoice (classe dans quiz.models)</a>
+  </dt>
+
+      
+  <dt><a href="database.html#quiz.models.QcmSubmit">QcmSubmit (classe dans quiz.models)</a>
+  </dt>
+
+      
+  <dt><a href="database.html#quiz.models.QcmSubmitMulti">QcmSubmitMulti (classe dans quiz.models)</a>
+  </dt>
+
+      
+  <dt><a href="database.html#quiz.models.QcmSubmitOne">QcmSubmitOne (classe dans quiz.models)</a>
+  </dt>
+
+      
+  <dt><a href="front-end.html#QuestionAbstract">QuestionAbstract (classe de base)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="source.html#quiz.forms.QuestionForm">QuestionForm (classe dans quiz.forms)</a>
+  </dt>
+
+      
+  <dt><a href="database.html#quiz.models.Quiz">Quiz (classe dans quiz.models)</a>
+  </dt>
+
+      
+  <dt><a href="source.html#module-quiz.forms">quiz.forms (module)</a>
   </dt>
 
       
@@ -395,7 +532,7 @@
   </dt>
 
       
-  <dt><a href="source.html#quiz.models.QuizDraft">QuizDraft (classe dans quiz.models)</a>
+  <dt><a href="database.html#quiz.models.QuizDraft">QuizDraft (classe dans quiz.models)</a>
   </dt>
 
       
@@ -412,6 +549,26 @@
   <dt><a href="source.html#quiz.forms.RadioForm">RadioForm (classe dans quiz.forms)</a>
   </dt>
 
+      
+  <dt><a href="front-end.html#Parse.read">read() (méthode Parse)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="front-end.html#Parse.render">render() (méthode Parse)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="front-end.html#QCM_Checkbox.render">(méthode QCM_Checkbox)</a>
+  </dt>
+
+        
+  <dt><a href="front-end.html#SimpleQuestion.render">(méthode SimpleQuestion)</a>
+  </dt>
+
+      </dl></dd>
   </dl></td>
 </tr></table>
 
@@ -423,26 +580,26 @@
   </dt>
 
       
-  <dt><a href="source.html#quiz.models.QcmSubmitMulti.save_result">save_result() (méthode quiz.models.QcmSubmitMulti)</a>
+  <dt><a href="database.html#quiz.models.QcmSubmitMulti.save_result">save_result() (méthode quiz.models.QcmSubmitMulti)</a>
   </dt>
 
       <dd><dl>
         
-  <dt><a href="source.html#quiz.models.QcmSubmitOne.save_result">(méthode quiz.models.QcmSubmitOne)</a>
+  <dt><a href="database.html#quiz.models.QcmSubmitOne.save_result">(méthode quiz.models.QcmSubmitOne)</a>
   </dt>
 
         
-  <dt><a href="source.html#quiz.models.SqSubmit.save_result">(méthode quiz.models.SqSubmit)</a>
+  <dt><a href="database.html#quiz.models.SqSubmit.save_result">(méthode quiz.models.SqSubmit)</a>
   </dt>
 
       </dl></dd>
       
-  <dt><a href="source.html#quiz.models.Qcm.save_submit">save_submit() (méthode quiz.models.Qcm)</a>
+  <dt><a href="database.html#quiz.models.Qcm.save_submit">save_submit() (méthode quiz.models.Qcm)</a>
   </dt>
 
       <dd><dl>
         
-  <dt><a href="source.html#quiz.models.SimpleQuestion.save_submit">(méthode quiz.models.SimpleQuestion)</a>
+  <dt><a href="database.html#quiz.models.SimpleQuestion.save_submit">(méthode quiz.models.SimpleQuestion)</a>
   </dt>
 
       </dl></dd>
@@ -458,8 +615,6 @@
   <dt><a href="source.html#quiz.utils.save.SaveQuestion">SaveQuestion (classe dans quiz.utils.save)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="source.html#quiz.utils.save.SaveQuiz">SaveQuiz (classe dans quiz.utils.save)</a>
   </dt>
@@ -468,20 +623,40 @@
   <dt><a href="source.html#quiz.utils.save.SaveSimpleQuestion">SaveSimpleQuestion (classe dans quiz.utils.save)</a>
   </dt>
 
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="source.html#quiz.models.SqSubmit.set_as_correct">set_as_correct() (méthode quiz.models.SqSubmit)</a>
+  <dt><a href="database.html#quiz.models.SqSubmit.set_as_correct">set_as_correct() (méthode quiz.models.SqSubmit)</a>
   </dt>
 
       
-  <dt><a href="source.html#quiz.models.SimpleQuestion">SimpleQuestion (classe dans quiz.models)</a>
+  <dt><a href="front-end.html#Parse.show_errors">show_errors() (méthode Parse)</a>
   </dt>
 
       
-  <dt><a href="source.html#quiz.models.SqAnswer">SqAnswer (classe dans quiz.models)</a>
+  <dt><a href="database.html#quiz.models.SimpleQuestion">SimpleQuestion (classe dans quiz.models)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="front-end.html#SimpleQuestion">(classe de base)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="database.html#quiz.models.SqAnswer">SqAnswer (classe dans quiz.models)</a>
   </dt>
 
       
-  <dt><a href="source.html#quiz.models.SqSubmit">SqSubmit (classe dans quiz.models)</a>
+  <dt><a href="database.html#quiz.models.SqSubmit">SqSubmit (classe dans quiz.models)</a>
+  </dt>
+
+      
+  <dt><a href="front-end.html#start_render">start_render() (fonction de base)</a>
+  </dt>
+
+      
+  <dt><a href="front-end.html#submit">submit() (fonction de base)</a>
   </dt>
 
   </dl></td>
@@ -501,13 +676,13 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="source.html#quiz.models.SimpleQuestion.update_question_results">update_question_results() (méthode quiz.models.SimpleQuestion)</a>
+  <dt><a href="database.html#quiz.models.SimpleQuestion.update_question_results">update_question_results() (méthode quiz.models.SimpleQuestion)</a>
   </dt>
 
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="source.html#quiz.models.CompletedQuiz.update_total_result">update_total_result() (méthode quiz.models.CompletedQuiz)</a>
+  <dt><a href="database.html#quiz.models.CompletedQuiz.update_total_result">update_total_result() (méthode quiz.models.CompletedQuiz)</a>
   </dt>
 
   </dl></td>

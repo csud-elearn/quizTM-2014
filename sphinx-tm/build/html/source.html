@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Documentation du code source &mdash; documentation Développement d&#39;une application web de création de quiz 0.1</title>
+  <title>Vues Django &mdash; documentation Développement d&#39;une application web de création de quiz 0.1</title>
   
 
   
@@ -31,8 +31,8 @@
 
   
     <link rel="top" title="documentation Développement d&#39;une application web de création de quiz 0.1" href="index.html"/>
-        <link rel="next" title="Modèle relationnel" href="database.html"/>
-        <link rel="prev" title="Documentation utilisateur" href="doc-user.html"/> 
+        <link rel="next" title="Outil d’édition de quiz avec RapydScript" href="front-end.html"/>
+        <link rel="prev" title="Modèle relationnel" href="database.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -64,11 +64,11 @@
           
           
               <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rapydscript.html">Présentation de RapydScript</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="rapydscript.html#pourquoi-utiliser-python-plutot-que-javascript">Pourquoi utiliser Python plutôt que Javascript ?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rapydscript.html#differentes-manieres-d-aborder-le-probleme-coffeescript-brython-et-rapydscript">Différentes manières d&#8217;aborder le problème : CoffeeScript, Brython et RapydScript</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rapydscript.html#introduction-a-rapydscript">Introduction à RapydScript</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rapydscript.html#comparaison-du-code-source-et-du-code-genere">Comparaison du code source et du code généré</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="doc-user.html">Documentation utilisateur</a><ul>
@@ -76,13 +76,10 @@
 <li class="toctree-l2"><a class="reference internal" href="doc-user.html#etudiants">Étudiants</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Documentation du code source</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-quiz.views">views.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-quiz.models">models.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-quiz.forms">forms.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-quiz.utils.submit">utils/submit.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-quiz.utils.correct">utils/correct.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-quiz.utils.save">utils/save.py</a></li>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Fonctionnement général de l&#8217;application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="global.html#url">URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="global.html#organisation-des-fichiers-de-l-application">Organisation des fichiers de l&#8217;application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="global.html#bibliotheques-et-frameworks-utilises-dans-l-application">Bibliothèques et frameworks utilisés dans l&#8217;application</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="database.html">Modèle relationnel</a><ul>
@@ -90,6 +87,15 @@
 <li class="toctree-l2"><a class="reference internal" href="database.html#utilisation-dans-l-application-de-creation-de-quiz">Utilisation dans l&#8217;application de création de quiz</a></li>
 </ul>
 </li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Vues Django</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#concept-de-vue-dans-django">Concept de vue dans Django</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vues-de-l-application">Vues de l&#8217;application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#les-formulaires">Les formulaires</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#le-package-utils">Le package <strong>utils</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="front-end.html">Outil d&#8217;édition de quiz avec RapydScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusion.html">Conclusion</a></li>
 </ul>
 
           
@@ -114,7 +120,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>Documentation du code source</li>
+    <li>Vues Django</li>
       <li class="wy-breadcrumbs-aside">
         
           <a href="_sources/source.txt" rel="nofollow"> View page source</a>
@@ -125,11 +131,27 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="documentation-du-code-source">
-<h1>Documentation du code source<a class="headerlink" href="#documentation-du-code-source" title="Lien permanent vers ce titre">¶</a></h1>
-<div class="section" id="module-quiz.views">
-<span id="views-py"></span><h2>views.py<a class="headerlink" href="#module-quiz.views" title="Lien permanent vers ce titre">¶</a></h2>
-<dl class="function">
+  <div class="section" id="vues-django">
+<h1>Vues Django<a class="headerlink" href="#vues-django" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="section" id="concept-de-vue-dans-django">
+<h2>Concept de vue dans Django<a class="headerlink" href="#concept-de-vue-dans-django" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Le principe des vues dans Django est relativement simple à comprendre, mais il est parfois
+plus difficile à appliquer de manière concrète. On peut expliquer ce concept de
+la manière suivante : il s&#8217;agit de la définition d&#8217;un ensemble d&#8217;actions à réaliser
+lorsqu&#8217;une requête précise est effectuée pour déterminer la réponse qui sera renvoyée
+par le serveur.</p>
+<p>Une vue se divise généralement en trois parties distinctes.
+La première est la récupération des données de la requête. La deuxième consiste
+à l&#8217;analyse et au traitement de ces données. Dans la dernière partie, on détermine
+enfin la réponse qui sera envoyée. Il peut s&#8217;agir d&#8217;une page HTML à afficher, de
+données en réponse à une requête Ajax ou encore d&#8217;un fichier à télécharger.</p>
+</div>
+<div class="section" id="vues-de-l-application">
+<h2>Vues de l&#8217;application<a class="headerlink" href="#vues-de-l-application" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Les vues de l&#8217;application sont définies dans le fichier <strong>views.py</strong>. Certaines renvoient
+des pages HTML, d&#8217;autres sont uniquement destinées à fonctionner avec des requête Ajax.
+Le but de cette section est d&#8217;expliquer le rôle ainsi que le fonctionnent de chacun de ces vues.</p>
+<span class="target" id="module-quiz.views"></span><dl class="function">
 <dt id="quiz.views.add_correct_answer">
 <code class="descclassname">quiz.views.</code><code class="descname">add_correct_answer</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/views.html#add_correct_answer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.views.add_correct_answer" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Cette fonctionnalité donne la possibilité de définir comme correcte une réponse
@@ -146,9 +168,9 @@ accessible que si l&#8217;utilisateur est un professeur.</p>
 <dl class="function">
 <dt id="quiz.views.advanced_stats">
 <code class="descclassname">quiz.views.</code><code class="descname">advanced_stats</code><span class="sig-paren">(</span><em>request</em>, <em>n_quiz</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/views.html#advanced_stats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.views.advanced_stats" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Récupère toutes les résolutions associés au quiz avec la clé primaire <code class="docutils literal"><span class="pre">n_quiz</span></code> dans la base de données et affiche
+<dd><p>Récupère toutes les résolutions associées au quiz avec la clé primaire <code class="docutils literal"><span class="pre">n_quiz</span></code> dans la base de données et affiche
 des statistiques précises montrant le résultat personnel des élèves pour chaque question.</p>
-<p>Un objet <code class="docutils literal"><span class="pre">QuizForms</span></code> qui créé des formulaires Django pour toutes les question
+<p>Un objet <code class="docutils literal"><span class="pre">QuizForms</span></code> qui créé des formulaires Django pour toutes les questions
 du quiz est instancié pour permettre au professeur de visionner 
 chaque question du quiz. Ce formulaire ne peut pas être envoyé et sert
 uniquement à l&#8217;affichage.</p>
@@ -168,9 +190,9 @@ Ces formulaires Django sont ensuite récupérés par l&#8217;intermédiaire de l
 <p>La requête de type POST est utilisée pour l&#8217;enregistrement des réponses soumises
 au quiz par un étudiant. Là aussi, on utilise la classe <code class="docutils literal"><span class="pre">QuizForms</span></code>, sauf que
 l&#8217;instanciation se fait avec un deuxième argument, <code class="docutils literal"><span class="pre">data</span></code>. Cet argument contient
-en fait les données soumises par le biais des formulaires Django lorsque un
+en fait les données soumises par le biais des formulaires Django lorsqu&#8217;un
 étudiant complète le quiz. Pour s&#8217;assurer de la validité de ces données, on
-utilise la méthode <code class="xref py py-meth docutils literal"><span class="pre">submit.QuizForms.are_valid()</span></code> de la classe <code class="docutils literal"><span class="pre">QuizForms</span></code>. Une fois le
+utilise la méthode <code class="docutils literal"><span class="pre">.are_valid()</span></code> de la classe <code class="docutils literal"><span class="pre">QuizForms</span></code>. Une fois le
 contrôle effectué, la méthode <code class="docutils literal"><span class="pre">.save_answers()</span></code> se charge d&#8217;ajouter de nouvelles
 entrées dans la base de donnée pour stocker les réponses soumises par l&#8217;étudiant.
 Pour finir, l&#8217;utilisateur est redirigé vers la page de correction correspondant
@@ -195,10 +217,9 @@ le nombre de points obtenus et un lien pour afficher la correction des réponses
 <dd><p>Récupère dans la base de données l&#8217;entrée de la table <code class="docutils literal"><span class="pre">CompletedQuiz</span></code> avec
 la clé primaire <code class="docutils literal"><span class="pre">n_completed</span></code> et affiche une correction détaillée des réponses soumises
 par l&#8217;étudiant.</p>
-<p>L&#8217;objet <code class="docutils literal"><span class="pre">CorrectQuiz</span></code> regroupe et calcule toutes les informations nécessaires
-à l&#8217;affichage du quiz. Cet objet est ensuite placé dans le contexte de la fonctions
-<code class="docutils literal"><span class="pre">render</span></code> et fournit ainsi un accès facilité aux données de la correction depuis
-le template.</p>
+<p>On parcourt ensuite la liste des réponses soumises à chaque question et on appelle
+la méthode <code class="docutils literal"><span class="pre">.build_correct()</span></code> qui instancie des objets contenant les données
+à afficher pour la correction.</p>
 </dd></dl>
 
 <dl class="function">
@@ -324,299 +345,12 @@ les colonnes <code class="docutils literal"><span class="pre">title</span></code
 </dd></dl>
 
 </div>
-<div class="section" id="module-quiz.models">
-<span id="models-py"></span><h2>models.py<a class="headerlink" href="#module-quiz.models" title="Lien permanent vers ce titre">¶</a></h2>
-<dl class="class">
-<dt id="quiz.models.CompletedQuiz">
-<em class="property">class </em><code class="descclassname">quiz.models.</code><code class="descname">CompletedQuiz</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#CompletedQuiz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.CompletedQuiz" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Contient</p>
-<dl class="method">
-<dt id="quiz.models.CompletedQuiz.get_questions_submits">
-<code class="descname">get_questions_submits</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#CompletedQuiz.get_questions_submits"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.CompletedQuiz.get_questions_submits" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Renvoie la liste des entrées des tables <code class="docutils literal"><span class="pre">SqSubmit</span></code>, <code class="docutils literal"><span class="pre">QcmSubmitOne</span></code> et
-<code class="docutils literal"><span class="pre">QcmSubmitMulti</span></code> correspondant à la résolution <code class="docutils literal"><span class="pre">self</span></code>.
-Chaque élément de cette liste représente concrètement la réponse soumise à
-une question du quiz.</p>
-<p>Cette liste est triée selon l&#8217;ordre d&#8217;apparition des questions correspondant
-réponses proposées.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="quiz.models.CompletedQuiz.update_total_result">
-<code class="descname">update_total_result</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#CompletedQuiz.update_total_result"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.CompletedQuiz.update_total_result" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Met à jour le nombre de points obtenus pour la résolution du quiz en entier
-en fonction des points obtenus pour chaque réponse soumise aux questions
-du quiz.</p>
-<p>Pour comptabiliser le nombre total de points obtenus, cette méthode parcourt
-la liste des réponses apportées avec la méthode <a class="reference internal" href="#quiz.models.CompletedQuiz.get_questions_submits" title="quiz.models.CompletedQuiz.get_questions_submits"><code class="xref py py-meth docutils literal"><span class="pre">CompletedQuiz.get_questions_submits()</span></code></a>
-appliquée à la résolution en question.
-calcule la somme des points obtenus pour chacune des questions.</p>
-<p>Cette méthode peut être utilisée lorsqu&#8217;une résolution vient d&#8217;être soumise
-par un élève pour comptabiliser une première fois les points obtenus ou 
-lorsqu&#8217;une entrée dans <a class="reference internal" href="#quiz.models.SqAnswer" title="quiz.models.SqAnswer"><code class="xref py py-class docutils literal"><span class="pre">SqAnswer</span></code></a> a été ajoutée pour mettre à jour les
-statistques en fonction des changements.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="quiz.models.Qcm">
-<em class="property">class </em><code class="descclassname">quiz.models.</code><code class="descname">Qcm</code><span class="sig-paren">(</span><em>id</em>, <em>text</em>, <em>comment</em>, <em>points</em>, <em>number</em>, <em>id_quiz_id</em>, <em>multi_answers</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#Qcm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.Qcm" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><dl class="method">
-<dt id="quiz.models.Qcm.average_result">
-<code class="descname">average_result</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#Qcm.average_result"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.Qcm.average_result" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Récupère toutes les réponses soumises pour la question et renvoie la moyenne
-arrondie à deux chiffres après la virgule sur la base du nombre de réponses
-proposées et sur la somme des résultats obtenus.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="quiz.models.Qcm.create_form">
-<code class="descname">create_form</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#Qcm.create_form"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.Qcm.create_form" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Retourne un formulaire Django permettant à un étudiant de répondre à la question
-<code class="docutils literal"><span class="pre">self</span></code>. Le formulaire sera de type <code class="docutils literal"><span class="pre">RadioForm</span></code> si un seul choix
-peut être sélectionné et de type <code class="docutils literal"><span class="pre">CheckboxForm</span></code> si la question autorise
-l&#8217;étudiant à cocher plusieurs options.</p>
-<p>Les arguments fournis lors de l&#8217;instanciation du formulaire sont analogues
-à ceux qui sont donnés pour l&#8217;instanciation d&#8217;un <code class="docutils literal"><span class="pre">TextForm</span></code> dans <a class="reference internal" href="#quiz.models.SimpleQuestion.create_form" title="quiz.models.SimpleQuestion.create_form"><code class="xref py py-meth docutils literal"><span class="pre">SimpleQuestion.create_form()</span></code></a>.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="quiz.models.Qcm.save_submit">
-<code class="descname">save_submit</code><span class="sig-paren">(</span><em>data</em>, <em>completed</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#Qcm.save_submit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.Qcm.save_submit" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Enregistre une nouvelle entrée dans la table <a class="reference internal" href="#quiz.models.QcmSubmitMulti" title="quiz.models.QcmSubmitMulti"><code class="xref py py-class docutils literal"><span class="pre">QcmSubmitMulti</span></code></a>
-ou <a class="reference internal" href="#quiz.models.QcmSubmitOne" title="quiz.models.QcmSubmitOne"><code class="xref py py-class docutils literal"><span class="pre">QcmSubmitOne</span></code></a> selon qu&#8217;il s&#8217;agisse d&#8217;une question avec
-plusieurs options correctes ou une seule. Ces tables permettent de stocker
-le(s) choix sélectionné(s) par l&#8217;étudiant pour la question <code class="docutils literal"><span class="pre">self</span></code>.</p>
-<p>La récupération des données du formulaire à partir de l&#8217;argument <code class="docutils literal"><span class="pre">data</span></code>
-et l&#8217;instanciation du modèle est analogue à la manipulation effectuée dans <a class="reference internal" href="#quiz.models.SimpleQuestion.save_submit" title="quiz.models.SimpleQuestion.save_submit"><code class="xref py py-meth docutils literal"><span class="pre">SimpleQuestion.save_submit()</span></code></a></p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="quiz.models.QcmChoice">
-<em class="property">class </em><code class="descclassname">quiz.models.</code><code class="descname">QcmChoice</code><span class="sig-paren">(</span><em>id</em>, <em>text</em>, <em>valid</em>, <em>id_question_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#QcmChoice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.QcmChoice" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><dl class="method">
-<dt id="quiz.models.QcmChoice.checked">
-<code class="descname">checked</code><span class="sig-paren">(</span><em>qcmsubmit</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#QcmChoice.checked"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.QcmChoice.checked" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Détermine si le choix a été sélectionné ou non dans la réponse soumise
-<code class="docutils literal"><span class="pre">qcmsubmit</span></code>.</p>
-<p>S&#8217;il la question peut admettre plusieurs options correctes, deux conditions doivent
-être remplies. D&#8217;abord, au moins un choix doit avoir été coché dans <code class="docutils literal"><span class="pre">qcmsubmit</span></code>.
-Cette vérification est nécessaire car le champ <code class="docutils literal"><span class="pre">qcmsubmit.id_selected</span></code> peut
-valoir <code class="docutils literal"><span class="pre">null</span></code> dans la base de données. Ensuite, il suffit de regarder
-si le choix se trouve dans la liste des options sélectionnés avec la méthode
-<code class="docutils literal"><span class="pre">qcmsubmit.id_selected.all()</span></code>.</p>
-<p>Dans le cas d&#8217;une question avec une seule réponse correcte, la méthode
-vérifie simplement que l&#8217;élément sélectionné corresponde au choix défini comme
-correct.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="quiz.models.QcmChoice.correct_submit">
-<code class="descname">correct_submit</code><span class="sig-paren">(</span><em>qcmsubmit</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#QcmChoice.correct_submit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.QcmChoice.correct_submit" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Détermine le choix <code class="docutils literal"><span class="pre">self</span></code> a été coché correctement dans la réponse
-soumise <code class="docutils literal"><span class="pre">qcmsubmit</span></code>. Si l&#8217;option a été cochée et qu&#8217;elle est définie
-comme valide, la méthode renvoie <code class="docutils literal"><span class="pre">True</span></code>. Si l&#8217;option est cochée mais
-définie comme invalide, la valeur de retour sera cette fois <code class="docutils literal"><span class="pre">False</span></code>.
-Si l&#8217;élève n&#8217;a pas coché l&#8217;option, le raisonnement se fera de manière analogue
-mais dans le sens inverse.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="quiz.models.QcmSubmitMulti">
-<em class="property">class </em><code class="descclassname">quiz.models.</code><code class="descname">QcmSubmitMulti</code><span class="sig-paren">(</span><em>id</em>, <em>result</em>, <em>id_submitted_quiz_id</em>, <em>id_question_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#QcmSubmitMulti"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.QcmSubmitMulti" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><dl class="method">
-<dt id="quiz.models.QcmSubmitMulti.save_result">
-<code class="descname">save_result</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#QcmSubmitMulti.save_result"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.QcmSubmitMulti.save_result" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Comptabilise et enregistre les points obtenus par rapport aux choix cochés.</p>
-<p>Cette méthode parcourt tous les choix possibles pour la question
-<code class="docutils literal"><span class="pre">self.id_question</span></code> récupérés avec <code class="xref py py-meth docutils literal"><span class="pre">Qcm.get_choices()</span></code>. Pour chaque
-choix, elle utilise la méthode <a class="reference internal" href="#quiz.models.QcmChoice.correct_submit" title="quiz.models.QcmChoice.correct_submit"><code class="xref py py-meth docutils literal"><span class="pre">QcmChoice.correct_submit()</span></code></a> pour
-vérifier que le choix a été coché correctement. L&#8217;étudiant obtient une part
-des points pour chaque choix correct.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="quiz.models.QcmSubmitOne">
-<em class="property">class </em><code class="descclassname">quiz.models.</code><code class="descname">QcmSubmitOne</code><span class="sig-paren">(</span><em>id</em>, <em>result</em>, <em>id_submitted_quiz_id</em>, <em>id_question_id</em>, <em>id_selected_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#QcmSubmitOne"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.QcmSubmitOne" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><dl class="method">
-<dt id="quiz.models.QcmSubmitOne.save_result">
-<code class="descname">save_result</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#QcmSubmitOne.save_result"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.QcmSubmitOne.save_result" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Comptabilise et enregistre les points obtenus par raport au choix sélectionné.</p>
-<p>Si le choix sélectionné correspond à la solution, tous les points sont attribués.
-Si aucune option n&#8217;est choisie, l&#8217;étudiant obtient automatiquement zéro point.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="quiz.models.Quiz">
-<em class="property">class </em><code class="descclassname">quiz.models.</code><code class="descname">Quiz</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#Quiz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.Quiz" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Table dont le rôle est de stocker les informations générales sur le quiz telles
-que le titre du quiz, le nombre maximal de points pouvant être obtenus ou la date
-et l&#8217;heure de sa création.</p>
-<p>Tous les modèles contenant les données des questions du quiz incluent une clé
-étrangère reliant la question avec la table <code class="docutils literal"><span class="pre">`Quiz</span></code>.</p>
-<dl class="method">
-<dt id="quiz.models.Quiz.average_result">
-<code class="descname">average_result</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#Quiz.average_result"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.Quiz.average_result" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Récupère dans la base de données toutes les résolutions se rattachant
-au quiz en question puis calcule la moyenne des résultats obtenus sur la base
-du résultat de chaque élève et le nombre de résolutions envoyées.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="quiz.models.Quiz.get_questions">
-<code class="descname">get_questions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#Quiz.get_questions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.Quiz.get_questions" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Récupère la liste de toutes les questions du quiz et les trie dans l&#8217;ordre
-d&#8217;apparition dans le quiz.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="quiz.models.Quiz.length">
-<code class="descname">length</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#Quiz.length"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.Quiz.length" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Retourne le nombre de questions qui composent le quiz.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="quiz.models.QuizDraft">
-<em class="property">class </em><code class="descclassname">quiz.models.</code><code class="descname">QuizDraft</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#QuizDraft"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.QuizDraft" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>La table <code class="docutils literal"><span class="pre">QuizDraft</span></code> sert à stocker les brouillons. Elle contient le titre
-du brouillon, le code ainsi qu&#8217;une relation vers le créateur du brouillon.</p>
-</dd></dl>
-
-<dl class="class">
-<dt id="quiz.models.SimpleQuestion">
-<em class="property">class </em><code class="descclassname">quiz.models.</code><code class="descname">SimpleQuestion</code><span class="sig-paren">(</span><em>id</em>, <em>text</em>, <em>comment</em>, <em>points</em>, <em>number</em>, <em>id_quiz_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SimpleQuestion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SimpleQuestion" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><dl class="method">
-<dt id="quiz.models.SimpleQuestion.average_result">
-<code class="descname">average_result</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SimpleQuestion.average_result"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SimpleQuestion.average_result" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Renvoie le nombre moyen de points obtenus pour la question en se basant sur
-le nombre total de réponses soumises et sur la somme de tous les points obtenus.
-La moyenne est ensuite arrondie à deux chiffres après la virgule pour éviter
-tout problème d&#8217;affichage.</p>
-<p>Au cas où aucune réponse n&#8217;a encore été soumise, cette méthode retourne
-simplement la chaîne <code class="docutils literal"><span class="pre">--</span></code> qui peut directement être utilisée dans le template.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="quiz.models.SimpleQuestion.create_form">
-<code class="descname">create_form</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SimpleQuestion.create_form"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SimpleQuestion.create_form" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Instancie un formulaire Django personnalisé de type <code class="docutils literal"><span class="pre">TextForm</span></code> correspondant
-à la question. Ce type de formulaire est défini dans py:mod:<cite>forms</cite> et spécialement
-conçu pour les questions à réponse courte.</p>
-<p>Lors de l&#8217;instanciation, plusieurs arguments sont fournis. Premièrement,
-on indique la question <code class="docutils literal"><span class="pre">self</span></code> pour que des informations supplémentaires
-la concernant puissent éventuellement être obtenues depuis le formulaire.CompletedQuiz
-Ensuite, l&#8217;index de la position de la question dans le quiz est attribué à
-l&#8217;argument <code class="docutils literal"><span class="pre">prefix</span></code>. Cet argument permet d&#8217;identifier la question correspondant
-au formulaire lorsque les données entrées par l&#8217;utilisateur sont récupérées.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="quiz.models.SimpleQuestion.get_wrong_answers">
-<code class="descname">get_wrong_answers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SimpleQuestion.get_wrong_answers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SimpleQuestion.get_wrong_answers" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Retourne la liste de toutes les réponses incorrectes soumises pour la question <code class="docutils literal"><span class="pre">self</span></code>.
-Pour éviter les doublons, les réponses équivalentes sont renvoyées une seule fois.
-Par exemple, si deux réponses valent <code class="docutils literal"><span class="pre">&quot;5&quot;</span></code>, seule la première sera renvoyée par
-cette méthode.</p>
-<p>Comme cette méthode est utilisée pour afficher les réponses soumises incorrectes pouvant
-potentiellement être définies comme correctes par la suite au cas où le 
-professeur les juge acceptables, les réponses vides sont aussi exclues 
-puisqu&#8217;il n&#8217;y aurait pas de sens à les admettre dans les solutions.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="quiz.models.SimpleQuestion.save_submit">
-<code class="descname">save_submit</code><span class="sig-paren">(</span><em>data</em>, <em>completed</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SimpleQuestion.save_submit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SimpleQuestion.save_submit" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Cette méthode permet d&#8217;enregistrer dans la base de données une réponse soumise
-par l&#8217;utilisateur à la question <code class="docutils literal"><span class="pre">self</span></code> en créant une entrée dans la table
-<code class="docutils literal"><span class="pre">SqSubmit</span></code>.</p>
-<p>L&#8217;argument <code class="docutils literal"><span class="pre">data</span></code> est dictionnaire contenant les paramètres de la 
-requête HTTP qui concernent le formulaire créé pour la question. On peut donc
-facilement accéder au texte entré par l&#8217;élève avec la clé <code class="docutils literal"><span class="pre">'answer'</span></code>.</p>
-<p>L&#8217;argument <code class="docutils literal"><span class="pre">completed</span></code> contient la référence vers l&#8217;élément de la table
-<code class="docutils literal"><span class="pre">CompletedQuiz</span></code> qui comprend les données de la résolution de l&#8217;élève. On
-peut ainsi facilement relier l&#8217;entrée créée dans <code class="docutils literal"><span class="pre">SqSubmit</span></code> avec la résolution
-de l&#8217;élève.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="quiz.models.SimpleQuestion.update_question_results">
-<code class="descname">update_question_results</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SimpleQuestion.update_question_results"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SimpleQuestion.update_question_results" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Permet de réévaluer toutes les réponses soumises pour la question après
-l&#8217;ajout d&#8217;une solution correcte pour corriger les statistiques.</p>
-<p>Pour ceci, la méthode récupère la liste des réponses soumises à la question
-dans la table <code class="docutils literal"><span class="pre">SqSubmit</span></code>. Elle applique la méthode <code class="docutils literal"><span class="pre">.save_result</span></code> à 
-chacune d&#8217;entre elles. De plus,
-comme le résultat de la résolution peut changer, il faut aussi mettre à jour
-le résultat total obtenu pour la résolution (table <code class="docutils literal"><span class="pre">CompletedQuiz</span></code>) liée à chaque réponse soumise.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="quiz.models.SqAnswer">
-<em class="property">class </em><code class="descclassname">quiz.models.</code><code class="descname">SqAnswer</code><span class="sig-paren">(</span><em>id</em>, <em>text</em>, <em>id_question_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SqAnswer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SqAnswer" title="Lien permanent vers cette définition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="quiz.models.SqSubmit">
-<em class="property">class </em><code class="descclassname">quiz.models.</code><code class="descname">SqSubmit</code><span class="sig-paren">(</span><em>id</em>, <em>text</em>, <em>result</em>, <em>id_question_id</em>, <em>id_submitted_quiz_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SqSubmit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SqSubmit" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><dl class="method">
-<dt id="quiz.models.SqSubmit.build_correct">
-<code class="descname">build_correct</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SqSubmit.build_correct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SqSubmit.build_correct" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Instancie et retourne un objet <code class="docutils literal"><span class="pre">CorrectSq</span></code> correspondant à la réponse soumise <code class="docutils literal"><span class="pre">self</span></code>.
-La classe :py:class:<code class="docutils literal"><span class="pre">CorrectSq</span></code> permet un accès plus rapide aux données nécessaires à
-l&#8217;affichage de la correction.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="quiz.models.SqSubmit.correct">
-<code class="descname">correct</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SqSubmit.correct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SqSubmit.correct" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Détermine si la réponse soumise est correcte en vérifiant qu&#8217;elle se
-se trouve dans la liste des solutions correctes.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="quiz.models.SqSubmit.get_corrections">
-<code class="descname">get_corrections</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SqSubmit.get_corrections"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SqSubmit.get_corrections" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Renvoie la liste des solutions correctes pour la question sous forme de liste de
-chaînes de charactères</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="quiz.models.SqSubmit.save_result">
-<code class="descname">save_result</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SqSubmit.save_result"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SqSubmit.save_result" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Comptabilise et enregistre les points obtenus pour la réponse soumise. Si la réponse soumise
-est correcte, tous les points sont attribués. Dans le cas contraire,
-aucun point n&#8217;est attribué.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="quiz.models.SqSubmit.set_as_correct">
-<code class="descname">set_as_correct</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SqSubmit.set_as_correct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SqSubmit.set_as_correct" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Si la réponse soumise à la question avait été définie comme incorrecte
-lors de la correction automatique, cette méthode permet d&#8217;ajouter la réponse
-soumise aux solutions correctes de la question.</p>
-<p>Toutes les réponses soumises pour la question sont ensuite réeavaluées pour
-mettre à jour les statistiques.</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="module-quiz.forms">
-<span id="forms-py"></span><h2>forms.py<a class="headerlink" href="#module-quiz.forms" title="Lien permanent vers ce titre">¶</a></h2>
-<dl class="class">
+<div class="section" id="les-formulaires">
+<h2>Les formulaires<a class="headerlink" href="#les-formulaires" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Django propose des outils pour créer des formulaires et récupérer les
+données de ceux-ci. La vue <code class="docutils literal"><span class="pre">complete</span></code> profite grandement de cette possibilité
+pour faciliter l&#8217;enregistrement des résolutions de quiz.</p>
+<span class="target" id="module-quiz.forms"></span><dl class="class">
 <dt id="quiz.forms.CheckboxForm">
 <em class="property">class </em><code class="descclassname">quiz.forms.</code><code class="descname">CheckboxForm</code><span class="sig-paren">(</span><em>queryset</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/forms.html#CheckboxForm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.forms.CheckboxForm" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Formulaire Django personnalisé correspondant à une question à choix multiples
@@ -678,81 +412,14 @@ la question dans le template</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-quiz.utils.submit">
-<span id="utils-submit-py"></span><h2>utils/submit.py<a class="headerlink" href="#module-quiz.utils.submit" title="Lien permanent vers ce titre">¶</a></h2>
-<dl class="class">
-<dt id="quiz.utils.submit.QuizForms">
-<em class="property">class </em><code class="descclassname">quiz.utils.submit.</code><code class="descname">QuizForms</code><span class="sig-paren">(</span><em>quiz</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/utils/submit.html#QuizForms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.utils.submit.QuizForms" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Le rôle de cette classe est de créer des formulaires Django correspondant aux
-questions d&#8217;un quiz en particulier puis de fournir des méthodes pour traiter
-les données récupérées grâce aux formulaires et de les enregistrer.</p>
-<dl class="method">
-<dt id="quiz.utils.submit.QuizForms.are_valid">
-<code class="descname">are_valid</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/utils/submit.html#QuizForms.are_valid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.utils.submit.QuizForms.are_valid" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Applique la méthode <code class="docutils literal"><span class="pre">.is_valid()</span></code> à chaque formulaire correspondant à une
-question et renvoie <code class="docutils literal"><span class="pre">True</span></code> si aucun problème survient avec la validation.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="quiz.utils.submit.QuizForms.save_answers">
-<code class="descname">save_answers</code><span class="sig-paren">(</span><em>user</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/utils/submit.html#QuizForms.save_answers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.utils.submit.QuizForms.save_answers" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Cette méthode permet de sauvegarder dans la base de données les réponses
-soumises par le biais des formulaires Django correspondant à chaque question.</p>
-<p>Pour ce faire, une nouvelle entrée dans la table <code class="docutils literal"><span class="pre">CompletedQuiz</span></code> est
-d&#8217;abord créée. Ensuite, la méthode parcourt parallèlement la liste des questions
-du quiz et les formulaires correspondants. Pour chaque question, elle appelle
-la méthode <code class="docutils literal"><span class="pre">.save_submit()</span></code> avec en argument les données récupérées à partir
-du formulaire associé à la question. La méthode <code class="docutils literal"><span class="pre">.save_submit()</span></code> se charge
-de sauvegarder les données concernant les réponses soumises aux différentes
-questions. La manière de traiter ces données dépendera du type de question
-dont il s&#8217;agit. On peut appliquer la méthode <code class="docutils literal"><span class="pre">.save_submit()</span></code> à chacune
-des questions du quiz sans se soucier du type car son comportement est défini
-différement selon la classe à laquelle appartient la question.</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="module-quiz.utils.correct">
-<span id="utils-correct-py"></span><h2>utils/correct.py<a class="headerlink" href="#module-quiz.utils.correct" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Ensemble d&#8217;objets pour permettre un accès facilité aux données nécessaires à
-l&#8217;affichage des corrections</p>
-<dl class="class">
-<dt id="quiz.utils.correct.CorrectChoice">
-<em class="property">class </em><code class="descclassname">quiz.utils.correct.</code><code class="descname">CorrectChoice</code><span class="sig-paren">(</span><em>choice</em>, <em>qcmsubmit</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/utils/correct.html#CorrectChoice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.utils.correct.CorrectChoice" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fournis des raccourcis pour accéder aux données des choix de QCM à corriger.
-Cette classe permet d&#8217;indiquer le texte à afficher avec le choix, de déterminer
-s&#8217;il a été coché et s&#8217;il est correct.</p>
-</dd></dl>
-
-<dl class="class">
-<dt id="quiz.utils.correct.CorrectQcm">
-<em class="property">class </em><code class="descclassname">quiz.utils.correct.</code><code class="descname">CorrectQcm</code><span class="sig-paren">(</span><em>qcmsubmit</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/utils/correct.html#CorrectQcm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.utils.correct.CorrectQcm" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Facilite l&#8217;affichage de la correction des questions à choix multiples par
-l&#8217;intermédiaire de raccourcis et instancie des objets de type <a class="reference internal" href="#quiz.utils.correct.CorrectChoice" title="quiz.utils.correct.CorrectChoice"><code class="xref py py-class docutils literal"><span class="pre">CorrectChoice</span></code></a>.</p>
-<p>L&#8217;attribut <code class="docutils literal"><span class="pre">type</span></code> vaut <code class="docutils literal"><span class="pre">1</span></code> pour les QCM à réponses multiples, <code class="docutils literal"><span class="pre">2</span></code> pour
-les listes déroulantes et <code class="docutils literal"><span class="pre">3</span></code> pour les QCM à réponse unique.</p>
-</dd></dl>
-
-<dl class="class">
-<dt id="quiz.utils.correct.CorrectQuestion">
-<em class="property">class </em><code class="descclassname">quiz.utils.correct.</code><code class="descname">CorrectQuestion</code><span class="sig-paren">(</span><em>submit</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/utils/correct.html#CorrectQuestion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.utils.correct.CorrectQuestion" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Définit des raccourcis pour accéder aux attributs communs à tous les types
-de questions.</p>
-</dd></dl>
-
-<dl class="class">
-<dt id="quiz.utils.correct.CorrectSq">
-<em class="property">class </em><code class="descclassname">quiz.utils.correct.</code><code class="descname">CorrectSq</code><span class="sig-paren">(</span><em>sqsubmit</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/utils/correct.html#CorrectSq"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.utils.correct.CorrectSq" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>Fournit des attributs spécifiques à la correction des questions à réponse courte.
-L&#8217;attribut <code class="docutils literal"><span class="pre">type</span></code> permet d&#8217;identifier dans le template le type de question
-dont il s&#8217;agit et de déterminer la manière d&#8217;afficher la correction.</p>
-<p>Pour une question à réponse courte, <code class="docutils literal"><span class="pre">type</span></code> vaut <code class="docutils literal"><span class="pre">0</span></code>.</p>
-</dd></dl>
-
-</div>
+<div class="section" id="le-package-utils">
+<h2>Le package <strong>utils</strong><a class="headerlink" href="#le-package-utils" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Afin de ne pas surcharger le fichier <strong>views.py</strong>, il était préférable que certaines
+manipulations complexes soient définies dans des modules externes. C&#8217;est pourquoi un package
+<strong>utils</strong> a été créé. Il comporte trois fichiers, destinés respectivement à l&#8217;enregistrement
+des quiz, à la sauvegarde des résolutions des étudiants et à la correction automatique des résolutions.</p>
 <div class="section" id="module-quiz.utils.save">
-<span id="utils-save-py"></span><h2>utils/save.py<a class="headerlink" href="#module-quiz.utils.save" title="Lien permanent vers ce titre">¶</a></h2>
+<span id="utils-save-py"></span><h3>utils/save.py<a class="headerlink" href="#module-quiz.utils.save" title="Lien permanent vers ce titre">¶</a></h3>
 <dl class="class">
 <dt id="quiz.utils.save.SaveQcm">
 <em class="property">class </em><code class="descclassname">quiz.utils.save.</code><code class="descname">SaveQcm</code><span class="sig-paren">(</span><em>question</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/utils/save.html#SaveQcm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.utils.save.SaveQcm" title="Lien permanent vers cette définition">¶</a></dt>
@@ -810,6 +477,80 @@ solutions sont ensuite sauvegardées.</p>
 </dd></dl>
 
 </div>
+<div class="section" id="module-quiz.utils.submit">
+<span id="utils-submit-py"></span><h3>utils/submit.py<a class="headerlink" href="#module-quiz.utils.submit" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="class">
+<dt id="quiz.utils.submit.QuizForms">
+<em class="property">class </em><code class="descclassname">quiz.utils.submit.</code><code class="descname">QuizForms</code><span class="sig-paren">(</span><em>quiz</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/utils/submit.html#QuizForms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.utils.submit.QuizForms" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Le rôle de cette classe est de créer des formulaires Django correspondant aux
+questions d&#8217;un quiz en particulier puis de fournir des méthodes pour traiter
+les données récupérées grâce aux formulaires et de les enregistrer.</p>
+<dl class="method">
+<dt id="quiz.utils.submit.QuizForms.are_valid">
+<code class="descname">are_valid</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/utils/submit.html#QuizForms.are_valid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.utils.submit.QuizForms.are_valid" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Applique la méthode <code class="docutils literal"><span class="pre">.is_valid()</span></code> à chaque formulaire correspondant à une
+question et renvoie <code class="docutils literal"><span class="pre">True</span></code> si aucun problème ne survient avec la validation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quiz.utils.submit.QuizForms.save_answers">
+<code class="descname">save_answers</code><span class="sig-paren">(</span><em>user</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/utils/submit.html#QuizForms.save_answers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.utils.submit.QuizForms.save_answers" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Cette méthode permet de sauvegarder dans la base de données les réponses
+soumises par le biais des formulaires Django correspondant à chaque question.</p>
+<p>Pour ce faire, une nouvelle entrée dans la table <code class="docutils literal"><span class="pre">CompletedQuiz</span></code> est
+d&#8217;abord créée. Ensuite, la méthode parcourt parallèlement la liste des questions
+du quiz et les formulaires correspondants. Pour chaque question, elle appelle
+la méthode <code class="docutils literal"><span class="pre">.save_submit()</span></code> avec en argument les données récupérées à partir
+du formulaire associé à la question. La méthode <code class="docutils literal"><span class="pre">.save_submit()</span></code> se charge
+de sauvegarder les données concernant les réponses soumises aux différentes
+questions. La manière de traiter ces données dépendra du type de question
+dont il s&#8217;agit. On peut appliquer la méthode <code class="docutils literal"><span class="pre">.save_submit()</span></code> à chacune
+des questions du quiz sans se soucier du type car son comportement est défini
+différemment selon la classe à laquelle appartient la question.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-quiz.utils.correct">
+<span id="utils-correct-py"></span><h3>utils/correct.py<a class="headerlink" href="#module-quiz.utils.correct" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Ensemble d&#8217;objets pour permettre un accès facilité aux données nécessaires à
+l&#8217;affichage des corrections</p>
+<dl class="class">
+<dt id="quiz.utils.correct.CorrectChoice">
+<em class="property">class </em><code class="descclassname">quiz.utils.correct.</code><code class="descname">CorrectChoice</code><span class="sig-paren">(</span><em>choice</em>, <em>qcmsubmit</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/utils/correct.html#CorrectChoice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.utils.correct.CorrectChoice" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fournis des raccourcis pour accéder aux données des choix de QCM à corriger.
+Cette classe permet d&#8217;indiquer le texte à afficher avec le choix, de déterminer
+s&#8217;il a été coché et s&#8217;il est correct.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="quiz.utils.correct.CorrectQcm">
+<em class="property">class </em><code class="descclassname">quiz.utils.correct.</code><code class="descname">CorrectQcm</code><span class="sig-paren">(</span><em>qcmsubmit</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/utils/correct.html#CorrectQcm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.utils.correct.CorrectQcm" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Facilite l&#8217;affichage de la correction des questions à choix multiples par
+l&#8217;intermédiaire de raccourcis et instancie des objets de type <a class="reference internal" href="#quiz.utils.correct.CorrectChoice" title="quiz.utils.correct.CorrectChoice"><code class="xref py py-class docutils literal"><span class="pre">CorrectChoice</span></code></a>.</p>
+<p>L&#8217;attribut <code class="docutils literal"><span class="pre">type</span></code> vaut <code class="docutils literal"><span class="pre">1</span></code> pour les QCM à réponses multiples, <code class="docutils literal"><span class="pre">2</span></code> pour
+les listes déroulantes et <code class="docutils literal"><span class="pre">3</span></code> pour les QCM à réponse unique.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="quiz.utils.correct.CorrectQuestion">
+<em class="property">class </em><code class="descclassname">quiz.utils.correct.</code><code class="descname">CorrectQuestion</code><span class="sig-paren">(</span><em>submit</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/utils/correct.html#CorrectQuestion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.utils.correct.CorrectQuestion" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Définit des raccourcis pour accéder aux attributs communs à tous les types
+de questions.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="quiz.utils.correct.CorrectSq">
+<em class="property">class </em><code class="descclassname">quiz.utils.correct.</code><code class="descname">CorrectSq</code><span class="sig-paren">(</span><em>sqsubmit</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/utils/correct.html#CorrectSq"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.utils.correct.CorrectSq" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fournit des attributs spécifiques à la correction des questions à réponse courte.
+L&#8217;attribut <code class="docutils literal"><span class="pre">type</span></code> permet d&#8217;identifier dans le template le type de question
+dont il s&#8217;agit et de déterminer la manière d&#8217;afficher la correction.</p>
+<p>Pour une question à réponse courte, <code class="docutils literal"><span class="pre">type</span></code> vaut <code class="docutils literal"><span class="pre">0</span></code>.</p>
+</dd></dl>
+
+</div>
+</div>
 </div>
 
 
@@ -818,10 +559,10 @@ solutions sont ensuite sauvegardées.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="database.html" class="btn btn-neutral float-right" title="Modèle relationnel">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="front-end.html" class="btn btn-neutral float-right" title="Outil d’édition de quiz avec RapydScript">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="doc-user.html" class="btn btn-neutral" title="Documentation utilisateur"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="database.html" class="btn btn-neutral" title="Modèle relationnel"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

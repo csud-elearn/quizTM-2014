@@ -8,8 +8,8 @@
 <link rel="stylesheet" href="{% static 'quiz/css/create.css' %}">
 <script src="{% static 'quiz/js/textarea_lines.js' %}"></script>
 <script src="{% static 'quiz/js/jquery.caret.js' %}"></script>
-<script src="{% static 'quiz/js/toolbar.js' %}"></script>
-<script src="{% static 'quiz/js/interpreter.js' %}"></script>
+<script src="{% static 'quiz/js/rs-compiled/toolbar.js' %}"></script>
+<script src="{% static 'quiz/js/rs-compiled/interpreter.js' %}"></script>
 {% endblock %}
 
 {% block page-content %}
@@ -112,7 +112,7 @@
                 <span class="input-group-addon lines" id="basic-addon1">1</span>
                 <textarea class="form-control linedarea" id="quizcode" placeholder="Votre texte ici" rows="18" wrap="off" name="quizcode" aria-describedby="basic-addon1"></textarea>
             </div>
-            <a href="#viewbox" class="btn btn-primary btn-sm bottom-space" id="bouton" title="Aperçu du quiz">
+            <a href="#viewbox" class="btn btn-primary btn-sm bottom-space" id="start-render" title="Aperçu du quiz">
                 <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Aperçu
             </a>
             

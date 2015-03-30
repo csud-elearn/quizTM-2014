@@ -31,7 +31,7 @@ class QuizForms:
     def are_valid(self):
         """
         Applique la méthode ``.is_valid()`` à chaque formulaire correspondant à une
-        question et renvoie ``True`` si aucun problème survient avec la validation.
+        question et renvoie ``True`` si aucun problème ne survient avec la validation.
         """
         valid = True
         # Si .is_valid() renvoie toujours True, .are_valid() renvoie True
@@ -52,10 +52,10 @@ class QuizForms:
         la méthode ``.save_submit()`` avec en argument les données récupérées à partir
         du formulaire associé à la question. La méthode ``.save_submit()`` se charge
         de sauvegarder les données concernant les réponses soumises aux différentes
-        questions. La manière de traiter ces données dépendera du type de question
+        questions. La manière de traiter ces données dépendra du type de question
         dont il s'agit. On peut appliquer la méthode ``.save_submit()`` à chacune
         des questions du quiz sans se soucier du type car son comportement est défini
-        différement selon la classe à laquelle appartient la question.
+        différemment selon la classe à laquelle appartient la question.
         """
         # Nouvelle entrée dans la base de données
         completed = CompletedQuiz(id_quiz=self.quiz, id_user=user)

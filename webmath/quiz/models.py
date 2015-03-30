@@ -8,12 +8,19 @@ from quiz.utils.correct import *
 
 class Quiz(models.Model): #Infos générales sur le quiz
     """
-    Table dont le rôle est de stocker les informations générales sur le quiz telles
-    que le titre du quiz, le nombre maximal de points pouvant être obtenus ou la date
-    et l'heure de sa création.
+    La table ``Quiz`` est la table centrale de l'application et toutes les autres 
+    tables s'organisent autour d'elle. Elle comporte trois colonnes importantes :
+    une contenant le titre, une autre contenant la date et l'heure de création 
+    ainsi qu'une colonne 
+    dans laquelle est stockée le nombre maximal de points pouvant être obtenus pour
+    le quiz en question. Cette table comporte également une relation vers une table
+    Teacher  qui permet d'intégrer le système d'authentification des utilisateurs.
+
+    Avec django, il est possible d'initialiser automatiquement un champ ``DateTimeField`` à la date/heure du moment où le modèle est instancié avec le paramètre ``auto_now_add``
+
+    .. code-block:: python
     
-    Tous les modèles contenant les données des questions du quiz incluent une clé
-    étrangère reliant la question avec la table ```Quiz``.
+        creation_date = models.DateTimeField(auto_now_add=True)
     """
     title = models.CharField(max_length=100)
     points = models.FloatField(default=0)
@@ -71,8 +78,12 @@ class Quiz(models.Model): #Infos générales sur le quiz
         
 class QuizDraft(models.Model):
     """
-    La table ``QuizDraft`` sert à stocker les brouillons. Elle contient le titre
-    du brouillon, le code ainsi qu'une relation vers le créateur du brouillon.
+    Cette table est un peu isolée dans le schéma relationnel et n'a qu'une fonction :
+    enregistrer le code qu'un quiz qu'un professeur n'a pas terminé et lui offrir
+    la possibilité de le récupérer plus tard pour continuer son travail.
+    Outre la relation vers la table ``Teacher`` et la colonne stockant le code du
+    quiz, une colonne permet de stocker un titre pour pouvoir identifier rapidement
+    un brouillon.
     """
     title = models.CharField(max_length=100)
     code = models.CharField(max_length=1000)
@@ -83,7 +94,13 @@ class QuizDraft(models.Model):
     
 class CompletedQuiz(models.Model):
     """
-    Contient 
+    Comme on peut le voir sur le diagramme, à l'instar de ``Quiz``, cette table
+    occupe aussi un rôle central dans le modèle relationnel. Elle permet de faire
+    le lien entre un quiz créé par un professeur et les réponses soumises à ce quiz
+    par les étudiants. Elle possède donc une relation vers une table ``Student``,
+    qui définit l'étudiant ayant répondu au quiz. De l'autre côté, cette table pointe
+    vers ``Quiz`` et définit logiquement le quiz auquel l'étudiant a répondu. Un seul
+    champ est présent : la date et l'heure de la soumission des réponses.
     """
     submit_date = models.DateTimeField(auto_now_add=True)
     result = models.FloatField(default=0)
@@ -120,14 +137,13 @@ class CompletedQuiz(models.Model):
         du quiz.
         
         Pour comptabiliser le nombre total de points obtenus, cette méthode parcourt
-        la liste des réponses apportées avec la méthode :py:meth:`CompletedQuiz.get_questions_submits()`
+        la liste des réponses apportées avec la méthode ``.get_questions_submits()``
         appliquée à la résolution en question.
-        calcule la somme des points obtenus pour chacune des questions.
         
         Cette méthode peut être utilisée lorsqu'une résolution vient d'être soumise
         par un élève pour comptabiliser une première fois les points obtenus ou 
         lorsqu'une entrée dans :py:class:`SqAnswer` a été ajoutée pour mettre à jour les
-        statistques en fonction des changements.
+        statistiques en fonction des changements.
         """
         result = 0
         
@@ -160,6 +176,16 @@ class QuizQuestion(models.Model): #Classe abstraite dont héritent toutes les qu
 #
         
 class SimpleQuestion(QuizQuestion):
+    """
+    Cette table contient les informations générales sur les questions simples du quiz.
+    Ces questions sont présentées sous la forme d'un simple champ de texte lorsqu'un
+    élève complète le quiz. Une première colonne ``title`` stocke l'énoncé de la
+    question, ``comment`` permet d'inclure un commentaire affiché lors de la
+    correction automatique du quiz (par exemple la démonstration d'une égalité),
+    ``points`` définit le nombre de points attribués sur cette question et ``number``
+    enregistre la position à laquelle doit apparaître la question dans le quiz. Une relation
+    désigne le quiz qui intègre la question.
+    """
     def get_wrong_answers(self):
         """
         Retourne la liste de toutes les réponses incorrectes soumises pour la question ``self``.
@@ -195,7 +221,7 @@ class SimpleQuestion(QuizQuestion):
         
         Lors de l'instanciation, plusieurs arguments sont fournis. Premièrement,
         on indique la question ``self`` pour que des informations supplémentaires
-        la concernant puissent éventuellement être obtenues depuis le formulaire.CompletedQuiz
+        la concernant puissent éventuellement être obtenues depuis le formulaire.
         Ensuite, l'index de la position de la question dans le quiz est attribué à
         l'argument ``prefix``. Cet argument permet d'identifier la question correspondant
         au formulaire lorsque les données entrées par l'utilisateur sont récupérées.
@@ -208,7 +234,7 @@ class SimpleQuestion(QuizQuestion):
         par l'utilisateur à la question ``self`` en créant une entrée dans la table
         ``SqSubmit``.
         
-        L'argument ``data`` est dictionnaire contenant les paramètres de la 
+        L'argument ``data`` est un dictionnaire contenant les paramètres de la 
         requête HTTP qui concernent le formulaire créé pour la question. On peut donc
         facilement accéder au texte entré par l'élève avec la clé ``'answer'``.
         
@@ -256,7 +282,7 @@ class SimpleQuestion(QuizQuestion):
         l'ajout d'une solution correcte pour corriger les statistiques.
         
         Pour ceci, la méthode récupère la liste des réponses soumises à la question
-        dans la table ``SqSubmit``. Elle applique la méthode ``.save_result`` à 
+        dans la table ``SqSubmit``. Elle applique la méthode ``SqSubmit.save_result()`` à 
         chacune d'entre elles. De plus,
         comme le résultat de la résolution peut changer, il faut aussi mettre à jour
         le résultat total obtenu pour la résolution (table ``CompletedQuiz``) liée à chaque réponse soumise.
@@ -271,14 +297,30 @@ class SimpleQuestion(QuizQuestion):
             # cette question est mis à jour
             submit.id_submitted_quiz.update_total_result()
             
-class SqAnswer(models.Model): #Les réponses correctes
+class SqAnswer(models.Model):
+    """
+    Cette table contient simplement la solution de la question définie par la
+    relation vers la table ``SimpleQuestion``. Il est important de noter qu'il
+    peut y avoir plusieurs solutions possibles pour une question et c'est la raison
+    pour laquelle la solution n'est pas simplement stockée dans une colonne de
+    :py:class:`SimpleQuestion`.
+    """
     text = models.CharField(max_length=50)
     id_question = models.ForeignKey(SimpleQuestion) #Relation vers la question
     
     def __str__(self):
         return self.text
 
-class SqSubmit(models.Model): #Réponse soumise par un élève
+class SqSubmit(models.Model):
+    """
+    Il s'agit simplement de la réponse apportée à une question simple. La table
+    a donc un champ ``text`` qui contient la réponse soumise par l'élève et un champ
+    ``result`` qui stocke le nombre de points obtenus pour la question. Elle possède
+    aussi deux relations, une vers ``SimpleQuestion`` pour préciser la question auquel
+    l'élève a répondu, et une autre vers ``CompletedQuiz``. La réponse soumise par l'élève
+    sera ensuite comparée à(aux) solution(s) enregistrées pour déterminer si les points
+    sont attribués ou non.
+    """
     text = models.CharField(max_length=50)
     result = models.FloatField(default=0)
     id_question = models.ForeignKey(SimpleQuestion) #Relation vers la question à laquelle l'élève a répondu
@@ -304,7 +346,7 @@ class SqSubmit(models.Model): #Réponse soumise par un élève
     def get_corrections(self):
         """
         Renvoie la liste des solutions correctes pour la question sous forme de liste de
-        chaînes de charactères
+        chaînes de caractères
         """
         # Récupération des corrections de la question
         l_sq_answer = SqAnswer.objects.filter(id_question=self.id_question)
@@ -330,7 +372,7 @@ class SqSubmit(models.Model): #Réponse soumise par un élève
         lors de la correction automatique, cette méthode permet d'ajouter la réponse
         soumise aux solutions correctes de la question.
         
-        Toutes les réponses soumises pour la question sont ensuite réeavaluées pour
+        Toutes les réponses soumises pour la question sont ensuite rééavaluées pour
         mettre à jour les statistiques.
         """
         # Nouvelle entrée dans la db pour ajouter la solution
@@ -342,8 +384,8 @@ class SqSubmit(models.Model): #Réponse soumise par un élève
         
     def build_correct(self):
         """
-        Instancie et retourne un objet ``CorrectSq`` correspondant à la réponse soumise ``self``.
-        La classe :py:class:``CorrectSq`` permet un accès plus rapide aux données nécessaires à
+        Instancie et retourne un objet :py:class:`CorrectSq` correspondant à la réponse soumise ``self``.
+        La classe :py:class:`CorrectSq` permet un accès plus rapide aux données nécessaires à
         l'affichage de la correction.
         """
         # Instanciation de l'objet. L'argument est la réponse soumise à corriger (self)
@@ -353,6 +395,30 @@ class SqSubmit(models.Model): #Réponse soumise par un élève
 #
 
 class Qcm(QuizQuestion):
+    """
+    La table Qcm permet de stocker les informations générales à propos des questions à choix multiples.
+    Ces questions sont affichées sous forme de boutons radio ou de cases à cocher en HTML.
+    Cette table reprend plusieurs colonnes de la table ``SimpleQuestion``. C'est
+    pourquoi ces deux tables héritent en fait de la même classe dans Django ``QuizQuestion``.
+    Cette dernière n'est pas à proprement parler un modèle, puisqu'elle ne correspond
+    à aucune table de la base de données. C'est une classe abstraite, c'est à dire
+    que d'autres classes peuvent hériter de ses caractéristiques mais qu'elle ne
+    sera jamais directement instanciée.
+    
+    Dans Django, la définition d'un modèle de ce type se fait en déclarant une classe
+    interne ``Meta`` et en initialisant la variable de classe ``abstract`` à ``True`` :
+
+    .. code-block:: python
+            
+        class Meta:
+            abstract = True
+
+    En plus des colonnes héritées de ``QuizQuestion```, ``Qcm`` possède un champ
+    de type booléen. Il s'agit de ``multi_answers``, qui détermine si plusieurs
+    options peuvent être cochées ou non. Si ce champ vaut ``True``, la question
+    sera affichée sous forme de cases à cocher en HTML. Dans le cas contraire, elle
+    sera affichée à l'aide de boutons radio.
+    """
     multi_answers = models.BooleanField(default=False) #True si il est possible de cocher plusieurs choix
     
     def create_form(self, *args, **kwargs):
@@ -380,7 +446,7 @@ class Qcm(QuizQuestion):
         le(s) choix sélectionné(s) par l'étudiant pour la question ``self``.
         
         La récupération des données du formulaire à partir de l'argument ``data``
-        et l'instanciation du modèle est analogue à la manipulation effectuée dans :py:meth:`SimpleQuestion.save_submit`
+        et l'instanciation du modèle est analogue à la manipulation effectuée dans ``.save_submit()``
         """
         if self.multi_answers:
             Model = QcmSubmitMulti
@@ -427,7 +493,23 @@ class Qcm(QuizQuestion):
     def get_choices(self):
         return QcmChoice.objects.filter(id_question=self)
     
-class QcmChoice(models.Model): #Choix affichés pour un QCM
+class QcmChoice(models.Model):
+    """
+    Cette table contient les différents choix possibles pour la question définie
+    par la relation vers ``Qcm``. Elle est formée de deux champs, le premier contenant
+    le texte du choix et l'autre définissant par un booléen s'il est correct ou
+    non de cocher ce choix. Une question à choix multiples doit avoir au moins
+    deux choix possibles et au moins un choix correct. Si ``multi_answers`` vaut
+    ``False`` dans ``Qcm``, une seule option peut être correcte puisque l'étudiant
+    n'a la possibilité de cocher qu'une seule option.
+    
+    .. note::
+        D'un point de vue purement relationnel, comme il est indiqué sur
+        le diagramme, cette table possède une relation vers une table qui sert
+        d'intermédiaire entre ``QcmChoice`` et ``QcmSubmitMulti``. Cette table intermédiaire
+        crée en fait une relation de type *complexe-complexe*. L'implémentation de ce
+        type de relation avec Django sera abordée plus loin.
+    """
     text = models.CharField(max_length=50)
     valid = models.BooleanField() #Vaut True si la case doit être cochée
     id_question = models.ForeignKey(Qcm)
@@ -494,6 +576,35 @@ class QcmChoice(models.Model): #Choix affichés pour un QCM
                 return False
         
 class QcmSubmit(models.Model):
+    """
+    ``QcmSubmit`` est une classe abstraite dont héritent :py:class:`QcmSubmitOne`
+    et :ref:class`QcmSubmitMulti`. Elle ne définit donc pas une table dans la base
+    de données mais rassemble les attributs communs aux deux classes filles.
+    
+    Les tables :py:class:`QcmSubmitOne` et :py:class`QcmSubmitMulti` sont très similaires.
+    La première contient une relation
+    vers l'option sélectionnée par l'étudiant dans une question à choix multiples
+    avec ``multi_answers`` valant ``False```, tandis que ``QcmSubmitMulti`` peut
+    contenir des relations vers plusieurs options et est utilisée lorsque ``multi_answers`` vaut
+    ``True``. Il s'agit donc dans le premier cas d'une relation *complexe-simple*,
+    puique chaque entrée pointe vers une seule option. Dans le deuxième
+    cas, c'est une relation de type *complexe-complexe*, puisqu'il est possible qu'une
+    entrée soit reliée à plus d'une option.
+
+    Dans Django, voici comment seront définies ces relations :
+
+    .. code-block:: python
+    
+        id_selected = models.ForeignKey(QcmChoice, null=True) #Relation complexe-simple
+        id_selected = models.ManyToManyField(QcmChoice, null=True) #Relation complexe-complexe
+        
+    L'argument ``null`` vaut ici ``True`` car il se peut que l'étudiant ne coche aucun choix.
+    
+    En plus de ces relations, ces tables enregistrent aussi le nombre de points obtenus
+    par l'étudiant pour la question dans la colonne ``result``. Deux autres relations
+    sont présentes : la première fait le lien avec la résolution dans la table :ref:class:`CompletedQuiz`
+    et la deuxième relie l'entrée avec la question à laquelle la réponse est apportée.
+    """
     result = models.FloatField(default=0)
     id_submitted_quiz = models.ForeignKey(CompletedQuiz) #Relation vers la tentative
     id_question = models.ForeignKey(Qcm) #Relation vers la question : utile si aucune case est cochée
@@ -515,7 +626,7 @@ class QcmSubmitOne(QcmSubmit):
     
     def save_result(self):
         """
-        Comptabilise et enregistre les points obtenus par raport au choix sélectionné.
+        Comptabilise et enregistre les points obtenus par rapport au choix sélectionné.
         
         Si le choix sélectionné correspond à la solution, tous les points sont attribués.
         Si aucune option n'est choisie, l'étudiant obtient automatiquement zéro point.
@@ -538,8 +649,8 @@ class QcmSubmitMulti(QcmSubmit):
         Comptabilise et enregistre les points obtenus par rapport aux choix cochés.
         
         Cette méthode parcourt tous les choix possibles pour la question
-        ``self.id_question`` récupérés avec :py:meth:`Qcm.get_choices`. Pour chaque
-        choix, elle utilise la méthode :py:meth:`QcmChoice.correct_submit` pour
+        ``self.id_question`` récupérés avec ``.get_choices()``. Pour chaque
+        choix, elle utilise la méthode ``.correct_submit()`` pour
         vérifier que le choix a été coché correctement. L'étudiant obtient une part
         des points pour chaque choix correct.
         """

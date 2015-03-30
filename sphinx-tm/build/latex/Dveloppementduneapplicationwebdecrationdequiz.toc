@@ -1,61 +1,58 @@
 \select@language {french}
-\contentsline {chapter}{\numberline {1}Pr\IeC {\'e}sentation de RapydScript}{1}{chapter.1}
-\contentsline {section}{\numberline {1.1}Pourquoi utiliser Python plut\IeC {\^o}t que Javascript ?}{1}{section.1.1}
-\contentsline {section}{\numberline {1.2}Diff\IeC {\'e}rentes mani\IeC {\`e}res d'aborder le probl\IeC {\`e}me : CoffeeScript, Brython et RapydScript}{1}{section.1.2}
-\contentsline {section}{\numberline {1.3}Introduction \IeC {\`a} RapydScript}{2}{section.1.3}
-\contentsline {subsection}{\numberline {1.3.1}Installation}{2}{subsection.1.3.1}
-\contentsline {subsection}{\numberline {1.3.2}Compilation}{2}{subsection.1.3.2}
-\contentsline {subsection}{\numberline {1.3.3}Programmer avec RapydScript}{2}{subsection.1.3.3}
-\contentsline {subsubsection}{Notions de base}{2}{subsubsection*.3}
-\contentsline {subsubsection}{Programmation orient\IeC {\'e}e objet (POO)}{3}{subsubsection*.4}
-\contentsline {subsubsection}{Utilisation de la biblioth\IeC {\`e}que standard Python}{4}{subsubsection*.5}
-\contentsline {subsubsection}{S\IeC {\'e}parer son code en plusieurs fichiers}{4}{subsubsection*.6}
-\contentsline {subsubsection}{Utilisation de fonctions Javascript natives ou provenant de librairies externes}{4}{subsubsection*.7}
-\contentsline {subsubsection}{D\IeC {\'e}bugger avec RapydScript}{5}{subsubsection*.8}
-\contentsline {subsubsection}{Cas probl\IeC {\'e}matiques}{5}{subsubsection*.9}
-\contentsline {section}{\numberline {1.4}Comparaison du code source et du code g\IeC {\'e}n\IeC {\'e}r\IeC {\'e}}{5}{section.1.4}
-\contentsline {chapter}{\numberline {2}Documentation utilisateur}{7}{chapter.2}
-\contentsline {section}{\numberline {2.1}Professeurs}{7}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}Cr\IeC {\'e}ation de quiz}{7}{subsection.2.1.1}
-\contentsline {subsubsection}{Cr\IeC {\'e}ation d'une question et d\IeC {\'e}finition de ses caract\IeC {\'e}ristiques}{7}{subsubsection*.10}
-\contentsline {paragraph}{Explication des balises}{7}{paragraph*.11}
-\contentsline {paragraph}{Exemple de quiz avec le syst\IeC {\`e}me de balisage}{7}{paragraph*.12}
-\contentsline {paragraph}{Types de questions}{9}{paragraph*.13}
-\contentsline {subparagraph}{Question \IeC {\`a} r\IeC {\'e}ponse courte}{9}{subparagraph*.14}
-\contentsline {subparagraph}{Question \IeC {\`a} choix multiples avec un seul choix valide}{9}{subparagraph*.15}
-\contentsline {subparagraph}{Question \IeC {\`a} choix multiples avec un seul choix valide}{9}{subparagraph*.16}
-\contentsline {subsubsection}{Affichage de l'aper\IeC {\c c}u et des erreurs}{10}{subsubsection*.17}
-\contentsline {subsubsection}{Affichage de math\IeC {\'e}matiques}{10}{subsubsection*.18}
-\contentsline {subsubsection}{Enregistrement et importation de brouillons}{12}{subsubsection*.19}
-\contentsline {subsubsection}{Envoi d\IeC {\'e}finitif du quiz}{12}{subsubsection*.20}
-\contentsline {subsection}{\numberline {2.1.2}Suivi des \IeC {\'e}l\IeC {\`e}ves}{13}{subsection.2.1.2}
-\contentsline {subsubsection}{Liste des quiz cr\IeC {\'e}\IeC {\'e}s par un professeur}{13}{subsubsection*.21}
-\contentsline {subsubsection}{Affichage des statistiques avanc\IeC {\'e}es}{13}{subsubsection*.22}
-\contentsline {section}{\numberline {2.2}\IeC {\'E}tudiants}{15}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Trouver un quiz}{15}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Compl\IeC {\'e}ter un quiz et correction automatique}{15}{subsection.2.2.2}
-\contentsline {subsection}{\numberline {2.2.3}Historique des r\IeC {\'e}solutions}{19}{subsection.2.2.3}
-\contentsline {chapter}{\numberline {3}Documentation du code source}{21}{chapter.3}
-\contentsline {section}{\numberline {3.1}views.py}{21}{section.3.1}
-\contentsline {section}{\numberline {3.2}models.py}{23}{section.3.2}
-\contentsline {section}{\numberline {3.3}forms.py}{26}{section.3.3}
-\contentsline {section}{\numberline {3.4}utils/submit.py}{27}{section.3.4}
-\contentsline {section}{\numberline {3.5}utils/correct.py}{27}{section.3.5}
-\contentsline {section}{\numberline {3.6}utils/save.py}{27}{section.3.6}
-\contentsline {chapter}{\numberline {4}Mod\IeC {\`e}le relationnel}{29}{chapter.4}
-\contentsline {section}{\numberline {4.1}Introduction}{29}{section.4.1}
-\contentsline {section}{\numberline {4.2}Utilisation dans l'application de cr\IeC {\'e}ation de quiz}{30}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Impl\IeC {\'e}mentation dans Django}{30}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Sch\IeC {\'e}ma global}{30}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Explications des tables}{30}{subsection.4.2.3}
-\contentsline {subsubsection}{\texttt {Quiz}}{30}{subsubsection*.87}
-\contentsline {subsubsection}{\texttt {QuizDraft}}{30}{subsubsection*.88}
-\contentsline {subsubsection}{\texttt {SimpleQuestion}}{31}{subsubsection*.89}
-\contentsline {subsubsection}{\texttt {SqAnswer}}{31}{subsubsection*.90}
-\contentsline {subsubsection}{\texttt {Qcm}}{31}{subsubsection*.91}
-\contentsline {subsubsection}{\texttt {QcmChoice}}{32}{subsubsection*.92}
-\contentsline {subsubsection}{\texttt {CompletedQuiz}}{32}{subsubsection*.93}
-\contentsline {subsubsection}{\texttt {SqSubmit}}{32}{subsubsection*.94}
-\contentsline {subsubsection}{\texttt {QcmSubmitOne et QcmSubmitMulti}}{32}{subsubsection*.95}
-\contentsline {chapter}{Index des modules Python}{35}{section*.96}
-\contentsline {chapter}{Index}{37}{section*.97}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {chapter}{\numberline {2}Pr\IeC {\'e}sentation de RapydScript}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}Pourquoi utiliser Python plut\IeC {\^o}t que Javascript ?}{3}{section.2.1}
+\contentsline {section}{\numberline {2.2}Diff\IeC {\'e}rentes mani\IeC {\`e}res d'aborder le probl\IeC {\`e}me : CoffeeScript, Brython et RapydScript}{3}{section.2.2}
+\contentsline {section}{\numberline {2.3}Introduction \IeC {\`a} RapydScript}{4}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Installation}{4}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Compilation}{4}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}Programmer avec RapydScript}{4}{subsection.2.3.3}
+\contentsline {subsubsection}{Notions de base}{4}{subsubsection*.3}
+\contentsline {subsubsection}{Programmation orient\IeC {\'e}e objet (POO)}{5}{subsubsection*.4}
+\contentsline {subsubsection}{Utilisation de la biblioth\IeC {\`e}que standard Python}{6}{subsubsection*.5}
+\contentsline {subsubsection}{S\IeC {\'e}parer son code en plusieurs fichiers}{6}{subsubsection*.6}
+\contentsline {subsubsection}{Utilisation de fonctions Javascript natives ou provenant de librairies externes}{7}{subsubsection*.7}
+\contentsline {chapter}{\numberline {3}Documentation utilisateur}{9}{chapter.3}
+\contentsline {section}{\numberline {3.1}Professeurs}{9}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Cr\IeC {\'e}ation de quiz}{9}{subsection.3.1.1}
+\contentsline {subsubsection}{Cr\IeC {\'e}ation d'une question et d\IeC {\'e}finition de ses caract\IeC {\'e}ristiques}{9}{subsubsection*.8}
+\contentsline {paragraph}{Explication des balises}{9}{paragraph*.9}
+\contentsline {paragraph}{Exemple de quiz avec le syst\IeC {\`e}me de balisage}{9}{paragraph*.10}
+\contentsline {paragraph}{Types de questions}{11}{paragraph*.11}
+\contentsline {subparagraph}{Question \IeC {\`a} r\IeC {\'e}ponse courte}{11}{subparagraph*.12}
+\contentsline {subparagraph}{Question \IeC {\`a} choix multiples avec un seul choix valide}{11}{subparagraph*.13}
+\contentsline {subparagraph}{Question \IeC {\`a} choix multiples avec un seul choix valide}{11}{subparagraph*.14}
+\contentsline {subsubsection}{Affichage de l'aper\IeC {\c c}u et des erreurs}{12}{subsubsection*.15}
+\contentsline {subsubsection}{Affichage de math\IeC {\'e}matiques}{12}{subsubsection*.16}
+\contentsline {subsubsection}{Enregistrement et importation de brouillons}{14}{subsubsection*.17}
+\contentsline {subsubsection}{Envoi d\IeC {\'e}finitif du quiz}{14}{subsubsection*.18}
+\contentsline {subsection}{\numberline {3.1.2}Suivi des \IeC {\'e}l\IeC {\`e}ves}{15}{subsection.3.1.2}
+\contentsline {subsubsection}{Liste des quiz cr\IeC {\'e}\IeC {\'e}s par un professeur}{15}{subsubsection*.19}
+\contentsline {subsubsection}{Affichage des statistiques avanc\IeC {\'e}es}{15}{subsubsection*.20}
+\contentsline {section}{\numberline {3.2}\IeC {\'E}tudiants}{17}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Trouver un quiz}{17}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Compl\IeC {\'e}ter un quiz et correction automatique}{17}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Historique des r\IeC {\'e}solutions}{21}{subsection.3.2.3}
+\contentsline {chapter}{\numberline {4}Fonctionnement g\IeC {\'e}n\IeC {\'e}ral de l'application}{23}{chapter.4}
+\contentsline {section}{\numberline {4.1}URL}{23}{section.4.1}
+\contentsline {section}{\numberline {4.2}Organisation des fichiers de l'application}{24}{section.4.2}
+\contentsline {section}{\numberline {4.3}Biblioth\IeC {\`e}ques et frameworks utilis\IeC {\'e}s dans l'application}{25}{section.4.3}
+\contentsline {chapter}{\numberline {5}Mod\IeC {\`e}le relationnel}{27}{chapter.5}
+\contentsline {section}{\numberline {5.1}Introduction}{27}{section.5.1}
+\contentsline {section}{\numberline {5.2}Utilisation dans l'application de cr\IeC {\'e}ation de quiz}{28}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Impl\IeC {\'e}mentation dans Django}{28}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Sch\IeC {\'e}ma global}{28}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.3}Explications des tables}{28}{subsection.5.2.3}
+\contentsline {chapter}{\numberline {6}Vues Django}{35}{chapter.6}
+\contentsline {section}{\numberline {6.1}Concept de vue dans Django}{35}{section.6.1}
+\contentsline {section}{\numberline {6.2}Vues de l'application}{35}{section.6.2}
+\contentsline {section}{\numberline {6.3}Les formulaires}{37}{section.6.3}
+\contentsline {section}{\numberline {6.4}Le package \textbf {utils}}{38}{section.6.4}
+\contentsline {subsection}{\numberline {6.4.1}utils/save.py}{38}{subsection.6.4.1}
+\contentsline {subsection}{\numberline {6.4.2}utils/submit.py}{39}{subsection.6.4.2}
+\contentsline {subsection}{\numberline {6.4.3}utils/correct.py}{39}{subsection.6.4.3}
+\contentsline {chapter}{\numberline {7}Documentation du code c\IeC {\^o}t\IeC {\'e} client}{41}{chapter.7}
+\contentsline {section}{\numberline {7.1}interpreter.pyj}{41}{section.7.1}
+\contentsline {chapter}{\numberline {8}Conclusion}{45}{chapter.8}
+\contentsline {chapter}{Index des modules Python}{47}{section*.116}
+\contentsline {chapter}{Index}{49}{section*.117}

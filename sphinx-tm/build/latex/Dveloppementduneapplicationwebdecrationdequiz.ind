@@ -2,105 +2,148 @@
 \def\bigletter#1{{\Large\sffamily#1}\nopagebreak\vspace{1mm}}
 
   \bigletter A
-  \item add\_answer() (m\IeC {\'e}thode quiz.utils.save.SaveSimpleQuestion), \hyperpage{28}
-  \item add\_correct\_answer() (dans le module quiz.views), \hyperpage{21}
-  \item add\_option() (m\IeC {\'e}thode quiz.utils.save.SaveQcm), \hyperpage{27}
-  \item advanced\_stats() (dans le module quiz.views), \hyperpage{21}
-  \item are\_valid() (m\IeC {\'e}thode quiz.utils.submit.QuizForms), \hyperpage{27}
-  \item average\_result() (m\IeC {\'e}thode quiz.models.Qcm), \hyperpage{23}
-  \item average\_result() (m\IeC {\'e}thode quiz.models.Quiz), \hyperpage{24}
-  \item average\_result() (m\IeC {\'e}thode quiz.models.SimpleQuestion), \hyperpage{25}
+  \item add\_answer() (m\IeC {\'e}thode QCM\_Checkbox), \hyperpage{43}
+  \item add\_answer() (m\IeC {\'e}thode quiz.utils.save.SaveSimpleQuestion), \hyperpage{39}
+  \item add\_answer() (m\IeC {\'e}thode SimpleQuestion), \hyperpage{43}
+  \item add\_attribute() (m\IeC {\'e}thode QuestionAbstract), \hyperpage{42}
+  \item add\_comment() (m\IeC {\'e}thode QuestionAbstract), \hyperpage{42}
+  \item add\_correct\_answer() (dans le module quiz.views), \hyperpage{35}
+  \item add\_option() (m\IeC {\'e}thode QCM\_Checkbox), \hyperpage{43}
+  \item add\_option() (m\IeC {\'e}thode quiz.utils.save.SaveQcm), \hyperpage{38}
+  \item add\_points() (m\IeC {\'e}thode QuestionAbstract), \hyperpage{42}
+  \item advanced\_stats() (dans le module quiz.views), \hyperpage{35}
+  \item are\_valid() (m\IeC {\'e}thode quiz.utils.submit.QuizForms), \hyperpage{39}
+  \item average\_result() (m\IeC {\'e}thode quiz.models.Qcm), \hyperpage{31}
+  \item average\_result() (m\IeC {\'e}thode quiz.models.Quiz), \hyperpage{28}
+  \item average\_result() (m\IeC {\'e}thode quiz.models.SimpleQuestion), \hyperpage{30}
 
   \indexspace
   \bigletter B
-  \item build\_correct() (m\IeC {\'e}thode quiz.models.SqSubmit), \hyperpage{26}
+  \item build\_correct() (m\IeC {\'e}thode quiz.models.QcmSubmit), \hyperpage{32}
+  \item build\_correct() (m\IeC {\'e}thode quiz.models.SqSubmit), \hyperpage{31}
 
   \indexspace
   \bigletter C
-  \item CheckboxForm (classe dans quiz.forms), \hyperpage{26}
-  \item checked() (m\IeC {\'e}thode quiz.models.QcmChoice), \hyperpage{24}
-  \item complete() (dans le module quiz.views), \hyperpage{21}
-  \item completed\_quizzes() (dans le module quiz.views), \hyperpage{21}
-  \item CompletedQuiz (classe dans quiz.models), \hyperpage{23}
-  \item correct() (dans le module quiz.views), \hyperpage{22}
-  \item correct() (m\IeC {\'e}thode quiz.models.SqSubmit), \hyperpage{26}
-  \item correct\_submit() (m\IeC {\'e}thode quiz.models.QcmChoice), \hyperpage{24}
-  \item CorrectChoice (classe dans quiz.utils.correct), \hyperpage{27}
-  \item CorrectQcm (classe dans quiz.utils.correct), \hyperpage{27}
-  \item CorrectQuestion (classe dans quiz.utils.correct), \hyperpage{27}
-  \item CorrectSq (classe dans quiz.utils.correct), \hyperpage{27}
-  \item create() (dans le module quiz.views), \hyperpage{22}
-  \item create\_form() (m\IeC {\'e}thode quiz.models.Qcm), \hyperpage{24}
-  \item create\_form() (m\IeC {\'e}thode quiz.models.SimpleQuestion), \hyperpage{25}
-  \item created\_quizzes() (dans le module quiz.views), \hyperpage{22}
+  \item check\_question() (m\IeC {\'e}thode QCM\_Checkbox), \hyperpage{43}
+  \item check\_question() (m\IeC {\'e}thode SimpleQuestion), \hyperpage{43}
+  \item CheckboxForm (classe dans quiz.forms), \hyperpage{37}
+  \item checked() (m\IeC {\'e}thode quiz.models.QcmChoice), \hyperpage{32}
+  \item complete() (dans le module quiz.views), \hyperpage{35}
+  \item completed\_quizzes() (dans le module quiz.views), \hyperpage{36}
+  \item CompletedQuiz (classe dans quiz.models), \hyperpage{29}
+  \item correct() (dans le module quiz.views), \hyperpage{36}
+  \item correct() (m\IeC {\'e}thode quiz.models.SqSubmit), \hyperpage{31}
+  \item correct\_submit() (m\IeC {\'e}thode quiz.models.QcmChoice), \hyperpage{32}
+  \item CorrectChoice (classe dans quiz.utils.correct), \hyperpage{39}
+  \item CorrectQcm (classe dans quiz.utils.correct), \hyperpage{39}
+  \item CorrectQuestion (classe dans quiz.utils.correct), \hyperpage{39}
+  \item CorrectSq (classe dans quiz.utils.correct), \hyperpage{39}
+  \item create() (dans le module quiz.views), \hyperpage{36}
+  \item create\_form() (m\IeC {\'e}thode quiz.models.Qcm), \hyperpage{31}
+  \item create\_form() (m\IeC {\'e}thode quiz.models.SimpleQuestion), \hyperpage{30}
+  \item created\_quizzes() (dans le module quiz.views), \hyperpage{36}
+
+  \indexspace
+  \bigletter D
+  \item demo() (fonction de base), \hyperpage{44}
+
+  \indexspace
+  \bigletter E
+  \item error() (m\IeC {\'e}thode Parse), \hyperpage{42}
 
   \indexspace
   \bigletter F
-  \item find() (dans le module quiz.views), \hyperpage{22}
-  \item findquiz() (dans le module quiz.views), \hyperpage{22}
+  \item find() (dans le module quiz.views), \hyperpage{36}
+  \item findquiz() (dans le module quiz.views), \hyperpage{36}
 
   \indexspace
   \bigletter G
-  \item get\_corrections() (m\IeC {\'e}thode quiz.models.SqSubmit), \hyperpage{26}
-  \item get\_questions() (m\IeC {\'e}thode quiz.models.Quiz), \hyperpage{25}
-  \item get\_questions\_submits() (m\IeC {\'e}thode quiz.models.CompletedQuiz), \hyperpage{23}
-  \item get\_type() (m\IeC {\'e}thode quiz.forms.CheckboxForm), \hyperpage{26}
-  \item get\_type() (m\IeC {\'e}thode quiz.forms.RadioForm), \hyperpage{26}
-  \item get\_type() (m\IeC {\'e}thode quiz.forms.TextForm), \hyperpage{26}
-  \item get\_wrong\_answers() (m\IeC {\'e}thode quiz.models.SimpleQuestion), \hyperpage{25}
-  \item getdraft() (dans le module quiz.views), \hyperpage{22}
+  \item get\_corrections() (m\IeC {\'e}thode quiz.models.SqSubmit), \hyperpage{31}
+  \item get\_questions() (m\IeC {\'e}thode quiz.models.Quiz), \hyperpage{29}
+  \item get\_questions\_submits() (m\IeC {\'e}thode quiz.models.CompletedQuiz), \hyperpage{29}
+  \item get\_type() (m\IeC {\'e}thode quiz.forms.CheckboxForm), \hyperpage{38}
+  \item get\_type() (m\IeC {\'e}thode quiz.forms.RadioForm), \hyperpage{38}
+  \item get\_type() (m\IeC {\'e}thode quiz.forms.TextForm), \hyperpage{38}
+  \item get\_wrong\_answers() (m\IeC {\'e}thode quiz.models.SimpleQuestion), \hyperpage{30}
+  \item getdraft() (dans le module quiz.views), \hyperpage{37}
 
   \indexspace
   \bigletter L
-  \item length() (m\IeC {\'e}thode quiz.models.Quiz), \hyperpage{25}
-  \item listdrafts() (dans le module quiz.views), \hyperpage{23}
+  \item length() (m\IeC {\'e}thode quiz.models.Quiz), \hyperpage{29}
+  \item listdrafts() (dans le module quiz.views), \hyperpage{37}
+
+  \indexspace
+  \bigletter M
+  \item main() (fonction de base), \hyperpage{44}
+
+  \indexspace
+  \bigletter N
+  \item new\_attribute() (m\IeC {\'e}thode Parse), \hyperpage{42}
+  \item new\_question() (m\IeC {\'e}thode Parse), \hyperpage{42}
+
+  \indexspace
+  \bigletter P
+  \item Parse (classe de base), \hyperpage{42}
+  \item properties() (m\IeC {\'e}thode QuestionAbstract), \hyperpage{43}
 
   \indexspace
   \bigletter Q
-  \item Qcm (classe dans quiz.models), \hyperpage{23}
-  \item QcmChoice (classe dans quiz.models), \hyperpage{24}
-  \item QcmSubmitMulti (classe dans quiz.models), \hyperpage{24}
-  \item QcmSubmitOne (classe dans quiz.models), \hyperpage{24}
-  \item QuestionForm (classe dans quiz.forms), \hyperpage{26}
-  \item Quiz (classe dans quiz.models), \hyperpage{24}
-  \item quiz.forms (module), \hyperpage{26}
-  \item quiz.models (module), \hyperpage{23}
-  \item quiz.utils.correct (module), \hyperpage{27}
-  \item quiz.utils.save (module), \hyperpage{27}
-  \item quiz.utils.submit (module), \hyperpage{27}
-  \item quiz.views (module), \hyperpage{21}
-  \item QuizDraft (classe dans quiz.models), \hyperpage{25}
-  \item QuizForms (classe dans quiz.utils.submit), \hyperpage{27}
+  \item Qcm (classe dans quiz.models), \hyperpage{31}
+  \item QCM\_Checkbox (classe de base), \hyperpage{43}
+  \item QCM\_Radio (classe de base), \hyperpage{43}
+  \item QCM\_Radio.add\_answer (classe de base), \hyperpage{43}
+  \item QcmChoice (classe dans quiz.models), \hyperpage{32}
+  \item QcmSubmit (classe dans quiz.models), \hyperpage{32}
+  \item QcmSubmitMulti (classe dans quiz.models), \hyperpage{33}
+  \item QcmSubmitOne (classe dans quiz.models), \hyperpage{33}
+  \item QuestionAbstract (classe de base), \hyperpage{42}
+  \item QuestionForm (classe dans quiz.forms), \hyperpage{38}
+  \item Quiz (classe dans quiz.models), \hyperpage{28}
+  \item quiz.forms (module), \hyperpage{37}
+  \item quiz.utils.correct (module), \hyperpage{39}
+  \item quiz.utils.save (module), \hyperpage{38}
+  \item quiz.utils.submit (module), \hyperpage{39}
+  \item quiz.views (module), \hyperpage{35}
+  \item QuizDraft (classe dans quiz.models), \hyperpage{30}
+  \item QuizForms (classe dans quiz.utils.submit), \hyperpage{39}
 
   \indexspace
   \bigletter R
-  \item RadioForm (classe dans quiz.forms), \hyperpage{26}
+  \item RadioForm (classe dans quiz.forms), \hyperpage{38}
+  \item read() (m\IeC {\'e}thode Parse), \hyperpage{42}
+  \item render() (m\IeC {\'e}thode Parse), \hyperpage{42}
+  \item render() (m\IeC {\'e}thode QCM\_Checkbox), \hyperpage{43}
+  \item render() (m\IeC {\'e}thode SimpleQuestion), \hyperpage{43}
 
   \indexspace
   \bigletter S
-  \item save\_answers() (m\IeC {\'e}thode quiz.utils.submit.QuizForms), \hyperpage{27}
-  \item save\_result() (m\IeC {\'e}thode quiz.models.QcmSubmitMulti), \hyperpage{24}
-  \item save\_result() (m\IeC {\'e}thode quiz.models.QcmSubmitOne), \hyperpage{24}
-  \item save\_result() (m\IeC {\'e}thode quiz.models.SqSubmit), \hyperpage{26}
-  \item save\_submit() (m\IeC {\'e}thode quiz.models.Qcm), \hyperpage{24}
-  \item save\_submit() (m\IeC {\'e}thode quiz.models.SimpleQuestion), \hyperpage{25}
-  \item savedraft() (dans le module quiz.views), \hyperpage{23}
-  \item SaveQcm (classe dans quiz.utils.save), \hyperpage{27}
-  \item SaveQuestion (classe dans quiz.utils.save), \hyperpage{27}
-  \item SaveQuiz (classe dans quiz.utils.save), \hyperpage{28}
-  \item SaveSimpleQuestion (classe dans quiz.utils.save), \hyperpage{28}
-  \item set\_as\_correct() (m\IeC {\'e}thode quiz.models.SqSubmit), \hyperpage{26}
-  \item SimpleQuestion (classe dans quiz.models), \hyperpage{25}
-  \item SqAnswer (classe dans quiz.models), \hyperpage{25}
-  \item SqSubmit (classe dans quiz.models), \hyperpage{25}
+  \item save\_answers() (m\IeC {\'e}thode quiz.utils.submit.QuizForms), \hyperpage{39}
+  \item save\_result() (m\IeC {\'e}thode quiz.models.QcmSubmitMulti), \hyperpage{33}
+  \item save\_result() (m\IeC {\'e}thode quiz.models.QcmSubmitOne), \hyperpage{33}
+  \item save\_result() (m\IeC {\'e}thode quiz.models.SqSubmit), \hyperpage{31}
+  \item save\_submit() (m\IeC {\'e}thode quiz.models.Qcm), \hyperpage{31}
+  \item save\_submit() (m\IeC {\'e}thode quiz.models.SimpleQuestion), \hyperpage{30}
+  \item savedraft() (dans le module quiz.views), \hyperpage{37}
+  \item SaveQcm (classe dans quiz.utils.save), \hyperpage{38}
+  \item SaveQuestion (classe dans quiz.utils.save), \hyperpage{38}
+  \item SaveQuiz (classe dans quiz.utils.save), \hyperpage{39}
+  \item SaveSimpleQuestion (classe dans quiz.utils.save), \hyperpage{39}
+  \item set\_as\_correct() (m\IeC {\'e}thode quiz.models.SqSubmit), \hyperpage{31}
+  \item show\_errors() (m\IeC {\'e}thode Parse), \hyperpage{42}
+  \item SimpleQuestion (classe dans quiz.models), \hyperpage{30}
+  \item SimpleQuestion (classe de base), \hyperpage{43}
+  \item SqAnswer (classe dans quiz.models), \hyperpage{30}
+  \item SqSubmit (classe dans quiz.models), \hyperpage{31}
+  \item start\_render() (fonction de base), \hyperpage{44}
+  \item submit() (fonction de base), \hyperpage{44}
 
   \indexspace
   \bigletter T
-  \item TextForm (classe dans quiz.forms), \hyperpage{26}
+  \item TextForm (classe dans quiz.forms), \hyperpage{38}
 
   \indexspace
   \bigletter U
-  \item update\_question\_results() (m\IeC {\'e}thode quiz.models.SimpleQuestion), \hyperpage{25}
-  \item update\_total\_result() (m\IeC {\'e}thode quiz.models.CompletedQuiz), \hyperpage{23}
+  \item update\_question\_results() (m\IeC {\'e}thode quiz.models.SimpleQuestion), \hyperpage{30}
+  \item update\_total\_result() (m\IeC {\'e}thode quiz.models.CompletedQuiz), \hyperpage{29}
 
 \end{theindex}

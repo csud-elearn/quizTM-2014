@@ -1,2 +1,0 @@
-Comparaison du code source et du code généré
---------------------------------------------

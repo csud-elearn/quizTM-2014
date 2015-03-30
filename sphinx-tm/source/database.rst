@@ -48,7 +48,7 @@ Utilisation dans l'application de création de quiz
 Implémentation dans Django
 ==========================
 
-Comme indiqué précédemment, Django fournit une interface de haut niveau pour créer et interagir avec une base de données. On peut écrire nos tables avec une architecture orientée objet, que Django "traduira" ensuite en SQL. Ainsi, pour créer une table dans notre base de données, il suffit de définir une classe héritant de ``models.Model`` et d'initialiser des variables de classes pour ajouter des colonnes à la tables. Ainsi, par exemple, pour implémenter une table contenant les données générales d'un quiz, il suffit d'écrire le code suivant :
+Comme indiqué précédemment, Django fournit une interface de haut niveau pour créer et interagir avec une base de données. On peut écrire nos tables avec une architecture orientée objet, que Django "traduira" ensuite en SQL. Ainsi, pour créer une table dans notre base de données, il suffit de définir une classe héritant de ``models.Model`` et d'initialiser des variables de classes pour ajouter des colonnes à la table. Ainsi, par exemple, pour implémenter une table contenant les données générales d'un quiz, il suffit d'écrire le code suivant :
 
 .. code-block:: python
 
@@ -57,13 +57,13 @@ Comme indiqué précédemment, Django fournit une interface de haut niveau pour 
         creation_date = models.DateTimeField() #Colonne contenant une date/heure
         code = models.CharField(max_length=1000) #Colonne contenant une chaîne de caractères
         
-Les objets comme ``CharField()`` ou ``DateTimeField()`` permettent de définir des champs d'un type de données précis. Une liste complète des types de champs est disponible sur la documentation officielle de Django : https://docs.djangoproject.com/en/1.7/ref/models/fields/#field-types
+Les objets comme ``CharField()`` ou ``DateTimeField()`` permettent de définir des champs d'un type de données précis. Une liste complète des types de champs est disponible sur `la documentation officielle de Django <https://docs.djangoproject.com/en/1.7/ref/models/fields/#field-types>`_ [#2]_
 
 =============
 Schéma global
 =============
 
-L'élaboration d'un schéma relationnel n'est pas chose facile car il est nécessaire que celui ci réponde à certains critères. Il doit être relativement simple afin de garder une certaine flexibilité et d'avoir la possiblité d'être modifié plus tard, car il est souvent difficile de prédire à l'avance les difficultés liées au stockage des données qui pourraient être rencontrées au cours du développement. Il doit également être possible d'ajouter des fonctionnalités sans devoir revoir toute l'organisation du schéma ou créer un trop grand nombre de nouvelles tables. Malgré cela, le modèle doit aussi correspondre aux exigences des fonctionnalités de l'application et doit inclure toutes les relations nécessaires. Il s'agit donc d'une étape cruciale qui peut s'avérer décisive pour la suite du développement.
+L'élaboration d'un schéma relationnel n'est pas chose facile car il est nécessaire que celui-ci réponde à certains critères. Il doit être relativement simple afin de garder une certaine flexibilité pour pouvoir être modifié plus tard, car il est souvent difficile de prédire à l'avance les difficultés liées au stockage des données qui pourraient être rencontrées au cours du développement. Il doit également être possible d'ajouter des fonctionnalités sans devoir revoir toute l'organisation du schéma ou créer un trop grand nombre de nouvelles tables. Malgré cela, le modèle doit aussi correspondre aux exigences des fonctionnalités de l'application et doit inclure toutes les relations nécessaires. Il s'agit donc d'une étape cruciale qui peut s'avérer décisive pour la suite du développement.
 
 Voici le diagramme des tables utilisés pour stocker les données des quiz :
 
@@ -74,96 +74,46 @@ Voici le diagramme des tables utilisés pour stocker les données des quiz :
 Explications des tables
 =======================
 
---------
-``Quiz``
---------
+Dans ce chapitre sont présentés tous les modèles définis dans le fichier *models.py*.
+L'utilisation d'une architecture orientée objet pour la création de tables dans la base
+de données permet l'utilisation de méthodes, qui se révèlent très pratiques lorsqu'on
+veut récupérer des informations équivalentes depuis des éléments provenant de tables
+différentes. Par exemple, si on veut afficher le résultat moyen obtenu pour chacune
+des questions d'un quiz, il est très intéressant de pouvoir appliquer la même méthode
+à toutes les questions pour récupérer leur moyenne sans se soucier de la classe à laquelle
+ces questions appartiennent.
 
-La table ``Quiz`` est la table centrale de l'application et toutes les autres tables s'organisent autour d'elle. Elle comporte trois colonnes importantes : une contenant le titre, une autre contenant la date et l'heure de création (ajouté automatiquement lorsqu'un nouveau quiz est créé) ainsi qu'une colonne dans laquelle est stockée le nombre maximal de points pouvant être obtenus pour le quiz en question. Cette table comporte également une relation vers une table Teacher  qui permet l'intégration dans le projet de groupe.
-
-Avec django, il est possible d'initialiser automatiquement un champ ``DateTimeField`` à la date/heure du moment où le modèle est instancié avec le paramètre ``auto_now_add``
-
-.. code-block:: python
-
-    creation_date = models.DateTimeField(auto_now_add=True)
+.. autoclass:: quiz.models.Quiz
+    :members:
     
--------------
-``QuizDraft``
--------------
-
-Cette table est un peu isolée dans le schéma relationnel et n'a qu'une fonction : enregistrer le code qu'un quiz qu'un professeur n'a pas terminé et lui offrir la possibilité de le récupérer plus tard pour continuer son travail. Outre la relation vers la table ``Teacher`` et la colonne stockant le code du quiz, une colonne permet de stocker un titre pour pouvoir identifier rapidement un brouillon.
-
---------------
-``SimpleQuestion``
---------------
-
-Cette table contient les informations générales sur les questions simples du quiz. Ces questions sont présentées sous la forme d'un simple champ de texte lorsqu'un élève complète le quiz. Une première colonne ``title`` stocke l'énoncé de la question, ``comment`` permet d'inclure un commentaire affiché lors de la correction automatique du quiz (par exemple la démonstration d'une égalité), ``points`` définit le nombre de points attribués sur cette question et ``number`` enregistre l'ordre auquel doit apparaître la question dans le quiz. Une relation désigne le quiz qui intègre la question.
-
---------
-``SqAnswer``
---------
-
-Cette table contient simplement la solution de la question définie par la relation vers la table *SimpleQuestion*. Il est important de noter qu'il peut y avoir plusieurs solutions possibles pour une question et c'est la raison pour laquelle la solution n'est pas simplement stockée dans une colonne de *SimpleQuestion*.
-
--------
-``Qcm``
--------
-
-La table Qcm permet de stocker les informations générales à propos des questions à choix multiples. Ces questions sont affichées sous forme de boutons radio, de cases à cocher ou de liste déroulante.
-Cette table reprend plusieurs colonnes de la table *SimpleQuestion*. C'est pourquoi ces deux tables héritent en fait du même modèle dans django :
-
-.. code-block:: python
-
-    class QuizQuestion(models.Model): #Classe abstraite dont héritent toutes les questions
-        text = models.CharField(max_length=200) #Énoncé
-        comment = models.CharField(max_length=200, blank=True) #Commentaire
-        points = models.FloatField(default=1)
-        number = models.IntegerField() #Ordre de la question dans le quiz
-        id_quiz = models.ForeignKey(Quiz)
-        
-        class Meta:
-            abstract = True
-            
-    class SimpleQuestion(QuizQuestion):
-        pass #Cette table reprend simplement les mêmes colonnes que le modèle abstrait
-        
-    class Qcm(QuizQuestion):
-        multi_answers = models.BooleanField()
-
-En plus des colonnes héritées de ``QuizQuestion```, ``Qcm`` possède un champ de type booléen. Il s'agit de ``multi_answers``, qui détermine si plusieurs options peuvent êres cochées ou non. Si ce champ vaut ``True``, la question sera affiché sous forme de cases à cocher en HTML. Dans le cas contraire, elle sera affichée à l'aide de boutons radio.
-
----------
-``QcmChoice``
----------
-
-Cette table contient les différents choix possibles pour la question définie par la relation vers ``Qcm``. Elle est formée de deux champs, le premier contenant le texte du choix et l'autre définissant par un booléen s'il est correct ou non de cocher ce choix. Une question à choix multiples doit avoir au moins deux choix possibles et au moins un choix correct. Si ``multi_answers`` vaut ``False`` dans ``Qcm``, une seule option peut être correcte puisque l'étudiant n'a la possibilité de cocher qu'une seule option.
-
-**Note :** D'un point de vue purement relationnel, comme il est indiqué sur le diagramme, cette table possède une relation vers une table qui sert d'intermédiaire entre *QcmChoice* et ``QcmSubmitMulti``. Cette table intermédiaire crée en fait une relation de type *Complexe-Complexe*. L'implémentation de ce type de relation avec Django sera abordé plus loin.
-
--------------
-``CompletedQuiz``
--------------
-
-Comme on peut le voir sur le diagramme, à l'instar de ``Quiz``, cette table occupe aussi un rôle central dans le modèle relationnel. Elle permet de faire le lien entre un quiz créé par un professeur et les réponses soumises à ce quiz par les étudiants. Elle possède donc une relation vers une table ``Student``, qui définit l'étudiant ayant répondu au quiz. De l'autre côté, cette table pointe vers ``Quiz`` et définit logiquement le quiz auquel l'étudiant a répondu. Un seul champ est présent : la date et l'heure de la soumission des réponses.
-
---------
-``SqSubmit``
---------
-
-Il s'agit simplement de la réponse apportée à une question simple. La table a donc un champ ``text`` qui contient la réponse soumise par l'élève et un champ ``result`` qui stocke le nombre de points obtenus pour la question. Elle possède aussi deux relations, une vers ``SimpleQuestion`` pour préciser la question auquel l'élève a répondu, et une autre vers *CompletedQuiz*. La réponse soumise par l'élève sera ensuite comparée à(aux) solution(s) enregistrées pour déterminer si les points sont attribués ou non.
-
-------------------------------
-``QcmSubmitOne et QcmSubmitMulti``
-------------------------------
-
-Ces deux tables sont très similaires. ``QcmSubmitOne`` contient une relation vers l'option sélectionnée par l'étudiant dans une question à choix multiples avec *multi_answers* valant ``False```, tandis que ``QcmSubmitMulti`` peut contenir des relations vers plusieurs options, quand ``multi_answers`` vaut ``True``. Il s'agit donc dans le premier cas d'une relation *Complexe-Simple*, puique plusieurs lignes peuvent pointer vers la même option. Dans le deuxième cas, c'est une relation de type *Complexe-Complexe*, puisque plusieurs lignes peuvent pointer vers plusieurs options.
-
-Dans Django, voici comment seront définies ces relations :
-
-.. code-block:: python
-
-    id_selected = models.ForeignKey(QcmChoice, null=True) #Relation Complexe-Simple
-    id_selected = models.ManyToManyField(QcmChoice, null=True) #Relation Complexe-Complexe
+.. autoclass:: quiz.models.CompletedQuiz
+    :members:
     
-L'argument ``null`` vaut ici ``True`` car il se peut que l'étudiant ne coche aucun choix. Dans ce cas-là, il n'obtiendra dans tous les cas aucun point.
+.. autoclass:: quiz.models.QuizDraft
+    :members:
+    
+.. autoclass:: quiz.models.SimpleQuestion
+    :members:
+    
+.. autoclass:: quiz.models.SqAnswer
+    :members:
+    
+.. autoclass:: quiz.models.SqSubmit
+    :members:
+    
+.. autoclass:: quiz.models.Qcm
+    :members:
+    
+.. autoclass:: quiz.models.QcmChoice
+    :members:
 
-En plus de ces relations, ces tables enregistrent aussi le nombre de points obtenus par l'étudiant pour la question dans la colonne ``result``.
+.. autoclass:: quiz.models.QcmSubmit
+    :members:
+
+.. autoclass:: quiz.models.QcmSubmitMulti
+    :members:
+    
+.. autoclass:: quiz.models.QcmSubmitOne
+    :members:
+    
+.. [#2] https://docs.djangoproject.com/en/1.7/ref/models/fields/#field-types. Consulté le 29 mars 2015.

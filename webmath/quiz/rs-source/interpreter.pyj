@@ -37,6 +37,9 @@ class QuestionAbstract: #Classe mère de toutes les questions, non destinée à 
         }
 
         return properties
+        
+    def render(self):
+        pass
 
 class SimpleQuestion(QuestionAbstract): #Question simple avec un champ de texte classique pour entrer la réponse
     def __init__(self, parent, text, line):
@@ -178,9 +181,9 @@ class Parse:
         for question in self.questions:
             question.check_question()
 
-    def new_question(self, tag, contenu):
+    def new_question(self, tag, content):
         self.question_parent = None #On repasse le parent à None pour éviter que les attributes viennent s'ajouter à la question précédente si la question ne peut pas être crée
-        if contenu:
+        if content:
             questions_types = {
                 "??" : SimpleQuestion,
                 "##" : QCM_Checkbox,
@@ -189,7 +192,7 @@ class Parse:
             
             if questions_types[tag]:
                 #Instanciation de la question avec le constructeur associé au tag
-                self.question_parent = JS("new questions_types[tag](self, contenu, self.l)") #Utilisation de JS() pour écrire du JS pur. Sans cela, RS n'ajoute pas "new"
+                self.question_parent = JS("new questions_types[tag](self, content, self.l)") #Utilisation de JS() pour écrire du JS pur. Sans cela, RS n'ajoute pas "new"
                 self.questions.append(self.question_parent)
             
             else: #Si la queston n'a pas pu être crée car le tag n'a pas été trouvé
@@ -197,10 +200,10 @@ class Parse:
         else:
             self.error("Contenu introuvable")
 
-    def new_attribute(self, tag, contenu, line):
+    def new_attribute(self, tag, content, line):
         if self.question_parent: #On s'assure qu'il y a une question parente valide.
-            if contenu:
-                self.question_parent.add_attribute(tag, contenu)
+            if content:
+                self.question_parent.add_attribute(tag, content)
             else:
                 self.error("Contenu introuvable")
 
@@ -259,19 +262,16 @@ class Parse:
         self.name += 1
         return "name_" + self.name
 
-def get_text(): #Retourne le contenu de la textarea
-    return $("#quizcode").val()
-
 def start_render(): #Affiche l'aperçu
     parse = Parse(get_text()).render()
     MathJax.Hub.Queue(["Typeset",MathJax.Hub]) # Rafraîchit le rendu mathjax
     
 def submit(): #Soumet les données au serveur
-    parse = Parse(get_text())
+    parse = Parse($("#quizcode").val())
     json_string = parse.tojson()
     title = $("#title").val()
-    if json_string:
-        if title:
+    if json_string: # Contrôle qu'il y ait au moins une question
+        if title: # Vérifie le titre
             $("#quiz_json").val(json_string) #On ajoute le json dans un champ de formulaire caché
             $("#createform").submit() #Le formulaire est soumis
         else:
@@ -287,22 +287,18 @@ def demo(): #Permet d'insérer un exemple de format texte
 \n= Option 4\
 \n= Option 5\
 \n\
-\n-- Liste déroulante\
-\n* Option 2\
-\n= Option 3\
 \n\
 \n?? Question simple\
 \n= Réponse\
 \n\
 \n** Boutons radio\
 \n* Option 1\
-\n= Option 2\
-\nerreur"
+\n= Option 2"
     $("#quizcode").val(demo_text)
     show_lines()
 
 def main(): #Chaque bouton est lié à une méthode
-    $("#bouton").click(start_render)
+    $("#start-render").click(start_render)
     $("#demo").click(demo)
     $("#submit").click(submit)
 

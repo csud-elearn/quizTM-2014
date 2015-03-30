@@ -1,0 +1,388 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Fonctionnement général de l’application &mdash; documentation Développement d&#39;une application web de création de quiz 0.1</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="documentation Développement d&#39;une application web de création de quiz 0.1" href="index.html"/>
+        <link rel="next" title="Modèle relationnel" href="database.html"/>
+        <link rel="prev" title="Documentation utilisateur" href="doc-user.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="index.html" class="fa fa-home"> Développement d'une application web de création de quiz</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rapydscript.html">Présentation de RapydScript</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rapydscript.html#pourquoi-utiliser-python-plutot-que-javascript">Pourquoi utiliser Python plutôt que Javascript ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rapydscript.html#differentes-manieres-d-aborder-le-probleme-coffeescript-brython-et-rapydscript">Différentes manières d&#8217;aborder le problème : CoffeeScript, Brython et RapydScript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rapydscript.html#introduction-a-rapydscript">Introduction à RapydScript</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc-user.html">Documentation utilisateur</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc-user.html#professeurs">Professeurs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-user.html#etudiants">Étudiants</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Fonctionnement général de l&#8217;application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#url">URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#organisation-des-fichiers-de-l-application">Organisation des fichiers de l&#8217;application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bibliotheques-et-frameworks-utilises-dans-l-application">Bibliothèques et frameworks utilisés dans l&#8217;application</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="database.html">Modèle relationnel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="database.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html#utilisation-dans-l-application-de-creation-de-quiz">Utilisation dans l&#8217;application de création de quiz</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="source.html">Vues Django</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="source.html#concept-de-vue-dans-django">Concept de vue dans Django</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source.html#vues-de-l-application">Vues de l&#8217;application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source.html#les-formulaires">Les formulaires</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source.html#le-package-utils">Le package <strong>utils</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="front-end.html">Outil d&#8217;édition de quiz avec RapydScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusion.html">Conclusion</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Développement d'une application web de création de quiz</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Fonctionnement général de l&#8217;application</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/global.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="fonctionnement-general-de-l-application">
+<h1>Fonctionnement général de l&#8217;application<a class="headerlink" href="#fonctionnement-general-de-l-application" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="section" id="url">
+<h2>URL<a class="headerlink" href="#url" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Cette section définit les différents chemins d&#8217;accès aux pages de l&#8217;application. Certaines URL comportent des paramètres,
+qui sont indiqués entre <strong>&lt;...&gt;</strong>. Les vues Django correspondant à chaque URL sont affichées entre parenthèses.</p>
+<ul class="simple">
+<li><strong>quiz/ (find) :</strong> Page d&#8217;accueil de l&#8217;application. Les étudiants peuvent voir les derniers quiz publiés ou en rechercher un.</li>
+<li><strong>quiz/create/ (create) :</strong> Page de l&#8217;outil de création de quiz.</li>
+<li><strong>quiz/&lt;id-quiz&gt;/complete/ (complete) :</strong> Page qui permet aux étudiants de répondre à un quiz et de soumettre leurs réponses.</li>
+<li><strong>quiz/&lt;id-résolution&gt;/correct/ (correct) :</strong> Affichage de la correction d&#8217;une résolution. C&#8217;est là qu&#8217;est redirigé l&#8217;utilisateur après avoir complété un quiz</li>
+<li><strong>quiz/completed-quizzes/ (completed_quizzes) :</strong> Historique des résolutions effectuées par l&#8217;élève.</li>
+<li><strong>quiz/created-quizzes/ (created-quizzes) :</strong> Liste des quiz créés par le professeur. C&#8217;est depuis cette page qu&#8217;il peut accéder aux statistiques avancées d&#8217;un quiz.</li>
+<li><strong>quiz/&lt;id-quiz&gt;/advanced-stats/ :</strong> Affichage des statistiques avancées de toutes les résolutions d&#8217;un quiz.</li>
+</ul>
+<p>D&#8217;autres URL sont utilisées uniquement par des requêtes Ajax, c&#8217;est à dire que l&#8217;utilisateur ne les voit jamais :</p>
+<ul class="simple">
+<li><strong>quiz/findquiz/ (findquiz) :</strong> Renvoie l&#8217;URL du quiz correspondant à la clé primaire du quiz fournie dans les paramètres de la requête HTTP si celui-ci existe.</li>
+<li><strong>quiz/savedraft/ (savedraft) :</strong> Permet l&#8217;enregistrement dans la base de données d&#8217;un brouillon.</li>
+<li><strong>quiz/listdrafts/ (listdrafts) :</strong> Récupère la liste des brouillons appartenant à l&#8217;utilisateur.</li>
+<li><strong>quiz/getdraft/ (getdraft) :</strong> Récupère les données sur le brouillon dont la clé primaire est fournie dans les paramètres de la requête HTTP.</li>
+<li><strong>quiz/add-correct-answer/ (add_correct_answer) :</strong> Pour une question à réponse courte, permet d&#8217;ajouter une réponse soumise aux solutions de la question</li>
+</ul>
+<p>Voici comment sont définies ces URL dans Django :</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.conf.urls</span> <span class="kn">import</span> <span class="n">patterns</span><span class="p">,</span> <span class="n">url</span>
+
+<span class="kn">from</span> <span class="nn">quiz.views</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="n">patterns</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span>
+    <span class="c"># URL des pages de l&#39;application</span>
+    <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^$&#39;</span><span class="p">,</span> <span class="n">find</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;find&quot;</span><span class="p">),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^create/$&#39;</span><span class="p">,</span> <span class="n">create</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;create&quot;</span><span class="p">),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^(\d+)/complete/&#39;</span><span class="p">,</span> <span class="n">complete</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;complete&quot;</span><span class="p">),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^(\d+)/correct/&#39;</span><span class="p">,</span> <span class="n">correct</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;correct&quot;</span><span class="p">),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^completed-quizzes/&#39;</span><span class="p">,</span> <span class="n">completed_quizzes</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;completed-quizzes&quot;</span><span class="p">),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^created-quizzes/&#39;</span><span class="p">,</span> <span class="n">created_quizzes</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;created-quizzes&quot;</span><span class="p">),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s">&#39;^(\d+)/advanced-stats/&#39;</span><span class="p">,</span> <span class="n">advanced_stats</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;advanced-stats&quot;</span><span class="p">),</span>
+    <span class="c"># URL destinées à l&#39;Ajax</span>
+    <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^findquiz/&#39;</span><span class="p">,</span> <span class="n">findquiz</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;findquiz&quot;</span><span class="p">),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^savedraft/&#39;</span><span class="p">,</span> <span class="n">savedraft</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;savedraft&quot;</span><span class="p">),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^listdrafts/&#39;</span><span class="p">,</span> <span class="n">listdrafts</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;listdrafts&quot;</span><span class="p">),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^getdraft/&#39;</span><span class="p">,</span> <span class="n">getdraft</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;getdraft&quot;</span><span class="p">),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^add-correct-answer/&#39;</span><span class="p">,</span> <span class="n">add_correct_answer</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;add-correct-answer&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Chaque URL est définie à l&#8217;aide de la fonction <code class="docutils literal"><span class="pre">url()</span></code>. Cette fonction prend trois arguments : une expression régulière qui
+caractérise l&#8217;URL, la référence de la fonction correspondante dans les vues ainsi que le nom de l&#8217;URL, qui pourra être utilisé
+avec la fonction <code class="docutils literal"><span class="pre">reverse()</span></code> pour construire un lien vers une page de l&#8217;application.</p>
+</div>
+<div class="section" id="organisation-des-fichiers-de-l-application">
+<h2>Organisation des fichiers de l&#8217;application<a class="headerlink" href="#organisation-des-fichiers-de-l-application" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Ce chapitre décrit tous les dossiers et fichiers importants de l&#8217;application ainsi que leur rôle dans le fonctionnement du site.</p>
+<ul>
+<li><p class="first"><strong>admin.py :</strong> Fichier qui permet de personnaliser l&#8217;interface d&#8217;administration de l&#8217;application.</p>
+</li>
+<li><p class="first"><strong>forms.py :</strong> Définit les formulaires Django personnalisés utilisés dans l&#8217;application.application.</p>
+</li>
+<li><p class="first"><strong>models.py :</strong> Décrit les modèles de l&#8217;application, c&#8217;est à dire les tables de la base de données.</p>
+</li>
+<li><p class="first"><strong>urls.py :</strong> Définit les chemins d&#8217;accès pour les différentes pages de l&#8217;application.</p>
+</li>
+<li><p class="first"><strong>views.py :</strong> Les vues Django de l&#8217;application, c&#8217;est à dire un ensemble de fonctions qui définissent les actions à réaliser lorsqu&#8217;un utilisateur tente d&#8217;accéder à une page.</p>
+</li>
+<li><p class="first"><strong>migrations/ :</strong> Ce dossier contient des fichiers Python générés par Django qui gèrent les modifications apportées aux tables de la base de données.</p>
+</li>
+<li><p class="first"><strong>rs-source/ :</strong> Dossier contenant tout le code écrit en RapydScript utilisé dans l&#8217;application.</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>find_url.pyj :</strong> Gère la requête Ajax pour rechercher un quiz à compléter.</li>
+<li><strong>interpreter.pyj :</strong> Permet d&#8217;interpréter le code de l&#8217;outil de création de quiz pour structurer les données du quiz en JSON.</li>
+<li><strong>Makefile :</strong> Définit des raccourcis pour la compilation des fichiers RapydScript</li>
+<li><strong>toolbar.pyj :</strong> Implémente les différentes fonctionalités de la barre d&#8217;outils de la page de création de quiz.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>static/quiz/ :</strong> Contient tous les fichiers statiques de l&#8217;application</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><strong>css/ :</strong> Fichiers CSS</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>awesome-checkbox/ :</strong> Répertoire contenant les fichiers du plugin <a class="reference external" href="AwesomeBootstrapCheckbox">Awesome Bootstrap Checkbox</a> <a class="footnote-reference" href="#id12" id="id1">[9]</a> pour mettre en forme les boutons radio et les cases à cocher.</li>
+<li><strong>create.css :</strong> Feuille de style spécifique à la page de création de quiz</li>
+<li><strong>shop-item.css :</strong> Feuille de style relative au template <a class="reference external" href="http://startbootstrap.com/template-overviews/shop-item/">Shop Item</a> <a class="footnote-reference" href="#id13" id="id2">[10]</a> utilisé dans toute l&#8217;application.</li>
+<li><strong>stas.css :</strong> Feuille de style spécifique à la page de statistiques avancées.</li>
+<li><strong>style.css :</strong> Feuille de style qui s&#8217;applique à l&#8217;ensemble de l&#8217;application.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>js/ :</strong> Fichiers Javascript</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>rs-compiled/ :</strong> Dossier contenant les fichiers RapydScript compilés.</li>
+<li><strong>jquery.caret.js :</strong> Plugin <a class="reference external" href="https://github.com/acdvorak/jquery.caret">jQuery Caret</a> <a class="footnote-reference" href="#id14" id="id3">[11]</a> pour récupérer la position du curseur dans une zone de texte.</li>
+<li><strong>stats.js :</strong> Définit une requête Ajax pour ajouter des solutions à une question dans la page de statistiques.</li>
+<li><strong>textarea_lines.js :</strong> Script pour afficher les numéros de ligne dynamiquement dans une zone de texte.</li>
+<li><strong>utils.js :</strong> Fichier comportant différentes fonctions utiles à différents endroits de l&#8217;application.</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>templates/quiz/ :</strong> Dossier contenant les gabarits de l&#8217;application. Hormis <strong>base.html</strong>, chaque fichier de ce répertoire correspond à la vue Django du même nom.</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>base.html :</strong> Gabarit global de l&#8217;application dont héritent tous les autres gabarits.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>utils/ :</strong> Contient des modules Python utilisés dans les vues.</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>correct.py :</strong> Définit des objets utiles pour l&#8217;affichage de la correction.</li>
+<li><strong>save.py :</strong> Gère l&#8217;enregistrement des quiz dans la base de données.</li>
+<li><strong>submit.py :</strong> Gère la sauvegarde des réponses soumises à un quiz par un étudiant.</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="bibliotheques-et-frameworks-utilises-dans-l-application">
+<h2>Bibliothèques et frameworks utilisés dans l&#8217;application<a class="headerlink" href="#bibliotheques-et-frameworks-utilises-dans-l-application" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Voici la liste des outils provenant de sources extérieures utilisés dans le projet</p>
+<ul class="simple">
+<li>Django <a class="footnote-reference" href="#id15" id="id4">[12]</a> : framework Python pour créer des sites web dynamiques.</li>
+<li>RapydScript <a class="footnote-reference" href="#id16" id="id5">[13]</a> : outil pour compiler du Python en Javascript.</li>
+<li>Bootstrap <a class="footnote-reference" href="#id17" id="id6">[14]</a> : framwork CSS pour avoir un affichage correct très rapidement.</li>
+<li>jQuery <a class="footnote-reference" href="#id18" id="id7">[15]</a> : bibliothèque Javascript pour les manipulations dans le DOM, requêtes Ajax, etc.</li>
+<li>MathJax <a class="footnote-reference" href="#id19" id="id8">[16]</a> : bibliothèque Javascript permettant l&#8217;affichage de mathématiques.</li>
+<li>Awesome Bootstrap Checkbox <a class="footnote-reference" href="#id12" id="id9">[9]</a> : feuille de style pour les cases à cocher et les boutons radio.</li>
+<li>jQuery Caret <a class="footnote-reference" href="#id14" id="id10">[11]</a> : plugin jQuery pour récupérer la position du curseur dans une zone de texte.</li>
+<li>Shop Item <a class="footnote-reference" href="#id13" id="id11">[10]</a> : gabarit bootstrap utilisé dans toute l&#8217;application.</li>
+</ul>
+<table class="docutils footnote" frame="void" id="id12" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[9]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id9">2</a>)</em> <a class="reference external" href="https://github.com/flatlogic/awesome-bootstrap-checkbox">https://github.com/flatlogic/awesome-bootstrap-checkbox</a>. Consulté le 29 mars 2015.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id13" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[10]</td><td><em>(<a class="fn-backref" href="#id2">1</a>, <a class="fn-backref" href="#id11">2</a>)</em> <a class="reference external" href="http://startbootstrap.com/template-overviews/shop-item/">http://startbootstrap.com/template-overviews/shop-item/</a>. Consulté le 29 mars 2015.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id14" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[11]</td><td><em>(<a class="fn-backref" href="#id3">1</a>, <a class="fn-backref" href="#id10">2</a>)</em> <a class="reference external" href="https://github.com/acdvorak/jquery.caret">https://github.com/acdvorak/jquery.caret</a>. Consulté le 29 mars 2015.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id15" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[12]</a></td><td><a class="reference external" href="https://djangoproject.com">https://djangoproject.com</a>. Consulté le 29 mars 2015.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id16" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[13]</a></td><td><a class="reference external" href="http://rapydscript.pyjeon.com/">http://rapydscript.pyjeon.com/</a>. Consulté le 29 mars 2015.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id17" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[14]</a></td><td><a class="reference external" href="http://getbootstrap.com/">http://getbootstrap.com/</a>. Consulté le 29 mars 2015.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id18" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[15]</a></td><td><a class="reference external" href="https://jquery.com/">https://jquery.com/</a>. Consulté le 29 mars 2015.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id19" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id8">[16]</a></td><td><a class="reference external" href="http://www.mathjax.org/">http://www.mathjax.org/</a>. Consulté le 29 mars 2015.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="database.html" class="btn btn-neutral float-right" title="Modèle relationnel">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="doc-user.html" class="btn btn-neutral" title="Documentation utilisateur"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Benoît Léo Maillard.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

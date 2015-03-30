@@ -63,11 +63,11 @@
           
           
               <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../rapydscript.html">Présentation de RapydScript</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../rapydscript.html#pourquoi-utiliser-python-plutot-que-javascript">Pourquoi utiliser Python plutôt que Javascript ?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../rapydscript.html#differentes-manieres-d-aborder-le-probleme-coffeescript-brython-et-rapydscript">Différentes manières d&#8217;aborder le problème : CoffeeScript, Brython et RapydScript</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../rapydscript.html#introduction-a-rapydscript">Introduction à RapydScript</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../rapydscript.html#comparaison-du-code-source-et-du-code-genere">Comparaison du code source et du code généré</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../doc-user.html">Documentation utilisateur</a><ul>
@@ -75,18 +75,28 @@
 <li class="toctree-l2"><a class="reference internal" href="../../doc-user.html#etudiants">Étudiants</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../source.html">Documentation du code source</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../source.html#module-quiz.views">views.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../source.html#module-quiz.models">models.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../source.html#module-quiz.forms">forms.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../source.html#module-quiz.utils.submit">utils/submit.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../source.html#module-quiz.utils.correct">utils/correct.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../source.html#module-quiz.utils.save">utils/save.py</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../global.html">Fonctionnement général de l&#8217;application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../global.html#url">URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../global.html#organisation-des-fichiers-de-l-application">Organisation des fichiers de l&#8217;application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../global.html#bibliotheques-et-frameworks-utilises-dans-l-application">Bibliothèques et frameworks utilisés dans l&#8217;application</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../database.html">Modèle relationnel</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../database.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../database.html#utilisation-dans-l-application-de-creation-de-quiz">Utilisation dans l&#8217;application de création de quiz</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../source.html">Vues Django</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../source.html#concept-de-vue-dans-django">Concept de vue dans Django</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source.html#vues-de-l-application">Vues de l&#8217;application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source.html#les-formulaires">Les formulaires</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source.html#le-package-utils">Le package <strong>utils</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../front-end.html">Outil d&#8217;édition de quiz avec RapydScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../conclusion.html">Conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../end.html">Annexes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../end.html#webographie">Webographie</a></li>
 </ul>
 </li>
 </ul>
@@ -193,9 +203,9 @@
 <span class="sd">    La requête de type POST est utilisée pour l&#39;enregistrement des réponses soumises</span>
 <span class="sd">    au quiz par un étudiant. Là aussi, on utilise la classe ``QuizForms``, sauf que</span>
 <span class="sd">    l&#39;instanciation se fait avec un deuxième argument, ``data``. Cet argument contient</span>
-<span class="sd">    en fait les données soumises par le biais des formulaires Django lorsque un</span>
+<span class="sd">    en fait les données soumises par le biais des formulaires Django lorsqu&#39;un</span>
 <span class="sd">    étudiant complète le quiz. Pour s&#39;assurer de la validité de ces données, on</span>
-<span class="sd">    utilise la méthode :py:meth:`submit.QuizForms.are_valid` de la classe ``QuizForms``. Une fois le</span>
+<span class="sd">    utilise la méthode ``.are_valid()`` de la classe ``QuizForms``. Une fois le</span>
 <span class="sd">    contrôle effectué, la méthode ``.save_answers()`` se charge d&#39;ajouter de nouvelles</span>
 <span class="sd">    entrées dans la base de donnée pour stocker les réponses soumises par l&#39;étudiant.</span>
 <span class="sd">    Pour finir, l&#39;utilisateur est redirigé vers la page de correction correspondant</span>
@@ -405,10 +415,9 @@
 <span class="sd">    la clé primaire ``n_completed`` et affiche une correction détaillée des réponses soumises</span>
 <span class="sd">    par l&#39;étudiant.</span>
 <span class="sd">    </span>
-<span class="sd">    L&#39;objet ``CorrectQuiz`` regroupe et calcule toutes les informations nécessaires</span>
-<span class="sd">    à l&#39;affichage du quiz. Cet objet est ensuite placé dans le contexte de la fonctions</span>
-<span class="sd">    ``render`` et fournit ainsi un accès facilité aux données de la correction depuis</span>
-<span class="sd">    le template.</span>
+<span class="sd">    On parcourt ensuite la liste des réponses soumises à chaque question et on appelle</span>
+<span class="sd">    la méthode ``.build_correct()`` qui instancie des objets contenant les données</span>
+<span class="sd">    à afficher pour la correction.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="c"># Récupération de la résolution dans la base de données</span>
@@ -456,10 +465,10 @@
 <span class="nd">@user_passes_test</span><span class="p">(</span><span class="n">is_teacher</span><span class="p">)</span>
 <div class="viewcode-block" id="advanced_stats"><a class="viewcode-back" href="../../source.html#quiz.views.advanced_stats">[docs]</a><span class="k">def</span> <span class="nf">advanced_stats</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">n_quiz</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Récupère toutes les résolutions associés au quiz avec la clé primaire ``n_quiz`` dans la base de données et affiche</span>
+<span class="sd">    Récupère toutes les résolutions associées au quiz avec la clé primaire ``n_quiz`` dans la base de données et affiche</span>
 <span class="sd">    des statistiques précises montrant le résultat personnel des élèves pour chaque question.</span>
 <span class="sd">    </span>
-<span class="sd">    Un objet ``QuizForms`` qui créé des formulaires Django pour toutes les question</span>
+<span class="sd">    Un objet ``QuizForms`` qui créé des formulaires Django pour toutes les questions</span>
 <span class="sd">    du quiz est instancié pour permettre au professeur de visionner </span>
 <span class="sd">    chaque question du quiz. Ce formulaire ne peut pas être envoyé et sert</span>
 <span class="sd">    uniquement à l&#39;affichage.</span>

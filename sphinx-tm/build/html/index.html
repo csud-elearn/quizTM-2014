@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="documentation Développement d&#39;une application web de création de quiz 0.1" href="#"/>
-        <link rel="next" title="Présentation de RapydScript" href="rapydscript.html"/> 
+        <link rel="next" title="Introduction" href="introduction.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -63,11 +63,11 @@
           
           
               <ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rapydscript.html">Présentation de RapydScript</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="rapydscript.html#pourquoi-utiliser-python-plutot-que-javascript">Pourquoi utiliser Python plutôt que Javascript ?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rapydscript.html#differentes-manieres-d-aborder-le-probleme-coffeescript-brython-et-rapydscript">Différentes manières d&#8217;aborder le problème : CoffeeScript, Brython et RapydScript</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rapydscript.html#introduction-a-rapydscript">Introduction à RapydScript</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rapydscript.html#comparaison-du-code-source-et-du-code-genere">Comparaison du code source et du code généré</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="doc-user.html">Documentation utilisateur</a><ul>
@@ -75,18 +75,28 @@
 <li class="toctree-l2"><a class="reference internal" href="doc-user.html#etudiants">Étudiants</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="source.html">Documentation du code source</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="source.html#module-quiz.views">views.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="source.html#module-quiz.models">models.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="source.html#module-quiz.forms">forms.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="source.html#module-quiz.utils.submit">utils/submit.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="source.html#module-quiz.utils.correct">utils/correct.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="source.html#module-quiz.utils.save">utils/save.py</a></li>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Fonctionnement général de l&#8217;application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="global.html#url">URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="global.html#organisation-des-fichiers-de-l-application">Organisation des fichiers de l&#8217;application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="global.html#bibliotheques-et-frameworks-utilises-dans-l-application">Bibliothèques et frameworks utilisés dans l&#8217;application</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="database.html">Modèle relationnel</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="database.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="database.html#utilisation-dans-l-application-de-creation-de-quiz">Utilisation dans l&#8217;application de création de quiz</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="source.html">Vues Django</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="source.html#concept-de-vue-dans-django">Concept de vue dans Django</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source.html#vues-de-l-application">Vues de l&#8217;application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source.html#les-formulaires">Les formulaires</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source.html#le-package-utils">Le package <strong>utils</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="front-end.html">Outil d&#8217;édition de quiz avec RapydScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusion.html">Conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="end.html">Annexes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="end.html#webographie">Webographie</a></li>
 </ul>
 </li>
 </ul>
@@ -128,11 +138,11 @@
 <h1>Application de création de quiz<a class="headerlink" href="#application-de-creation-de-quiz" title="Lien permanent vers ce titre">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rapydscript.html">Présentation de RapydScript</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="rapydscript.html#pourquoi-utiliser-python-plutot-que-javascript">Pourquoi utiliser Python plutôt que Javascript ?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rapydscript.html#differentes-manieres-d-aborder-le-probleme-coffeescript-brython-et-rapydscript">Différentes manières d&#8217;aborder le problème : CoffeeScript, Brython et RapydScript</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rapydscript.html#introduction-a-rapydscript">Introduction à RapydScript</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rapydscript.html#comparaison-du-code-source-et-du-code-genere">Comparaison du code source et du code généré</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="doc-user.html">Documentation utilisateur</a><ul>
@@ -140,18 +150,28 @@
 <li class="toctree-l2"><a class="reference internal" href="doc-user.html#etudiants">Étudiants</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="source.html">Documentation du code source</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="source.html#module-quiz.views">views.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="source.html#module-quiz.models">models.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="source.html#module-quiz.forms">forms.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="source.html#module-quiz.utils.submit">utils/submit.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="source.html#module-quiz.utils.correct">utils/correct.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="source.html#module-quiz.utils.save">utils/save.py</a></li>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Fonctionnement général de l&#8217;application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="global.html#url">URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="global.html#organisation-des-fichiers-de-l-application">Organisation des fichiers de l&#8217;application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="global.html#bibliotheques-et-frameworks-utilises-dans-l-application">Bibliothèques et frameworks utilisés dans l&#8217;application</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="database.html">Modèle relationnel</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="database.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="database.html#utilisation-dans-l-application-de-creation-de-quiz">Utilisation dans l&#8217;application de création de quiz</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="source.html">Vues Django</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="source.html#concept-de-vue-dans-django">Concept de vue dans Django</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source.html#vues-de-l-application">Vues de l&#8217;application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source.html#les-formulaires">Les formulaires</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source.html#le-package-utils">Le package <strong>utils</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="front-end.html">Outil d&#8217;édition de quiz avec RapydScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusion.html">Conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="end.html">Annexes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="end.html#webographie">Webographie</a></li>
 </ul>
 </li>
 </ul>
@@ -164,7 +184,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="rapydscript.html" class="btn btn-neutral float-right" title="Présentation de RapydScript">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="introduction.html" class="btn btn-neutral float-right" title="Introduction">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>

@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="documentation Développement d&#39;une application web de création de quiz 0.1" href="index.html"/>
-        <link rel="next" title="Documentation du code source" href="source.html"/>
+        <link rel="next" title="Fonctionnement général de l’application" href="global.html"/>
         <link rel="prev" title="Présentation de RapydScript" href="rapydscript.html"/> 
 
   
@@ -64,11 +64,11 @@
           
           
               <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rapydscript.html">Présentation de RapydScript</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="rapydscript.html#pourquoi-utiliser-python-plutot-que-javascript">Pourquoi utiliser Python plutôt que Javascript ?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rapydscript.html#differentes-manieres-d-aborder-le-probleme-coffeescript-brython-et-rapydscript">Différentes manières d&#8217;aborder le problème : CoffeeScript, Brython et RapydScript</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rapydscript.html#introduction-a-rapydscript">Introduction à RapydScript</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rapydscript.html#comparaison-du-code-source-et-du-code-genere">Comparaison du code source et du code généré</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Documentation utilisateur</a><ul>
@@ -76,13 +76,9 @@
 <li class="toctree-l2"><a class="reference internal" href="#etudiants">Étudiants</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="source.html">Documentation du code source</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="source.html#module-quiz.views">views.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="source.html#module-quiz.models">models.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="source.html#module-quiz.forms">forms.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="source.html#module-quiz.utils.submit">utils/submit.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="source.html#module-quiz.utils.correct">utils/correct.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="source.html#module-quiz.utils.save">utils/save.py</a></li>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Fonctionnement général de l&#8217;application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="global.html#url">URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="global.html#organisation-des-fichiers-de-l-application">Organisation des fichiers de l&#8217;application</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="database.html">Modèle relationnel</a><ul>
@@ -90,6 +86,18 @@
 <li class="toctree-l2"><a class="reference internal" href="database.html#utilisation-dans-l-application-de-creation-de-quiz">Utilisation dans l&#8217;application de création de quiz</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="source.html">Vues Django</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="source.html#concept-de-vue-dans-django">Concept de vue dans Django</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source.html#vues-de-l-application">Vues de l&#8217;application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source.html#les-formulaires">Les formulaires</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source.html#le-package-utils">Le package <strong>utils</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="front-end.html">Documentation du code côté client</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="front-end.html#interpreter-pyj">interpreter.pyj</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="conclusion.html">Conclusion</a></li>
 </ul>
 
           
@@ -199,27 +207,27 @@
 </pre></div>
 </div>
 <p>Pour la première question, la balise <code class="docutils literal"><span class="pre">##</span></code> indique qu&#8217;il s&#8217;agit d&#8217;une question à choix multiple avec plusieurs réponses possibles, alors qu&#8217;une option incorrecte et deux options correctes sont respectivement définies avec les balises <code class="docutils literal"><span class="pre">*</span></code> et <code class="docutils literal"><span class="pre">=</span></code>. Ensuite, on a ajouté un commentaire avec <code class="docutils literal"><span class="pre">+</span></code> et défini le nombre de points avec le symbole <code class="docutils literal"><span class="pre">.</span></code>. Il est important de retenir que toutes les balises sont suivies d&#8217;un espace, sans quoi elles ne sont pas reconnues.</p>
-<p>La barre d&#8217;outils située en dessus de la zone de texte offre la possibilité de créer un quiz sans maîtriser le système de balisage. Pour ajouter une question, il suffit de cliquer sur l&#8217;onglet <em>Question</em> et de choisir le type de question souhaité dans le menu déroulant. La balise est insérée automatiquement et il n&#8217;y a plus qu&#8217;à écrire l&#8217;énoncé de la question. Il en va de même pour ajouter des solutions ou des options avec les boutons <em>Correct</em> et <em>Incorrect</em>. Les retours à la lignes et les espaces sont placés automatiquement avant et après la balise si cela est nécessaire. Le menu <em>Autres</em> permet de choisir le nombre de points à attribuer pour chaque question et d&#8217;écrire un commentaire destiné à être affiché lors de la correction automatique du quiz. Ce commentaire est censé apporter une justification à la solution de la question ou une aide pour les élèves n&#8217;ayant pas répondu correctement.</p>
+<p>La barre d&#8217;outils <strong>(2)</strong> située en dessus de la zone de texte offre la possibilité de créer un quiz sans maîtriser le système de balisage. Pour ajouter une question, il suffit de cliquer sur l&#8217;onglet <em>Question</em> et de choisir le type de question souhaité dans le menu déroulant. La balise est insérée automatiquement et il n&#8217;y a plus qu&#8217;à écrire l&#8217;énoncé de la question. Il en va de même pour ajouter des solutions ou des options avec les boutons <em>Correct</em> et <em>Incorrect</em>. Les retours à la ligne et les espaces sont placés automatiquement avant et après la balise si cela est nécessaire. Le menu <em>Autres</em> permet de choisir le nombre de points à attribuer pour chaque question et d&#8217;écrire un commentaire destiné à être affiché lors de la correction automatique du quiz. Ce commentaire est censé apporter une justification à la solution de la question ou une aide pour les élèves n&#8217;ayant pas répondu correctement.</p>
 </div>
 <div class="section" id="types-de-questions">
 <h5>Types de questions<a class="headerlink" href="#types-de-questions" title="Lien permanent vers ce titre">¶</a></h5>
 <div class="section" id="question-a-reponse-courte">
 <h6>Question à réponse courte<a class="headerlink" href="#question-a-reponse-courte" title="Lien permanent vers ce titre">¶</a></h6>
-<p>La question à réponse courte se présente sous la forme d&#8217;un simple champ de texte à compléter. La balise caractérisant ce type de questions est la balise <code class="docutils literal"><span class="pre">??</span></code>. Ensuite, une ou plusieurs réponses peuvent être définies comme correctes à l&#8217;aide de la balise <code class="docutils literal"><span class="pre">=</span></code>. S&#8217;il y a plusieurs solutions, elles doivent être séparées par un retour à la ligne et chacune doit être précédée de la balise <code class="docutils literal"><span class="pre">=</span></code>. Si la réponse donné par l&#8217;élève correspond exactement à une des solutions, il obtient tous les points. Il est conseillé de ne pas définir des solutions complexes ou trop longues pour éviter de compter comme une erreur l&#8217;absence de virgule, de point ou d&#8217;un autre caractère spécial. Les réponses apportées par les élèves définies comme incorrectes lors de la correction automatique pourront toutefois être admise en tant que solution plus tard.</p>
+<p>La question à réponse courte se présente sous la forme d&#8217;un simple champ de texte à compléter. La balise caractérisant ce type de questions est la balise <code class="docutils literal"><span class="pre">??</span></code>. Ensuite, une ou plusieurs réponses peuvent être définies comme correctes à l&#8217;aide de la balise <code class="docutils literal"><span class="pre">=</span></code>. S&#8217;il y a plusieurs solutions, elles doivent être séparées par un retour à la ligne et chacune doit être précédée de la balise <code class="docutils literal"><span class="pre">=</span></code>. Si la réponse donnée par l&#8217;élève correspond exactement à une des solutions, il obtient tous les points. Il est conseillé de ne pas définir des solutions complexes ou trop longues pour éviter de compter comme une erreur l&#8217;absence de virgule, de point ou d&#8217;un autre caractère spécial. Les réponses apportées par les élèves définies comme incorrectes lors de la correction automatique pourront toutefois être admise en tant que solution plus tard.</p>
 <div class="figure align-center">
 <img alt="_images/short.png" src="_images/short.png" />
 </div>
 </div>
 <div class="section" id="question-a-choix-multiples-avec-un-seul-choix-valide">
 <h6>Question à choix multiples avec un seul choix valide<a class="headerlink" href="#question-a-choix-multiples-avec-un-seul-choix-valide" title="Lien permanent vers ce titre">¶</a></h6>
-<p>Pour ce type, plusieurs options sont affichées et l&#8217;élève ne peut en sélectionner qu&#8217;une. La balise associé à ce type est la balise <code class="docutils literal"><span class="pre">**</span></code>. Une seule option valide doit donc être définie avec la balise <code class="docutils literal"><span class="pre">=</span></code>, toutes les autres doivent être erronnées et donc précédées par la balise <code class="docutils literal"><span class="pre">*</span></code>. L&#8217;élève reçoit tous les points s&#8217;il sélectionne la bonne solution, et aucun point dans tous les autres cas.</p>
+<p>Pour ce type, plusieurs options sont affichées et l&#8217;élève ne peut en sélectionner qu&#8217;une. La balise associé à ce type est la balise <code class="docutils literal"><span class="pre">**</span></code>. Une seule option valide doit donc être définie avec la balise <code class="docutils literal"><span class="pre">=</span></code>, toutes les autres doivent être erronées et donc précédées par la balise <code class="docutils literal"><span class="pre">*</span></code>. L&#8217;élève reçoit tous les points s&#8217;il sélectionne la bonne solution, et aucun point dans tous les autres cas.</p>
 <div class="figure align-center">
 <img alt="_images/radio.png" src="_images/radio.png" />
 </div>
 </div>
 <div class="section" id="id1">
 <h6>Question à choix multiples avec un seul choix valide<a class="headerlink" href="#id1" title="Lien permanent vers ce titre">¶</a></h6>
-<p>Définie par la balise <code class="docutils literal"><span class="pre">##</span></code>, il s&#8217;agit d&#8217;une question semblable à la précédente mais l&#8217;élève a cette fois la possibilité de choisir plusieurs options. Les options qui doivent être sélectionnées sont définies avec la balise <code class="docutils literal"><span class="pre">=</span></code> et les autres avec la balise <code class="docutils literal"><span class="pre">*</span></code>. Le professeur doit cependant définir au moins une option correcte. Lors de la correction, l&#8217;élève peut obtenir des points pour un choix qu&#8217;il a coché et que le professeur a défini comme correct et inversément, c&#8217;est à dire qu&#8217;il peut aussi gagner des points sur un choix qui n&#8217;est pas sélectionné, à condition qu&#8217;il soit défini comme erronné.</p>
+<p>Définie par la balise <code class="docutils literal"><span class="pre">##</span></code>, il s&#8217;agit d&#8217;une question semblable à la précédente mais l&#8217;élève a cette fois la possibilité de choisir plusieurs options. Les options qui doivent être sélectionnées sont définies avec la balise <code class="docutils literal"><span class="pre">=</span></code> et les autres avec la balise <code class="docutils literal"><span class="pre">*</span></code>. Le professeur doit cependant définir au moins une option correcte. Lors de la correction, l&#8217;élève peut obtenir des points pour un choix qu&#8217;il a coché et que le professeur a défini comme correct et inversement, c&#8217;est à dire qu&#8217;il peut aussi gagner des points sur un choix qui n&#8217;est pas sélectionné, à condition qu&#8217;il soit défini comme erroné.</p>
 <div class="figure align-center">
 <img alt="_images/checkbox.png" src="_images/checkbox.png" />
 </div>
@@ -228,18 +236,18 @@
 </div>
 <div class="section" id="affichage-de-l-apercu-et-des-erreurs">
 <h4>Affichage de l&#8217;aperçu et des erreurs<a class="headerlink" href="#affichage-de-l-apercu-et-des-erreurs" title="Lien permanent vers ce titre">¶</a></h4>
-<p>Il est possible à tout moment d&#8217;afficher un rendu du quiz tel que le verront les étudiants en cliquant sur le bouton <em>Aperçu</em> <strong>(5)</strong> en dessous de la zone de texte. On peut ainsi voir si toutes les questions s&#8217;affichent comme prévu et également détecter les éventuelles erreurs dans le code. Ces erreurs apparaissent dans l&#8217;encadré rouge <strong>(7)</strong> en dessous du bouton <em>Aperçu</em>. Pour chaque erreur, un message explicatif apparaît accompagné du numéro de ligne où s&#8217;est produite l&#8217;erreur.</p>
+<p>Il est possible à tout moment d&#8217;afficher un rendu du quiz tel que le verront les étudiants en cliquant sur le bouton <em>Aperçu</em> <strong>(5)</strong> en dessous de la zone de texte. On peut ainsi voir si toutes les questions s&#8217;affichent comme prévu <strong>(8)</strong> et également détecter les éventuelles erreurs dans le code. Ces erreurs apparaissent dans l&#8217;encadré rouge <strong>(7)</strong> en dessous du bouton <em>Aperçu</em>. Pour chaque erreur, un message explicatif apparaît accompagné du numéro de ligne où s&#8217;est produite l&#8217;erreur.</p>
 <p>Voici un exemple de code comportant une erreur :</p>
 <p>Ici, on a tenté d&#8217;utiliser la balise <code class="docutils literal"><span class="pre">*=</span></code>, qui n&#8217;existe pas. C&#8217;est pourquoi on obtient le message suivant : <em>Balise inconnue</em>.</p>
 <p>Un quiz ne peut pas être envoyé et enregistré dans la base de données tant qu&#8217;il comporte encore des erreurs.</p>
 </div>
 <div class="section" id="affichage-de-mathematiques">
 <h4>Affichage de mathématiques<a class="headerlink" href="#affichage-de-mathematiques" title="Lien permanent vers ce titre">¶</a></h4>
-<p>Il est possible d&#8217;afficher des formules mathématiques à l&#8217;aide de la bibliothèque Javascript MathJax. Cet outil permet d&#8217;écrire des expressions sous forme de LaTex et de les convertir en HTML pour qu&#8217;elles soient visibles dans le navigateur. Il existe deux méthodes d&#8217;affichage proposées par MathJax : la méthode <em>in-line</em> et la méthode <em>displayed</em>. La première méthode offre la possibilité d&#8217;inclure une formule dans un paragraphe de texte. Les formules en <em>in-line</em> doivent être entourées des caractères suivants : <code class="docutils literal"><span class="pre">\(...\)</span></code>. Avec la méthode <em>displayed</em>, les expressions sont affichées en plus grand, centrées et détachées du reste du texte. Les formules utilisant cette méthode sont délimitées par les balises <code class="docutils literal"><span class="pre">$$...$$</span></code>.</p>
+<p>Il est possible d&#8217;afficher des formules mathématiques à l&#8217;aide de la bibliothèque Javascript MathJax <a class="footnote-reference" href="#id3" id="id2">[2]</a>. Cet outil permet d&#8217;écrire des expressions sous forme de LaTex et de les convertir en HTML pour qu&#8217;elles soient visibles dans le navigateur. Il existe deux méthodes d&#8217;affichage proposées par MathJax : la méthode <em>in-line</em> et la méthode <em>displayed</em>. La première méthode offre la possibilité d&#8217;inclure une formule dans un paragraphe de texte. Les formules en <em>in-line</em> doivent être entourées des caractères suivants : <code class="docutils literal"><span class="pre">\(...\)</span></code>. Avec la méthode <em>displayed</em>, les expressions sont affichées en plus grand, centrées et détachées du reste du texte. Les formules utilisant cette méthode sont délimitées par les balises <code class="docutils literal"><span class="pre">$$...$$</span></code>.</p>
 <div class="figure align-center">
 <img alt="_images/math-menu.png" src="_images/math-menu.png" />
 </div>
-<p>La barre d&#8217;outils propose un menu dédié à l&#8217;affichage des mathématiques <strong>(2)</strong>. Deux boutons permettent d&#8217;insérer les délimiteurs des méthodes <em>in-line</em> et <em>displayed</em> et d&#8217;autres options pour afficher un échantillon de formules et de symboles sont disponibles. Cette liste est toutefois non-exhaustive et il est conseillé de se référer à la documentation de LaTex [#latex-doc] pour obtenir des informations plus précises à ce sujet.</p>
+<p>La barre d&#8217;outils propose un menu dédié à l&#8217;affichage des mathématiques <strong>(2)</strong>. Deux boutons permettent d&#8217;insérer les délimiteurs des méthodes <em>in-line</em> et <em>displayed</em> et d&#8217;autres options pour afficher un échantillon de formules et de symboles sont disponibles. Cette liste est toutefois non-exhaustive.</p>
 <p>Voici un exemple de question comportant l&#8217;affichage de limites :</p>
 <div class="highlight-text"><div class="highlight"><pre>## Coche les affirmations correctes
 * \(\lim_{x\to +\infty} 5x + 2 = -\infty\)
@@ -263,11 +271,11 @@
 <div class="figure align-center">
 <img alt="_images/draft-import.png" src="_images/draft-import.png" />
 </div>
-<p>Il est désormais possible d&#8217;importer ce brouillon grâce au bouton prévu à cet effet dans le menu. Une boîte de dialogue contenant la liste de tous les brouillons de l&#8217;utilisateur s&#8217;ouvre. Le brouillon recherché peut être importé par un simple cliq. Le code du brouillon est alors inséré dans la zone de texte.</p>
+<p>Il est désormais possible d&#8217;importer ce brouillon grâce au bouton prévu à cet effet dans le menu. Une boîte de dialogue contenant la liste de tous les brouillons de l&#8217;utilisateur s&#8217;ouvre. Le brouillon recherché peut être importé par un simple clic. Le code du brouillon est alors inséré dans la zone de texte.</p>
 </div>
 <div class="section" id="envoi-definitif-du-quiz">
 <h4>Envoi définitif du quiz<a class="headerlink" href="#envoi-definitif-du-quiz" title="Lien permanent vers ce titre">¶</a></h4>
-<p>Lorsque l&#8217;édition du quiz est terminée et que toutes les questions sont prêtes, le quiz peut être envoyé afin d&#8217;être sauvegardé dans la base de données et disponibles à la résolution pour les élèves. Avant d&#8217;envoyer un quiz, il faut s&#8217;assurer d&#8217;avoir défini un titre <strong>(1)</strong> et d&#8217;avoir corrigé toutes les éventuelles erreurs présentes dans le code <strong>(7)</strong>. Lors du cliq sur le bouton <em>Enregistrer</em> <strong>(6)</strong>, un avertissement apparaîtra au cas où des erreurs persistent et l&#8217;envoi ne pourra pas se faire.</p>
+<p>Lorsque l&#8217;édition du quiz est terminée et que toutes les questions sont prêtes, le quiz peut être envoyé afin d&#8217;être sauvegardé dans la base de données et disponible à la résolution pour les élèves. Avant d&#8217;envoyer un quiz, il faut s&#8217;assurer d&#8217;avoir défini un titre <strong>(1)</strong> et d&#8217;avoir corrigé toutes les éventuelles erreurs présentes dans le code <strong>(7)</strong>. Lors du clic sur le bouton <em>Enregistrer</em> <strong>(6)</strong>, un avertissement apparaîtra au cas où des erreurs persistent et l&#8217;envoi ne pourra pas se faire.</p>
 </div>
 </div>
 <div class="section" id="suivi-des-eleves">
@@ -284,7 +292,7 @@
 <div class="figure align-center">
 <img alt="_images/stats.png" src="_images/stats.png" />
 </div>
-<p>Cette vue offre au professeur la possibilité de se faire une idée générale du niveau de compréhension des élèves d&#8217;un simple coup d&#8217;oeil. Pour chaque élève ayant répondu au quiz, il peut voir la note globale obtenue ainsi que que les points attribués pour chaque question. Pour consulter les réponses soumises par un étudiant, le professeur peut cliquer sur le bouton orange situé au début de la colonne. Il sera ainsi redirigé vers la page de correction de la résolution.</p>
+<p>Cette vue offre au professeur la possibilité de se faire une idée générale du niveau de compréhension des élèves d&#8217;un simple coup d&#8217;oeil. Pour chaque élève ayant répondu au quiz, il peut voir la note globale obtenue ainsi que les points attribués pour chaque question. Pour consulter les réponses soumises par un étudiant, le professeur peut cliquer sur le bouton orange situé au début de la colonne. Il sera ainsi redirigé vers la page de correction de la résolution.</p>
 <p>Les boutons bleus <em>Afficher</em> permettent de faire apparaître un aperçu rapide de chaque question. Toutes les questions du quiz peuvent aussi être consultées en même temps grâce au bouton <em>Afficher toutes les questions</em>.</p>
 <p>Lorsqu&#8217;on affiche une question à réponse courte, il est possible de voir les réponses soumises par les élèves qui n&#8217;ont pas répondu correctement. Le bouton rouge situé avant chaque réponse permet de valider une réponse et de l&#8217;ajouter aux solutions valides.</p>
 <div class="figure align-center">
@@ -301,14 +309,14 @@
 <div class="figure align-center">
 <img alt="_images/find.png" src="_images/find.png" />
 </div>
-<p>Pour trouver un quiz, un étudiant a plusieurs possibilités. Le professeur peut donner l&#8217;URL exacte du quiz à compléter, ce qui peut être pratique dans le cas d&#8217;un courriel ou toute autre communicaton informatisée. Un étudiant peut aussi accéder à un quiz en mémorisant son id et en l&#8217;entrant dans la champ prévu à cet effet dans l&#8217;onglet <em>Compléter un quiz</em>.</p>
+<p>Pour trouver un quiz, un étudiant a plusieurs possibilités. Le professeur peut donner l&#8217;URL exacte du quiz à compléter, ce qui peut être pratique dans le cas d&#8217;un courriel ou toute autre communication informatisée. Un étudiant peut aussi accéder à un quiz en mémorisant son id et en l&#8217;entrant dans la champ prévu à cet effet dans l&#8217;onglet <em>Compléter un quiz</em>.</p>
 </div>
 <div class="section" id="completer-un-quiz-et-correction-automatique">
 <h3>Compléter un quiz et correction automatique<a class="headerlink" href="#completer-un-quiz-et-correction-automatique" title="Lien permanent vers ce titre">¶</a></h3>
 <div class="figure align-center">
 <img alt="_images/complete.png" src="_images/complete.png" />
 </div>
-<p>Une fois que l&#8217;étudiant à accédé au quiz, il peut le compléter très simplement en remplissant les champs de formulaires affichés. Lorsqu&#8217;il a fini, il peut soumettre ses réponses à l&#8217;aide du bouton prévu à cet effet. Les réponses soumises sont enregistrées dans la base de données et il est immédiatement redirigé vers une page de correction.</p>
+<p>Une fois que l&#8217;étudiant a accédé au quiz, il peut le compléter très simplement en remplissant les champs de formulaires affichés. Lorsqu&#8217;il a fini, il peut soumettre ses réponses à l&#8217;aide du bouton prévu à cet effet. Les réponses soumises sont enregistrées dans la base de données et il est immédiatement redirigé vers une page de correction.</p>
 <p>Les réponses incorrectes sont affichées en rouge avec la solution et une éventuelle explication donnée par le professeur pour chaque question. Les points reçus pour chaque question sont affichés avec le total de points sur le quiz. L&#8217;étudiant peut aussi comparer son score à la moyenne des autres étudiants qui ont complété le quiz.</p>
 <div class="figure align-center">
 <img alt="_images/correct.png" src="_images/correct.png" />
@@ -323,7 +331,13 @@
 <div class="figure align-center">
 <img alt="_images/completed.png" src="_images/completed.png" />
 </div>
-<p>Les étudiants ont aussi la possibilité de garder une trace de tous les quiz qu&#8217;ils ont complétés. Dans l&#8217;onglet <em>Mes résolutions</em> sont présentées toutes les résolutions apportées par l&#8217;élève à un quiz. Diverses informations complémentaires sont également disponibles, telles que la date et l&#8217;heure de la résolution ou le nombre de points obtenus. En cliquant sur un élément de la liste, l&#8217;étudiant est redirigé vers la page de correction de la résolution et peut ainsi voir les éventuelles erreurs qu&#8217;il a commis.</p>
+<p>Les étudiants ont aussi la possibilité de garder une trace de tous les quiz qu&#8217;ils ont complétés. Dans l&#8217;onglet <em>Mes résolutions</em> sont présentées toutes les résolutions apportées par l&#8217;élève à un quiz. Diverses informations complémentaires sont également disponibles, telles que la date et l&#8217;heure de la résolution ou le nombre de points obtenus. En cliquant sur un élément de la liste, l&#8217;étudiant est redirigé vers la page de correction de la résolution et peut ainsi voir les éventuelles erreurs qu&#8217;il a commises.</p>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="http://www.mathjax.org/">http://www.mathjax.org/</a>. Consulté le 29 mars 2015.</td></tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -334,7 +348,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="source.html" class="btn btn-neutral float-right" title="Documentation du code source">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="global.html" class="btn btn-neutral float-right" title="Fonctionnement général de l’application">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="rapydscript.html" class="btn btn-neutral" title="Présentation de RapydScript"><span class="fa fa-arrow-circle-left"></span> Previous</a>

@@ -66,9 +66,9 @@ def complete(request, n_quiz):
     La requête de type POST est utilisée pour l'enregistrement des réponses soumises
     au quiz par un étudiant. Là aussi, on utilise la classe ``QuizForms``, sauf que
     l'instanciation se fait avec un deuxième argument, ``data``. Cet argument contient
-    en fait les données soumises par le biais des formulaires Django lorsque un
+    en fait les données soumises par le biais des formulaires Django lorsqu'un
     étudiant complète le quiz. Pour s'assurer de la validité de ces données, on
-    utilise la méthode :py:meth:`submit.QuizForms.are_valid` de la classe ``QuizForms``. Une fois le
+    utilise la méthode ``.are_valid()`` de la classe ``QuizForms``. Une fois le
     contrôle effectué, la méthode ``.save_answers()`` se charge d'ajouter de nouvelles
     entrées dans la base de donnée pour stocker les réponses soumises par l'étudiant.
     Pour finir, l'utilisateur est redirigé vers la page de correction correspondant
@@ -278,10 +278,9 @@ def correct(request, n_completed):
     la clé primaire ``n_completed`` et affiche une correction détaillée des réponses soumises
     par l'étudiant.
     
-    L'objet ``CorrectQuiz`` regroupe et calcule toutes les informations nécessaires
-    à l'affichage du quiz. Cet objet est ensuite placé dans le contexte de la fonctions
-    ``render`` et fournit ainsi un accès facilité aux données de la correction depuis
-    le template.
+    On parcourt ensuite la liste des réponses soumises à chaque question et on appelle
+    la méthode ``.build_correct()`` qui instancie des objets contenant les données
+    à afficher pour la correction.
     """
     
     # Récupération de la résolution dans la base de données
@@ -329,10 +328,10 @@ def created_quizzes(request):
 @user_passes_test(is_teacher)
 def advanced_stats(request, n_quiz):
     """
-    Récupère toutes les résolutions associés au quiz avec la clé primaire ``n_quiz`` dans la base de données et affiche
+    Récupère toutes les résolutions associées au quiz avec la clé primaire ``n_quiz`` dans la base de données et affiche
     des statistiques précises montrant le résultat personnel des élèves pour chaque question.
     
-    Un objet ``QuizForms`` qui créé des formulaires Django pour toutes les question
+    Un objet ``QuizForms`` qui créé des formulaires Django pour toutes les questions
     du quiz est instancié pour permettre au professeur de visionner 
     chaque question du quiz. Ce formulaire ne peut pas être envoyé et sert
     uniquement à l'affichage.

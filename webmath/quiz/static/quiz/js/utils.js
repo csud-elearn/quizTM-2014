@@ -50,3 +50,19 @@ String.prototype.repeat = function(n) {
     
     return result;
 };
+
+// Permet de masquer un panel Bootstrap lors du clic
+$( document ).ready(function() {
+    $(".panel-click .panel-heading").click(function() {
+            if ($(this).parent().hasClass("content-hidden")) {
+                // Si le panel était masqué, il s'affiche
+                $(this).next().show();
+                $(this).parent().removeClass("content-hidden");
+            }
+            else {
+                // Sinon, il est masqué
+                $(this).next().hide();
+                $(this).parent().addClass("content-hidden");
+            }
+    });
+});
