@@ -52,6 +52,7 @@
       \endgroup
     \fi
     \begin{flushright}%
+       {\rm\Huge\py@HeaderFamily Conception d'une plateforme de e-learning \\[2.5cm] \par}%
       \sphinxlogo%
       {\rm\Huge\py@HeaderFamily \@title \par}%
       {\em\LARGE\py@HeaderFamily \py@release\releaseinfo \par}
