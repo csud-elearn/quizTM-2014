@@ -86,15 +86,14 @@
                 <div class="panel-heading bold">Informations générales sur le quiz</div>
                 <ul class="list-group"></ul>
                     <li class="list-group-item"><span class="bold">Date de création :</span> {{ quiz.creation_date }}</li>
-                    <li class="list-group-item"><span class="bold">Nombre de résolutions :</span> </li>
-                    <li class="list-group-item"><span class="bold">Dernière résolution :</span> </li>
+                    <li class="list-group-item"><span class="bold">Nombre de résolutions : {{ n_completed }}</span> </li>
                     <li class="list-group-item">Pour afficher l'énoncé d'une question, utilisez les boutons bleus dans le tableau <a class="btn btn-xs btn-success" id="show-all">Afficher toutes les questions</a></li>
                 </ul>
             </div>
             {% for form in l_forms %}
                 <div id="question-{{ form.question.number }}" class="q_container panel panel-default hidden-question bottom-space">
                 <div class="caption-full">
-                {% if form.get_type == 0 %}
+                {% if form.get_type == 1 %}
                     <div class="bottom-space">
                     <span class="label-span">{{ form.question.number|add:"1" }}) {{ form.question.text }}</span>
                     {% for option in form.answer %}
@@ -103,7 +102,7 @@
                         <br />
                     {% endfor %}
                     </div>
-                {% elif form.get_type == 1 %}
+                {% elif form.get_type == 0 %}
                 <div class="bottom-space">
                     <label for="{{ form.selected.id_for_label }}">{{ form.question.number|add:"1" }}) {{ form.question.text }}</label>
                     {{ form.answer }}

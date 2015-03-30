@@ -338,12 +338,18 @@ def advanced_stats(request, n_quiz):
     """
     quiz = get_object_or_404(Quiz, pk=n_quiz)
     l_completed = CompletedQuiz.objects.filter(id_quiz=quiz)
+    n_completed = len(l_completed)
     
     # Création d'un formulaire pour pouvoir afficher le rendu des questions
     # dans le template
     quizforms = QuizForms(quiz)
     
-    return render(request, 'quiz/advanced-stats.html', {'quiz' : quiz, 'l_completed' : l_completed, 'l_forms' : quizforms.l_forms})
+    return render(request, 'quiz/advanced-stats.html', {
+        'quiz' : quiz,
+        'l_completed' : l_completed,
+        'l_forms' : quizforms.l_forms,
+        'n_completed' : n_completed,
+    })
     
 @login_required
 @user_passes_test(is_teacher)
