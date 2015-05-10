@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect, get_object_or_404
+from django.http import JsonResponse
 from django.core.urlresolvers import reverse
 from quiz.utils.save import SaveQuiz
 from quiz.utils.submit import QuizForms
@@ -153,9 +154,8 @@ def findquiz(request):
             "url" : url,
             "title" : quiz.title
         }
-        json_string = json.dumps(json_dict) # Sérialisation en json
-            
-        return HttpResponse(json_string)
+        
+        return JsonResponse(json_dict)
 
 @login_required
 @user_passes_test(is_teacher)
@@ -227,10 +227,9 @@ def listdrafts(request):
                 "title" : d.title,
                 "id" : d.pk,
             })
-            
-        json_string = json.dumps(list_drafts) # Sérialisation de la liste
-    
-        return HttpResponse(json_string)
+        
+        # Pour encoder des listes, safe doit valoir False
+        return JsonResponse(list_drafts, safe=False)
 
 @login_required
 @user_passes_test(is_teacher)
@@ -267,9 +266,8 @@ def getdraft(request):
                 "title" : draft.title,
                 "code" : draft.code,
             }
-            json_string = json.dumps(json_dict) # Sérialisation du dictionnaire
             
-            return HttpResponse(json_string)
+            return JsonResponse(json_dict)
 
 @login_required
 def correct(request, n_completed):
