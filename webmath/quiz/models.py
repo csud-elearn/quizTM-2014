@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from common.models import Teacher
 import quiz.forms as forms
 from quiz.utils.correct import *
+import re
 
 # Create your models here.
 
@@ -310,6 +311,25 @@ class SqAnswer(models.Model):
     
     def __str__(self):
         return self.text
+        
+    def match(self, answer):
+        return self.text == answer
+        
+class SqRegexAnswer(SqAnswer):
+    """
+    Table très similaire à ``SqAnswer`` sauf qu'elle contient une solution sous la
+    forme d'une expression régulière. Cette solution offre plus de souplesse
+    dans la correction des réponses soumises par les étudiants.
+    """
+    
+    regex = models.CharField(max_length=100)
+    
+    def match(self, answer):
+        print(self.regex)
+        if re.match(self.regex, answer):
+            return True
+        else:
+            return False
 
 class SqSubmit(models.Model):
     """
@@ -345,26 +365,24 @@ class SqSubmit(models.Model):
         
     def get_corrections(self):
         """
-        Renvoie la liste des solutions correctes pour la question sous forme de liste de
-        chaînes de caractères
+        Renvoie la liste des solutions correctes pour la question
         """
         # Récupération des corrections de la question
         l_sq_answer = SqAnswer.objects.filter(id_question=self.id_question)
         
-        # Les réponses correctes (string) sont placés dans une liste
-        l_correct_text = [answer.text for answer in l_sq_answer]
-        
-        return l_correct_text
+        return l_sq_answer
         
     def correct(self):
         """
-        Détermine si la réponse soumise est correcte en vérifiant qu'elle se
-        se trouve dans la liste des solutions correctes.
+        Détermine si la réponse soumise est correcte en vérifiant qu'elle correspondent à
+        une des solutions de la question.
         """
-        if self.text in self.get_corrections():
-            return True
-        else:
-            return False
+        
+        for correction in self.get_corrections():
+            if correction.match(self.text):
+                return True
+        
+        return False
             
     def set_as_correct(self):
         """

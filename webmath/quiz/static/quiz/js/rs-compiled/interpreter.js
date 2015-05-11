@@ -402,11 +402,22 @@
         var self = this;
         QuestionAbstract.prototype.constructor.call(self, parent, text, line);
         self.answers = [];
+        self.regex_answers = [];
         self.tags_list["="] = self.add_answer;
+        self.tags_list["=r"] = self.add_regex_answer;
     };
     SimpleQuestion.prototype.add_answer = function add_answer(content){
         var self = this;
         self.answers.append(content);
+    };
+    SimpleQuestion.prototype.add_regex_answer = function add_regex_answer(content){
+        var self = this;
+        var answer_dict;
+        answer_dict = {
+            "text": content.split("//")[0],
+            "regex": content.split("//")[1]
+        };
+        self.regex_answers.append(answer_dict);
     };
     SimpleQuestion.prototype.render = function render(){
         var self = this;
@@ -430,6 +441,7 @@
         properties = QuestionAbstract.prototype.properties.call(self);
         properties["type"] = 0;
         properties["answers"] = self.answers;
+        properties["regex_answers"] = self.regex_answers;
         return properties;
     };
     SimpleQuestion.prototype.check_question = function check_question(){
@@ -711,17 +723,14 @@
         return "name_" + self.name;
     };
 
-    function get_text() {
-        return $("#quizcode").val();
-    }
     function start_render() {
         var parse;
-        parse = new Parse(get_text()).render();
+        parse = new Parse($("#quizcode").val()).render();
         MathJax.Hub.Queue([ "Typeset", MathJax.Hub ]);
     }
     function submit() {
         var parse, json_string, title;
-        parse = new Parse(get_text());
+        parse = new Parse($("#quizcode").val());
         json_string = parse.tojson();
         title = $("#title").val();
         if (json_string) {

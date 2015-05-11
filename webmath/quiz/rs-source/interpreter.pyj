@@ -44,12 +44,23 @@ class QuestionAbstract: #Classe mère de toutes les questions, non destinée à 
 class SimpleQuestion(QuestionAbstract): #Question simple avec un champ de texte classique pour entrer la réponse
     def __init__(self, parent, text, line):
         QuestionAbstract.__init__(self, parent, text, line)
-        self.answers = [] #Listes des réponses correctes
-
-        self.tags_list["="] = self.add_answer #Associaton des différents tags au méthodes de la classe
+        self.answers = [] #Listes des solutions
+        self.regex_answers = [] # Liste des solutions contenant des expressions régulières
+        
+        #Associaton des différents tags au méthodes de la classe
+        self.tags_list["="] = self.add_answer
+        self.tags_list["=r"] = self.add_regex_answer
 
     def add_answer(self, content):
         self.answers.append(content)
+        
+    def add_regex_answer(self, content):
+        answer_dict = {
+            "text" : content.split("//")[0],
+            "regex" : content.split("//")[1],
+        }
+        
+        self.regex_answers.append(answer_dict)
 
     def render(self): #Aperçu du rendu final de la question
         id_input = self.parent.get_id()
@@ -61,6 +72,7 @@ class SimpleQuestion(QuestionAbstract): #Question simple avec un champ de texte 
         properties = QuestionAbstract.properties(self)
         properties["type"] = 0
         properties["answers"] = self.answers
+        properties["regex_answers"] = self.regex_answers
 
         return properties
 
@@ -263,7 +275,7 @@ class Parse:
         return "name_" + self.name
 
 def start_render(): #Affiche l'aperçu
-    parse = Parse(get_text()).render()
+    parse = Parse($("#quizcode").val()).render()
     MathJax.Hub.Queue(["Typeset",MathJax.Hub]) # Rafraîchit le rendu mathjax
     
 def submit(): #Soumet les données au serveur

@@ -45,12 +45,26 @@ class SaveSimpleQuestion(SaveQuestion):
         for answer in question["answers"]:
             self.add_answer(answer)
             
+        for regex in question["regex_answers"]:
+            self.add_regex_answer(regex)
+            
     def add_answer(self, text):
         """
         Ajoute une solution à la question en créant un champ dans la table 
-        :py:class:`models.SqAnswer`
+        :py:class:`models.SqAnswer`.
         """
         answer_db = SqAnswer(text=text, id_question=self.question_db)
+        answer_db.save()
+        
+    def add_regex_answer(self, answer):
+        """
+        Ajoute une solution à la question sous forme d'expression régulière. La
+        table utilisée est :py:class:`models.SqRegexAnswer`.
+        """
+        text = answer["text"]
+        regex = answer["regex"]
+        
+        answer_db = SqRegexAnswer(text=text, id_question=self.question_db, regex=regex)
         answer_db.save()
 
 #Classe abstraite pour tous les QCM
