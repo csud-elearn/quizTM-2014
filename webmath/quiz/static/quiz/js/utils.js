@@ -41,6 +41,17 @@ String.prototype.insert = function(string, index) {
     return this.slice(0, index) + string + this.slice(index);
 };
 
+String.prototype.count = function(char) {
+    var count = 0;
+    for (var i = 0; i < this.length; i++) {
+        if (this[i] == char) {
+            count ++;
+        }
+    }
+    
+    return count;
+}
+
 // Retourne la chaîne répétée n fois
 String.prototype.repeat = function(n) {
     var result = "";

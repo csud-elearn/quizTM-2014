@@ -148,53 +148,44 @@ class Parse:
         self.name = 0 #name unique utilisé pour le rendu
         self.number = 0 #Numéro de question
         self.question_parent = None #Référence vers le dernier objet question instancié
-
+        self.l = 0
+        
         self.read(text)
-
-    def read(self, text): #Lecture du texte
-        lines = text.split("\n")
-
-        split_lines = [] #Pour chaque ligne, contient le tag et le contenu
-        self.l = 0 #Ligne lue actuellement
-
-        #Séparation du tag et du contenu de chaque ligne
-        for line in lines:
-            tag = ""
-            content = ""
-            is_content = False #Vaut True si la suite de la ligne fait partie du contenu
-            for char in line:
-                if is_content: 
-                    content += char
-                elif char == " ": #Le premier espace de la ligne sépare le tag du contenu
-                    is_content = True
-                else:
-                    tag += char
-            split_lines.append({"tag" : tag, "content" : content}) #Le tag et le contenu de chaque ligne sont rangés dans une liste
-
-        line_is_question = True #La première ligne est forcément une nouvelle question
-
-        while self.l < len(split_lines):
-            if split_lines[self.l].tag == "": #Si le tag est vide, la ligne est forcément vide et signale le passage à la question suivante
-                line_is_question = True
-                self.l += 1
+            
+    def read(self, texte):
+        
+        l_blocks = texte.split("\n{")
+        
+        block_1 = l_blocks[0]
+        if block_1[0] == "{":
+            console.log(block_1)
+            l_blocks[0] = block_1[1:]
+        
+        
+        
+        for block in l_blocks:
+            i_closing_tag = block.find("}")
+            
+            if i_closing_tag == -1:
+                self.error("Balise de fermeture manquante")
             else:
-                tag = split_lines[self.l].tag
-                content = split_lines[self.l].content
-
-                #Création des questions et des attributs suivant le type de la ligne
-                if line_is_question:
-                    self.new_question(tag, content)
-                    line_is_question = False
+                tag = block[:i_closing_tag]
+                content = block[i_closing_tag+1:]
+                
+                question = self.new_question(tag, content)
+                if question:
+                    self.question_parent = question
+                    self.questions.append(question)
                 else:
                     self.new_attribute(tag, content)
-
-                self.l += 1
-
+                
+            self.l += 1
+            self.l += block.count("\n")
+            
         for question in self.questions:
             question.check_question()
 
     def new_question(self, tag, content):
-        self.question_parent = None #On repasse le parent à None pour éviter que les attributes viennent s'ajouter à la question précédente si la question ne peut pas être crée
         if content:
             questions_types = {
                 "??" : SimpleQuestion,
@@ -204,20 +195,23 @@ class Parse:
             
             if questions_types[tag]:
                 #Instanciation de la question avec le constructeur associé au tag
-                self.question_parent = JS("new questions_types[tag](self, content, self.l)") #Utilisation de JS() pour écrire du JS pur. Sans cela, RS n'ajoute pas "new"
-                self.questions.append(self.question_parent)
-            
-            else: #Si la queston n'a pas pu être crée car le tag n'a pas été trouvé
-                self.error("Tag inconnu")
+                question = JS("new questions_types[tag](self, content, self.l)") #Utilisation de JS() pour écrire du JS pur. Sans cela, RS n'ajoute pas "new"
+                
+                return question
+                
+            else:
+                return False
         else:
-            self.error("Contenu introuvable")
+            self.error("L'énoncé de la question est vide")
 
-    def new_attribute(self, tag, content, line):
+    def new_attribute(self, tag, content):
         if self.question_parent: #On s'assure qu'il y a une question parente valide.
             if content:
                 self.question_parent.add_attribute(tag, content)
             else:
-                self.error("Contenu introuvable")
+                self.error("La valeur de l'attribut est introuvable")
+        else:
+            self.error("Une nouvelle question doit être créée avant de définir cet attribut")
 
     def render(self): #Aperçu du quiz
         if len(self.questions) > 0:
@@ -234,7 +228,7 @@ class Parse:
 
         self.show_errors()
 
-    def error(self, message, line = self.l): #Permet de signaler une erreur
+    def error(self, message, line=self.l): #Permet de signaler une erreur
         self.errors.append({"line" : line+1, "message" : message})
 
     def show_errors(self): #Affiche les différentes erreurs signalées dans le format texte

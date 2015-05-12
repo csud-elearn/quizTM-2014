@@ -561,63 +561,47 @@
         self.name = 0;
         self.number = 0;
         self.question_parent = null;
+        self.l = 0;
         self.read(text);
     };
-    Parse.prototype.read = function read(text){
+    Parse.prototype.read = function read(texte){
         var self = this;
-        var lines, split_lines, is_content, char, line, tag, content, line_is_question, question;
-        lines = text.split("\n");
-        split_lines = [];
-        self.l = 0;
-        var _$rapyd$_Iter7 = lines;
-        for (var _$rapyd$_Index7 = 0; _$rapyd$_Index7 < _$rapyd$_Iter7.length; _$rapyd$_Index7++) {
-            line = _$rapyd$_Iter7[_$rapyd$_Index7];
-            tag = "";
-            content = "";
-            is_content = false;
-            var _$rapyd$_Iter8 = line;
-            for (var _$rapyd$_Index8 = 0; _$rapyd$_Index8 < _$rapyd$_Iter8.length; _$rapyd$_Index8++) {
-                char = _$rapyd$_Iter8[_$rapyd$_Index8];
-                if (is_content) {
-                    content += char;
-                } else if (char === " ") {
-                    is_content = true;
-                } else {
-                    tag += char;
-                }
-            }
-            split_lines.append({
-                "tag": tag,
-                "content": content
-            });
+        var l_blocks, block_1, i_closing_tag, tag, content, question, block;
+        l_blocks = texte.split("\n{");
+        block_1 = l_blocks[0];
+        if (block_1[0] === "{") {
+            console.log(block_1);
+            l_blocks[0] = block_1.slice(1);
         }
-        line_is_question = true;
-        while (self.l < len(split_lines)) {
-            if (split_lines[self.l].tag === "") {
-                line_is_question = true;
-                self.l += 1;
+        var _$rapyd$_Iter7 = l_blocks;
+        for (var _$rapyd$_Index7 = 0; _$rapyd$_Index7 < _$rapyd$_Iter7.length; _$rapyd$_Index7++) {
+            block = _$rapyd$_Iter7[_$rapyd$_Index7];
+            i_closing_tag = block.find("}");
+            if (i_closing_tag === -1) {
+                self.error("Balise de fermeture manquante");
             } else {
-                tag = split_lines[self.l].tag;
-                content = split_lines[self.l].content;
-                if (line_is_question) {
-                    self.new_question(tag, content);
-                    line_is_question = false;
+                tag = block.slice(0, i_closing_tag);
+                content = block.slice(i_closing_tag + 1);
+                question = self.new_question(tag, content);
+                if (question) {
+                    self.question_parent = question;
+                    self.questions.append(question);
                 } else {
                     self.new_attribute(tag, content);
                 }
-                self.l += 1;
             }
+            self.l += 1;
+            self.l += block.count("\n");
         }
-        var _$rapyd$_Iter9 = self.questions;
-        for (var _$rapyd$_Index9 = 0; _$rapyd$_Index9 < _$rapyd$_Iter9.length; _$rapyd$_Index9++) {
-            question = _$rapyd$_Iter9[_$rapyd$_Index9];
+        var _$rapyd$_Iter8 = self.questions;
+        for (var _$rapyd$_Index8 = 0; _$rapyd$_Index8 < _$rapyd$_Iter8.length; _$rapyd$_Index8++) {
+            question = _$rapyd$_Iter8[_$rapyd$_Index8];
             question.check_question();
         }
     };
     Parse.prototype.new_question = function new_question(tag, content){
         var self = this;
-        var questions_types;
-        self.question_parent = null;
+        var questions_types, question;
         if (content) {
             questions_types = {
                 "??": SimpleQuestion,
@@ -625,23 +609,25 @@
                 "**": QCM_Radio
             };
             if (questions_types[tag]) {
-                self.question_parent = new questions_types[tag](self, content, self.l);
-                self.questions.append(self.question_parent);
+                question = new questions_types[tag](self, content, self.l);
+                return question;
             } else {
-                self.error("Tag inconnu");
+                return false;
             }
         } else {
-            self.error("Contenu introuvable");
+            self.error("L'énoncé de la question est vide");
         }
     };
-    Parse.prototype.new_attribute = function new_attribute(tag, content, line){
+    Parse.prototype.new_attribute = function new_attribute(tag, content){
         var self = this;
         if (self.question_parent) {
             if (content) {
                 self.question_parent.add_attribute(tag, content);
             } else {
-                self.error("Contenu introuvable");
+                self.error("La valeur de l'attribut est introuvable");
             }
+        } else {
+            self.error("Une nouvelle question doit être créée avant de définir cet attribut");
         }
     };
     Parse.prototype.render = function render(){
@@ -651,9 +637,9 @@
             $(".viewbox").css("display", "block");
             self.$render = $("#view_form");
             self.$render.empty();
-            var _$rapyd$_Iter10 = self.questions;
-            for (var _$rapyd$_Index10 = 0; _$rapyd$_Index10 < _$rapyd$_Iter10.length; _$rapyd$_Index10++) {
-                question = _$rapyd$_Iter10[_$rapyd$_Index10];
+            var _$rapyd$_Iter9 = self.questions;
+            for (var _$rapyd$_Index9 = 0; _$rapyd$_Index9 < _$rapyd$_Iter9.length; _$rapyd$_Index9++) {
+                question = _$rapyd$_Iter9[_$rapyd$_Index9];
                 question.render();
             }
         } else {
@@ -676,9 +662,9 @@
             $(".errorsbox").removeClass("panel-default content-hidden disabled").addClass("panel-danger");
             $errors_div = $("#errors-div");
             $errors_div.empty();
-            var _$rapyd$_Iter11 = self.errors;
-            for (var _$rapyd$_Index11 = 0; _$rapyd$_Index11 < _$rapyd$_Iter11.length; _$rapyd$_Index11++) {
-                error = _$rapyd$_Iter11[_$rapyd$_Index11];
+            var _$rapyd$_Iter10 = self.errors;
+            for (var _$rapyd$_Index10 = 0; _$rapyd$_Index10 < _$rapyd$_Iter10.length; _$rapyd$_Index10++) {
+                error = _$rapyd$_Iter10[_$rapyd$_Index10];
                 $container = $("<div>", {
                     "class": "error-container"
                 }).appendTo($errors_div);
@@ -703,9 +689,9 @@
             utils.alert_dialog("Erreur", "Votre quiz ne comporte aucune question");
         } else {
             object_json = [];
-            var _$rapyd$_Iter12 = self.questions;
-            for (var _$rapyd$_Index12 = 0; _$rapyd$_Index12 < _$rapyd$_Iter12.length; _$rapyd$_Index12++) {
-                question = _$rapyd$_Iter12[_$rapyd$_Index12];
+            var _$rapyd$_Iter11 = self.questions;
+            for (var _$rapyd$_Index11 = 0; _$rapyd$_Index11 < _$rapyd$_Iter11.length; _$rapyd$_Index11++) {
+                question = _$rapyd$_Iter11[_$rapyd$_Index11];
                 object_json.append(question.properties());
             }
             json = JSON.stringify(object_json);
