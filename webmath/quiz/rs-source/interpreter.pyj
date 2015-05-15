@@ -23,10 +23,16 @@ class QuestionAbstract: #Classe mère de toutes les questions, non destinée à 
         self.comment += content
 
     def add_points(self, n_points):
+        i_comma = n_points.find(",")
+        if i_comma >= 0:
+            n_points = n_points[:i_comma] + "." + n_points[i_comma+1:]
+        
+        
         self.points = float(n_points)
 
         if not self.points:
             self.parent.error("La valeur en points doit être un nombre décimal")
+            
 
     def properties(self):
         #Retourne les propriétés communes à tous types de question pour la construction du json
@@ -158,7 +164,6 @@ class Parse:
         
         block_1 = l_blocks[0]
         if block_1[0] == "{":
-            console.log(block_1)
             l_blocks[0] = block_1[1:]
         
         
@@ -172,12 +177,17 @@ class Parse:
                 tag = block[:i_closing_tag]
                 content = block[i_closing_tag+1:]
                 
-                question = self.new_question(tag, content)
+                converter = JS("new Showdown.converter();")
+                converted_content = converter.makeHtml(content)
+                
+                converted_content = converted_content.replace('<pre>', '<pre class="prettyprint">')
+                
+                question = self.new_question(tag, converted_content)
                 if question:
                     self.question_parent = question
                     self.questions.append(question)
                 else:
-                    self.new_attribute(tag, content)
+                    self.new_attribute(tag, converted_content)
                 
             self.l += 1
             self.l += block.count("\n")
@@ -269,7 +279,9 @@ class Parse:
         return "name_" + self.name
 
 def start_render(): #Affiche l'aperçu
-    parse = Parse($("#quizcode").val()).render()
+    code = $("#quizcode").val()
+    parse = Parse(code).render()
+    PR.prettyPrint() # Rafraichir le rendu prettify.js
     MathJax.Hub.Queue(["Typeset",MathJax.Hub]) # Rafraîchit le rendu mathjax
     
 def submit(): #Soumet les données au serveur

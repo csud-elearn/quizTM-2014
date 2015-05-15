@@ -10,6 +10,7 @@
         <div class="caption-full">
             <h1>{{ quiz.title }}</h1>
             {% csrf_token %}
+            {% autoescape off %}
             <ul class="list-group bottom-space">
                 {% for form in l_forms %}
                     <li class="q_container list-group-item">
@@ -27,6 +28,7 @@
                     </li>
                 {% endfor %}
             </ul>
+            {% endautoescape %}
             <button type="submit" class="btn btn-sm btn-primary bottom-space">Soumettre les réponses</button>
         </div>
     </form>

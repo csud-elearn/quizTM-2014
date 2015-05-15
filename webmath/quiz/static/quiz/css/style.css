@@ -10,17 +10,16 @@ h1, h2 {
 
 .quizform span.label-span {
 	display: block;
-	font-weight: bold;
+	font-weight: normal;
 	margin-bottom: 5px;
+}
+
+.quizform label {
+	font-weight: normal;
 }
 
 .quizform input + label {
 	font-weight: normal;
-}
-
-.quizform span.label-span {
-	display: block;
-	font-weight: bold;
 }
 
 .error-line {

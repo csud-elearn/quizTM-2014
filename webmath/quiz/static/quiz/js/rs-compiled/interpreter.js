@@ -375,6 +375,11 @@
     };
     QuestionAbstract.prototype.add_points = function add_points(n_points){
         var self = this;
+        var i_comma;
+        i_comma = n_points.find(",");
+        if (i_comma >= 0) {
+            n_points = n_points.slice(0, i_comma) + "." + n_points.slice(i_comma + 1);
+        }
         self.points = parseFloat(n_points);
         if (!self.points) {
             self.parent.error("La valeur en points doit être un nombre décimal");
@@ -566,11 +571,10 @@
     };
     Parse.prototype.read = function read(texte){
         var self = this;
-        var l_blocks, block_1, i_closing_tag, tag, content, question, block;
+        var l_blocks, block_1, i_closing_tag, tag, content, converter, converted_content, question, block;
         l_blocks = texte.split("\n{");
         block_1 = l_blocks[0];
         if (block_1[0] === "{") {
-            console.log(block_1);
             l_blocks[0] = block_1.slice(1);
         }
         var _$rapyd$_Iter7 = l_blocks;
@@ -582,12 +586,15 @@
             } else {
                 tag = block.slice(0, i_closing_tag);
                 content = block.slice(i_closing_tag + 1);
-                question = self.new_question(tag, content);
+                converter = new Showdown.converter();;
+                converted_content = converter.makeHtml(content);
+                converted_content = converted_content.replace("<pre>", "<pre class=\"prettyprint\">");
+                question = self.new_question(tag, converted_content);
                 if (question) {
                     self.question_parent = question;
                     self.questions.append(question);
                 } else {
-                    self.new_attribute(tag, content);
+                    self.new_attribute(tag, converted_content);
                 }
             }
             self.l += 1;
@@ -710,8 +717,10 @@
     };
 
     function start_render() {
-        var parse;
-        parse = new Parse($("#quizcode").val()).render();
+        var code, parse;
+        code = $("#quizcode").val();
+        parse = new Parse(code).render();
+        PR.prettyPrint();
         MathJax.Hub.Queue([ "Typeset", MathJax.Hub ]);
     }
     function submit() {
