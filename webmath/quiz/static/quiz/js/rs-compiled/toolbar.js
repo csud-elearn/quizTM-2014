@@ -11,51 +11,31 @@
     }
     "\nLie les boutons de la barre d'outils aux actions correspondantes\n";
     function toolbar_main() {
-        $(".tag-insert").click_foreach(set_insert);
+        $(".tag-insert").click_foreach(insert_tag);
         $("#savedraft-btn").click(open_savedraft);
         $("#submitdraft-btn").click(submitdraft);
         $("#importdraft-btn").click(get_draftlist);
     }
-    function set_insert() {
-        "\n    Récupère le tag associé à chaque bouton et définit le nombre de retours à la ligne nécessaires\n    ";
-        if ($(this).hasClass("tag-q")) {
-            insert_tag($(this).attr("data-tag"), 2);
-        } else if ($(this).hasClass("tag-p")) {
-            insert_tag($(this).attr("data-tag"), 1);
-        } else if ($(this).hasClass("tag-math")) {
-            insert_math($(this).attr("data-tag1"), $(this).attr("data-tag2"));
+    function insert_tag() {
+        var selection, code, tag_after, tag_before;
+        selection = $("#quizcode").range();
+        code = $("#quizcode").val();
+        tag_before = $(this).attr("data-tag-before");
+        tag_after = $(this).attr("data-tag-after");
+        if (!tag_after) {
+            tag_after = "";
         }
-    }
-    function insert_math(tag1, tag2) {
-        var text, new_text, pos;
-        pos = $("#quizcode").caret();
-        text = $("#quizcode").val();
-        new_text = text;
-        new_text = new_text.insert(tag1 + tag2, pos);
-        pos += len(tag1);
-        $("#quizcode").val(new_text);
-        $("#quizcode").caret(pos);
-    }
-    function insert_tag(tag, n_linebreaks) {
-        var text, text_before, new_text, pos;
-        "\n    Insère le tag dans la zone de texte en s'assurant qu'il y ait le nombre suffisant de retours de ligne\n    ";
-        pos = $("#quizcode").caret();
-        text = $("#quizcode").val();
-        new_text = text;
-        text_before = new_text.slice(pos - n_linebreaks, pos);
-        while (text_before !== "\n".repeat(n_linebreaks) && pos - n_linebreaks >= 0) {
-            new_text = new_text.insert("\n", pos);
-            pos += 1;
-            text_before = new_text.slice(pos - n_linebreaks, pos);
+        if ($(this).hasClass("lb-required")) {
+            if (selection.start > 0 && code[selection.start - 1] !== "\n") {
+                tag_before = "\n" + tag_before;
+            }
         }
-        new_text = new_text.insert(tag, pos);
-        pos += len(tag);
-        if (new_text.charAt(pos) !== " ") {
-            new_text = new_text.insert(" ", pos);
-            pos += 1;
+        $("#quizcode").range(tag_before + selection.text + tag_after);
+        if (len(selection.text) > 0) {
+            $("#quizcode").range(selection.start + len(tag_before), selection.end + len(tag_before));
+        } else {
+            $("#quizcode").caret(selection.start + len(tag_before));
         }
-        $("#quizcode").val(new_text);
-        $("#quizcode").caret(pos);
         show_lines();
     }
     function open_savedraft() {

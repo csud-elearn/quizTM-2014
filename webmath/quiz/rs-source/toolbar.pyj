@@ -3,70 +3,33 @@ Lie les boutons de la barre d'outils aux actions correspondantes
 """
 
 def toolbar_main():
-    $(".tag-insert").click_foreach(set_insert)
+    $(".tag-insert").click_foreach(insert_tag)
     $("#savedraft-btn").click(open_savedraft)
     $("#submitdraft-btn").click(submitdraft)
     $("#importdraft-btn").click(get_draftlist)
 
-def set_insert():
-    """
-    Récupère le tag associé à chaque bouton et définit le nombre de retours à la ligne nécessaires
-    """
-
-    if $(this).hasClass("tag-q"):
-        insert_tag($(this).attr("data-tag"), 2)
-
-    elif $(this).hasClass("tag-p"):
-        insert_tag($(this).attr("data-tag"), 1)
+def insert_tag():
+    selection = $("#quizcode").range()
+    code = $("#quizcode").val()
+    
+    tag_before = $(this).attr("data-tag-before")
+    tag_after = $(this).attr("data-tag-after")
+    
+    if not tag_after:
+        tag_after = ""
+    
+    if $(this).hasClass("lb-required"):
+        if selection.start > 0 and code[selection.start-1] != "\n":
+            tag_before = "\n" + tag_before
         
-    elif $(this).hasClass("tag-math"):
-        insert_math($(this).attr("data-tag1"), $(this).attr("data-tag2"))
-        
-def insert_math(tag1, tag2):
-    pos = $("#quizcode").caret()
-    text = $("#quizcode").val()
+    $("#quizcode").range(tag_before + selection.text + tag_after)
     
-    new_text = text
+    if len(selection.text) > 0:
+        $("#quizcode").range(selection.start + len(tag_before), selection.end + len(tag_before))
+    else:
+        $("#quizcode").caret(selection.start + len(tag_before))
     
-    new_text = new_text.insert(tag1+tag2, pos)
-    pos += len(tag1)
-    
-    $("#quizcode").val(new_text)
-    $("#quizcode").caret(pos)
-
-def insert_tag(tag, n_linebreaks):
-    """
-    Insère le tag dans la zone de texte en s'assurant qu'il y ait le nombre suffisant de retours de ligne
-    """
-
-    pos = $("#quizcode").caret() # Position du curseur dans la zone de texte
-    text = $("#quizcode").val() # Texte avant la modification
-
-    new_text = text # Texte qui remplacera l'ancien
-
-    # Portion de texte avant le tag censée contenir n retours
-    text_before = new_text.slice(pos-n_linebreaks, pos) # Le slicing avec [i:j] ne fonctionne pas avec RapydScript
-    
-    # Ajout de retours à la ligne avant le tag s'il n'y en a pas assez
-    while text_before != "\n".repeat(n_linebreaks) and pos-n_linebreaks >= 0:
-        new_text = new_text.insert("\n", pos)
-        pos += 1
-        text_before = new_text.slice(pos-n_linebreaks, pos)
-
-    # Ajout du tag dans le texte
-    new_text = new_text.insert(tag, pos)
-    pos += len(tag)
-    
-    # Ajout d'espace après le tag s'il n'y en a pas
-    if new_text.charAt(pos) != " ":
-        new_text = new_text.insert(" ", pos)
-        pos += 1
-
-    # Le contenu est redéfini et le curseur replacé après le tag inséré
-    $("#quizcode").val(new_text)
-    $("#quizcode").caret(pos)
-    
-    show_lines() # Mise à jour des numéros de lignes
+    show_lines()
 
 def open_savedraft():
     """
