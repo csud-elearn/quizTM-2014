@@ -36,6 +36,17 @@ form > .btn-group {
 }
 
 .btn-group > .btn {
-	padding-left: 15px;
-	padding-right: 15px;
+	padding-left: 13.5px;
+	padding-right: 13.5px;
+}
+
+.error-line {
+	display: inline-block;
+	font-weight: bold;
+}
+
+.error-content {
+	position: absolute;
+	left: 15%;
+	display: inline-block;
 }

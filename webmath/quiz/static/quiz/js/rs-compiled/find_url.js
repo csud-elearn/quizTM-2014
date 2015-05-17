@@ -6,7 +6,7 @@
         var id_quiz;
         id_quiz = $("#find-input").val();
         $.ajax({
-            "url": "/quiz/findquiz/",
+            "url": "/findquiz/",
             "type": "GET",
             "dataType": "json",
             "data": "quiz=" + id_quiz,

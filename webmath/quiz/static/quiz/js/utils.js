@@ -62,6 +62,21 @@ String.prototype.repeat = function(n) {
     return result;
 };
 
+// Enlève les espaces et les retours à la ligne au début et à la fin de la chaîne
+String.prototype.clean = function() {
+    var string = "" + this;
+    
+    while (string.charAt(0) == " " || string.charAt(0) == "\n") {
+        string = string.substring(1);
+    }
+    
+    while (string.charAt(string.length-1) == " " || string.charAt(string.length-1) == "\n") {
+        string = string.substring(0, string.length-1);
+    }
+    
+    return string;
+};
+
 // Permet de masquer un panel Bootstrap lors du clic
 $( document ).ready(function() {
     $(".panel-click .panel-heading").click(function() {

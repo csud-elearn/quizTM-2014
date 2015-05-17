@@ -8,29 +8,12 @@ h1, h2 {
 	font-weight: normal;
 }
 
-.quizform span.label-span {
-	display: block;
-	font-weight: normal;
-	margin-bottom: 5px;
-}
-
 .quizform label {
 	font-weight: normal;
 }
 
 .quizform input + label {
 	font-weight: normal;
-}
-
-.error-line {
-	display: inline-block;
-	font-weight: bold;
-}
-
-.error-content {
-	position: absolute;
-	left: 15%;
-	display: inline-block;
 }
 
 .top-space {
