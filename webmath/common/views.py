@@ -10,6 +10,7 @@ from django.contrib.auth.models import Group
 def connexion(request):
     erreur = False
     if request.method == "POST":
+
         form = LoginForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data["username"]
@@ -17,16 +18,19 @@ def connexion(request):
             user = authenticate(username=username, password=password)
             if user:
                 login(request, user)
+                next_url = request.POST['next'] or '/'
+                return redirect(next_url)
             else:
                 erreur = True
     else:
+        next_url = request.GET.get('next', '')
         form = LoginForm()
-        
+
     return render(request, "common/login.html", locals())
     
 def deconnexion(request):
     logout(request)
-    return redirect('common:connexion')
+    return redirect('/')
     
     
 def register(request):
@@ -61,10 +65,10 @@ def register(request):
                 account.save()
                 
                 return redirect('common:connexion')
-            except Exception as e:
-                return HttpResponse("Erreur non gérée : {}".format(str(e)))
+            else:
+                return render(request, "common/register.html", {'registerform' : registerform, 'error' : True})
 
     else:
         registerform = RegisterForm()
         
-    return render(request, "common/register.html", {'registerform' : registerform})
+    return render(request, "common/register.html", {'registerform' : registerform, 'error' : False})

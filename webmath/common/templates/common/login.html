@@ -1,34 +1,32 @@
-<!DOCTYPE html>
+{% extends "quiz/base.html" %}
 
-<head>
-    
-    <meta charset="utf-8" />
-    <title>Connexion</title>
-    
-</head>
-<body>
-    
-    <h1>Veuillez remplir les champs suivants:</h1>
-    
-    <button onclick="window.location.href='{% url 'common:register' %}'">S'inscrire</button>
-    
-    {% if erreur %}
-    <p><strong>Connexion échouée</strong></p>
-    {% endif %}
-    
-    {% if user.is_authenticated %}
-    Connexion réussie! Bienvenue {{ user.username }}!
-    <form method="post" action="{% url 'common:deconnexion' %}">
-        {% csrf_token %}
-        <button type="submit" />Se déconnecter</button>
-    </form>
-    
-    {% else %}
-    <form class="formLogin" method="post" action=".">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Se connecter"/>
-    </form>
-    {% endif %}
+{% block title %}Connexion{% endblock %}
+
+{% block page-content %}
+<div class="thumbnail">
+    <div class="caption-full">
+        <h1>Connexion</h1>
         
-</body>
+        {% if user.is_authenticated %}
+        <div class="alert alert-success bottom-space"><span class="bold">Connexion réussie !</span> Bienvenue {{ user.username }} !</div>
+        <form method="post" action="{% url 'common:deconnexion' %}">
+            {% csrf_token %}
+            <button class="btn btn-sm btn-default bottom-space" type="submit">Déconnexion</button>
+        </form>
+        
+        {% else %}
+        <div class="alert alert-info"><span class="bold">Pas encore inscrit ? </span><a class="btn btn-xs btn-primary" href="{% url 'common:register' %}">S'inscrire</a></div>
+        <form class="formLogin" method="post" action=".">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {% if erreur %}
+                <div class="alert alert-danger bottom-space"><span class="bold">Connexion échouée !</span> Vérifiez votre nom d'utilisateur et votre mot de passe</div>
+            {% endif %}
+            <input type="hidden" name="next" value="{{ next_url }}" />
+            <button class="btn btn-sm btn-default bottom-space" type="submit">Connexion</button>
+        </form>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
