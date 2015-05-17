@@ -298,7 +298,17 @@ class SimpleQuestion(QuizQuestion):
             # cette question est mis à jour
             submit.id_submitted_quiz.update_total_result()
             
-class SqAnswer(models.Model):
+class SqAnswerAbstract(models.Model):
+    text = models.CharField(max_length=50)
+    id_question = models.ForeignKey(SimpleQuestion) #Relation vers la question
+    
+    class Meta:
+        abstract = True
+        
+    def __str__(self):
+        return self.text
+            
+class SqAnswer(SqAnswerAbstract):
     """
     Cette table contient simplement la solution de la question définie par la
     relation vers la table ``SimpleQuestion``. Il est important de noter qu'il
@@ -306,16 +316,11 @@ class SqAnswer(models.Model):
     pour laquelle la solution n'est pas simplement stockée dans une colonne de
     :py:class:`SimpleQuestion`.
     """
-    text = models.CharField(max_length=50)
-    id_question = models.ForeignKey(SimpleQuestion) #Relation vers la question
-    
-    def __str__(self):
-        return self.text
         
     def match(self, answer):
         return self.text == answer
         
-class SqRegexAnswer(SqAnswer):
+class SqRegexAnswer(SqAnswerAbstract):
     """
     Table très similaire à ``SqAnswer`` sauf qu'elle contient une solution sous la
     forme d'une expression régulière. Cette solution offre plus de souplesse
@@ -368,7 +373,8 @@ class SqSubmit(models.Model):
         Renvoie la liste des solutions correctes pour la question
         """
         # Récupération des corrections de la question
-        l_sq_answer = SqAnswer.objects.filter(id_question=self.id_question)
+        l_sq_answer = list(SqAnswer.objects.filter(id_question=self.id_question))\
+        + list(SqRegexAnswer.objects.filter(id_question=self.id_question))
         
         return l_sq_answer
         
@@ -378,9 +384,16 @@ class SqSubmit(models.Model):
         une des solutions de la question.
         """
         
+        print("Correction")
+        
         for correction in self.get_corrections():
+            
+            print(self.get_corrections())
             if correction.match(self.text):
+                print(correction)
                 return True
+                
+        print("problème")
         
         return False
             
