@@ -8,9 +8,10 @@
 <div class="thumbnail">
     <div class="caption-full">
         <h1>Correction - {{ quiz.title }}</h1>
+        {% autoescape off %}
         <ul class="quizform list-group bottom-space not-allowed">
             {% for correction in l_corrections %}
-                <fieldset class="q_container list-group-item" disabled>
+                <fieldset class="q-container markdown-body list-group-item" disabled>
                 {% if correction.type == 0 %}
                     <label>{{ correction.text }} <span class="danger pull-right">{{ correction.result }}/{{ correction.points }}</span></label>
                     <input type=text class="form-control {{ correction.html_class }}" value="{{ correction.submit }}">
@@ -26,7 +27,7 @@
                     {% endif %}
 
                 {% elif correction.type == 1 %}
-                    <span class="label-span">{{ correction.text }} <span class="danger pull-right">{{ correction.result }}/{{ correction.points }}</span></span>
+                    <div>{{ correction.text }} <span class="danger pull-right">{{ correction.result }} / {{ correction.points }}</span></div>
                     {% for choice in correction.l_correct_choices %}
                         <input type="checkbox" class="{{ choice.html_class }}" {{ choice.attribute }}>
                         <label>{{ choice.text }}</label>
@@ -34,7 +35,7 @@
                     {% endfor %}
 
                 {% elif correction.type == 2 %}
-                    <span class="label-span">{{ correction.text }} <span class="danger pull-right">{{ correction.result }}/{{ correction.points }}</span></span>
+                    <div>{{ correction.text }} <span class="danger pull-right">{{ correction.result }} / {{ correction.points }}</span></div>
                     {% for choice in correction.l_correct_choices %}
                         <input type="radio" class="{{ choice.html_class }}" {{ choice.attribute }}>
                         <label>{{ choice.text }}</label>
@@ -59,6 +60,7 @@
                 <p class="bold">Note moyenne des autres utilisateurs : {{ quiz.average_result }}/{{ quiz.points }} </p>
             </div>
         </ul>
+        {% endautoescape %}
         <a class="btn btn-sm btn-primary bottom-space" href="{% url 'quiz:find' %}"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Compléter un autre quiz</a>
     </div>
 </div>

@@ -90,12 +90,13 @@
                     <li class="list-group-item">Pour afficher l'énoncé d'une question, utilisez les boutons bleus dans le tableau <a class="btn btn-xs btn-success" id="show-all">Afficher toutes les questions</a></li>
                 </ul>
             </div>
+            {% autoescape off %}
             {% for form in l_forms %}
-                <div id="question-{{ form.question.number }}" class="q_container panel panel-default hidden-question bottom-space">
+                <div id="question-{{ form.question.number }}" class="q-container markdown-body panel panel-default hidden-question bottom-space">
                 <div class="caption-full">
                 {% if form.get_type == 1 %}
                     <div class="bottom-space">
-                    <span class="label-span">{{ form.question.number|add:"1" }}) {{ form.question.text }}</span>
+                    <div>{{ form.question.text }}</div>
                     {% for option in form.answer %}
                         {{ option.tag }}
                         <label for="{{ option.id_for_label }}">{{ option.choice_label }}</label>
@@ -128,6 +129,7 @@
                 </div>
                 </div>
             {% endfor %}
+            {% endautoescape %}
         </div>
     </div>
 </div>

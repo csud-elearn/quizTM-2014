@@ -30,17 +30,42 @@
                         <span class="glyphicon glyphicon-th-list"></span> Question <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a class="tag-insert tag-q" data-tag="##">QCM sélection multiple</a></li>
-                            <li><a class="tag-insert tag-q"data-tag="**">QCM sélection unique</a></li>
-                            <li><a class="tag-insert tag-q" data-tag="??">Champ de texte</a></li>
+                            <li><a class="tag-insert lb-required" data-tag-before="{++}
+">QCM sélection multiple</a></li>
+                            <li><a class="tag-insert lb-required" data-tag-before="{**}
+">QCM sélection unique</a></li>
+                            <li><a class="tag-insert lb-required" data-tag-before="{??}
+">Champ de texte</a></li>
                         </ul>
                     </div>
-                    <a class="btn btn-default btn-sm tag-insert tag-p" title="Option / Réponse correcte" data-tag="=">
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Correct
-                    </a>
-                    <a class="btn btn-default btn-sm tag-insert tag-p" title="Option incorrecte" data-tag="*">
-                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Incorrect
-                    </a>
+                    <div class="btn-group" role="group">
+                        <a type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" title="Ajouter une option ou une solution">
+                        <span class="glyphicon glyphicon-option-vertical"></span> Réponses <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a class="tag-insert lb-required" data-tag-before="{*}
+">Option incorrecte</a></li>
+                            <li><a class="tag-insert lb-required" data-tag-before="{=}
+">Option correcte / Solution</a></li>
+                            <li><a class="tag-insert lb-required" data-tag-before="{=r}
+" data-tag-after=" // ^$">Expression régulière</a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <a type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" title="Mise en forme Markdown">
+                        <span class="glyphicon glyphicon-font"></span> Markdown <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a class="tag-insert" data-tag-before="**" data-tag-after="**"><span class="glyphicon glyphicon-bold"></span> Gras</a></li>
+                            <li><a class="tag-insert" data-tag-before="*" data-tag-after="**"><span class="glyphicon glyphicon-italic"></span> Italique</a></li>
+                            <li><a class="tag-insert lb-required" data-tag-before="```
+" data-tag-after="
+```"><span class="glyphicon glyphicon-align-left"></span> Bloc de code</a></li>
+                            <li><a class="tag-insert" data-tag-before="`" data-tag-after="`"><span class="glyphicon glyphicon-console"></span> Code sur une ligne</a></li>
+                            <li><a class="tag-insert" data-tag-before="[texte" data-tag-after="](url)"><span class="glyphicon glyphicon-link"></span> Lien</a></li>
+                            
+                        </ul>
+                    </div>
                     <div class="btn-group" role="group">
                         <a type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" title="Affichage de mathématiques">
                             <span class="glyphicon glyphicon-pencil"></span> Mathématiques <span class="caret"></span>
@@ -48,24 +73,24 @@
                         <ul class="dropdown-menu" role="menu">
                             <li role="presentation" class="dropdown-header">Ajouter une formule</li>
                             <li>
-                                <a class="tag-insert tag-math" title="Affichage dans le texte" data-tag1="\(" data-tag2="\)">
+                                <a class="tag-insert" title="Affichage dans le texte" data-tag-before="\\(" data-tag-after="\\)">
                                     <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span> Formule in-line
                                 </a>
                             </li>
                             <li>
-                                <a class="tag-insert tag-math" title="Affichage agrandi et centré" data-tag1="$$" data-tag2="$$">
+                                <a class="tag-insert" title="Affichage agrandi et centré" data-tag-before="$$" data-tag-after="$$">
                                     <span class="glyphicon glyphicon-picture" aria-hidden="true"></span> Formule display
                                 </a>
                             </li>
                             <li role="presentation" class="divider"></li>
                             <li role="presentation" class="dropdown-header">Symboles et expressions</li>
-                            <li><a class="tag-insert tag-math" data-tag1="^{" data-tag2="}">Puissance \(x^{n}\)</a></li>
-                            <li><a class="tag-insert tag-math" data-tag1="\sqrt[" data-tag2="]{}">Racine \(\sqrt[n]{x}\)</a></li>
-                            <li><a class="tag-insert tag-math" data-tag1="_{" data-tag2="}">Indice \(x_{n}\)</a></li>
-                            <li><a class="tag-insert tag-math" data-tag1="\log_{" data-tag2="}()">Logarithme \(\log_{n}(x)\)</a></li>
-                            <li><a class="tag-insert tag-math" data-tag1="\Leftrightarrow" data-tag2="">Équivalence \(\Leftrightarrow\)</a></li>
-                            <li><a class="tag-insert tag-math" data-tag1="\lim_{x\to " data-tag2="}">Limite \(\lim_{x\to +\infty}\)</a></li>
-                            <li><a class="tag-insert tag-math" data-tag1="\frac{" data-tag2="}{}">Fraction \(\frac{a}{b}\)</a></li>
+                            <li><a class="tag-insert" data-tag-before="^{" data-tag-after="}">Puissance \(x^{n}\)</a></li>
+                            <li><a class="tag-insert" data-tag-before="\sqrt[" data-tag-after="]{}">Racine \(\sqrt[n]{x}\)</a></li>
+                            <li><a class="tag-insert" data-tag-before="_{" data-tag-after="}">Indice \(x_{n}\)</a></li>
+                            <li><a class="tag-insert" data-tag-before="\log_{" data-tag-after="}()">Logarithme \(\log_{n}(x)\)</a></li>
+                            <li><a class="tag-insert" data-tag-before="\Leftrightarrow" data-tag-after="">Équivalence \(\Leftrightarrow\)</a></li>
+                            <li><a class="tag-insert" data-tag-before="\lim_{x\to" data-tag-after="}">Limite \(\lim_{x\to +\infty}\)</a></li>
+                            <li><a class="tag-insert" data-tag-before="\frac{" data-tag-after="}{}">Fraction \(\frac{a}{b}\)</a></li>
                         </ul>
                     </div>
                     <div class="btn-group" role="group">
@@ -74,12 +99,14 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                <a class="tag-insert tag-p" title="Commentaire pour la correction" data-tag="+">
+                                <a class="tag-insert lb-required" title="Commentaire pour la correction" data-tag-before="{+}
+">
                                     <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Commentaire
                                 </a>
                             </li>
                             <li>
-                                <a class="tag-insert tag-p" title="Nombre de points sur la question" data-tag=".">
+                                <a class="tag-insert lb-required" title="Nombre de points sur la question" data-tag-before="{.}
+">
                                     <span class="glyphicon glyphicon-time" aria-hidden="true"></span> Points
                                 </a>
                             </li>

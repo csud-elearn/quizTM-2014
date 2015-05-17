@@ -13,7 +13,7 @@
             {% autoescape off %}
             <ul class="list-group bottom-space">
                 {% for form in l_forms %}
-                    <li class="q_container list-group-item">
+                    <li class="q-container markdown-body list-group-item">
                     {% if form.get_type == 1 %}
                         <span class="label-span">{{ form.question.text }}</span>
                         {% for option in form.answer %}
