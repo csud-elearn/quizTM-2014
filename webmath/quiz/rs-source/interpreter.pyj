@@ -3,21 +3,27 @@ import stdlib
 class QuestionAbstract: #Classe mère de toutes les questions, non destinée à avoir des instances
     def __init__(self, parent, text, line):
         self.line = line #Numéro de ligne dans la textarea qui correspond à la question
-        self.text = text #Enoncé de la question
         self.parent = parent #Référence de l'objet Parse pour pouvoir appeler les méthodes de celui-ci
+        text = self.parent.converter.makeHtml(text) #Enoncé de la question en markdown
+        self.text = text.replace('<pre>', '<pre class="prettyprint">') # Ajout de la classe pour prettify.js
         #Associaton des différents tags au méthodes de la classe
         self.tags_list = {
-            "+" : self.add_comment,
-            "." : self.add_points,
+            "+" : {"function" : self.add_comment, "markdown" : True},
+            "." : {"function" : self.add_points, "markdown" : False},
         }
         self.comment = "" #Commentaire affiché lors de la correction
         self.points = 1
 
     def add_attribute(self, tag, content): #Décide l'action à éxecuter avec un attribut selon le tag
         if self.tags_list[tag]:
-            JS("self.tags_list[tag].call(self, content)") #Exécute la méthode associé au tag
+            if self.tags_list[tag]["markdown"]:
+                # Conversion du markdown pour les attributs qui en ont besoin
+                content = self.parent.converter.makeHtml(content)
+                content = content.replace('<pre>', '<pre class="prettyprint">')
+            
+            JS("self.tags_list[tag]['function'].call(self, content)") #Exécute la méthode associé au tag
         else:
-            self.parent.error("Tag inconnu") #Si le tag n'est pas supporté par la question
+            self.parent.error("Balise invalide pour ce type de question") #Si le tag n'est pas supporté par la question
 
     def add_comment(self, content):
         self.comment += content
@@ -54,23 +60,31 @@ class SimpleQuestion(QuestionAbstract): #Question simple avec un champ de texte 
         self.regex_answers = [] # Liste des solutions contenant des expressions régulières
         
         #Associaton des différents tags au méthodes de la classe
-        self.tags_list["="] = self.add_answer
-        self.tags_list["=r"] = self.add_regex_answer
+        self.tags_list["="] = {"function" : self.add_answer, "markdown" : False}
+        self.tags_list["=r"] = {"function" : self.add_regex_answer, "markdown" : False}
 
     def add_answer(self, content):
         self.answers.append(content)
         
     def add_regex_answer(self, content):
-        answer_dict = {
-            "text" : content.split("//")[0],
-            "regex" : content.split("//")[1],
-        }
-        
-        self.regex_answers.append(answer_dict)
+        if "//" in content:
+            answer_dict = {
+                "text" : content.split("//")[0].clean(),
+                "regex" : content.split("//")[1].clean(),
+            }
+            
+            if not answer_dict["text"]:
+                self.parent.error("Texte à afficher vide")
+            if not answer_dict["regex"]:
+                self.parent.error("Expression régulière vide")
+            
+            self.regex_answers.append(answer_dict)
+        else:
+            self.parent.error("Le texte à afficher doit être séparé de l'expression régulière par un <code>//</code>")
 
     def render(self): #Aperçu du rendu final de la question
         id_input = self.parent.get_id()
-        $container = $("<li>", {"class" : "q_container list-group-item"}).appendTo(self.parent.$render)
+        $container = $("<li>", {"class" : "q-container markdown-body list-group-item"}).appendTo(self.parent.$render)
         $("<label>", {"for" : id_input}).append(self.text).appendTo($container)
         $("<input>", {"type" : "text", "id" : id_input, "class" : "form-control"}).appendTo($container)
         
@@ -83,7 +97,7 @@ class SimpleQuestion(QuestionAbstract): #Question simple avec un champ de texte 
         return properties
 
     def check_question(self): #Recherche la présence d'erreurs dans la question
-        if len(self.answers) < 1:
+        if len(self.answers) < 1 and len(self.regex_answers) < 1:
             self.parent.error("Cette question doit comporter au moins une réponse", self.line)
 
 class QCM_Checkbox(QuestionAbstract):
@@ -94,8 +108,8 @@ class QCM_Checkbox(QuestionAbstract):
         self.input_type = "checkbox" #Indique le type de <input>
 
         #Associaton des différents tags au méthodes de la classe
-        self.tags_list["*"] = self.add_option
-        self.tags_list["="] = self.add_answer
+        self.tags_list["*"] = {"function" : self.add_option, "markdown" : True}
+        self.tags_list["="] = {"function" : self.add_answer, "markdown" : True}
 
     def add_option(self, content):
         self.options.append({"content" : content, "valid" : False})
@@ -105,8 +119,8 @@ class QCM_Checkbox(QuestionAbstract):
         self.options.append({"content" : content, "valid" : True})
 
     def render(self):
-        $container = $("<li>", {"class" : "q_container list-group-item"}).appendTo(self.parent.$render)
-        $("<span>", {"class" : "label-span"}).append(self.text).appendTo($container)
+        $container = $("<li>", {"class" : "q-container markdown-body list-group-item"}).appendTo(self.parent.$render)
+        $("<div>").append(self.text).appendTo($container)
         name = self.parent.get_name()
         for option in self.options:
             id_option = self.parent.get_id() #Génération d'un id unique pour lier le label à la case à cocher
@@ -155,6 +169,7 @@ class Parse:
         self.number = 0 #Numéro de question
         self.question_parent = None #Référence vers le dernier objet question instancié
         self.l = 0
+        self.converter = JS("new Showdown.converter();")
         
         self.read(text)
             
@@ -166,28 +181,25 @@ class Parse:
         if block_1[0] == "{":
             l_blocks[0] = block_1[1:]
         
-        
-        
         for block in l_blocks:
             i_closing_tag = block.find("}")
             
             if i_closing_tag == -1:
-                self.error("Balise de fermeture manquante")
+                self.error("Balise manquante ou incomplète")
             else:
                 tag = block[:i_closing_tag]
-                content = block[i_closing_tag+1:]
+                content = block[i_closing_tag+1:].clean()
                 
-                converter = JS("new Showdown.converter();")
-                converted_content = converter.makeHtml(content)
+                if content:
+                    question = self.new_question(tag, content)
+                    if question:
+                        self.question_parent = question
+                        self.questions.append(question)
+                    else:
+                        self.new_attribute(tag, content)
                 
-                converted_content = converted_content.replace('<pre>', '<pre class="prettyprint">')
-                
-                question = self.new_question(tag, converted_content)
-                if question:
-                    self.question_parent = question
-                    self.questions.append(question)
                 else:
-                    self.new_attribute(tag, converted_content)
+                    self.error("Texte vide")
                 
             self.l += 1
             self.l += block.count("\n")
@@ -196,23 +208,20 @@ class Parse:
             question.check_question()
 
     def new_question(self, tag, content):
-        if content:
-            questions_types = {
-                "??" : SimpleQuestion,
-                "##" : QCM_Checkbox,
-                "**" : QCM_Radio,
-            }
+        questions_types = {
+            "??" : SimpleQuestion,
+            "++" : QCM_Checkbox,
+            "**" : QCM_Radio,
+        }
+        
+        if questions_types[tag]:
+            #Instanciation de la question avec le constructeur associé au tag
+            question = JS("new questions_types[tag](self, content, self.l)") #Utilisation de JS() pour écrire du JS pur. Sans cela, RS n'ajoute pas "new"
             
-            if questions_types[tag]:
-                #Instanciation de la question avec le constructeur associé au tag
-                question = JS("new questions_types[tag](self, content, self.l)") #Utilisation de JS() pour écrire du JS pur. Sans cela, RS n'ajoute pas "new"
-                
-                return question
-                
-            else:
-                return False
+            return question
+            
         else:
-            self.error("L'énoncé de la question est vide")
+            return False
 
     def new_attribute(self, tag, content):
         if self.question_parent: #On s'assure qu'il y a une question parente valide.
@@ -221,7 +230,7 @@ class Parse:
             else:
                 self.error("La valeur de l'attribut est introuvable")
         else:
-            self.error("Une nouvelle question doit être créée avant de définir cet attribut")
+            self.error("Une nouvelle question doit être créée avant de définir un attribut")
 
     def render(self): #Aperçu du quiz
         if len(self.questions) > 0:
@@ -242,6 +251,7 @@ class Parse:
         self.errors.append({"line" : line+1, "message" : message})
 
     def show_errors(self): #Affiche les différentes erreurs signalées dans le format texte
+        self.errors.sort(sort_by_line)
         if len(self.errors) > 0:
             $(".errorsbox").removeClass("panel-default content-hidden disabled").addClass("panel-danger")
 
@@ -296,6 +306,12 @@ def submit(): #Soumet les données au serveur
             utils.alert_dialog("Erreur", "Vous devez spécifier un titre pour votre quiz")
     else:
         parse.render()
+        
+def sort_by_line(a, b): # Fonction qui définit les critères de tri des erreurs pour .sort() (JS)
+    if a["line"] < b["line"]:
+        return -1
+    else:
+        return 1
 
 
 
@@ -314,10 +330,16 @@ def demo(): #Permet d'insérer un exemple de format texte
 \n= Option 2"
     $("#quizcode").val(demo_text)
     show_lines()
+    
+def prevent_submit(event):
+    # Désactivation de l'envoi du formulaire avec la touche Enter
+    if event.which == 13:
+        event.preventDefault()
 
 def main(): #Chaque bouton est lié à une méthode
     $("#start-render").click(start_render)
     $("#demo").click(demo)
     $("#submit").click(submit)
+    $("#title").keypress(prevent_submit)
 
 jQuery(document).ready(main)

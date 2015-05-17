@@ -352,11 +352,18 @@
     QuestionAbstract.prototype.__init__ = function __init__(parent, text, line){
         var self = this;
         self.line = line;
-        self.text = text;
         self.parent = parent;
+        text = self.parent.converter.makeHtml(text);
+        self.text = text.replace("<pre>", "<pre class=\"prettyprint\">");
         self.tags_list = {
-            "+": self.add_comment,
-            ".": self.add_points
+            "+": {
+                "function": self.add_comment,
+                "markdown": true
+            },
+            ".": {
+                "function": self.add_points,
+                "markdown": false
+            }
         };
         self.comment = "";
         self.points = 1;
@@ -364,9 +371,13 @@
     QuestionAbstract.prototype.add_attribute = function add_attribute(tag, content){
         var self = this;
         if (self.tags_list[tag]) {
-            self.tags_list[tag].call(self, content);
+            if (self.tags_list[tag]["markdown"]) {
+                content = self.parent.converter.makeHtml(content);
+                content = content.replace("<pre>", "<pre class=\"prettyprint\">");
+            }
+            self.tags_list[tag]['function'].call(self, content);
         } else {
-            self.parent.error("Tag inconnu");
+            self.parent.error("Balise invalide pour ce type de question");
         }
     };
     QuestionAbstract.prototype.add_comment = function add_comment(content){
@@ -408,8 +419,14 @@
         QuestionAbstract.prototype.constructor.call(self, parent, text, line);
         self.answers = [];
         self.regex_answers = [];
-        self.tags_list["="] = self.add_answer;
-        self.tags_list["=r"] = self.add_regex_answer;
+        self.tags_list["="] = {
+            "function": self.add_answer,
+            "markdown": false
+        };
+        self.tags_list["=r"] = {
+            "function": self.add_regex_answer,
+            "markdown": false
+        };
     };
     SimpleQuestion.prototype.add_answer = function add_answer(content){
         var self = this;
@@ -418,18 +435,28 @@
     SimpleQuestion.prototype.add_regex_answer = function add_regex_answer(content){
         var self = this;
         var answer_dict;
-        answer_dict = {
-            "text": content.split("//")[0],
-            "regex": content.split("//")[1]
-        };
-        self.regex_answers.append(answer_dict);
+        if (_$rapyd$_in("//", content)) {
+            answer_dict = {
+                "text": content.split("//")[0].clean(),
+                "regex": content.split("//")[1].clean()
+            };
+            if (!answer_dict["text"]) {
+                self.parent.error("Texte à afficher vide");
+            }
+            if (!answer_dict["regex"]) {
+                self.parent.error("Expression régulière vide");
+            }
+            self.regex_answers.append(answer_dict);
+        } else {
+            self.parent.error("Le texte à afficher doit être séparé de l'expression régulière par un <code>//</code>");
+        }
     };
     SimpleQuestion.prototype.render = function render(){
         var self = this;
         var id_input, $container;
         id_input = self.parent.get_id();
         $container = $("<li>", {
-            "class": "q_container list-group-item"
+            "class": "q-container markdown-body list-group-item"
         }).appendTo(self.parent.$render);
         $("<label>", {
             "for": id_input
@@ -451,7 +478,7 @@
     };
     SimpleQuestion.prototype.check_question = function check_question(){
         var self = this;
-        if (len(self.answers) < 1) {
+        if (len(self.answers) < 1 && len(self.regex_answers) < 1) {
             self.parent.error("Cette question doit comporter au moins une réponse", self.line);
         }
     };
@@ -466,8 +493,14 @@
         self.has_answer = false;
         self.options = [];
         self.input_type = "checkbox";
-        self.tags_list["*"] = self.add_option;
-        self.tags_list["="] = self.add_answer;
+        self.tags_list["*"] = {
+            "function": self.add_option,
+            "markdown": true
+        };
+        self.tags_list["="] = {
+            "function": self.add_answer,
+            "markdown": true
+        };
     };
     QCM_Checkbox.prototype.add_option = function add_option(content){
         var self = this;
@@ -488,11 +521,9 @@
         var self = this;
         var $container, name, id_option, option;
         $container = $("<li>", {
-            "class": "q_container list-group-item"
+            "class": "q-container markdown-body list-group-item"
         }).appendTo(self.parent.$render);
-        $("<span>", {
-            "class": "label-span"
-        }).append(self.text).appendTo($container);
+        $("<div>").append(self.text).appendTo($container);
         name = self.parent.get_name();
         var _$rapyd$_Iter6 = self.options;
         for (var _$rapyd$_Index6 = 0; _$rapyd$_Index6 < _$rapyd$_Iter6.length; _$rapyd$_Index6++) {
@@ -567,11 +598,12 @@
         self.number = 0;
         self.question_parent = null;
         self.l = 0;
+        self.converter = new Showdown.converter();;
         self.read(text);
     };
     Parse.prototype.read = function read(texte){
         var self = this;
-        var l_blocks, block_1, i_closing_tag, tag, content, converter, converted_content, question, block;
+        var l_blocks, block_1, i_closing_tag, tag, content, question, block;
         l_blocks = texte.split("\n{");
         block_1 = l_blocks[0];
         if (block_1[0] === "{") {
@@ -582,19 +614,20 @@
             block = _$rapyd$_Iter7[_$rapyd$_Index7];
             i_closing_tag = block.find("}");
             if (i_closing_tag === -1) {
-                self.error("Balise de fermeture manquante");
+                self.error("Balise manquante ou incomplète");
             } else {
                 tag = block.slice(0, i_closing_tag);
-                content = block.slice(i_closing_tag + 1);
-                converter = new Showdown.converter();;
-                converted_content = converter.makeHtml(content);
-                converted_content = converted_content.replace("<pre>", "<pre class=\"prettyprint\">");
-                question = self.new_question(tag, converted_content);
-                if (question) {
-                    self.question_parent = question;
-                    self.questions.append(question);
+                content = block.slice(i_closing_tag + 1).clean();
+                if (content) {
+                    question = self.new_question(tag, content);
+                    if (question) {
+                        self.question_parent = question;
+                        self.questions.append(question);
+                    } else {
+                        self.new_attribute(tag, content);
+                    }
                 } else {
-                    self.new_attribute(tag, converted_content);
+                    self.error("Texte vide");
                 }
             }
             self.l += 1;
@@ -609,20 +642,16 @@
     Parse.prototype.new_question = function new_question(tag, content){
         var self = this;
         var questions_types, question;
-        if (content) {
-            questions_types = {
-                "??": SimpleQuestion,
-                "##": QCM_Checkbox,
-                "**": QCM_Radio
-            };
-            if (questions_types[tag]) {
-                question = new questions_types[tag](self, content, self.l);
-                return question;
-            } else {
-                return false;
-            }
+        questions_types = {
+            "??": SimpleQuestion,
+            "++": QCM_Checkbox,
+            "**": QCM_Radio
+        };
+        if (questions_types[tag]) {
+            question = new questions_types[tag](self, content, self.l);
+            return question;
         } else {
-            self.error("L'énoncé de la question est vide");
+            return false;
         }
     };
     Parse.prototype.new_attribute = function new_attribute(tag, content){
@@ -634,7 +663,7 @@
                 self.error("La valeur de l'attribut est introuvable");
             }
         } else {
-            self.error("Une nouvelle question doit être créée avant de définir cet attribut");
+            self.error("Une nouvelle question doit être créée avant de définir un attribut");
         }
     };
     Parse.prototype.render = function render(){
@@ -665,6 +694,7 @@
     Parse.prototype.show_errors = function show_errors(){
         var self = this;
         var $errors_div, $container, error;
+        self.errors.sort(sort_by_line);
         if (len(self.errors) > 0) {
             $(".errorsbox").removeClass("panel-default content-hidden disabled").addClass("panel-danger");
             $errors_div = $("#errors-div");
@@ -739,16 +769,29 @@
             parse.render();
         }
     }
+    function sort_by_line(a, b) {
+        if (a["line"] < b["line"]) {
+            return -1;
+        } else {
+            return 1;
+        }
+    }
     function demo() {
         var demo_text;
         demo_text = "## Cases à cocher\n* Option 1\n= Option 4\n= Option 5\n\n\n?? Question simple\n= Réponse\n\n** Boutons radio\n* Option 1\n= Option 2";
         $("#quizcode").val(demo_text);
         show_lines();
     }
+    function prevent_submit(event) {
+        if (event.which === 13) {
+            event.preventDefault();
+        }
+    }
     function main() {
         $("#start-render").click(start_render);
         $("#demo").click(demo);
         $("#submit").click(submit);
+        $("#title").keypress(prevent_submit);
     }
     jQuery(document).ready(main);
 })();
