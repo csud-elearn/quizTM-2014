@@ -33,7 +33,8 @@ h1, h2 {
 }
 
 .no-space {
-	margin:0px;
+	margin-bottom:0px!important;
+	margin-top:0px!important;
 }
 
 .errorsbox h2 {
@@ -75,4 +76,8 @@ a {
 
 .disabled .panel-heading {
 	color: #A4A4A4;
+}
+
+.q-container {
+	overflow-x:auto;
 }
