@@ -69,7 +69,7 @@ class SimpleQuestion(QuestionAbstract): #Question simple avec un champ de texte 
     def add_regex_answer(self, content):
         if "//" in content:
             answer_dict = {
-                "text" : content.split("//")[0].clean(),
+                "text" : self.parent.converter.makeHtml(content.split("//")[0].clean()),
                 "regex" : content.split("//")[1].clean(),
             }
             
@@ -84,9 +84,9 @@ class SimpleQuestion(QuestionAbstract): #Question simple avec un champ de texte 
 
     def render(self): #Aperçu du rendu final de la question
         id_input = self.parent.get_id()
-        $container = $("<li>", {"class" : "q-container markdown-body list-group-item"}).appendTo(self.parent.$render)
-        $("<label>", {"for" : id_input}).append(self.text).appendTo($container)
-        $("<input>", {"type" : "text", "id" : id_input, "class" : "form-control"}).appendTo($container)
+        $container = $("<li>", {"class" : "q-container list-group-item"}).appendTo(self.parent.$render)
+        $("<label>", {"for" : id_input, "class" : "markdown-body"}).append(self.text).appendTo($container)
+        $("<input>", {"type" : "text", "id" : id_input, "class" : "form-control markdown-body"}).appendTo($container)
         
     def properties(self): #Renvoie les caractéristiques de la question pour la construction du json
         properties = QuestionAbstract.properties(self)
@@ -119,13 +119,13 @@ class QCM_Checkbox(QuestionAbstract):
         self.options.append({"content" : content, "valid" : True})
 
     def render(self):
-        $container = $("<li>", {"class" : "q-container markdown-body list-group-item"}).appendTo(self.parent.$render)
-        $("<div>").append(self.text).appendTo($container)
+        $container = $("<li>", {"class" : "q-container list-group-item"}).appendTo(self.parent.$render)
+        $("<div>", {"class" : "markdown-body"}).append(self.text).appendTo($container)
         name = self.parent.get_name()
         for option in self.options:
             id_option = self.parent.get_id() #Génération d'un id unique pour lier le label à la case à cocher
             $("<input>", {"type" : self.input_type, "id" : id_option, "name" : name}).appendTo($container)
-            $("<label>", {"for": id_option}).append(option.content).appendTo($container)
+            $("<label>", {"for": id_option, "class" : "markdown-body"}).append(option.content).appendTo($container)
             $("<br />").appendTo($container)
             
     def properties(self): #Renvoie les caractéristiques de la question pour la construction du json
