@@ -13,16 +13,16 @@
             {% autoescape off %}
             <ul class="list-group bottom-space">
                 {% for form in l_forms %}
-                    <li class="q-container markdown-body list-group-item">
+                    <li class="q-container list-group-item">
                     {% if form.get_type == 1 %}
-                        <span class="label-span">{{ form.question.text }}</span>
+                        <div class="markdown-body">{{ form.question.text }}</div>
                         {% for option in form.answer %}
                             {{ option.tag }}
-                            <label for="{{ option.id_for_label }}">{{ option.choice_label }}</label>
+                            <label class="markdown-body" for="{{ option.id_for_label }}">{{ option.choice_label }}</label>
                             <br />
                         {% endfor %}
                     {% elif form.get_type == 0 %}
-                        <label for="{{ form.selected.id_for_label }}">{{ form.question.text }}</label>
+                        <label class="markdown-body" for="{{ form.selected.id_for_label }}">{{ form.question.text }}</label>
                         {{ form.answer }}
                     {% endif %}
                     </li>

@@ -92,39 +92,39 @@
             </div>
             {% autoescape off %}
             {% for form in l_forms %}
-                <div id="question-{{ form.question.number }}" class="q-container markdown-body panel panel-default hidden-question bottom-space">
+                <div id="question-{{ form.question.number }}" class="q-container panel panel-default hidden-question bottom-space">
                 <div class="caption-full">
                 {% if form.get_type == 1 %}
                     <div class="bottom-space">
-                    <div>{{ form.question.text }}</div>
-                    {% for option in form.answer %}
-                        {{ option.tag }}
-                        <label for="{{ option.id_for_label }}">{{ option.choice_label }}</label>
-                        <br />
-                    {% endfor %}
+                        <div class="markdown-body">{{ form.question.text }}</div>
+                        {% for option in form.answer %}
+                            {{ option.tag }}
+                            <label class="markdown-body" for="{{ option.id_for_label }}">{{ option.choice_label }}</label>
+                            <br />
+                        {% endfor %}
                     </div>
                 {% elif form.get_type == 0 %}
-                <div class="bottom-space">
-                    <label for="{{ form.selected.id_for_label }}">{{ form.question.number|add:"1" }}) {{ form.question.text }}</label>
-                    {{ form.answer }}
-                </div>
-                    {% if form.question.get_wrong_answers %}
-                        <div class="panel panel-danger bottom-space">
-                            <div class="panel-heading bold">Réponses incorrectes proposées</div>
-                            <ul class="list-group">
-                                {% for wrong in form.question.get_wrong_answers %}
-                                {% if wrong.text %}
-                                    <li class="list-group-item">
-                                        <a class="btn btn-danger btn-xs add-correct-answer" title="Admettre en tant que réponse valide" data-answer-id="{{ wrong.pk }}">
-                                            <span class="glyphicon glyphicon-check"></span>
-                                        </a>
-                                        {{ wrong.text }}
-                                    </li>
-                                {% endif %}
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    {% endif %}
+                    <div class="bottom-space">
+                        <label class="markdown-body" for="{{ form.selected.id_for_label }}">{{ form.question.text }}</label>
+                        {{ form.answer }}
+                    </div>
+                {% if form.question.get_wrong_answers %}
+                    <div class="panel panel-danger bottom-space">
+                        <div class="panel-heading bold">Réponses incorrectes proposées</div>
+                        <ul class="list-group">
+                            {% for wrong in form.question.get_wrong_answers %}
+                            {% if wrong.text %}
+                                <li class="list-group-item">
+                                    <a class="btn btn-danger btn-xs add-correct-answer" title="Admettre en tant que réponse valide" data-answer-id="{{ wrong.pk }}">
+                                        <span class="glyphicon glyphicon-check"></span>
+                                    </a>
+                                    {{ wrong.text }}
+                                </li>
+                            {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
                 {% endif %}
                 </div>
                 </div>
