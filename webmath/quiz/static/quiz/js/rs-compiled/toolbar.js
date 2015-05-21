@@ -53,7 +53,7 @@
         title = $("#draft-title").val();
         if (quizcode && title) {
             $.ajax({
-                "url": "/quiz/savedraft/",
+                "url": "/savedraft/",
                 "type": "POST",
                 "dataType": "text",
                 "data": {
@@ -93,7 +93,7 @@
     function get_draftlist() {
         "\n    Récupère la liste des brouillons sur le serveur par requête ajax GET\n    ";
         $.ajax({
-            "url": "/quiz/listdrafts/",
+            "url": "/listdrafts/",
             "type": "GET",
             "dataType": "json",
             "success": show_draftlist
@@ -124,7 +124,7 @@
         "\n    Récupère les données du brouillon par requête ajax GET\n    ";
         draft_id = $(this).attr("data-id");
         $.ajax({
-            "url": "/quiz/getdraft/",
+            "url": "/getdraft/",
             "type": "GET",
             "dataType": "json",
             "data": {
