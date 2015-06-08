@@ -5,6 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Fonctionnement général de l’application &mdash; documentation Développement d&#39;une application web de création de quiz 0.1</title>
@@ -14,7 +15,6 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -35,7 +35,7 @@
         <link rel="prev" title="Documentation utilisateur" href="doc-user.html"/> 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -47,8 +47,14 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
         
-          <a href="index.html" class="fa fa-home"> Développement d'une application web de création de quiz</a>
+
         
+          <a href="index.html" class="icon icon-home"> Développement d'une application web de création de quiz
+        
+
+        
+        </a>
+
         
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -57,6 +63,8 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
+
+        
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
@@ -68,12 +76,44 @@
 <li class="toctree-l1"><a class="reference internal" href="rapydscript.html">Présentation de RapydScript</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="rapydscript.html#pourquoi-utiliser-python-plutot-que-javascript">Pourquoi utiliser Python plutôt que Javascript ?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rapydscript.html#differentes-manieres-d-aborder-le-probleme-coffeescript-brython-et-rapydscript">Différentes manières d&#8217;aborder le problème : CoffeeScript, Brython et RapydScript</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rapydscript.html#introduction-a-rapydscript">Introduction à RapydScript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rapydscript.html#introduction-a-rapydscript">Introduction à RapydScript</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rapydscript.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rapydscript.html#compilation">Compilation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rapydscript.html#programmer-avec-rapydscript">Programmer avec RapydScript</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rapydscript.html#notions-de-base">Notions de base</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rapydscript.html#programmation-orientee-objet-poo">Programmation orientée objet (POO)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rapydscript.html#utilisation-de-la-bibliotheque-standard-python">Utilisation de la bibliothèque standard Python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rapydscript.html#separer-son-code-en-plusieurs-fichiers">Séparer son code en plusieurs fichiers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rapydscript.html#utilisation-de-fonctions-javascript-natives-ou-provenant-de-librairies-externes">Utilisation de fonctions Javascript natives ou provenant de librairies externes</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="doc-user.html">Documentation utilisateur</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="doc-user.html#professeurs">Professeurs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="doc-user.html#etudiants">Étudiants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-user.html#professeurs">Professeurs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="doc-user.html#creation-de-quiz">Création de quiz</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="doc-user.html#creation-d-une-question-et-definition-de-ses-caracteristiques">Création d&#8217;une question et définition de ses caractéristiques</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc-user.html#affichage-de-l-apercu-et-des-erreurs">Affichage de l&#8217;aperçu et des erreurs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc-user.html#affichage-de-mathematiques">Affichage de mathématiques</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc-user.html#enregistrement-et-importation-de-brouillons">Enregistrement et importation de brouillons</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc-user.html#envoi-definitif-du-quiz">Envoi définitif du quiz</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="doc-user.html#suivi-des-eleves">Suivi des élèves</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="doc-user.html#liste-des-quiz-crees-par-un-professeur">Liste des quiz créés par un professeur</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc-user.html#affichage-des-statistiques-avancees">Affichage des statistiques avancées</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="doc-user.html#etudiants">Étudiants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="doc-user.html#trouver-un-quiz">Trouver un quiz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doc-user.html#completer-un-quiz-et-correction-automatique">Compléter un quiz et correction automatique</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doc-user.html#historique-des-resolutions">Historique des résolutions</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Fonctionnement général de l&#8217;application</a><ul>
@@ -84,18 +124,32 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="database.html">Modèle relationnel</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="database.html#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="database.html#utilisation-dans-l-application-de-creation-de-quiz">Utilisation dans l&#8217;application de création de quiz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html#utilisation-dans-l-application-de-creation-de-quiz">Utilisation dans l&#8217;application de création de quiz</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="database.html#implementation-dans-django">Implémentation dans Django</a></li>
+<li class="toctree-l3"><a class="reference internal" href="database.html#schema-global">Schéma global</a></li>
+<li class="toctree-l3"><a class="reference internal" href="database.html#explications-des-tables">Explications des tables</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="source.html">Vues Django</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="source.html#concept-de-vue-dans-django">Concept de vue dans Django</a></li>
 <li class="toctree-l2"><a class="reference internal" href="source.html#vues-de-l-application">Vues de l&#8217;application</a></li>
 <li class="toctree-l2"><a class="reference internal" href="source.html#les-formulaires">Les formulaires</a></li>
-<li class="toctree-l2"><a class="reference internal" href="source.html#le-package-utils">Le package <strong>utils</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="source.html#le-package-utils">Le package <strong>utils</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="source.html#module-quiz.utils.save">utils/save.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="source.html#module-quiz.utils.submit">utils/submit.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="source.html#module-quiz.utils.correct">utils/correct.py</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="front-end.html">Outil d&#8217;édition de quiz avec RapydScript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conclusion.html">Conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="end.html">Annexes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="end.html#webographie">Webographie</a></li>
+</ul>
+</li>
 </ul>
 
           
@@ -123,7 +177,9 @@
     <li>Fonctionnement général de l&#8217;application</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="_sources/global.txt" rel="nofollow"> View page source</a>
+          
+            <a href="_sources/global.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
   </ul>
@@ -138,21 +194,21 @@
 <p>Cette section définit les différents chemins d&#8217;accès aux pages de l&#8217;application. Certaines URL comportent des paramètres,
 qui sont indiqués entre <strong>&lt;...&gt;</strong>. Les vues Django correspondant à chaque URL sont affichées entre parenthèses.</p>
 <ul class="simple">
-<li><strong>quiz/ (find) :</strong> Page d&#8217;accueil de l&#8217;application. Les étudiants peuvent voir les derniers quiz publiés ou en rechercher un.</li>
-<li><strong>quiz/create/ (create) :</strong> Page de l&#8217;outil de création de quiz.</li>
-<li><strong>quiz/&lt;id-quiz&gt;/complete/ (complete) :</strong> Page qui permet aux étudiants de répondre à un quiz et de soumettre leurs réponses.</li>
-<li><strong>quiz/&lt;id-résolution&gt;/correct/ (correct) :</strong> Affichage de la correction d&#8217;une résolution. C&#8217;est là qu&#8217;est redirigé l&#8217;utilisateur après avoir complété un quiz</li>
-<li><strong>quiz/completed-quizzes/ (completed_quizzes) :</strong> Historique des résolutions effectuées par l&#8217;élève.</li>
-<li><strong>quiz/created-quizzes/ (created-quizzes) :</strong> Liste des quiz créés par le professeur. C&#8217;est depuis cette page qu&#8217;il peut accéder aux statistiques avancées d&#8217;un quiz.</li>
-<li><strong>quiz/&lt;id-quiz&gt;/advanced-stats/ :</strong> Affichage des statistiques avancées de toutes les résolutions d&#8217;un quiz.</li>
+<li><strong>(find) :</strong> Page d&#8217;accueil de l&#8217;application. Les étudiants peuvent voir les derniers quiz publiés ou en rechercher un.</li>
+<li><strong>/create/ (create) :</strong> Page de l&#8217;outil de création de quiz.</li>
+<li><strong>/&lt;id-quiz&gt;/complete/ (complete) :</strong> Page qui permet aux étudiants de répondre à un quiz et de soumettre leurs réponses.</li>
+<li><strong>/&lt;id-résolution&gt;/correct/ (correct) :</strong> Affichage de la correction d&#8217;une résolution. C&#8217;est là qu&#8217;est redirigé l&#8217;utilisateur après avoir complété un quiz</li>
+<li><strong>/completed-quizzes/ (completed_quizzes) :</strong> Historique des résolutions effectuées par l&#8217;élève.</li>
+<li><strong>/created-quizzes/ (created-quizzes) :</strong> Liste des quiz créés par le professeur. C&#8217;est depuis cette page qu&#8217;il peut accéder aux statistiques avancées d&#8217;un quiz.</li>
+<li><strong>/&lt;id-quiz&gt;/advanced-stats/ :</strong> Affichage des statistiques avancées de toutes les résolutions d&#8217;un quiz.</li>
 </ul>
 <p>D&#8217;autres URL sont utilisées uniquement par des requêtes Ajax, c&#8217;est à dire que l&#8217;utilisateur ne les voit jamais :</p>
 <ul class="simple">
-<li><strong>quiz/findquiz/ (findquiz) :</strong> Renvoie l&#8217;URL du quiz correspondant à la clé primaire du quiz fournie dans les paramètres de la requête HTTP si celui-ci existe.</li>
-<li><strong>quiz/savedraft/ (savedraft) :</strong> Permet l&#8217;enregistrement dans la base de données d&#8217;un brouillon.</li>
-<li><strong>quiz/listdrafts/ (listdrafts) :</strong> Récupère la liste des brouillons appartenant à l&#8217;utilisateur.</li>
-<li><strong>quiz/getdraft/ (getdraft) :</strong> Récupère les données sur le brouillon dont la clé primaire est fournie dans les paramètres de la requête HTTP.</li>
-<li><strong>quiz/add-correct-answer/ (add_correct_answer) :</strong> Pour une question à réponse courte, permet d&#8217;ajouter une réponse soumise aux solutions de la question</li>
+<li><strong>/findquiz/ (findquiz) :</strong> Renvoie l&#8217;URL du quiz correspondant à la clé primaire du quiz fournie dans les paramètres de la requête HTTP si celui-ci existe.</li>
+<li><strong>/savedraft/ (savedraft) :</strong> Permet l&#8217;enregistrement dans la base de données d&#8217;un brouillon.</li>
+<li><strong>/listdrafts/ (listdrafts) :</strong> Récupère la liste des brouillons appartenant à l&#8217;utilisateur.</li>
+<li><strong>/getdraft/ (getdraft) :</strong> Récupère les données sur le brouillon dont la clé primaire est fournie dans les paramètres de la requête HTTP.</li>
+<li><strong>/add-correct-answer/ (add_correct_answer) :</strong> Pour une question à réponse courte, permet d&#8217;ajouter une réponse soumise aux solutions de la question</li>
 </ul>
 <p>Voici comment sont définies ces URL dans Django :</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.conf.urls</span> <span class="kn">import</span> <span class="n">patterns</span><span class="p">,</span> <span class="n">url</span>
@@ -213,11 +269,13 @@ avec la fonction <code class="docutils literal"><span class="pre">reverse()</spa
 <li><p class="first"><strong>css/ :</strong> Fichiers CSS</p>
 <blockquote>
 <div><ul class="simple">
-<li><strong>awesome-checkbox/ :</strong> Répertoire contenant les fichiers du plugin <a class="reference external" href="AwesomeBootstrapCheckbox">Awesome Bootstrap Checkbox</a> <a class="footnote-reference" href="#id12" id="id1">[9]</a> pour mettre en forme les boutons radio et les cases à cocher.</li>
+<li><strong>awesome-checkbox/ :</strong> Répertoire contenant les fichiers du plugin <a class="reference external" href="https://github.com/flatlogic/awesome-bootstrap-checkbox">Awesome Bootstrap Checkbox</a> <a class="footnote-reference" href="#id17" id="id1">[12]</a> pour mettre en forme les boutons radio et les cases à cocher.</li>
 <li><strong>create.css :</strong> Feuille de style spécifique à la page de création de quiz</li>
-<li><strong>shop-item.css :</strong> Feuille de style relative au template <a class="reference external" href="http://startbootstrap.com/template-overviews/shop-item/">Shop Item</a> <a class="footnote-reference" href="#id13" id="id2">[10]</a> utilisé dans toute l&#8217;application.</li>
+<li><strong>shop-item.css :</strong> Feuille de style relative au template <a class="reference external" href="http://startbootstrap.com/template-overviews/shop-item/">Shop Item</a> <a class="footnote-reference" href="#id18" id="id2">[13]</a> utilisé dans toute l&#8217;application.</li>
 <li><strong>stas.css :</strong> Feuille de style spécifique à la page de statistiques avancées.</li>
 <li><strong>style.css :</strong> Feuille de style qui s&#8217;applique à l&#8217;ensemble de l&#8217;application.</li>
+<li><strong>github-markdown.css :</strong> Feuille de style pour mettre en forme le HTML généré à partir du Markdown de manière similaire à Github <a class="footnote-reference" href="#id26" id="id3">[21]</a></li>
+<li><strong>showdown.js :</strong> Fichier de la bibliothèque Javascript Showdown <a class="footnote-reference" href="#id25" id="id4">[20]</a></li>
 </ul>
 </div></blockquote>
 </li>
@@ -225,7 +283,7 @@ avec la fonction <code class="docutils literal"><span class="pre">reverse()</spa
 <blockquote>
 <div><ul class="simple">
 <li><strong>rs-compiled/ :</strong> Dossier contenant les fichiers RapydScript compilés.</li>
-<li><strong>jquery.caret.js :</strong> Plugin <a class="reference external" href="https://github.com/acdvorak/jquery.caret">jQuery Caret</a> <a class="footnote-reference" href="#id14" id="id3">[11]</a> pour récupérer la position du curseur dans une zone de texte.</li>
+<li><strong>jquery.caret.js :</strong> Plugin <a class="reference external" href="https://github.com/acdvorak/jquery.caret">jQuery Caret</a> <a class="footnote-reference" href="#id19" id="id5">[14]</a> pour récupérer la position du curseur dans une zone de texte.</li>
 <li><strong>stats.js :</strong> Définit une requête Ajax pour ajouter des solutions à une question dans la page de statistiques.</li>
 <li><strong>textarea_lines.js :</strong> Script pour afficher les numéros de ligne dynamiquement dans une zone de texte.</li>
 <li><strong>utils.js :</strong> Fichier comportant différentes fonctions utiles à différents endroits de l&#8217;application.</li>
@@ -257,61 +315,82 @@ avec la fonction <code class="docutils literal"><span class="pre">reverse()</spa
 <h2>Bibliothèques et frameworks utilisés dans l&#8217;application<a class="headerlink" href="#bibliotheques-et-frameworks-utilises-dans-l-application" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Voici la liste des outils provenant de sources extérieures utilisés dans le projet</p>
 <ul class="simple">
-<li>Django <a class="footnote-reference" href="#id15" id="id4">[12]</a> : framework Python pour créer des sites web dynamiques.</li>
-<li>RapydScript <a class="footnote-reference" href="#id16" id="id5">[13]</a> : outil pour compiler du Python en Javascript.</li>
-<li>Bootstrap <a class="footnote-reference" href="#id17" id="id6">[14]</a> : framwork CSS pour avoir un affichage correct très rapidement.</li>
-<li>jQuery <a class="footnote-reference" href="#id18" id="id7">[15]</a> : bibliothèque Javascript pour les manipulations dans le DOM, requêtes Ajax, etc.</li>
-<li>MathJax <a class="footnote-reference" href="#id19" id="id8">[16]</a> : bibliothèque Javascript permettant l&#8217;affichage de mathématiques.</li>
-<li>Awesome Bootstrap Checkbox <a class="footnote-reference" href="#id12" id="id9">[9]</a> : feuille de style pour les cases à cocher et les boutons radio.</li>
-<li>jQuery Caret <a class="footnote-reference" href="#id14" id="id10">[11]</a> : plugin jQuery pour récupérer la position du curseur dans une zone de texte.</li>
-<li>Shop Item <a class="footnote-reference" href="#id13" id="id11">[10]</a> : gabarit bootstrap utilisé dans toute l&#8217;application.</li>
+<li>Django <a class="footnote-reference" href="#id20" id="id6">[15]</a> : framework Python pour créer des sites web dynamiques.</li>
+<li>RapydScript <a class="footnote-reference" href="#id21" id="id7">[16]</a> : outil pour compiler du Python en Javascript.</li>
+<li>Bootstrap <a class="footnote-reference" href="#id22" id="id8">[17]</a> : framwork CSS pour avoir un affichage correct très rapidement.</li>
+<li>jQuery <a class="footnote-reference" href="#id23" id="id9">[18]</a> : bibliothèque Javascript pour les manipulations dans le DOM, requêtes Ajax, etc.</li>
+<li>MathJax <a class="footnote-reference" href="#id24" id="id10">[19]</a> : bibliothèque Javascript permettant l&#8217;affichage de mathématiques.</li>
+<li>Awesome Bootstrap Checkbox <a class="footnote-reference" href="#id17" id="id11">[12]</a> : feuille de style pour les cases à cocher et les boutons radio.</li>
+<li>jQuery Caret <a class="footnote-reference" href="#id19" id="id12">[14]</a> : plugin jQuery pour récupérer la position du curseur dans une zone de texte.</li>
+<li>Shop Item <a class="footnote-reference" href="#id18" id="id13">[13]</a> : gabarit bootstrap utilisé dans toute l&#8217;application.</li>
+<li>Showdown <a class="footnote-reference" href="#id25" id="id14">[20]</a> : bibliothèque Javascript pour générer du HTML à partir de Markdown.</li>
+<li>Github Markdown CSS <a class="footnote-reference" href="#id26" id="id15">[21]</a> : Feuille de style pour mettre en forme le HTML généré à partir du Markdown de manière similaire à Github.</li>
+<li>Google Code Prettify <a class="footnote-reference" href="#id27" id="id16">[22]</a> : script pour la coloration syntaxique du code affiché avec le Markdown.</li>
 </ul>
-<table class="docutils footnote" frame="void" id="id12" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[9]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id9">2</a>)</em> <a class="reference external" href="https://github.com/flatlogic/awesome-bootstrap-checkbox">https://github.com/flatlogic/awesome-bootstrap-checkbox</a>. Consulté le 29 mars 2015.</td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id13" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[10]</td><td><em>(<a class="fn-backref" href="#id2">1</a>, <a class="fn-backref" href="#id11">2</a>)</em> <a class="reference external" href="http://startbootstrap.com/template-overviews/shop-item/">http://startbootstrap.com/template-overviews/shop-item/</a>. Consulté le 29 mars 2015.</td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id14" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[11]</td><td><em>(<a class="fn-backref" href="#id3">1</a>, <a class="fn-backref" href="#id10">2</a>)</em> <a class="reference external" href="https://github.com/acdvorak/jquery.caret">https://github.com/acdvorak/jquery.caret</a>. Consulté le 29 mars 2015.</td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id15" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id4">[12]</a></td><td><a class="reference external" href="https://djangoproject.com">https://djangoproject.com</a>. Consulté le 29 mars 2015.</td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id16" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id5">[13]</a></td><td><a class="reference external" href="http://rapydscript.pyjeon.com/">http://rapydscript.pyjeon.com/</a>. Consulté le 29 mars 2015.</td></tr>
-</tbody>
-</table>
 <table class="docutils footnote" frame="void" id="id17" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id6">[14]</a></td><td><a class="reference external" href="http://getbootstrap.com/">http://getbootstrap.com/</a>. Consulté le 29 mars 2015.</td></tr>
+<tr><td class="label">[12]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id11">2</a>)</em> <a class="reference external" href="https://github.com/flatlogic/awesome-bootstrap-checkbox">https://github.com/flatlogic/awesome-bootstrap-checkbox</a>. Consulté le 29 mars 2015.</td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="id18" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id7">[15]</a></td><td><a class="reference external" href="https://jquery.com/">https://jquery.com/</a>. Consulté le 29 mars 2015.</td></tr>
+<tr><td class="label">[13]</td><td><em>(<a class="fn-backref" href="#id2">1</a>, <a class="fn-backref" href="#id13">2</a>)</em> <a class="reference external" href="http://startbootstrap.com/template-overviews/shop-item/">http://startbootstrap.com/template-overviews/shop-item/</a>. Consulté le 29 mars 2015.</td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="id19" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id8">[16]</a></td><td><a class="reference external" href="http://www.mathjax.org/">http://www.mathjax.org/</a>. Consulté le 29 mars 2015.</td></tr>
+<tr><td class="label">[14]</td><td><em>(<a class="fn-backref" href="#id5">1</a>, <a class="fn-backref" href="#id12">2</a>)</em> <a class="reference external" href="https://github.com/acdvorak/jquery.caret">https://github.com/acdvorak/jquery.caret</a>. Consulté le 29 mars 2015.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id20" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[15]</a></td><td><a class="reference external" href="https://djangoproject.com">https://djangoproject.com</a>. Consulté le 29 mars 2015.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id21" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[16]</a></td><td><a class="reference external" href="http://rapydscript.pyjeon.com/">http://rapydscript.pyjeon.com/</a>. Consulté le 29 mars 2015.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id22" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id8">[17]</a></td><td><a class="reference external" href="http://getbootstrap.com/">http://getbootstrap.com/</a>. Consulté le 29 mars 2015.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id23" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id9">[18]</a></td><td><a class="reference external" href="https://jquery.com/">https://jquery.com/</a>. Consulté le 29 mars 2015.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id24" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id10">[19]</a></td><td><a class="reference external" href="http://www.mathjax.org/">http://www.mathjax.org/</a>. Consulté le 29 mars 2015.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id25" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[20]</td><td><em>(<a class="fn-backref" href="#id4">1</a>, <a class="fn-backref" href="#id14">2</a>)</em> <a class="reference external" href="https://github.com/showdownjs/showdown">https://github.com/showdownjs/showdown</a>. Consulté le 17 mai 2015.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id26" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[21]</td><td><em>(<a class="fn-backref" href="#id3">1</a>, <a class="fn-backref" href="#id15">2</a>)</em> <a class="reference external" href="https://github.com/sindresorhus/github-markdown-css">https://github.com/sindresorhus/github-markdown-css</a>. Consulté le 17 mai 2015.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id27" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id16">[22]</a></td><td><a class="reference external" href="https://github.com/google/code-prettify">https://github.com/google/code-prettify</a>. Consulté le 17 mai 2015.</td></tr>
 </tbody>
 </table>
 </div>
@@ -323,10 +402,10 @@ avec la fonction <code class="docutils literal"><span class="pre">reverse()</spa
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="database.html" class="btn btn-neutral float-right" title="Modèle relationnel">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="database.html" class="btn btn-neutral float-right" title="Modèle relationnel" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="doc-user.html" class="btn btn-neutral" title="Documentation utilisateur"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="doc-user.html" class="btn btn-neutral" title="Documentation utilisateur" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -338,10 +417,10 @@ avec la fonction <code class="docutils literal"><span class="pre">reverse()</spa
         &copy; Copyright 2014, Benoît Léo Maillard.
     </p>
   </div>
-
   Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-  
+
 </footer>
+
         </div>
       </div>
 

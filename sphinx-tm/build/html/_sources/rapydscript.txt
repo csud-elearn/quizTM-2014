@@ -67,7 +67,7 @@ Programmer avec RapydScript
 Notions de base
 ---------------
 
-Pour un habitué de Python, la prise en main de RapydScript peut se faire très rapidement : il suffit d'écrire son programme comme si on écrivait un programme Python, même si dans certains cas particuliers il n'est pas possible de faire exactement la même chose avec RapydScript. Ces cas particuliers seront abordés plus loin.
+Pour un habitué de Python, la prise en main de RapydScript peut se faire très rapidement : il suffit d'écrire son programme comme si on écrivait un programme Python, même si dans certains cas particuliers il n'est pas possible de faire exactement la même chose avec RapydScript.
 
 Pour commencer avec un exemple simple, voici en Python une fonction qui prend deux nombres en argument et retourne le plus grand. La fonction est ensuite appelée. Ce code est parfaitement valide en Python :
 

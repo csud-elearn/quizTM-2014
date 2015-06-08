@@ -5,6 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Outil d’édition de quiz avec RapydScript &mdash; documentation Développement d&#39;une application web de création de quiz 0.1</title>
@@ -14,7 +15,6 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -35,7 +35,7 @@
         <link rel="prev" title="Vues Django" href="source.html"/> 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -47,8 +47,14 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
         
-          <a href="index.html" class="fa fa-home"> Développement d'une application web de création de quiz</a>
+
         
+          <a href="index.html" class="icon icon-home"> Développement d'une application web de création de quiz
+        
+
+        
+        </a>
+
         
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -57,6 +63,8 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
+
+        
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
@@ -68,12 +76,44 @@
 <li class="toctree-l1"><a class="reference internal" href="rapydscript.html">Présentation de RapydScript</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="rapydscript.html#pourquoi-utiliser-python-plutot-que-javascript">Pourquoi utiliser Python plutôt que Javascript ?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rapydscript.html#differentes-manieres-d-aborder-le-probleme-coffeescript-brython-et-rapydscript">Différentes manières d&#8217;aborder le problème : CoffeeScript, Brython et RapydScript</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rapydscript.html#introduction-a-rapydscript">Introduction à RapydScript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rapydscript.html#introduction-a-rapydscript">Introduction à RapydScript</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rapydscript.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rapydscript.html#compilation">Compilation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rapydscript.html#programmer-avec-rapydscript">Programmer avec RapydScript</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rapydscript.html#notions-de-base">Notions de base</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rapydscript.html#programmation-orientee-objet-poo">Programmation orientée objet (POO)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rapydscript.html#utilisation-de-la-bibliotheque-standard-python">Utilisation de la bibliothèque standard Python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rapydscript.html#separer-son-code-en-plusieurs-fichiers">Séparer son code en plusieurs fichiers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rapydscript.html#utilisation-de-fonctions-javascript-natives-ou-provenant-de-librairies-externes">Utilisation de fonctions Javascript natives ou provenant de librairies externes</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="doc-user.html">Documentation utilisateur</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="doc-user.html#professeurs">Professeurs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="doc-user.html#etudiants">Étudiants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc-user.html#professeurs">Professeurs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="doc-user.html#creation-de-quiz">Création de quiz</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="doc-user.html#creation-d-une-question-et-definition-de-ses-caracteristiques">Création d&#8217;une question et définition de ses caractéristiques</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc-user.html#affichage-de-l-apercu-et-des-erreurs">Affichage de l&#8217;aperçu et des erreurs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc-user.html#affichage-de-mathematiques">Affichage de mathématiques</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc-user.html#enregistrement-et-importation-de-brouillons">Enregistrement et importation de brouillons</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc-user.html#envoi-definitif-du-quiz">Envoi définitif du quiz</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="doc-user.html#suivi-des-eleves">Suivi des élèves</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="doc-user.html#liste-des-quiz-crees-par-un-professeur">Liste des quiz créés par un professeur</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc-user.html#affichage-des-statistiques-avancees">Affichage des statistiques avancées</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="doc-user.html#etudiants">Étudiants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="doc-user.html#trouver-un-quiz">Trouver un quiz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doc-user.html#completer-un-quiz-et-correction-automatique">Compléter un quiz et correction automatique</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doc-user.html#historique-des-resolutions">Historique des résolutions</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="global.html">Fonctionnement général de l&#8217;application</a><ul>
@@ -84,18 +124,32 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="database.html">Modèle relationnel</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="database.html#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="database.html#utilisation-dans-l-application-de-creation-de-quiz">Utilisation dans l&#8217;application de création de quiz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html#utilisation-dans-l-application-de-creation-de-quiz">Utilisation dans l&#8217;application de création de quiz</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="database.html#implementation-dans-django">Implémentation dans Django</a></li>
+<li class="toctree-l3"><a class="reference internal" href="database.html#schema-global">Schéma global</a></li>
+<li class="toctree-l3"><a class="reference internal" href="database.html#explications-des-tables">Explications des tables</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="source.html">Vues Django</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="source.html#concept-de-vue-dans-django">Concept de vue dans Django</a></li>
 <li class="toctree-l2"><a class="reference internal" href="source.html#vues-de-l-application">Vues de l&#8217;application</a></li>
 <li class="toctree-l2"><a class="reference internal" href="source.html#les-formulaires">Les formulaires</a></li>
-<li class="toctree-l2"><a class="reference internal" href="source.html#le-package-utils">Le package <strong>utils</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="source.html#le-package-utils">Le package <strong>utils</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="source.html#module-quiz.utils.save">utils/save.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="source.html#module-quiz.utils.submit">utils/submit.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="source.html#module-quiz.utils.correct">utils/correct.py</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Outil d&#8217;édition de quiz avec RapydScript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conclusion.html">Conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="end.html">Annexes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="end.html#webographie">Webographie</a></li>
+</ul>
+</li>
 </ul>
 
           
@@ -123,7 +177,9 @@
     <li>Outil d&#8217;édition de quiz avec RapydScript</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="_sources/front-end.txt" rel="nofollow"> View page source</a>
+          
+            <a href="_sources/front-end.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
   </ul>
@@ -436,10 +492,10 @@ Elle définit le rôle des boutons ayant un lien ce fichier.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="conclusion.html" class="btn btn-neutral float-right" title="Conclusion">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="conclusion.html" class="btn btn-neutral float-right" title="Conclusion" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="source.html" class="btn btn-neutral" title="Vues Django"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="source.html" class="btn btn-neutral" title="Vues Django" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -451,10 +507,10 @@ Elle définit le rôle des boutons ayant un lien ce fichier.</p>
         &copy; Copyright 2014, Benoît Léo Maillard.
     </p>
   </div>
-
   Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-  
+
 </footer>
+
         </div>
       </div>
 

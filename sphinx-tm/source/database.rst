@@ -98,6 +98,9 @@ ces questions appartiennent.
 .. autoclass:: quiz.models.SqAnswer
     :members:
     
+.. autoclass:: quiz.models.SqRegexAnswer
+    :members:
+    
 .. autoclass:: quiz.models.SqSubmit
     :members:
     

@@ -27,3 +27,9 @@ Webographie
 **Bootstrap** : http://getbootstrap.com/. Consulté le 29 mars 2015.
 
 **Mathjax** : http://www.mathjax.org/. Consulté le 29 mars 2015.
+
+**Showdown** : https://github.com/showdownjs/showdown. Consulté le 17 mai 2015.
+
+**Google Code Prettify** : https://github.com/google/code-prettify. Consulté le 17 mai 2015.
+
+**Github Markdown CSS** : https://github.com/sindresorhus/github-markdown-css. Consulté le 17 mai 2015.

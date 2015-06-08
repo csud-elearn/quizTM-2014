@@ -3,7 +3,7 @@ Conclusion
 ##########
 
 Après avoir passé environ six mois à travailler sur ce travail de maturité, il est
-intéressant de pouvoir faire un bilan et de comparer le résultat final avec les critères convenus
+intéressant de pouvoir faire un bilan et de comparer le résultat final avec les critères fixés
 au début de la réalisation du projet.
 
 Au niveau du développement de l'application, la majorité des fonctionnalités prévues ont pu

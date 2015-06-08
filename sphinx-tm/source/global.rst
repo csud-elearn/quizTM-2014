@@ -9,21 +9,21 @@ URL
 Cette section définit les différents chemins d'accès aux pages de l'application. Certaines URL comportent des paramètres,
 qui sont indiqués entre **<...>**. Les vues Django correspondant à chaque URL sont affichées entre parenthèses.
 
-* **quiz/ (find) \:** Page d'accueil de l'application. Les étudiants peuvent voir les derniers quiz publiés ou en rechercher un.
-* **quiz/create/ (create) \:** Page de l'outil de création de quiz.
-* **quiz/<id-quiz>/complete/ (complete) \:** Page qui permet aux étudiants de répondre à un quiz et de soumettre leurs réponses.
-* **quiz/<id-résolution>/correct/ (correct) \:** Affichage de la correction d'une résolution. C'est là qu'est redirigé l'utilisateur après avoir complété un quiz
-* **quiz/completed-quizzes/ (completed_quizzes) \:** Historique des résolutions effectuées par l'élève.
-* **quiz/created-quizzes/ (created-quizzes) \:** Liste des quiz créés par le professeur. C'est depuis cette page qu'il peut accéder aux statistiques avancées d'un quiz.
-* **quiz/<id-quiz>/advanced-stats/ \:** Affichage des statistiques avancées de toutes les résolutions d'un quiz.
+* **(find) \:** Page d'accueil de l'application. Les étudiants peuvent voir les derniers quiz publiés ou en rechercher un.
+* **/create/ (create) \:** Page de l'outil de création de quiz.
+* **/<id-quiz>/complete/ (complete) \:** Page qui permet aux étudiants de répondre à un quiz et de soumettre leurs réponses.
+* **/<id-résolution>/correct/ (correct) \:** Affichage de la correction d'une résolution. C'est là qu'est redirigé l'utilisateur après avoir complété un quiz
+* **/completed-quizzes/ (completed_quizzes) \:** Historique des résolutions effectuées par l'élève.
+* **/created-quizzes/ (created-quizzes) \:** Liste des quiz créés par le professeur. C'est depuis cette page qu'il peut accéder aux statistiques avancées d'un quiz.
+* **/<id-quiz>/advanced-stats/ \:** Affichage des statistiques avancées de toutes les résolutions d'un quiz.
 
 D'autres URL sont utilisées uniquement par des requêtes Ajax, c'est à dire que l'utilisateur ne les voit jamais :
 
-* **quiz/findquiz/ (findquiz) \:** Renvoie l'URL du quiz correspondant à la clé primaire du quiz fournie dans les paramètres de la requête HTTP si celui-ci existe.
-* **quiz/savedraft/ (savedraft) \:** Permet l'enregistrement dans la base de données d'un brouillon.
-* **quiz/listdrafts/ (listdrafts) \:** Récupère la liste des brouillons appartenant à l'utilisateur.
-* **quiz/getdraft/ (getdraft) \:** Récupère les données sur le brouillon dont la clé primaire est fournie dans les paramètres de la requête HTTP.
-* **quiz/add-correct-answer/ (add_correct_answer) \:** Pour une question à réponse courte, permet d'ajouter une réponse soumise aux solutions de la question
+* **/findquiz/ (findquiz) \:** Renvoie l'URL du quiz correspondant à la clé primaire du quiz fournie dans les paramètres de la requête HTTP si celui-ci existe.
+* **/savedraft/ (savedraft) \:** Permet l'enregistrement dans la base de données d'un brouillon.
+* **/listdrafts/ (listdrafts) \:** Récupère la liste des brouillons appartenant à l'utilisateur.
+* **/getdraft/ (getdraft) \:** Récupère les données sur le brouillon dont la clé primaire est fournie dans les paramètres de la requête HTTP.
+* **/add-correct-answer/ (add_correct_answer) \:** Pour une question à réponse courte, permet d'ajouter une réponse soumise aux solutions de la question
 
 Voici comment sont définies ces URL dans Django :
 
@@ -76,11 +76,13 @@ Ce chapitre décrit tous les dossiers et fichiers importants de l'application ai
 
     * **css/ \:** Fichiers CSS
     
-        * **awesome-checkbox/ \:** Répertoire contenant les fichiers du plugin `Awesome Bootstrap Checkbox <Awesome Bootstrap Checkbox>`_ [#1]_ pour mettre en forme les boutons radio et les cases à cocher.
+        * **awesome-checkbox/ \:** Répertoire contenant les fichiers du plugin `Awesome Bootstrap Checkbox <https://github.com/flatlogic/awesome-bootstrap-checkbox>`_ [#1]_ pour mettre en forme les boutons radio et les cases à cocher.
         * **create.css \:** Feuille de style spécifique à la page de création de quiz
         * **shop-item.css \:** Feuille de style relative au template `Shop Item <http://startbootstrap.com/template-overviews/shop-item/>`_ [#2]_ utilisé dans toute l'application.
         * **stas.css \:** Feuille de style spécifique à la page de statistiques avancées.
         * **style.css \:** Feuille de style qui s'applique à l'ensemble de l'application.
+        * **github-markdown.css \:** Feuille de style pour mettre en forme le HTML généré à partir du Markdown de manière similaire à Github [#10]_
+        * **showdown.js \:** Fichier de la bibliothèque Javascript Showdown [#9]_
     * **js/ \:** Fichiers Javascript
     
         * **rs-compiled/ \:** Dossier contenant les fichiers RapydScript compilés.
@@ -113,6 +115,9 @@ Voici la liste des outils provenant de sources extérieures utilisés dans le pr
 * Awesome Bootstrap Checkbox [#1]_ : feuille de style pour les cases à cocher et les boutons radio.
 * jQuery Caret [#3]_ : plugin jQuery pour récupérer la position du curseur dans une zone de texte.
 * Shop Item [#2]_ : gabarit bootstrap utilisé dans toute l'application.
+* Showdown [#9]_ : bibliothèque Javascript pour générer du HTML à partir de Markdown.
+* Github Markdown CSS [#10]_ : Feuille de style pour mettre en forme le HTML généré à partir du Markdown de manière similaire à Github.
+* Google Code Prettify [#11]_ : script pour la coloration syntaxique du code affiché avec le Markdown.
     
 .. [#1] https://github.com/flatlogic/awesome-bootstrap-checkbox. Consulté le 29 mars 2015.
 .. [#2] http://startbootstrap.com/template-overviews/shop-item/. Consulté le 29 mars 2015.
@@ -122,3 +127,6 @@ Voici la liste des outils provenant de sources extérieures utilisés dans le pr
 .. [#6] http://getbootstrap.com/. Consulté le 29 mars 2015.
 .. [#7] https://jquery.com/. Consulté le 29 mars 2015.
 .. [#8] http://www.mathjax.org/. Consulté le 29 mars 2015.
+.. [#9] https://github.com/showdownjs/showdown. Consulté le 17 mai 2015.
+.. [#10] https://github.com/sindresorhus/github-markdown-css. Consulté le 17 mai 2015.
+.. [#11] https://github.com/google/code-prettify. Consulté le 17 mai 2015.
