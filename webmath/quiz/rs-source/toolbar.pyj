@@ -52,7 +52,7 @@ def submitdraft():
     if quizcode and title:
         # Requête ajax POST pour enregistrer le brouillon
         $.ajax({
-            "url": "/quiz/savedraft/",
+            "url": "/savedraft/",
             "type": "POST",
             "dataType": "text",
             "data" : {
@@ -97,7 +97,7 @@ def get_draftlist():
     Récupère la liste des brouillons sur le serveur par requête ajax GET
     """
     $.ajax({
-        "url": "/quiz/listdrafts/",
+        "url": "/listdrafts/",
         "type": "GET",
         "dataType": "json",
         # "data": "",
@@ -136,7 +136,7 @@ def importdraft():
 
     # Appel ajax GET
     $.ajax({
-        "url": "/quiz/getdraft/",
+        "url": "/getdraft/",
         "type": "GET",
         "dataType": "json",
         "data" : {

@@ -23,10 +23,10 @@ class Quiz(models.Model): #Infos générales sur le quiz
     
         creation_date = models.DateTimeField(auto_now_add=True)
     """
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=200)
     points = models.FloatField(default=0)
     creation_date = models.DateTimeField(auto_now_add=True)
-    code = models.CharField(max_length=1000) #Format texte du quiz
+    code = models.TextField() #Format texte du quiz
     id_teacher = models.ForeignKey('common.Teacher')
     #id_chapter = models.ForeignKey('teachers.Chapter')
     
@@ -86,8 +86,8 @@ class QuizDraft(models.Model):
     quiz, une colonne permet de stocker un titre pour pouvoir identifier rapidement
     un brouillon.
     """
-    title = models.CharField(max_length=100)
-    code = models.CharField(max_length=1000)
+    title = models.CharField(max_length=200)
+    code = models.TextField()
     id_teacher = models.ForeignKey('common.Teacher')
     
     def __str__(self):
@@ -160,8 +160,8 @@ class CompletedQuiz(models.Model):
 #
 
 class QuizQuestion(models.Model): #Classe abstraite dont héritent toutes les questions
-    text = models.CharField(max_length=200) #Énoncé
-    comment = models.CharField(max_length=200, blank=True) #Commentaire affiché lors de la correction
+    text = models.TextField() #Énoncé
+    comment = models.TextField(blank=True) #Commentaire affiché lors de la correction
     points = models.FloatField(default=1)
     number = models.IntegerField() #Ordre de la question dans le quiz
     id_quiz = models.ForeignKey(Quiz)
@@ -299,7 +299,7 @@ class SimpleQuestion(QuizQuestion):
             submit.id_submitted_quiz.update_total_result()
             
 class SqAnswerAbstract(models.Model):
-    text = models.CharField(max_length=50)
+    text = models.CharField(max_length=200)
     id_question = models.ForeignKey(SimpleQuestion) #Relation vers la question
     
     class Meta:
@@ -327,7 +327,7 @@ class SqRegexAnswer(SqAnswerAbstract):
     dans la correction des réponses soumises par les étudiants.
     """
     
-    regex = models.CharField(max_length=100)
+    regex = models.CharField(max_length=200)
     
     def match(self, answer):
         print(self.regex)
@@ -346,7 +346,7 @@ class SqSubmit(models.Model):
     sera ensuite comparée à(aux) solution(s) enregistrées pour déterminer si les points
     sont attribués ou non.
     """
-    text = models.CharField(max_length=50)
+    text = models.CharField(max_length=200)
     result = models.FloatField(default=0)
     id_question = models.ForeignKey(SimpleQuestion) #Relation vers la question à laquelle l'élève a répondu
     id_submitted_quiz = models.ForeignKey(CompletedQuiz) #Relation vers la tentative
@@ -541,7 +541,7 @@ class QcmChoice(models.Model):
         crée en fait une relation de type *complexe-complexe*. L'implémentation de ce
         type de relation avec Django sera abordée plus loin.
     """
-    text = models.CharField(max_length=50)
+    text = models.TextField()
     valid = models.BooleanField() #Vaut True si la case doit être cochée
     id_question = models.ForeignKey(Qcm)
     

@@ -437,7 +437,7 @@
         var answer_dict;
         if (_$rapyd$_in("//", content)) {
             answer_dict = {
-                "text": content.split("//")[0].clean(),
+                "text": self.parent.converter.makeHtml(content.split("//")[0].clean()),
                 "regex": content.split("//")[1].clean()
             };
             if (!answer_dict["text"]) {
@@ -456,15 +456,16 @@
         var id_input, $container;
         id_input = self.parent.get_id();
         $container = $("<li>", {
-            "class": "q-container markdown-body list-group-item"
+            "class": "q-container list-group-item"
         }).appendTo(self.parent.$render);
         $("<label>", {
-            "for": id_input
+            "for": id_input,
+            "class": "markdown-body"
         }).append(self.text).appendTo($container);
         $("<input>", {
             "type": "text",
             "id": id_input,
-            "class": "form-control"
+            "class": "form-control markdown-body"
         }).appendTo($container);
     };
     SimpleQuestion.prototype.properties = function properties(){
@@ -521,9 +522,11 @@
         var self = this;
         var $container, name, id_option, option;
         $container = $("<li>", {
-            "class": "q-container markdown-body list-group-item"
+            "class": "q-container list-group-item"
         }).appendTo(self.parent.$render);
-        $("<div>").append(self.text).appendTo($container);
+        $("<div>", {
+            "class": "markdown-body"
+        }).append(self.text).appendTo($container);
         name = self.parent.get_name();
         var _$rapyd$_Iter6 = self.options;
         for (var _$rapyd$_Index6 = 0; _$rapyd$_Index6 < _$rapyd$_Iter6.length; _$rapyd$_Index6++) {
@@ -535,7 +538,8 @@
                 "name": name
             }).appendTo($container);
             $("<label>", {
-                "for": id_option
+                "for": id_option,
+                "class": "markdown-body"
             }).append(option.content).appendTo($container);
             $("<br />").appendTo($container);
         }

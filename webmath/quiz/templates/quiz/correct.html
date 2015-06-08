@@ -11,53 +11,70 @@
         {% autoescape off %}
         <ul class="quizform list-group bottom-space not-allowed">
             {% for correction in l_corrections %}
-                <fieldset class="q-container markdown-body list-group-item" disabled>
+                <fieldset class="q-container list-group-item" disabled>
                 {% if correction.type == 0 %}
-                    <label>{{ correction.text }} <span class="danger pull-right">{{ correction.result }}/{{ correction.points }}</span></label>
+                    <div class="markdown-body">{{ correction.text }}</div>
                     <input type=text class="form-control {{ correction.html_class }}" value="{{ correction.submit }}">
                     {% if not correction.is_correct %}
-                        <div class="panel panel-success panel-click content-hidden top-space">
-                            <div class="panel-heading bold">Solution(s) <span class="caret"></span></div>
-                            <div class="panel-body">
-                            {% for correct in correction.l_correct %}
-                                <span>{{ correct }}</span><br>
-                            {% endfor %}
-                            </div>
+                    <div class="panel panel-success panel-click content-hidden top-space">
+                        <div class="panel-heading bold">Solution(s) <span class="caret"></span></div>
+                        <div class="panel-body markdown-body">
+                        {% for correct in correction.l_correct %}
+                            {{ correct }}
+                        {% endfor %}
                         </div>
+                    </div>
                     {% endif %}
 
                 {% elif correction.type == 1 %}
-                    <div>{{ correction.text }} <span class="danger pull-right">{{ correction.result }} / {{ correction.points }}</span></div>
+                    <div class="markdown-body">{{ correction.text }}</div>
                     {% for choice in correction.l_correct_choices %}
                         <input type="checkbox" class="{{ choice.html_class }}" {{ choice.attribute }}>
-                        <label>{{ choice.text }}</label>
+                        <label class="markdown-body">{{ choice.text }}</label>
                         <br>
                     {% endfor %}
 
                 {% elif correction.type == 2 %}
-                    <div>{{ correction.text }} <span class="danger pull-right">{{ correction.result }} / {{ correction.points }}</span></div>
+                    <div class="markdown-body">{{ correction.text }}</div>
                     {% for choice in correction.l_correct_choices %}
                         <input type="radio" class="{{ choice.html_class }}" {{ choice.attribute }}>
-                        <label>{{ choice.text }}</label>
+                        <label class="markdown-body">{{ choice.text }}</label>
                         <br>
                     {% endfor %}
                 {% endif %}
                 {% if correction.comment %}
                     <div class="panel panel-default panel-click content-hidden top-space">
                         <div class="panel-heading bold">Commentaire <span class="caret"></span></div>
-                        <div class="panel-body">{{ correction.comment }}</div>
+                        <div class="panel-body markdown-body">{{ correction.comment }}</div>
                     </div>
                 {% endif %}
-                <div class="panel panel-default panel-click content-hidden top-space">
-                    <div class="panel-heading bold">Statistiques <span class="caret"></span></div>
-                    <div class="panel-body">Moyenne des autres utilisateurs : {{ correction.average }}/{{ correction.points }}</div>
+                <div class="panel panel-default top-space">
+                    <div class="panel-heading bold">Points obtenus sur la question</span></div>
+                    <div class="panel-body">
+                        <p>Résultat obtenu : <span class=danger>{{ correction.result }}</span><span class="bold"> / {{ correction.points }}</span></p>
+                        <p class="no-space">Moyenne : <span class=danger>{{ correction.average }}</span><span class="bold"> / {{ correction.points }}</span></p>
+                    </div>
                 </div>
                 </fieldset>
             {% endfor %}
             <div class="list-group-item">
-                <h2>Résultat</h2>
-                <p class="bold">Note globale : {{ completed.result }}/{{ quiz.points }} </p>
-                <p class="bold">Note moyenne des autres utilisateurs : {{ quiz.average_result }}/{{ quiz.points }} </p>
+                <h2>Résultat final</h2>
+                <p>
+                    Note globale obtenue : <span class=danger>{{ completed.result }}</span><span class="bold"> / {{ quiz.points }}</span>
+                    <div class="progress progress-bar-danger progress-bar-striped">
+                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" style="width: {{ success_prct }}%;min-width:2em ">
+                            {{ success_prct }} %
+                        </div>
+                    </div>
+                </p>
+                <p>
+                    Note moyenne : <span class=danger>{{ quiz.average_result }}</span><span class="bold"> / {{ quiz.points }}</span>
+                    <div class="progress progress-bar-danger progress-bar-striped">
+                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" style="width: {{ average_prct }}%;min-width:2em">
+                            {{ average_prct }} %
+                        </div>
+                    </div>
+                </p>
             </div>
         </ul>
         {% endautoescape %}

@@ -7,7 +7,7 @@ $( document ).ready(function() {
         var csrftoken = utils.getcookie("csrftoken");
         var $button = $(this); 
         $.ajax({
-            "url": "/quiz/add-correct-answer/",
+            "url": "/add-correct-answer/",
             "type": "POST",
             "data" : {
                 "answer" : $(this).attr("data-answer-id"),

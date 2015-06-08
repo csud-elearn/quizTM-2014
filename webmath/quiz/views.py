@@ -290,10 +290,20 @@ def correct(request, n_completed):
     
     l_corrections = []
     
+    # Pourcentage de réussite du quiz pour la barre de progression
+    success_prct = int(completed.result / completed.id_quiz.points * 100)
+    average_prct = int(completed.id_quiz.average_result() / completed.id_quiz.points * 100)
+    
     for submit in completed.get_questions_submits():
         l_corrections.append(submit.build_correct())
         
-    return render(request, 'quiz/correct.html', {'completed' : completed, 'quiz' : completed.id_quiz, 'l_corrections' : l_corrections})
+    return render(request, 'quiz/correct.html', {
+        'completed' : completed,
+        'quiz' : completed.id_quiz,
+        'l_corrections' : l_corrections,
+        'success_prct' : success_prct,
+        'average_prct' : average_prct,
+    })
 
 @login_required
 def completed_quizzes(request):

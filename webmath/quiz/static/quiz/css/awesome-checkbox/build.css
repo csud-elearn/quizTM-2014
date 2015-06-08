@@ -1,6 +1,5 @@
 input[type="checkbox"] + label, input[type="radio"] + label {
-    margin-left: 40px;
-    margin-top: 5px;
+    margin-left: 25px;
     display: inline-block;
     position: relative;
     padding-left: 5px;
