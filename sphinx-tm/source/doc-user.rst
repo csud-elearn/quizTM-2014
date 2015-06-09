@@ -14,6 +14,9 @@ Création de quiz
 
 .. figure:: figures/create.png
     :align: center
+    :width: 70%
+    
+    Page de création de quiz
     
 ----------------------------------------------------
 Création d'une question et définition de ses caractéristiques
@@ -114,6 +117,9 @@ Pour plus d'informations sur les expressions régulières, se référer à `la d
 
 .. figure:: figures/short.png
     :align: center
+    :width: 80%
+    
+    Question à réponse courte
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 Question à choix multiples avec un seul choix valide
@@ -123,6 +129,9 @@ Pour ce type, plusieurs options sont affichées et l'élève ne peut en sélecti
 
 .. figure:: figures/radio.png
     :align: center
+    :width: 80%
+    
+    QCM à boutons radio
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 Question à choix multiples avec plusieurs choix valides
@@ -132,6 +141,9 @@ Définie par la balise ``{++}``, il s'agit d'une question semblable à la préc�
 
 .. figure:: figures/checkbox.png
     :align: center
+    :width: 80%
+    
+    QCM à cases à cocher
 
 ------------------------------------
 Affichage de l'aperçu et des erreurs
@@ -184,6 +196,9 @@ Une fois le rendu effectué, voici le résultat obtenu :
 
 .. figure:: figures/markdown.png
     :align: center
+    :width: 80%
+    
+    Mise en forme avec Markdown
 
 .. note::
     Il n'est pas nécessaire d'indiquer le langage utilisé pour afficher un bloc de code. Le langage est reconnu automatiquement
@@ -197,6 +212,9 @@ Il est possible d'afficher des formules mathématiques à l'aide de la biblioth�
 
 .. figure:: figures/math-menu.png
     :align: center
+    :width: 40%
+    
+    Menu pour l'insertion de mathématiques
 
 La barre d'outils propose un menu dédié à l'affichage des mathématiques **(2)**. Deux boutons permettent d'insérer les délimiteurs des méthodes *in-line* et *displayed* et d'autres options pour afficher un échantillon de formules et de symboles sont disponibles. Cette liste est toutefois non-exhaustive.
 
@@ -213,6 +231,9 @@ Résultat lors de l'aperçu :
 
 .. figure:: figures/checkbox.png
     :align: center
+    :width: 70%
+    
+    Question avec des mathématiques
 
 -------------------------------------------
 Enregistrement et importation de brouillons
@@ -224,11 +245,17 @@ Le menu *Brouillons* de la barre d'outils **(3)** est dédié à cette fonctionn
 
 .. figure:: figures/draft-save.png
     :align: center
+    :width: 70%
+    
+    Sauvegarde d'un brouillon
 
 Lorsqu'on clique sur le bouton *Enregistrer un brouillon*, une boîte de dialogue apparaît. Il suffit de préciser un titre pour le brouillon et d'appuyer sur *Enregistrer*. Un message confirmant que le brouillon a bien été enregistré apparaît.
 
 .. figure:: figures/draft-import.png
     :align: center
+    :width: 70%
+    
+    Importation d'un brouillon
 
 Il est désormais possible d'importer ce brouillon grâce au bouton prévu à cet effet dans le menu. Une boîte de dialogue contenant la liste de tous les brouillons de l'utilisateur s'ouvre. Le brouillon recherché peut être importé par un simple clic. Le code du brouillon est alors inséré dans la zone de texte.
 
@@ -248,6 +275,9 @@ Liste des quiz créés par un professeur
 
 .. figure:: figures/my-quiz.png
     :align: center
+    :width: 70%
+    
+    Liste des quiz créés par un professeur
 
 Dans l'onglet *Mes quiz*, le professeur peut consulter la liste des quiz qu'il a créé avec des informations générales sur ceux-ci comme la moyenne de points obtenus pour chaque quiz. Grâce au bouton *Voir les stats*, il peut accéder aux statistiques avancées d'un quiz en particulier.
 
@@ -257,6 +287,9 @@ Affichage des statistiques avancées
 
 .. figure:: figures/stats.png
     :align: center
+    :width: 70%
+    
+    Statistiques avancées
 
 Cette vue offre au professeur la possibilité de se faire une idée générale du niveau de compréhension des élèves d'un simple coup d'oeil. Pour chaque élève ayant répondu au quiz, il peut voir la note globale obtenue ainsi que les points attribués pour chaque question. Pour consulter les réponses soumises par un étudiant, le professeur peut cliquer sur le bouton orange situé au début de la colonne. Il sera ainsi redirigé vers la page de correction de la résolution.
 
@@ -266,6 +299,9 @@ Lorsqu'on affiche une question à réponse courte, il est possible de voir les r
 
 .. figure:: figures/add-solution.png
     :align: center
+    :width: 70%
+    
+    Ajout d'une solution
 
 Ici, on voit que des étudiants ont trouvé la solution de l'équation mais l'ont simplement exprimé sous une autre forme que celle qui était attendue. Pour obtenir les points, ils auraient dû n'écrire que ``64``. Après avoir cliqué sur le bouton, un message confirmant l'ajout de la solution apparaît, puis la couleur du bouton change. Les statistiques dans le tableau se mettent ensuite à jour. Désormais, tout élève écrivant la réponse sous cette forme-là obtiendra également les points pour la question.
 
@@ -279,6 +315,9 @@ Trouver un quiz
 
 .. figure:: figures/find.png
     :align: center
+    :width: 70%
+    
+    Page de recherche de quiz
 
 Pour trouver un quiz, un étudiant a plusieurs possibilités. Le professeur peut donner l'URL exacte du quiz à compléter, ce qui peut être pratique dans le cas d'un courriel ou toute autre communication informatisée. Un étudiant peut aussi accéder à un quiz en mémorisant son id et en l'entrant dans la champ prévu à cet effet dans l'onglet *Compléter un quiz*.
 
@@ -288,6 +327,9 @@ Compléter un quiz et correction automatique
 
 .. figure:: figures/complete.png
     :align: center
+    :width: 70%
+    
+    Page pour compléter un quiz
 
 Une fois que l'étudiant a accédé au quiz, il peut le compléter très simplement en remplissant les champs de formulaires affichés. Lorsqu'il a fini, il peut soumettre ses réponses à l'aide du bouton prévu à cet effet. Les réponses soumises sont enregistrées dans la base de données et il est immédiatement redirigé vers une page de correction.
 
@@ -295,11 +337,17 @@ Les réponses incorrectes sont affichées en rouge avec la solution et une éven
 
 .. figure:: figures/correct.png
     :align: center
+    :width: 70%
+    
+    Page de correction
 
 La page pour compléter un quiz ainsi que celle de la correction sont optimisées pour la navigation sur mobile et le design responsive s'adapte parfaitement à tous types de périphériques tels que les téléphones portables ou les tablettes, comme le montre la capture d'écran ci-dessous.
 
 .. figure:: figures/mobile-1.png
     :align: center
+    :width: 40%
+    
+    Page de correction sur mobile
 
 ==========================
 Historique des résolutions
@@ -307,6 +355,9 @@ Historique des résolutions
 
 .. figure:: figures/completed.png
     :align: center
+    :width: 70%
+    
+    Historique des résolutions de l'élève
 
 Les étudiants ont aussi la possibilité de garder une trace de tous les quiz qu'ils ont complétés. Dans l'onglet *Mes résolutions* sont présentées toutes les résolutions apportées par l'élève à un quiz. Diverses informations complémentaires sont également disponibles, telles que la date et l'heure de la résolution ou le nombre de points obtenus. En cliquant sur un élément de la liste, l'étudiant est redirigé vers la page de correction de la résolution et peut ainsi voir les éventuelles erreurs qu'il a commises.
 

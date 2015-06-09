@@ -175,3 +175,8 @@ pseudoxml:
 	$(SPHINXBUILD) -b pseudoxml $(ALLSPHINXOPTS) $(BUILDDIR)/pseudoxml
 	@echo
 	@echo "Build finished. The pseudo-XML files are in $(BUILDDIR)/pseudoxml."
+
+tmpdf:
+	make latex
+	curl https://gist.githubusercontent.com/donnerc/ceb6e0045d108f41e702/raw/31fc417fe7b8c16e1b2c5d207dfc6e7218c99606/sphinxmanual.cls > build/latex/sphinxmanual.cls
+	cd build/latex/ && make

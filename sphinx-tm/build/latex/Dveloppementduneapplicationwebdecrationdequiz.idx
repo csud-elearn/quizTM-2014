@@ -1,32 +1,33 @@
-\indexentry{Quiz (classe dans quiz.models)|hyperpage}{22}
-\indexentry{average\_result() (m\IeC {\'e}thode quiz.models.Quiz)|hyperpage}{24}
-\indexentry{get\_questions() (m\IeC {\'e}thode quiz.models.Quiz)|hyperpage}{24}
-\indexentry{length() (m\IeC {\'e}thode quiz.models.Quiz)|hyperpage}{24}
-\indexentry{CompletedQuiz (classe dans quiz.models)|hyperpage}{24}
-\indexentry{get\_questions\_submits() (m\IeC {\'e}thode quiz.models.CompletedQuiz)|hyperpage}{24}
-\indexentry{update\_total\_result() (m\IeC {\'e}thode quiz.models.CompletedQuiz)|hyperpage}{24}
-\indexentry{QuizDraft (classe dans quiz.models)|hyperpage}{24}
-\indexentry{SimpleQuestion (classe dans quiz.models)|hyperpage}{24}
+\indexentry{Quiz (classe dans quiz.models)|hyperpage}{23}
+\indexentry{average\_result() (m\IeC {\'e}thode quiz.models.Quiz)|hyperpage}{23}
+\indexentry{get\_questions() (m\IeC {\'e}thode quiz.models.Quiz)|hyperpage}{25}
+\indexentry{length() (m\IeC {\'e}thode quiz.models.Quiz)|hyperpage}{25}
+\indexentry{CompletedQuiz (classe dans quiz.models)|hyperpage}{25}
+\indexentry{get\_questions\_submits() (m\IeC {\'e}thode quiz.models.CompletedQuiz)|hyperpage}{25}
+\indexentry{update\_total\_result() (m\IeC {\'e}thode quiz.models.CompletedQuiz)|hyperpage}{25}
+\indexentry{QuizDraft (classe dans quiz.models)|hyperpage}{25}
+\indexentry{SimpleQuestion (classe dans quiz.models)|hyperpage}{25}
 \indexentry{average\_result() (m\IeC {\'e}thode quiz.models.SimpleQuestion)|hyperpage}{25}
 \indexentry{create\_form() (m\IeC {\'e}thode quiz.models.SimpleQuestion)|hyperpage}{25}
-\indexentry{get\_wrong\_answers() (m\IeC {\'e}thode quiz.models.SimpleQuestion)|hyperpage}{25}
-\indexentry{save\_submit() (m\IeC {\'e}thode quiz.models.SimpleQuestion)|hyperpage}{25}
-\indexentry{update\_question\_results() (m\IeC {\'e}thode quiz.models.SimpleQuestion)|hyperpage}{25}
-\indexentry{SqAnswer (classe dans quiz.models)|hyperpage}{25}
+\indexentry{get\_wrong\_answers() (m\IeC {\'e}thode quiz.models.SimpleQuestion)|hyperpage}{26}
+\indexentry{save\_submit() (m\IeC {\'e}thode quiz.models.SimpleQuestion)|hyperpage}{26}
+\indexentry{update\_question\_results() (m\IeC {\'e}thode quiz.models.SimpleQuestion)|hyperpage}{26}
+\indexentry{SqAnswer (classe dans quiz.models)|hyperpage}{26}
+\indexentry{SqRegexAnswer (classe dans quiz.models)|hyperpage}{26}
 \indexentry{SqSubmit (classe dans quiz.models)|hyperpage}{26}
 \indexentry{build\_correct() (m\IeC {\'e}thode quiz.models.SqSubmit)|hyperpage}{26}
 \indexentry{correct() (m\IeC {\'e}thode quiz.models.SqSubmit)|hyperpage}{26}
 \indexentry{get\_corrections() (m\IeC {\'e}thode quiz.models.SqSubmit)|hyperpage}{26}
 \indexentry{save\_result() (m\IeC {\'e}thode quiz.models.SqSubmit)|hyperpage}{26}
 \indexentry{set\_as\_correct() (m\IeC {\'e}thode quiz.models.SqSubmit)|hyperpage}{26}
-\indexentry{Qcm (classe dans quiz.models)|hyperpage}{26}
-\indexentry{average\_result() (m\IeC {\'e}thode quiz.models.Qcm)|hyperpage}{26}
-\indexentry{create\_form() (m\IeC {\'e}thode quiz.models.Qcm)|hyperpage}{26}
+\indexentry{Qcm (classe dans quiz.models)|hyperpage}{27}
+\indexentry{average\_result() (m\IeC {\'e}thode quiz.models.Qcm)|hyperpage}{27}
+\indexentry{create\_form() (m\IeC {\'e}thode quiz.models.Qcm)|hyperpage}{27}
 \indexentry{save\_submit() (m\IeC {\'e}thode quiz.models.Qcm)|hyperpage}{27}
 \indexentry{QcmChoice (classe dans quiz.models)|hyperpage}{27}
 \indexentry{checked() (m\IeC {\'e}thode quiz.models.QcmChoice)|hyperpage}{27}
-\indexentry{correct\_submit() (m\IeC {\'e}thode quiz.models.QcmChoice)|hyperpage}{27}
-\indexentry{QcmSubmit (classe dans quiz.models)|hyperpage}{27}
+\indexentry{correct\_submit() (m\IeC {\'e}thode quiz.models.QcmChoice)|hyperpage}{28}
+\indexentry{QcmSubmit (classe dans quiz.models)|hyperpage}{28}
 \indexentry{build\_correct() (m\IeC {\'e}thode quiz.models.QcmSubmit)|hyperpage}{28}
 \indexentry{QcmSubmitMulti (classe dans quiz.models)|hyperpage}{28}
 \indexentry{save\_result() (m\IeC {\'e}thode quiz.models.QcmSubmitMulti)|hyperpage}{28}
@@ -41,32 +42,33 @@
 \indexentry{create() (dans le module quiz.views)|hyperpage}{30}
 \indexentry{created\_quizzes() (dans le module quiz.views)|hyperpage}{30}
 \indexentry{find() (dans le module quiz.views)|hyperpage}{30}
-\indexentry{findquiz() (dans le module quiz.views)|hyperpage}{31}
+\indexentry{findquiz() (dans le module quiz.views)|hyperpage}{30}
 \indexentry{getdraft() (dans le module quiz.views)|hyperpage}{31}
 \indexentry{listdrafts() (dans le module quiz.views)|hyperpage}{31}
 \indexentry{savedraft() (dans le module quiz.views)|hyperpage}{31}
-\indexentry{quiz.forms (module)|hyperpage}{32}
-\indexentry{CheckboxForm (classe dans quiz.forms)|hyperpage}{32}
+\indexentry{quiz.forms (module)|hyperpage}{31}
+\indexentry{CheckboxForm (classe dans quiz.forms)|hyperpage}{31}
 \indexentry{get\_type() (m\IeC {\'e}thode quiz.forms.CheckboxForm)|hyperpage}{32}
 \indexentry{QuestionForm (classe dans quiz.forms)|hyperpage}{32}
 \indexentry{RadioForm (classe dans quiz.forms)|hyperpage}{32}
 \indexentry{get\_type() (m\IeC {\'e}thode quiz.forms.RadioForm)|hyperpage}{32}
 \indexentry{TextForm (classe dans quiz.forms)|hyperpage}{32}
 \indexentry{get\_type() (m\IeC {\'e}thode quiz.forms.TextForm)|hyperpage}{32}
-\indexentry{quiz.utils.save (module)|hyperpage}{33}
-\indexentry{SaveQcm (classe dans quiz.utils.save)|hyperpage}{33}
-\indexentry{add\_option() (m\IeC {\'e}thode quiz.utils.save.SaveQcm)|hyperpage}{33}
-\indexentry{SaveQuestion (classe dans quiz.utils.save)|hyperpage}{33}
+\indexentry{quiz.utils.save (module)|hyperpage}{32}
+\indexentry{SaveQcm (classe dans quiz.utils.save)|hyperpage}{32}
+\indexentry{add\_option() (m\IeC {\'e}thode quiz.utils.save.SaveQcm)|hyperpage}{32}
+\indexentry{SaveQuestion (classe dans quiz.utils.save)|hyperpage}{32}
 \indexentry{SaveQuiz (classe dans quiz.utils.save)|hyperpage}{33}
 \indexentry{SaveSimpleQuestion (classe dans quiz.utils.save)|hyperpage}{33}
 \indexentry{add\_answer() (m\IeC {\'e}thode quiz.utils.save.SaveSimpleQuestion)|hyperpage}{33}
+\indexentry{add\_regex\_answer() (m\IeC {\'e}thode quiz.utils.save.SaveSimpleQuestion)|hyperpage}{33}
 \indexentry{quiz.utils.submit (module)|hyperpage}{33}
 \indexentry{QuizForms (classe dans quiz.utils.submit)|hyperpage}{33}
 \indexentry{are\_valid() (m\IeC {\'e}thode quiz.utils.submit.QuizForms)|hyperpage}{33}
 \indexentry{save\_answers() (m\IeC {\'e}thode quiz.utils.submit.QuizForms)|hyperpage}{33}
-\indexentry{quiz.utils.correct (module)|hyperpage}{34}
-\indexentry{CorrectChoice (classe dans quiz.utils.correct)|hyperpage}{34}
-\indexentry{CorrectQcm (classe dans quiz.utils.correct)|hyperpage}{34}
+\indexentry{quiz.utils.correct (module)|hyperpage}{33}
+\indexentry{CorrectChoice (classe dans quiz.utils.correct)|hyperpage}{33}
+\indexentry{CorrectQcm (classe dans quiz.utils.correct)|hyperpage}{33}
 \indexentry{CorrectQuestion (classe dans quiz.utils.correct)|hyperpage}{34}
 \indexentry{CorrectSq (classe dans quiz.utils.correct)|hyperpage}{34}
 \indexentry{Parse (classe de base)|hyperpage}{36}
@@ -77,9 +79,9 @@
 \indexentry{error() (m\IeC {\'e}thode Parse)|hyperpage}{36}
 \indexentry{show\_errors() (m\IeC {\'e}thode Parse)|hyperpage}{36}
 \indexentry{QuestionAbstract (classe de base)|hyperpage}{36}
-\indexentry{add\_attribute() (m\IeC {\'e}thode QuestionAbstract)|hyperpage}{37}
-\indexentry{add\_comment() (m\IeC {\'e}thode QuestionAbstract)|hyperpage}{37}
-\indexentry{add\_points() (m\IeC {\'e}thode QuestionAbstract)|hyperpage}{37}
+\indexentry{add\_attribute() (m\IeC {\'e}thode QuestionAbstract)|hyperpage}{36}
+\indexentry{add\_comment() (m\IeC {\'e}thode QuestionAbstract)|hyperpage}{36}
+\indexentry{add\_points() (m\IeC {\'e}thode QuestionAbstract)|hyperpage}{36}
 \indexentry{properties() (m\IeC {\'e}thode QuestionAbstract)|hyperpage}{37}
 \indexentry{SimpleQuestion (classe de base)|hyperpage}{37}
 \indexentry{add\_answer() (m\IeC {\'e}thode SimpleQuestion)|hyperpage}{37}
@@ -89,10 +91,10 @@
 \indexentry{add\_option() (m\IeC {\'e}thode QCM\_Checkbox)|hyperpage}{37}
 \indexentry{add\_answer() (m\IeC {\'e}thode QCM\_Checkbox)|hyperpage}{37}
 \indexentry{render() (m\IeC {\'e}thode QCM\_Checkbox)|hyperpage}{37}
-\indexentry{check\_question() (m\IeC {\'e}thode QCM\_Checkbox)|hyperpage}{38}
-\indexentry{QCM\_Radio (classe de base)|hyperpage}{38}
-\indexentry{QCM\_Radio.add\_answer (classe de base)|hyperpage}{38}
-\indexentry{start\_render() (fonction de base)|hyperpage}{38}
+\indexentry{check\_question() (m\IeC {\'e}thode QCM\_Checkbox)|hyperpage}{37}
+\indexentry{QCM\_Radio (classe de base)|hyperpage}{37}
+\indexentry{QCM\_Radio.add\_answer (classe de base)|hyperpage}{37}
+\indexentry{start\_render() (fonction de base)|hyperpage}{37}
 \indexentry{submit() (fonction de base)|hyperpage}{38}
 \indexentry{demo() (fonction de base)|hyperpage}{38}
 \indexentry{main() (fonction de base)|hyperpage}{38}

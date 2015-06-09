@@ -8,19 +8,7 @@
 % chapters starting at odd pages (overridden by 'openany' document option)
 \PassOptionsToClass{openright}{\sphinxdocclass}
 
-% 'oneside' option overriding the 'twoside' default
-\newif\if@oneside
-\DeclareOption{oneside}{\@onesidetrue}
-% Pass remaining document options to the parent class.
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{\sphinxdocclass}}
-\ProcessOptions\relax
 
-% Defaults two-side document
-\if@oneside
-% nothing to do (oneside is the default)
-\else
-\PassOptionsToClass{twoside}{\sphinxdocclass}
-\fi
 
 \LoadClass{\sphinxdocclass}
 

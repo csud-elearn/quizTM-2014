@@ -191,9 +191,9 @@ latex_elements = {
    'papersize':"a4",
    'author': "Benoît Léo Maillard",
    'date': "27 mars 2015",
-   'title': "Développement d'une application de quiz",
+   'title': "Application de création de quiz",
    'release' : "",
-   'releasename' : "Travail de maturité",
+   'releasename' : "Collège du sud, Travail de maturité",
    'fontpkg': '\\usepackage{times}',
    'babel': '\\usepackage[francais]{babel}',
 }
@@ -202,7 +202,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  ('index', 'Dveloppementduneapplicationwebdecrationdequiz.tex', u'Développement d\'une application web de création de quiz',
+  ('index', 'Dveloppementduneapplicationwebdecrationdequiz.tex', u'Application de création de quiz',
    u'Benoît Léo Maillard', 'manual'),
 ]
 
@@ -232,8 +232,9 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'dveloppementduneapplicationwebdecrationdequiz', u'Développement d\'une application web de création de quiz',
+    ('index', 'dveloppementduneapplicationwebdecrationdequiz', u'Application de création de quiz',
      [u'Benoît Léo Maillard'], 1)
+     
 ]
 
 # If true, show URL addresses after external links.
@@ -246,7 +247,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'Dveloppementduneapplicationwebdecrationdequiz', u'Développement d\'une application web de création de quiz',
+  ('index', 'Dveloppementduneapplicationwebdecrationdequiz', u'Application de création de quiz',
    u'Benoît Léo Maillard', 'Dveloppementduneapplicationwebdecrationdequiz', 'One line description of project.',
    'Miscellaneous'),
 ]

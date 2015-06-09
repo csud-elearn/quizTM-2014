@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.1.14)  30 MAR 2015 05:55
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.1.14)  9 JUN 2015 07:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -10,8 +10,8 @@ Babel <3.9h> and hyphenation patterns for 4 languages loaded.
 Document Class: sphinxmanual 2009/06/02 Document class (Sphinx manual)
 (/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2007/10/19 v1.4h Standard LaTeX document class
-(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo
-File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
 \c@chapter=\count80
@@ -278,6 +278,9 @@ Package babel Info: Making ? an active character on input line 247.
 \labelwidthFB=\skip44
 \leftmarginFB=\skip45
 \parindentFFN=\dimen105
+)
+(/usr/share/texlive/texmf-dist/tex/generic/babel-french/frenchb.ldf
+Language: frenchb 2013/12/30 v2.6g French support from the babel system
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/carlisle/scalefnt.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
@@ -930,23 +933,24 @@ Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
 less on input line 128.
 
 (./Dveloppementduneapplicationwebdecrationdequiz.toc
-LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10.95> not available
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 2.
 )
 \tf@toc=\write7
 \openout7 = `Dveloppementduneapplicationwebdecrationdequiz.toc'.
 
 
+Adding blank page after the table of contents.
 
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
 less on input line 128.
 
-LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10.95> not available
+LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
 (Font)              Font shape `T1/phv/b/n' tried instead on input line 128.
 [1
 
 
-]
+] [2]
 
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
 less on input line 128.
@@ -987,36 +991,25 @@ LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
 LaTeX Font Info:    Try loading font information for T1+pcr on input line 211.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-)
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 13.59999pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[3]
-LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <10> not available
+) [3]
+LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <9> not available
 (Font)              Font shape `T1/pcr/b/n' tried instead on input line 249.
-LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <10> not available
+LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <9> not available
 (Font)              Font shape `T1/pcr/m/sl' tried instead on input line 255.
- [4] [5] [6] [7]
+ [4] [5]
+[6]
 Chapitre 3.
-<create.png, id=207, 879.285pt x 942.52126pt>
+<create.png, id=206, 879.285pt x 942.52126pt>
 File: create.png Graphic file (type png)
  <use create.png>
 Package pdftex.def Info: create.png used on input line 412.
-(pdftex.def)             Requested size: 879.28287pt x 942.51897pt.
-File: create.png Graphic file (type png)
-
-<use create.png>
-Package pdftex.def Info: create.png used on input line 412.
-(pdftex.def)             Requested size: 452.96788pt x 485.5405pt.
+(pdftex.def)             Requested size: 328.82706pt x 352.46664pt.
 
 
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
 less on input line 419.
 
-[8
+[7
 
 pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1}) 
 has been already used, duplicate ignored
@@ -1025,316 +1018,250 @@ has been already used, duplicate ignored
                                                   \fi \fi 
 l.419 
        <./create.png>]
-LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 423.
- [9] <short.png, id=225, 662.475pt x 122.4575pt>
-File: short.png Graphic file (type png)
+LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <9> not available
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 421.
+ [8]
+LaTeX Font Info:    Try loading font information for TS1+pcr on input line 530.
 
-<use short.png>
-Package pdftex.def Info: short.png used on input line 512.
-(pdftex.def)             Requested size: 662.47339pt x 122.45718pt.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1pcr.fd
+File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
+)
+<short.png, id=227, 662.475pt x 122.4575pt>
 File: short.png Graphic file (type png)
  <use short.png>
-Package pdftex.def Info: short.png used on input line 512.
-(pdftex.def)             Requested size: 452.96788pt x 83.72964pt.
- <radio.png, id=226, 662.475pt x 137.51375pt>
-File: radio.png Graphic file (type png)
+Package pdftex.def Info: short.png used on input line 545.
+(pdftex.def)             Requested size: 375.80544pt x 69.46701pt.
 
-<use radio.png>
-Package pdftex.def Info: radio.png used on input line 523.
-(pdftex.def)             Requested size: 662.47339pt x 137.51341pt.
+<radio.png, id=228, 662.475pt x 137.51375pt>
 File: radio.png Graphic file (type png)
  <use radio.png>
-Package pdftex.def Info: radio.png used on input line 523.
-(pdftex.def)             Requested size: 452.96788pt x 94.02429pt.
+Package pdftex.def Info: radio.png used on input line 556.
+(pdftex.def)             Requested size: 375.80544pt x 78.00806pt.
 
-<checkbox.png, id=227, 662.475pt x 137.51375pt>
+<checkbox.png, id=229, 662.475pt x 137.51375pt>
 File: checkbox.png Graphic file (type png)
  <use checkbox.png>
-Package pdftex.def Info: checkbox.png used on input line 534.
-(pdftex.def)             Requested size: 662.47339pt x 137.51341pt.
+Package pdftex.def Info: checkbox.png used on input line 567.
+(pdftex.def)             Requested size: 375.80544pt x 78.00806pt.
+ [9pdfTeX warning (ext4): destination with the same identifier (name{figure.3.2
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.577 
+       <./short.png>] [10pdfTeX warning (ext4): destination with the same ident
+ifier (name{figure.3.3}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.615 \end{Verbatim}
+                    pdfTeX warning (ext4): destination with the same identifier
+ (name{figure.3.4}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.615 \end{Verbatim}
+                     <./radio.png> <./checkbox.png>]
+<markdown.png, id=256, 569.12625pt x 315.1775pt>
+File: markdown.png Graphic file (type png)
+ <use markdown.png>
+Package pdftex.def Info: markdown.png used on input line 622.
+(pdftex.def)             Requested size: 375.80544pt x 208.1284pt.
+
+<math-menu.png, id=259, 308.15125pt x 374.39874pt>
+File: math-menu.png Graphic file (type png)
+ <use math-menu.png>
+Package pdftex.def Info: math-menu.png used on input line 640.
+(pdftex.def)             Requested size: 187.89912pt x 228.2972pt.
 File: checkbox.png Graphic file (type png)
 
 <use checkbox.png>
-Package pdftex.def Info: checkbox.png used on input line 534.
-(pdftex.def)             Requested size: 452.96788pt x 94.02429pt.
- [10pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
-2}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.541 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-3.3}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.541 
-       <./short.png> <./radio.png>]
-<math-menu.png, id=242, 308.15125pt x 374.39874pt>
-File: math-menu.png Graphic file (type png)
- <use math-menu.png>
-Package pdftex.def Info: math-menu.png used on input line 558.
-(pdftex.def)             Requested size: 308.15048pt x 374.39783pt.
-File: math-menu.png Graphic file (type png)
-
-<use math-menu.png>
-Package pdftex.def Info: math-menu.png used on input line 558.
-(pdftex.def)             Requested size: 308.15048pt x 374.39783pt.
-File: checkbox.png Graphic file (type png)
- <use checkbox.png>
-Package pdftex.def Info: checkbox.png used on input line 577.
-(pdftex.def)             Requested size: 662.47339pt x 137.51341pt.
-File: checkbox.png Graphic file (type png)
- <use checkbox.png>
-Package pdftex.def Info: checkbox.png used on input line 577.
-(pdftex.def)             Requested size: 452.96788pt x 94.02429pt.
+Package pdftex.def Info: checkbox.png used on input line 659.
+(pdftex.def)             Requested size: 328.82706pt x 68.2552pt.
  [11pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
-4}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.585 L
-       e menu \emph{Brouillons} de la barre d'outils \textbf{(3)} est dédi�...
- <./checkbox.png>] <draft-save.png, id=253, 622.325pt x 227.85126pt>
-File: draft-save.png Graphic file (type png)
-
-<use draft-save.png>
-Package pdftex.def Info: draft-save.png used on input line 590.
-(pdftex.def)             Requested size: 622.32347pt x 227.8507pt.
-File: draft-save.png Graphic file (type png)
- <use draft-save.png>
-Package pdftex.def Info: draft-save.png used on input line 590.
-(pdftex.def)             Requested size: 452.96788pt x 165.84676pt.
-
-<draft-import.png, id=254, 622.325pt x 303.1325pt>
-File: draft-import.png Graphic file (type png)
- <use draft-import.png>
-Package pdftex.def Info: draft-import.png used on input line 598.
-(pdftex.def)             Requested size: 622.32347pt x 303.13176pt.
-File: draft-import.png Graphic file (type png)
-
-<use draft-import.png>
-Package pdftex.def Info: draft-import.png used on input line 598.
-(pdftex.def)             Requested size: 452.96788pt x 220.64195pt.
- [12pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
 5}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.607 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-3.6}) has been already used, duplicate ignored
+l.661 
+       <./markdown.png (PNG copy)>]
+<draft-save.png, id=267, 622.325pt x 227.85126pt>
+File: draft-save.png Graphic file (type png)
+ <use draft-save.png>
+Package pdftex.def Info: draft-save.png used on input line 672.
+(pdftex.def)             Requested size: 328.82706pt x 120.39204pt.
+
+<draft-import.png, id=268, 622.325pt x 303.1325pt>
+File: draft-import.png Graphic file (type png)
+ <use draft-import.png>
+Package pdftex.def Info: draft-import.png used on input line 680.
+(pdftex.def)             Requested size: 328.82706pt x 160.16916pt.
+
+[12pdfTeX warning (ext4): destination with the same identifier (name{figure.3.6
+}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.607 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-3.7}) has been already used, duplicate ignored
+l.691 \subsection{Suivi des élèves}
+                                     pdfTeX warning (ext4): destination with th
+e same identifier (name{figure.3.7}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.607 
-       <./math-menu.png> <./draft-save.png>]
-<my-quiz.png, id=265, 878.28125pt x 257.96375pt>
+l.691 \subsection{Suivi des élèves}
+                                      <./math-menu.png>] [13pdfTeX warning (ext
+4): destination with the same identifier (name{figure.3.8}) has been already us
+ed, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.691 \subsection{Suivi des élèves}
+                                     pdfTeX warning (ext4): destination with th
+e same identifier (name{figure.3.9}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.691 \subsection{Suivi des élèves}
+                                      <./draft-save.png> <./draft-import.png>]
+<my-quiz.png, id=286, 878.28125pt x 257.96375pt>
 File: my-quiz.png Graphic file (type png)
  <use my-quiz.png>
-Package pdftex.def Info: my-quiz.png used on input line 617.
-(pdftex.def)             Requested size: 878.27911pt x 257.9631pt.
-File: my-quiz.png Graphic file (type png)
+Package pdftex.def Info: my-quiz.png used on input line 699.
+(pdftex.def)             Requested size: 328.82706pt x 96.58264pt.
 
-<use my-quiz.png>
-Package pdftex.def Info: my-quiz.png used on input line 617.
-(pdftex.def)             Requested size: 452.96788pt x 133.0437pt.
- <stats.png, id=266, 879.285pt x 674.52pt>
+<stats.png, id=287, 879.285pt x 674.52pt>
 File: stats.png Graphic file (type png)
  <use stats.png>
-Package pdftex.def Info: stats.png used on input line 628.
-(pdftex.def)             Requested size: 879.28287pt x 674.51836pt.
-File: stats.png Graphic file (type png)
-
-<use stats.png>
-Package pdftex.def Info: stats.png used on input line 628.
-(pdftex.def)             Requested size: 452.96788pt x 347.47946pt.
- [13pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
-8}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.634 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-3.9}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.634 
-       <./draft-import.png> <./my-quiz.png>]
-<add-solution.png, id=279, 857.2025pt x 326.21875pt>
-File: add-solution.png Graphic file (type png)
- <use add-solution.png>
-Package pdftex.def Info: add-solution.png used on input line 640.
-(pdftex.def)             Requested size: 857.20041pt x 326.21794pt.
-File: add-solution.png Graphic file (type png)
-
-<use add-solution.png>
-Package pdftex.def Info: add-solution.png used on input line 640.
-(pdftex.def)             Requested size: 452.96788pt x 172.3824pt.
- <find.png, id=280, 878.28125pt x 497.86pt>
-File: find.png Graphic file (type png)
-
-<use find.png>
-Package pdftex.def Info: find.png used on input line 654.
-(pdftex.def)             Requested size: 878.27911pt x 497.85878pt.
-File: find.png Graphic file (type png)
- <use find.png>
-Package pdftex.def Info: find.png used on input line 654.
-(pdftex.def)             Requested size: 452.96788pt x 256.7692pt.
+Package pdftex.def Info: stats.png used on input line 710.
+(pdftex.def)             Requested size: 328.82706pt x 252.24449pt.
  [14pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
 10}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.655 ...h{Page de recherche de quiz}}\end{figure}
-                                                  pdfTeX warning (ext4): destin
-ation with the same identifier (name{figure.3.11}) has been already used, dupli
-cate ignored
+l.716 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+3.11}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.655 ...h{Page de recherche de quiz}}\end{figure}
-                                                   <./stats.png> <./add-solutio
-n.png>] <complete.png, id=289, 878.28125pt x 683.55376pt>
+l.716 
+       <./my-quiz.png> <./stats.png>]
+<add-solution.png, id=299, 857.2025pt x 326.21875pt>
+File: add-solution.png Graphic file (type png)
+ <use add-solution.png>
+Package pdftex.def Info: add-solution.png used on input line 722.
+(pdftex.def)             Requested size: 328.82706pt x 125.13914pt.
+
+<find.png, id=300, 878.28125pt x 497.86pt>
+File: find.png Graphic file (type png)
+ <use find.png>
+Package pdftex.def Info: find.png used on input line 736.
+(pdftex.def)             Requested size: 328.82706pt x 186.40076pt.
+
+<complete.png, id=301, 878.28125pt x 683.55376pt>
 File: complete.png Graphic file (type png)
  <use complete.png>
-Package pdftex.def Info: complete.png used on input line 665.
-(pdftex.def)             Requested size: 878.27911pt x 683.5521pt.
-File: complete.png Graphic file (type png)
-
-<use complete.png>
-Package pdftex.def Info: complete.png used on input line 665.
-(pdftex.def)             Requested size: 452.96788pt x 352.53998pt.
- <correct.png, id=290, 879.285pt x 697.60625pt>
-File: correct.png Graphic file (type png)
-
-<use correct.png>
-Package pdftex.def Info: correct.png used on input line 675.
-(pdftex.def)             Requested size: 879.28287pt x 697.60454pt.
-File: correct.png Graphic file (type png)
- <use correct.png>
-Package pdftex.def Info: correct.png used on input line 675.
-(pdftex.def)             Requested size: 452.96788pt x 359.37234pt.
+Package pdftex.def Info: complete.png used on input line 747.
+(pdftex.def)             Requested size: 328.82706pt x 255.92525pt.
  [15pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
 12}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.677 
-       <./find.png>] <completed.png, id=299, 878.28125pt x 251.94125pt>
-File: completed.png Graphic file (type png)
+l.748 ...Page pour compléter un quiz}\end{figure}
+                                                  pdfTeX warning (ext4): destin
+ation with the same identifier (name{figure.3.13}) has been already used, dupli
+cate ignored
 
-<use completed.png>
-Package pdftex.def Info: completed.png used on input line 684.
-(pdftex.def)             Requested size: 878.27911pt x 251.94063pt.
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.748 ...Page pour compléter un quiz}\end{figure}
+                                                   <./add-solution.png> <./find
+.png>] <correct.png, id=312, 879.285pt x 697.60625pt>
+File: correct.png Graphic file (type png)
+ <use correct.png>
+Package pdftex.def Info: correct.png used on input line 757.
+(pdftex.def)             Requested size: 328.82706pt x 260.87787pt.
+
+<mobile-1.png, id=313, 361.35pt x 642.4pt>
+File: mobile-1.png Graphic file (type png)
+ <use mobile-1.png>
+Package pdftex.def Info: mobile-1.png used on input line 765.
+(pdftex.def)             Requested size: 187.89912pt x 334.04012pt.
+
+<completed.png, id=314, 878.28125pt x 251.94125pt>
 File: completed.png Graphic file (type png)
  <use completed.png>
-Package pdftex.def Info: completed.png used on input line 684.
-(pdftex.def)             Requested size: 452.96788pt x 129.93764pt.
+Package pdftex.def Info: completed.png used on input line 774.
+(pdftex.def)             Requested size: 328.82706pt x 94.3278pt.
  [16pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
-13}) has been already used, duplicate ignored
+14}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.690 \chapter
+l.780 \chapter
               {Fonctionnement général de l'application} <./complete.png>]
 [17pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1
-4}) has been already used, duplicate ignored
+5}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.690 \chapter
+l.780 \chapter
+              {Fonctionnement général de l'application} <./correct.png>]
+[18pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1
+6}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.780 \chapter
               {Fonctionnement général de l'application}pdfTeX warning (ext4):
- destination with the same identifier (name{figure.3.15}) has been already used
+ destination with the same identifier (name{figure.3.17}) has been already used
 , duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.690 \chapter
-              {Fonctionnement général de l'application} <./correct.png> <./co
-mpleted.png>]
+l.780 \chapter
+              {Fonctionnement général de l'application} <./mobile-1.png (PNG 
+copy)> <./completed.png>]
 Chapitre 4.
-LaTeX Font Info:    Try loading font information for TS1+pcr on input line 747.
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1pcr.fd
-File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
-)
-LaTeX Font Info:    Font shape `TS1/pcr/m/it' in size <10> not available
-(Font)              Font shape `TS1/pcr/m/sl' tried instead on input line 748.
-
+LaTeX Font Info:    Font shape `TS1/pcr/m/it' in size <9> not available
+(Font)              Font shape `TS1/pcr/m/sl' tried instead on input line 838.
 
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 763.
+less on input line 853.
 
-[18
+[19
 
-] [19] [20]
+] [20] [21]
 Chapitre 5.
 
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 1010.
+less on input line 1129.
 
-[21
+[22
 
-] <quiz-models.png, id=362, 980.66376pt x 881.2925pt>
+] <quiz-models.png, id=393, 980.66376pt x 881.2925pt>
 File: quiz-models.png Graphic file (type png)
  <use quiz-models.png>
-Package pdftex.def Info: quiz-models.png used on input line 1039.
+Package pdftex.def Info: quiz-models.png used on input line 1150.
 (pdftex.def)             Requested size: 980.66136pt x 881.29034pt.
 File: quiz-models.png Graphic file (type png)
 
 <use quiz-models.png>
-Package pdftex.def Info: quiz-models.png used on input line 1039.
-(pdftex.def)             Requested size: 452.96788pt x 407.06696pt.
-LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/pcr/b/n' tried instead on input line 1056.
- [22] [23 <./quiz-models.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 1115--1119
-\T1/ptm/m/n/10.95 Renvoie la liste des en-tr�es des tables \T1/pcr/m/n/10.95 Sq
-Submit\T1/ptm/m/n/10.95 , \T1/pcr/m/n/10.95 QcmSubmitOne \T1/ptm/m/n/10.95 et
- []
-
-[24]
-LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <10.95> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 1264.
- [25] [26]
-Underfull \hbox (badness 10000) in paragraph at lines 1378--1380
-[]\T1/ptm/m/n/10.95 Les ar-gu-ments four-nis lors de l'ins-tan-cia-tion du for-
-mu-laire sont ana-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1378--1380
-\T1/ptm/m/n/10.95 logues � ceux qui sont don-n�s pour l'ins-tan-cia-tion d'un \
-T1/pcr/m/n/10.95 TextForm \T1/ptm/m/n/10.95 dans
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1459--1462
-\T1/pcr/m/n/10.95 QcmSubmit \T1/ptm/m/n/10.95 est une classe abs-traite dont h�
--ritent \T1/pcr/m/n/10.95 QcmSubmitOne
- []
-
-[27]
-Underfull \hbox (badness 10000) in paragraph at lines 1522--1522
-[]\T1/ptm/m/it/10.95 id\T1/ptm/m/n/10.95 , \T1/ptm/m/it/10.95 re-sult\T1/ptm/m/
-n/10.95 , \T1/ptm/m/it/10.95 id_submitted_quiz_id\T1/ptm/m/n/10.95 , \T1/ptm/m/
-it/10.95 id_question_id\T1/ptm/m/n/10.95 ,
- []
-
-[28]
+Package pdftex.def Info: quiz-models.png used on input line 1150.
+(pdftex.def)             Requested size: 469.755pt x 422.15495pt.
+LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <10> not available
+(Font)              Font shape `T1/pcr/b/n' tried instead on input line 1167.
+ [23] [24 <./quiz-models.png>] [25]
+LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <10> not available
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 1375.
+ [26] [27] [28]
 Chapitre 6.
 
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 1608.
+less on input line 1728.
 
 [29
 
@@ -1342,27 +1269,15 @@ less on input line 1608.
 Chapitre 7.
 
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 2138.
+less on input line 2268.
 
 [35
 
-] [36]
-Underfull \hbox (badness 10000) in paragraph at lines 2244--2246
-\T1/ptm/m/n/10.95 Appelle la m�-thode cor-res-pon-dant � la ba-lise \T1/pcr/m/n
-/10.95 tag \T1/ptm/m/n/10.95 si celle-ci est d�-fi-nie
- []
-
-[37]
-Underfull \hbox (badness 10000) in paragraph at lines 2447--2449
-\T1/ptm/m/n/10.95 Il s'agit de la fonc-tion exe-cu-t�e au char-ge-ment de la pa
-ge avec
- []
-
-[38]
+] [36] [37] [38]
 Chapitre 8.
 
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 2492.
+less on input line 2622.
 
 [39
 
@@ -1371,7 +1286,7 @@ Chapitre 9.
 (./Dveloppementduneapplicationwebdecrationdequiz.lof
 
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 11.
+less on input line 6.
 
 [40
 
@@ -1379,51 +1294,40 @@ less on input line 11.
 \tf@lof=\write8
 \openout8 = `Dveloppementduneapplicationwebdecrationdequiz.lof'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2524.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2663.
  [41]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2524.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2663.
  (./Dveloppementduneapplicationwebdecrationdequiz.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2524.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2524.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2663.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2663.
 
-
-
-Package rerunfilecheck Warning: File `Dveloppementduneapplicationwebdecrationde
-quiz.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `Dveloppementduneapplicationwebdecra
-tiondequiz.out':
-(rerunfilecheck)             Before: EE9D12A108556D14231C8CCF067262A8;1740
-(rerunfilecheck)             After:  4F263A3C76CE2B7F86ECAB2ED7CC629E;1677.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2524.
+Package rerunfilecheck Info: File `Dveloppementduneapplicationwebdecrationdequi
+z.out' has not changed.
+(rerunfilecheck)             Checksum: BFC6EC6A9534DEFCCA3738CEF3040AF4;1737.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2663.
  ) 
 Here is how much of TeX's memory you used:
- 10163 strings out of 494999
- 145205 string characters out of 6180228
- 242175 words of memory out of 5000000
- 12847 multiletter control sequences out of 15000+600000
- 75484 words of font info for 90 fonts, out of 8000000 for 9000
+ 10168 strings out of 494999
+ 145523 string characters out of 6180228
+ 243305 words of memory out of 5000000
+ 12850 multiletter control sequences out of 15000+600000
+ 72519 words of font info for 80 fonts, out of 8000000 for 9000
  15 hyphenation exceptions out of 8191
- 36i,12n,51p,1330b,572s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{section*.117} has been referenced but does not ex
-ist, replaced by a fixed one
-
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/
-texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw
-/courier/ucrro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uh
-vb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
-rw/times/utmri8a.pfb>
-Output written on Dveloppementduneapplicationwebdecrationdequiz.pdf (43 pages, 
-526061 bytes).
+ 36i,12n,51p,1330b,582s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
+e/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
+rw/courier/ucrro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/
+uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/urw/times/utmri8a.pfb>
+Output written on Dveloppementduneapplicationwebdecrationdequiz.pdf (44 pages, 
+597193 bytes).
 PDF statistics:
- 674 PDF objects out of 1000 (max. 8388607)
- 580 compressed objects within 6 object streams
- 229 named destinations out of 1000 (max. 500000)
- 296 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 708 PDF objects out of 1000 (max. 8388607)
+ 610 compressed objects within 7 object streams
+ 240 named destinations out of 1000 (max. 500000)
+ 306 words of extra memory for PDF output out of 10000 (max. 10000000)
 
