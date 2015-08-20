@@ -5,7 +5,15 @@ import quiz.forms as forms
 from quiz.utils.correct import *
 import re
 
+from django.core.validators import RegexValidator
+
 # Create your models here.
+
+class Tag(models.Model):
+    
+    name = models.CharField(max_length=15, validators=[
+        RegexValidator(r'', "Les tags ne doivent pas comporter d'espaces")
+    ])
 
 class Quiz(models.Model): #Infos générales sur le quiz
     """
@@ -24,6 +32,7 @@ class Quiz(models.Model): #Infos générales sur le quiz
         creation_date = models.DateTimeField(auto_now_add=True)
     """
     title = models.CharField(max_length=200)
+    tags = models.ManyToManyField(Tag, blank=True, related_name="quizzes")
     points = models.FloatField(default=0)
     creation_date = models.DateTimeField(auto_now_add=True)
     code = models.TextField() #Format texte du quiz
