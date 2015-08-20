@@ -47,7 +47,7 @@ class Class(models.Model):
     creation_datetime = models.DateTimeField(auto_now_add=True)
     
     # administrateur du groupe
-    owner = models.ForeignKey(Teacher)
+    owner = models.ForeignKey(Teacher, related_name='classes')
     
     # participants au groupe
     # http://stackoverflow.com/questions/9352662/how-to-use-the-reverse-of-a-django-manytomany-relationship
