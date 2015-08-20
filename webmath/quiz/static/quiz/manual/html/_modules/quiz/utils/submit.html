@@ -1,0 +1,323 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>quiz.utils.submit &mdash; documentation Développement d&#39;une application web de création de quiz 0.1</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="documentation Développement d&#39;une application web de création de quiz 0.1" href="../../../index.html"/>
+        <link rel="up" title="Code du module" href="../../index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="../../../index.html" class="icon icon-home"> Développement d'une application web de création de quiz
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rapydscript.html">Présentation de RapydScript</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../rapydscript.html#pourquoi-utiliser-python-plutot-que-javascript">Pourquoi utiliser Python plutôt que Javascript ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rapydscript.html#differentes-manieres-d-aborder-le-probleme-coffeescript-brython-et-rapydscript">Différentes manières d&#8217;aborder le problème : CoffeeScript, Brython et RapydScript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rapydscript.html#introduction-a-rapydscript">Introduction à RapydScript</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../rapydscript.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../rapydscript.html#compilation">Compilation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../rapydscript.html#programmer-avec-rapydscript">Programmer avec RapydScript</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../rapydscript.html#notions-de-base">Notions de base</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../rapydscript.html#programmation-orientee-objet-poo">Programmation orientée objet (POO)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../rapydscript.html#utilisation-de-la-bibliotheque-standard-python">Utilisation de la bibliothèque standard Python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../rapydscript.html#separer-son-code-en-plusieurs-fichiers">Séparer son code en plusieurs fichiers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../rapydscript.html#utilisation-de-fonctions-javascript-natives-ou-provenant-de-librairies-externes">Utilisation de fonctions Javascript natives ou provenant de librairies externes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc-user.html">Documentation utilisateur</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../doc-user.html#professeurs">Professeurs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../doc-user.html#creation-de-quiz">Création de quiz</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../doc-user.html#creation-d-une-question-et-definition-de-ses-caracteristiques">Création d&#8217;une question et définition de ses caractéristiques</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../doc-user.html#affichage-de-l-apercu-et-des-erreurs">Affichage de l&#8217;aperçu et des erreurs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../doc-user.html#utilisation-de-markdown-pour-la-mise-en-forme">Utilisation de Markdown pour la mise en forme</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../doc-user.html#affichage-de-mathematiques">Affichage de mathématiques</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../doc-user.html#enregistrement-et-importation-de-brouillons">Enregistrement et importation de brouillons</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../doc-user.html#envoi-definitif-du-quiz">Envoi définitif du quiz</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../doc-user.html#suivi-des-eleves">Suivi des élèves</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../doc-user.html#liste-des-quiz-crees-par-un-professeur">Liste des quiz créés par un professeur</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../doc-user.html#affichage-des-statistiques-avancees">Affichage des statistiques avancées</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../doc-user.html#etudiants">Étudiants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../doc-user.html#trouver-un-quiz">Trouver un quiz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../doc-user.html#completer-un-quiz-et-correction-automatique">Compléter un quiz et correction automatique</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../doc-user.html#historique-des-resolutions">Historique des résolutions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../global.html">Fonctionnement général de l&#8217;application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../global.html#url">URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../global.html#organisation-des-fichiers-de-l-application">Organisation des fichiers de l&#8217;application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../global.html#bibliotheques-et-frameworks-utilises-dans-l-application">Bibliothèques et frameworks utilisés dans l&#8217;application</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../database.html">Modèle relationnel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../database.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../database.html#utilisation-dans-l-application-de-creation-de-quiz">Utilisation dans l&#8217;application de création de quiz</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../database.html#implementation-dans-django">Implémentation dans Django</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../database.html#schema-global">Schéma global</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../database.html#explications-des-tables">Explications des tables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source.html">Vues Django</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../source.html#concept-de-vue-dans-django">Concept de vue dans Django</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source.html#vues-de-l-application">Vues de l&#8217;application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source.html#les-formulaires">Les formulaires</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source.html#le-package-utils">Le package <strong>utils</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source.html#module-quiz.utils.save">utils/save.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source.html#module-quiz.utils.submit">utils/submit.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source.html#module-quiz.utils.correct">utils/correct.py</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../front-end.html">Outil d&#8217;édition de quiz avec RapydScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../conclusion.html">Conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../end.html">Annexes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../end.html#webographie">Webographie</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">Développement d'une application web de création de quiz</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Code du module</a> &raquo;</li>
+      
+    <li>quiz.utils.submit</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <h1>Code source de quiz.utils.submit</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">quiz.models</span> <span class="kn">import</span> <span class="n">CompletedQuiz</span>
+
+<div class="viewcode-block" id="QuizForms"><a class="viewcode-back" href="../../../source.html#quiz.utils.submit.QuizForms">[docs]</a><span class="k">class</span> <span class="nc">QuizForms</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Le rôle de cette classe est de créer des formulaires Django correspondant aux</span>
+<span class="sd">    questions d&#39;un quiz en particulier puis de fournir des méthodes pour traiter</span>
+<span class="sd">    les données récupérées grâce aux formulaires et de les enregistrer.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">quiz</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Lorsqu&#39;un objet ``QuizForms`` est instancié, les questions correspondant à l&#39;argument ``quiz``</span>
+<span class="sd">        sont récupérées dans la base de données. Ensuite, un formulaire Django est</span>
+<span class="sd">        créé pour chaque question. La création de ce formulaire se fait</span>
+<span class="sd">        en appliquant la méthode ``.create_form()`` aux diférentes questions. Cette</span>
+<span class="sd">        méthode prend en charge l&#39;instanciation du formulaire Django adéquat par rapport</span>
+<span class="sd">        au type de la question à laquelle elle est appliquée. ``.create_form()``</span>
+<span class="sd">        possède un argument, ``data``. Il s&#39;agit des paramètres de la requête HTTP POST.</span>
+<span class="sd">        Si l&#39;objectif est d&#39;afficher un formulaire vide, cet argument vaut toujours</span>
+<span class="sd">        ``None`` et n&#39;est pas utilisé. En revanche, il permet d&#39;accéder aux données entrées par l&#39;utilisateur</span>
+<span class="sd">        après qu&#39;un élève a complété le quiz.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">quiz</span> <span class="o">=</span> <span class="n">quiz</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">l_questions</span> <span class="o">=</span> <span class="n">quiz</span><span class="o">.</span><span class="n">get_questions</span><span class="p">()</span> <span class="c"># Questions composant le quiz</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">l_forms</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="c"># Création des formualaires pour chaque question</span>
+        <span class="k">for</span> <span class="n">question</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">l_questions</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">l_forms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">question</span><span class="o">.</span><span class="n">create_form</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">))</span>
+        
+<div class="viewcode-block" id="QuizForms.are_valid"><a class="viewcode-back" href="../../../source.html#quiz.utils.submit.QuizForms.are_valid">[docs]</a>    <span class="k">def</span> <span class="nf">are_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Applique la méthode ``.is_valid()`` à chaque formulaire correspondant à une</span>
+<span class="sd">        question et renvoie ``True`` si aucun problème ne survient avec la validation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">valid</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="c"># Si .is_valid() renvoie toujours True, .are_valid() renvoie True</span>
+        <span class="k">for</span> <span class="n">form</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">l_forms</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+                <span class="n">valid</span> <span class="o">=</span> <span class="bp">False</span>
+        
+        <span class="k">return</span> <span class="n">valid</span>
+        </div>
+<div class="viewcode-block" id="QuizForms.save_answers"><a class="viewcode-back" href="../../../source.html#quiz.utils.submit.QuizForms.save_answers">[docs]</a>    <span class="k">def</span> <span class="nf">save_answers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Cette méthode permet de sauvegarder dans la base de données les réponses</span>
+<span class="sd">        soumises par le biais des formulaires Django correspondant à chaque question.</span>
+<span class="sd">        </span>
+<span class="sd">        Pour ce faire, une nouvelle entrée dans la table ``CompletedQuiz`` est</span>
+<span class="sd">        d&#39;abord créée. Ensuite, la méthode parcourt parallèlement la liste des questions</span>
+<span class="sd">        du quiz et les formulaires correspondants. Pour chaque question, elle appelle</span>
+<span class="sd">        la méthode ``.save_submit()`` avec en argument les données récupérées à partir</span>
+<span class="sd">        du formulaire associé à la question. La méthode ``.save_submit()`` se charge</span>
+<span class="sd">        de sauvegarder les données concernant les réponses soumises aux différentes</span>
+<span class="sd">        questions. La manière de traiter ces données dépendra du type de question</span>
+<span class="sd">        dont il s&#39;agit. On peut appliquer la méthode ``.save_submit()`` à chacune</span>
+<span class="sd">        des questions du quiz sans se soucier du type car son comportement est défini</span>
+<span class="sd">        différemment selon la classe à laquelle appartient la question.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c"># Nouvelle entrée dans la base de données</span>
+        <span class="n">completed</span> <span class="o">=</span> <span class="n">CompletedQuiz</span><span class="p">(</span><span class="n">id_quiz</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">quiz</span><span class="p">,</span> <span class="n">id_user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+        <span class="n">completed</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        
+        <span class="k">for</span> <span class="n">question</span><span class="p">,</span> <span class="n">form</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">l_questions</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">l_forms</span><span class="p">):</span>
+            <span class="c">#Pour chaque question, on appelle la méthode avec en argument les données du formulaires</span>
+            <span class="c"># correspondant et la référence vers la résolution du quiz (table CompletedQuiz)</span>
+            <span class="n">submit</span> <span class="o">=</span> <span class="n">question</span><span class="o">.</span><span class="n">save_submit</span><span class="p">(</span><span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">,</span> <span class="n">completed</span><span class="p">)</span>
+            
+        <span class="n">completed</span><span class="o">.</span><span class="n">update_total_result</span><span class="p">()</span> <span class="c"># Comptabilisation des points d&#39;après les réponses soumises</span>
+        <span class="n">completed</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            
+        <span class="k">return</span> <span class="n">completed</span></div></div>
+</pre></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Benoît Léo Maillard.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

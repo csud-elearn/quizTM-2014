@@ -1,0 +1,764 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Modèle relationnel &mdash; documentation Développement d&#39;une application web de création de quiz 0.1</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="documentation Développement d&#39;une application web de création de quiz 0.1" href="index.html"/>
+        <link rel="next" title="Vues Django" href="source.html"/>
+        <link rel="prev" title="Fonctionnement général de l’application" href="global.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="index.html" class="icon icon-home"> Développement d'une application web de création de quiz
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rapydscript.html">Présentation de RapydScript</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rapydscript.html#pourquoi-utiliser-python-plutot-que-javascript">Pourquoi utiliser Python plutôt que Javascript ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rapydscript.html#differentes-manieres-d-aborder-le-probleme-coffeescript-brython-et-rapydscript">Différentes manières d&#8217;aborder le problème : CoffeeScript, Brython et RapydScript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rapydscript.html#introduction-a-rapydscript">Introduction à RapydScript</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rapydscript.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rapydscript.html#compilation">Compilation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rapydscript.html#programmer-avec-rapydscript">Programmer avec RapydScript</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rapydscript.html#notions-de-base">Notions de base</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rapydscript.html#programmation-orientee-objet-poo">Programmation orientée objet (POO)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rapydscript.html#utilisation-de-la-bibliotheque-standard-python">Utilisation de la bibliothèque standard Python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rapydscript.html#separer-son-code-en-plusieurs-fichiers">Séparer son code en plusieurs fichiers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rapydscript.html#utilisation-de-fonctions-javascript-natives-ou-provenant-de-librairies-externes">Utilisation de fonctions Javascript natives ou provenant de librairies externes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc-user.html">Documentation utilisateur</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc-user.html#professeurs">Professeurs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="doc-user.html#creation-de-quiz">Création de quiz</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="doc-user.html#creation-d-une-question-et-definition-de-ses-caracteristiques">Création d&#8217;une question et définition de ses caractéristiques</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc-user.html#affichage-de-l-apercu-et-des-erreurs">Affichage de l&#8217;aperçu et des erreurs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc-user.html#utilisation-de-markdown-pour-la-mise-en-forme">Utilisation de Markdown pour la mise en forme</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc-user.html#affichage-de-mathematiques">Affichage de mathématiques</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc-user.html#enregistrement-et-importation-de-brouillons">Enregistrement et importation de brouillons</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc-user.html#envoi-definitif-du-quiz">Envoi définitif du quiz</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="doc-user.html#suivi-des-eleves">Suivi des élèves</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="doc-user.html#liste-des-quiz-crees-par-un-professeur">Liste des quiz créés par un professeur</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc-user.html#affichage-des-statistiques-avancees">Affichage des statistiques avancées</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="doc-user.html#etudiants">Étudiants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="doc-user.html#trouver-un-quiz">Trouver un quiz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doc-user.html#completer-un-quiz-et-correction-automatique">Compléter un quiz et correction automatique</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doc-user.html#historique-des-resolutions">Historique des résolutions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Fonctionnement général de l&#8217;application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="global.html#url">URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="global.html#organisation-des-fichiers-de-l-application">Organisation des fichiers de l&#8217;application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="global.html#bibliotheques-et-frameworks-utilises-dans-l-application">Bibliothèques et frameworks utilisés dans l&#8217;application</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Modèle relationnel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#utilisation-dans-l-application-de-creation-de-quiz">Utilisation dans l&#8217;application de création de quiz</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#implementation-dans-django">Implémentation dans Django</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#schema-global">Schéma global</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#explications-des-tables">Explications des tables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="source.html">Vues Django</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="source.html#concept-de-vue-dans-django">Concept de vue dans Django</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source.html#vues-de-l-application">Vues de l&#8217;application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source.html#les-formulaires">Les formulaires</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source.html#le-package-utils">Le package <strong>utils</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="source.html#module-quiz.utils.save">utils/save.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="source.html#module-quiz.utils.submit">utils/submit.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="source.html#module-quiz.utils.correct">utils/correct.py</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="front-end.html">Outil d&#8217;édition de quiz avec RapydScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusion.html">Conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="end.html">Annexes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="end.html#webographie">Webographie</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Développement d'une application web de création de quiz</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Modèle relationnel</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/database.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="modele-relationnel">
+<h1>Modèle relationnel<a class="headerlink" href="#modele-relationnel" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Une des premières étapes importantes dans le développement d&#8217;un site web est l&#8217;élaboration d&#8217;un modèle relationnel structuré permettant de stocker toutes les données générées par l&#8217;application et de les relier entre elles. Un modèle relationnel décrit les différentes tables de la base de données et les liens entre ces tables. Une table peut être comparée à un tableau contenant des informations. Chaque table comporte une ou plusieurs colonnes, chaque colonne stockant un type de données précisément défini, par exemple un nombre entier ou une chaîne de caractères. Si on imagine une table contenant les données sur les utilisateurs d&#8217;un site, une colonne pourrait alors contenir le pseudonyme d&#8217;un utilisateur et une autre son âge. On peut ensuite ajouter des entrées dans une table, c&#8217;est à dire un ensemble de données dont chaque élément correspond à une colonne de la table. Dans l&#8217;exemple précédent, on ajouterait ainsi une ligne pour chaque utilisateur s&#8217;inscrivant sur le site. Chaque ligne est identifiée grâce à une clé primaire unique, habituellement sous la forme d&#8217;un entier, qui permet de créer des liens entre différentes lignes de différentes tables. Ces liens entre différentes tables sont appelées relations.</p>
+<p>Voici, présenté sous forme simplifiée à l&#8217;aide d&#8217;un tableau, comment on pourrait stocker les données concernant des quiz et leurs créateurs :</p>
+<p><strong>Table contenant les utilisateurs :</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="48%" />
+<col width="34%" />
+<col width="17%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Clé primaire</th>
+<th class="head">Prénom</th>
+<th class="head">Âge</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1</td>
+<td>Paul</td>
+<td>26</td>
+</tr>
+<tr class="row-odd"><td>2</td>
+<td>Juliette</td>
+<td>22</td>
+</tr>
+<tr class="row-even"><td>3</td>
+<td>Marc</td>
+<td>48</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table contenant les quiz :</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="54%" />
+<col width="17%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Clé primaire</th>
+<th class="head">Titre du quiz</th>
+<th class="head">Auteur</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1</td>
+<td>Fonctions exponentielles</td>
+<td>3</td>
+</tr>
+<tr class="row-odd"><td>2</td>
+<td>Logarithmes</td>
+<td>3</td>
+</tr>
+<tr class="row-even"><td>3</td>
+<td>Comportement à l&#8217;infini</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<p>Ici, le premier quiz a comme titre <em>Fonctions exponentielles</em>, comporte 5 questions et a été créé par Marc (Utilisateur 3).</p>
+<p>Une fois que le modèle relationnel a été élaboré, on peut créer une base de données sous forme de fichier. Le langage SQL permet de créer les tables d&#8217;une base de données, d&#8217;y enregistrer des informations et de faire des requêtes, c&#8217;est à dire récupérer des données enregistrées. Un logiciel ou une application web peut ainsi communiquer avec une base de données et stocker les informations nécessaires de manière permanente.</p>
+<p>Django offre la possibilité de créer une base de données et d&#8217;interagir avec celle-ci par le biais d&#8217;une ORM (Object Relational Mapper), on peut donc éviter l&#8217;utilisation du langage SQL et communiquer avec la base de données avec des objets et des méthodes Python. Cet aspect de Django sera abordé un peu plus loin.</p>
+</div>
+<div class="section" id="utilisation-dans-l-application-de-creation-de-quiz">
+<h2>Utilisation dans l&#8217;application de création de quiz<a class="headerlink" href="#utilisation-dans-l-application-de-creation-de-quiz" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="implementation-dans-django">
+<h3>Implémentation dans Django<a class="headerlink" href="#implementation-dans-django" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Comme indiqué précédemment, Django fournit une interface de haut niveau pour créer et interagir avec une base de données. On peut écrire nos tables avec une architecture orientée objet, que Django &#8220;traduira&#8221; ensuite en SQL. Ainsi, pour créer une table dans notre base de données, il suffit de définir une classe héritant de <code class="docutils literal"><span class="pre">models.Model</span></code> et d&#8217;initialiser des variables de classes pour ajouter des colonnes à la table. Ainsi, par exemple, pour implémenter une table contenant les données générales d&#8217;un quiz, il suffit d&#8217;écrire le code suivant :</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Quiz</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span> <span class="c">#Infos générales sur le quiz</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span> <span class="c">#Colonne contenant une chaîne de caractères</span>
+    <span class="n">creation_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">()</span> <span class="c">#Colonne contenant une date/heure</span>
+    <span class="n">code</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span> <span class="c">#Colonne contenant une chaîne de caractères</span>
+</pre></div>
+</div>
+<p>Les objets comme <code class="docutils literal"><span class="pre">CharField()</span></code> ou <code class="docutils literal"><span class="pre">DateTimeField()</span></code> permettent de définir des champs d&#8217;un type de données précis. Une liste complète des types de champs est disponible sur <a class="reference external" href="https://docs.djangoproject.com/en/1.7/ref/models/fields/#field-types">la documentation officielle de Django</a> <a class="footnote-reference" href="#id4" id="id1">[1]</a></p>
+</div>
+<div class="section" id="schema-global">
+<h3>Schéma global<a class="headerlink" href="#schema-global" title="Lien permanent vers ce titre">¶</a></h3>
+<p>L&#8217;élaboration d&#8217;un schéma relationnel n&#8217;est pas chose facile car il est nécessaire que celui-ci réponde à certains critères. Il doit être relativement simple afin de garder une certaine flexibilité pour pouvoir être modifié plus tard, car il est souvent difficile de prédire à l&#8217;avance les difficultés liées au stockage des données qui pourraient être rencontrées au cours du développement. Il doit également être possible d&#8217;ajouter des fonctionnalités sans devoir revoir toute l&#8217;organisation du schéma ou créer un trop grand nombre de nouvelles tables. Malgré cela, le modèle doit aussi correspondre aux exigences des fonctionnalités de l&#8217;application et doit inclure toutes les relations nécessaires. Il s&#8217;agit donc d&#8217;une étape cruciale qui peut s&#8217;avérer décisive pour la suite du développement.</p>
+<p>Voici le diagramme des tables utilisés pour stocker les données des quiz :</p>
+<div class="figure align-center">
+<img alt="_images/quiz-models.png" src="_images/quiz-models.png" />
+</div>
+</div>
+<div class="section" id="explications-des-tables">
+<h3>Explications des tables<a class="headerlink" href="#explications-des-tables" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Dans ce chapitre sont présentés tous les modèles définis dans le fichier <em>models.py</em>.
+L&#8217;utilisation d&#8217;une architecture orientée objet pour la création de tables dans la base
+de données permet l&#8217;utilisation de méthodes, qui se révèlent très pratiques lorsqu&#8217;on
+veut récupérer des informations équivalentes depuis des éléments provenant de tables
+différentes. Par exemple, si on veut afficher le résultat moyen obtenu pour chacune
+des questions d&#8217;un quiz, il est très intéressant de pouvoir appliquer la même méthode
+à toutes les questions pour récupérer leur moyenne sans se soucier de la classe à laquelle
+ces questions appartiennent.</p>
+<dl class="class">
+<dt id="quiz.models.Quiz">
+<em class="property">class </em><code class="descclassname">quiz.models.</code><code class="descname">Quiz</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#Quiz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.Quiz" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>La table <code class="docutils literal"><span class="pre">Quiz</span></code> est la table centrale de l&#8217;application et toutes les autres 
+tables s&#8217;organisent autour d&#8217;elle. Elle comporte trois colonnes importantes :
+une contenant le titre, une autre contenant la date et l&#8217;heure de création 
+ainsi qu&#8217;une colonne 
+dans laquelle est stockée le nombre maximal de points pouvant être obtenus pour
+le quiz en question. Cette table comporte également une relation vers une table
+Teacher  qui permet d&#8217;intégrer le système d&#8217;authentification des utilisateurs.</p>
+<p>Avec django, il est possible d&#8217;initialiser automatiquement un champ <code class="docutils literal"><span class="pre">DateTimeField</span></code> à la date/heure du moment où le modèle est instancié avec le paramètre <code class="docutils literal"><span class="pre">auto_now_add</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">creation_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">auto_now_add</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="quiz.models.Quiz.average_result">
+<code class="descname">average_result</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#Quiz.average_result"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.Quiz.average_result" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Récupère dans la base de données toutes les résolutions se rattachant
+au quiz en question puis calcule la moyenne des résultats obtenus sur la base
+du résultat de chaque élève et le nombre de résolutions envoyées.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quiz.models.Quiz.get_questions">
+<code class="descname">get_questions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#Quiz.get_questions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.Quiz.get_questions" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Récupère la liste de toutes les questions du quiz et les trie dans l&#8217;ordre
+d&#8217;apparition dans le quiz.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quiz.models.Quiz.length">
+<code class="descname">length</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#Quiz.length"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.Quiz.length" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Retourne le nombre de questions qui composent le quiz.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="quiz.models.CompletedQuiz">
+<em class="property">class </em><code class="descclassname">quiz.models.</code><code class="descname">CompletedQuiz</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#CompletedQuiz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.CompletedQuiz" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Comme on peut le voir sur le diagramme, à l&#8217;instar de <code class="docutils literal"><span class="pre">Quiz</span></code>, cette table
+occupe aussi un rôle central dans le modèle relationnel. Elle permet de faire
+le lien entre un quiz créé par un professeur et les réponses soumises à ce quiz
+par les étudiants. Elle possède donc une relation vers une table <code class="docutils literal"><span class="pre">Student</span></code>,
+qui définit l&#8217;étudiant ayant répondu au quiz. De l&#8217;autre côté, cette table pointe
+vers <code class="docutils literal"><span class="pre">Quiz</span></code> et définit logiquement le quiz auquel l&#8217;étudiant a répondu. Un seul
+champ est présent : la date et l&#8217;heure de la soumission des réponses.</p>
+<dl class="method">
+<dt id="quiz.models.CompletedQuiz.get_questions_submits">
+<code class="descname">get_questions_submits</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#CompletedQuiz.get_questions_submits"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.CompletedQuiz.get_questions_submits" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Renvoie la liste des entrées des tables <code class="docutils literal"><span class="pre">SqSubmit</span></code>, <code class="docutils literal"><span class="pre">QcmSubmitOne</span></code> et
+<code class="docutils literal"><span class="pre">QcmSubmitMulti</span></code> correspondant à la résolution <code class="docutils literal"><span class="pre">self</span></code>.
+Chaque élément de cette liste représente concrètement la réponse soumise à
+une question du quiz.</p>
+<p>Cette liste est triée selon l&#8217;ordre d&#8217;apparition des questions correspondant
+réponses proposées.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quiz.models.CompletedQuiz.update_total_result">
+<code class="descname">update_total_result</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#CompletedQuiz.update_total_result"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.CompletedQuiz.update_total_result" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Met à jour le nombre de points obtenus pour la résolution du quiz en entier
+en fonction des points obtenus pour chaque réponse soumise aux questions
+du quiz.</p>
+<p>Pour comptabiliser le nombre total de points obtenus, cette méthode parcourt
+la liste des réponses apportées avec la méthode <code class="docutils literal"><span class="pre">.get_questions_submits()</span></code>
+appliquée à la résolution en question.</p>
+<p>Cette méthode peut être utilisée lorsqu&#8217;une résolution vient d&#8217;être soumise
+par un élève pour comptabiliser une première fois les points obtenus ou 
+lorsqu&#8217;une entrée dans <code class="xref py py-class docutils literal"><span class="pre">SqAnswer</span></code> a été ajoutée pour mettre à jour les
+statistiques en fonction des changements.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="quiz.models.QuizDraft">
+<em class="property">class </em><code class="descclassname">quiz.models.</code><code class="descname">QuizDraft</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#QuizDraft"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.QuizDraft" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Cette table est un peu isolée dans le schéma relationnel et n&#8217;a qu&#8217;une fonction :
+enregistrer le code qu&#8217;un quiz qu&#8217;un professeur n&#8217;a pas terminé et lui offrir
+la possibilité de le récupérer plus tard pour continuer son travail.
+Outre la relation vers la table <code class="docutils literal"><span class="pre">Teacher</span></code> et la colonne stockant le code du
+quiz, une colonne permet de stocker un titre pour pouvoir identifier rapidement
+un brouillon.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="quiz.models.SimpleQuestion">
+<em class="property">class </em><code class="descclassname">quiz.models.</code><code class="descname">SimpleQuestion</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SimpleQuestion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SimpleQuestion" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Cette table contient les informations générales sur les questions simples du quiz.
+Ces questions sont présentées sous la forme d&#8217;un simple champ de texte lorsqu&#8217;un
+élève complète le quiz. Une première colonne <code class="docutils literal"><span class="pre">title</span></code> stocke l&#8217;énoncé de la
+question, <code class="docutils literal"><span class="pre">comment</span></code> permet d&#8217;inclure un commentaire affiché lors de la
+correction automatique du quiz (par exemple la démonstration d&#8217;une égalité),
+<code class="docutils literal"><span class="pre">points</span></code> définit le nombre de points attribués sur cette question et <code class="docutils literal"><span class="pre">number</span></code>
+enregistre la position à laquelle doit apparaître la question dans le quiz. Une relation
+désigne le quiz qui intègre la question.</p>
+<dl class="method">
+<dt id="quiz.models.SimpleQuestion.average_result">
+<code class="descname">average_result</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SimpleQuestion.average_result"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SimpleQuestion.average_result" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Renvoie le nombre moyen de points obtenus pour la question en se basant sur
+le nombre total de réponses soumises et sur la somme de tous les points obtenus.
+La moyenne est ensuite arrondie à deux chiffres après la virgule pour éviter
+tout problème d&#8217;affichage.</p>
+<p>Au cas où aucune réponse n&#8217;a encore été soumise, cette méthode retourne
+simplement la chaîne <code class="docutils literal"><span class="pre">--</span></code> qui peut directement être utilisée dans le template.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quiz.models.SimpleQuestion.create_form">
+<code class="descname">create_form</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SimpleQuestion.create_form"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SimpleQuestion.create_form" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Instancie un formulaire Django personnalisé de type <code class="docutils literal"><span class="pre">TextForm</span></code> correspondant
+à la question. Ce type de formulaire est défini dans py:mod:<cite>forms</cite> et spécialement
+conçu pour les questions à réponse courte.</p>
+<p>Lors de l&#8217;instanciation, plusieurs arguments sont fournis. Premièrement,
+on indique la question <code class="docutils literal"><span class="pre">self</span></code> pour que des informations supplémentaires
+la concernant puissent éventuellement être obtenues depuis le formulaire.
+Ensuite, l&#8217;index de la position de la question dans le quiz est attribué à
+l&#8217;argument <code class="docutils literal"><span class="pre">prefix</span></code>. Cet argument permet d&#8217;identifier la question correspondant
+au formulaire lorsque les données entrées par l&#8217;utilisateur sont récupérées.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quiz.models.SimpleQuestion.get_wrong_answers">
+<code class="descname">get_wrong_answers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SimpleQuestion.get_wrong_answers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SimpleQuestion.get_wrong_answers" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Retourne la liste de toutes les réponses incorrectes soumises pour la question <code class="docutils literal"><span class="pre">self</span></code>.
+Pour éviter les doublons, les réponses équivalentes sont renvoyées une seule fois.
+Par exemple, si deux réponses valent <code class="docutils literal"><span class="pre">&quot;5&quot;</span></code>, seule la première sera renvoyée par
+cette méthode.</p>
+<p>Comme cette méthode est utilisée pour afficher les réponses soumises incorrectes pouvant
+potentiellement être définies comme correctes par la suite au cas où le 
+professeur les juge acceptables, les réponses vides sont aussi exclues 
+puisqu&#8217;il n&#8217;y aurait pas de sens à les admettre dans les solutions.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quiz.models.SimpleQuestion.save_submit">
+<code class="descname">save_submit</code><span class="sig-paren">(</span><em>data</em>, <em>completed</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SimpleQuestion.save_submit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SimpleQuestion.save_submit" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Cette méthode permet d&#8217;enregistrer dans la base de données une réponse soumise
+par l&#8217;utilisateur à la question <code class="docutils literal"><span class="pre">self</span></code> en créant une entrée dans la table
+<code class="docutils literal"><span class="pre">SqSubmit</span></code>.</p>
+<p>L&#8217;argument <code class="docutils literal"><span class="pre">data</span></code> est un dictionnaire contenant les paramètres de la 
+requête HTTP qui concernent le formulaire créé pour la question. On peut donc
+facilement accéder au texte entré par l&#8217;élève avec la clé <code class="docutils literal"><span class="pre">'answer'</span></code>.</p>
+<p>L&#8217;argument <code class="docutils literal"><span class="pre">completed</span></code> contient la référence vers l&#8217;élément de la table
+<code class="docutils literal"><span class="pre">CompletedQuiz</span></code> qui comprend les données de la résolution de l&#8217;élève. On
+peut ainsi facilement relier l&#8217;entrée créée dans <code class="docutils literal"><span class="pre">SqSubmit</span></code> avec la résolution
+de l&#8217;élève.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quiz.models.SimpleQuestion.update_question_results">
+<code class="descname">update_question_results</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SimpleQuestion.update_question_results"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SimpleQuestion.update_question_results" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Permet de réévaluer toutes les réponses soumises pour la question après
+l&#8217;ajout d&#8217;une solution correcte pour corriger les statistiques.</p>
+<p>Pour ceci, la méthode récupère la liste des réponses soumises à la question
+dans la table <code class="docutils literal"><span class="pre">SqSubmit</span></code>. Elle applique la méthode <code class="docutils literal"><span class="pre">SqSubmit.save_result()</span></code> à 
+chacune d&#8217;entre elles. De plus,
+comme le résultat de la résolution peut changer, il faut aussi mettre à jour
+le résultat total obtenu pour la résolution (table <code class="docutils literal"><span class="pre">CompletedQuiz</span></code>) liée à chaque réponse soumise.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="quiz.models.SqAnswer">
+<em class="property">class </em><code class="descclassname">quiz.models.</code><code class="descname">SqAnswer</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SqAnswer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SqAnswer" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Cette table contient simplement la solution de la question définie par la
+relation vers la table <code class="docutils literal"><span class="pre">SimpleQuestion</span></code>. Il est important de noter qu&#8217;il
+peut y avoir plusieurs solutions possibles pour une question et c&#8217;est la raison
+pour laquelle la solution n&#8217;est pas simplement stockée dans une colonne de
+<a class="reference internal" href="front-end.html#SimpleQuestion" title="SimpleQuestion"><code class="xref py py-class docutils literal"><span class="pre">SimpleQuestion</span></code></a>.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="quiz.models.SqRegexAnswer">
+<em class="property">class </em><code class="descclassname">quiz.models.</code><code class="descname">SqRegexAnswer</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SqRegexAnswer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SqRegexAnswer" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Table très similaire à <code class="docutils literal"><span class="pre">SqAnswer</span></code> sauf qu&#8217;elle contient une solution sous la
+forme d&#8217;une expression régulière. Cette solution offre plus de souplesse
+dans la correction des réponses soumises par les étudiants.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="quiz.models.SqSubmit">
+<em class="property">class </em><code class="descclassname">quiz.models.</code><code class="descname">SqSubmit</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SqSubmit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SqSubmit" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Il s&#8217;agit simplement de la réponse apportée à une question simple. La table
+a donc un champ <code class="docutils literal"><span class="pre">text</span></code> qui contient la réponse soumise par l&#8217;élève et un champ
+<code class="docutils literal"><span class="pre">result</span></code> qui stocke le nombre de points obtenus pour la question. Elle possède
+aussi deux relations, une vers <code class="docutils literal"><span class="pre">SimpleQuestion</span></code> pour préciser la question auquel
+l&#8217;élève a répondu, et une autre vers <code class="docutils literal"><span class="pre">CompletedQuiz</span></code>. La réponse soumise par l&#8217;élève
+sera ensuite comparée à(aux) solution(s) enregistrées pour déterminer si les points
+sont attribués ou non.</p>
+<dl class="method">
+<dt id="quiz.models.SqSubmit.build_correct">
+<code class="descname">build_correct</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SqSubmit.build_correct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SqSubmit.build_correct" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Instancie et retourne un objet <code class="xref py py-class docutils literal"><span class="pre">CorrectSq</span></code> correspondant à la réponse soumise <code class="docutils literal"><span class="pre">self</span></code>.
+La classe <code class="xref py py-class docutils literal"><span class="pre">CorrectSq</span></code> permet un accès plus rapide aux données nécessaires à
+l&#8217;affichage de la correction.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quiz.models.SqSubmit.correct">
+<code class="descname">correct</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SqSubmit.correct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SqSubmit.correct" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Détermine si la réponse soumise est correcte en vérifiant qu&#8217;elle correspondent à
+une des solutions de la question.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quiz.models.SqSubmit.get_corrections">
+<code class="descname">get_corrections</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SqSubmit.get_corrections"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SqSubmit.get_corrections" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Renvoie la liste des solutions correctes pour la question</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quiz.models.SqSubmit.save_result">
+<code class="descname">save_result</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SqSubmit.save_result"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SqSubmit.save_result" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Comptabilise et enregistre les points obtenus pour la réponse soumise. Si la réponse soumise
+est correcte, tous les points sont attribués. Dans le cas contraire,
+aucun point n&#8217;est attribué.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quiz.models.SqSubmit.set_as_correct">
+<code class="descname">set_as_correct</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#SqSubmit.set_as_correct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.SqSubmit.set_as_correct" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Si la réponse soumise à la question avait été définie comme incorrecte
+lors de la correction automatique, cette méthode permet d&#8217;ajouter la réponse
+soumise aux solutions correctes de la question.</p>
+<p>Toutes les réponses soumises pour la question sont ensuite rééavaluées pour
+mettre à jour les statistiques.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="quiz.models.Qcm">
+<em class="property">class </em><code class="descclassname">quiz.models.</code><code class="descname">Qcm</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#Qcm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.Qcm" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>La table Qcm permet de stocker les informations générales à propos des questions à choix multiples.
+Ces questions sont affichées sous forme de boutons radio ou de cases à cocher en HTML.
+Cette table reprend plusieurs colonnes de la table <code class="docutils literal"><span class="pre">SimpleQuestion</span></code>. C&#8217;est
+pourquoi ces deux tables héritent en fait de la même classe dans Django <code class="docutils literal"><span class="pre">QuizQuestion</span></code>.
+Cette dernière n&#8217;est pas à proprement parler un modèle, puisqu&#8217;elle ne correspond
+à aucune table de la base de données. C&#8217;est une classe abstraite, c&#8217;est à dire
+que d&#8217;autres classes peuvent hériter de ses caractéristiques mais qu&#8217;elle ne
+sera jamais directement instanciée.</p>
+<p>Dans Django, la définition d&#8217;un modèle de ce type se fait en déclarant une classe
+interne <code class="docutils literal"><span class="pre">Meta</span></code> et en initialisant la variable de classe <code class="docutils literal"><span class="pre">abstract</span></code> à <code class="docutils literal"><span class="pre">True</span></code> :</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+    <span class="n">abstract</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+</div>
+<p>En plus des colonnes héritées de <code class="docutils literal"><span class="pre">QuizQuestion`</span></code>, <code class="docutils literal"><span class="pre">Qcm</span></code> possède un champ
+de type booléen. Il s&#8217;agit de <code class="docutils literal"><span class="pre">multi_answers</span></code>, qui détermine si plusieurs
+options peuvent être cochées ou non. Si ce champ vaut <code class="docutils literal"><span class="pre">True</span></code>, la question
+sera affichée sous forme de cases à cocher en HTML. Dans le cas contraire, elle
+sera affichée à l&#8217;aide de boutons radio.</p>
+<dl class="method">
+<dt id="quiz.models.Qcm.average_result">
+<code class="descname">average_result</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#Qcm.average_result"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.Qcm.average_result" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Récupère toutes les réponses soumises pour la question et renvoie la moyenne
+arrondie à deux chiffres après la virgule sur la base du nombre de réponses
+proposées et sur la somme des résultats obtenus.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quiz.models.Qcm.create_form">
+<code class="descname">create_form</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#Qcm.create_form"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.Qcm.create_form" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Retourne un formulaire Django permettant à un étudiant de répondre à la question
+<code class="docutils literal"><span class="pre">self</span></code>. Le formulaire sera de type <code class="docutils literal"><span class="pre">RadioForm</span></code> si un seul choix
+peut être sélectionné et de type <code class="docutils literal"><span class="pre">CheckboxForm</span></code> si la question autorise
+l&#8217;étudiant à cocher plusieurs options.</p>
+<p>Les arguments fournis lors de l&#8217;instanciation du formulaire sont analogues
+à ceux qui sont donnés pour l&#8217;instanciation d&#8217;un <code class="docutils literal"><span class="pre">TextForm</span></code> dans <code class="xref py py-meth docutils literal"><span class="pre">SimpleQuestion.create_form()</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quiz.models.Qcm.save_submit">
+<code class="descname">save_submit</code><span class="sig-paren">(</span><em>data</em>, <em>completed</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#Qcm.save_submit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.Qcm.save_submit" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Enregistre une nouvelle entrée dans la table <code class="xref py py-class docutils literal"><span class="pre">QcmSubmitMulti</span></code>
+ou <code class="xref py py-class docutils literal"><span class="pre">QcmSubmitOne</span></code> selon qu&#8217;il s&#8217;agisse d&#8217;une question avec
+plusieurs options correctes ou une seule. Ces tables permettent de stocker
+le(s) choix sélectionné(s) par l&#8217;étudiant pour la question <code class="docutils literal"><span class="pre">self</span></code>.</p>
+<p>La récupération des données du formulaire à partir de l&#8217;argument <code class="docutils literal"><span class="pre">data</span></code>
+et l&#8217;instanciation du modèle est analogue à la manipulation effectuée dans <code class="docutils literal"><span class="pre">.save_submit()</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="quiz.models.QcmChoice">
+<em class="property">class </em><code class="descclassname">quiz.models.</code><code class="descname">QcmChoice</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#QcmChoice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.QcmChoice" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Cette table contient les différents choix possibles pour la question définie
+par la relation vers <code class="docutils literal"><span class="pre">Qcm</span></code>. Elle est formée de deux champs, le premier contenant
+le texte du choix et l&#8217;autre définissant par un booléen s&#8217;il est correct ou
+non de cocher ce choix. Une question à choix multiples doit avoir au moins
+deux choix possibles et au moins un choix correct. Si <code class="docutils literal"><span class="pre">multi_answers</span></code> vaut
+<code class="docutils literal"><span class="pre">False</span></code> dans <code class="docutils literal"><span class="pre">Qcm</span></code>, une seule option peut être correcte puisque l&#8217;étudiant
+n&#8217;a la possibilité de cocher qu&#8217;une seule option.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">D&#8217;un point de vue purement relationnel, comme il est indiqué sur
+le diagramme, cette table possède une relation vers une table qui sert
+d&#8217;intermédiaire entre <code class="docutils literal"><span class="pre">QcmChoice</span></code> et <code class="docutils literal"><span class="pre">QcmSubmitMulti</span></code>. Cette table intermédiaire
+crée en fait une relation de type <em>complexe-complexe</em>. L&#8217;implémentation de ce
+type de relation avec Django sera abordée plus loin.</p>
+</div>
+<dl class="method">
+<dt id="quiz.models.QcmChoice.checked">
+<code class="descname">checked</code><span class="sig-paren">(</span><em>qcmsubmit</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#QcmChoice.checked"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.QcmChoice.checked" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Détermine si le choix a été sélectionné ou non dans la réponse soumise
+<code class="docutils literal"><span class="pre">qcmsubmit</span></code>.</p>
+<p>S&#8217;il la question peut admettre plusieurs options correctes, deux conditions doivent
+être remplies. D&#8217;abord, au moins un choix doit avoir été coché dans <code class="docutils literal"><span class="pre">qcmsubmit</span></code>.
+Cette vérification est nécessaire car le champ <code class="docutils literal"><span class="pre">qcmsubmit.id_selected</span></code> peut
+valoir <code class="docutils literal"><span class="pre">null</span></code> dans la base de données. Ensuite, il suffit de regarder
+si le choix se trouve dans la liste des options sélectionnés avec la méthode
+<code class="docutils literal"><span class="pre">qcmsubmit.id_selected.all()</span></code>.</p>
+<p>Dans le cas d&#8217;une question avec une seule réponse correcte, la méthode
+vérifie simplement que l&#8217;élément sélectionné corresponde au choix défini comme
+correct.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quiz.models.QcmChoice.correct_submit">
+<code class="descname">correct_submit</code><span class="sig-paren">(</span><em>qcmsubmit</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#QcmChoice.correct_submit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.QcmChoice.correct_submit" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Détermine le choix <code class="docutils literal"><span class="pre">self</span></code> a été coché correctement dans la réponse
+soumise <code class="docutils literal"><span class="pre">qcmsubmit</span></code>. Si l&#8217;option a été cochée et qu&#8217;elle est définie
+comme valide, la méthode renvoie <code class="docutils literal"><span class="pre">True</span></code>. Si l&#8217;option est cochée mais
+définie comme invalide, la valeur de retour sera cette fois <code class="docutils literal"><span class="pre">False</span></code>.
+Si l&#8217;élève n&#8217;a pas coché l&#8217;option, le raisonnement se fera de manière analogue
+mais dans le sens inverse.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="quiz.models.QcmSubmit">
+<em class="property">class </em><code class="descclassname">quiz.models.</code><code class="descname">QcmSubmit</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#QcmSubmit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.QcmSubmit" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p><code class="docutils literal"><span class="pre">QcmSubmit</span></code> est une classe abstraite dont héritent <code class="xref py py-class docutils literal"><span class="pre">QcmSubmitOne</span></code>
+et :ref:class`QcmSubmitMulti`. Elle ne définit donc pas une table dans la base
+de données mais rassemble les attributs communs aux deux classes filles.</p>
+<p>Les tables <code class="xref py py-class docutils literal"><span class="pre">QcmSubmitOne</span></code> et :py:class`QcmSubmitMulti` sont très similaires.
+La première contient une relation
+vers l&#8217;option sélectionnée par l&#8217;étudiant dans une question à choix multiples
+avec <code class="docutils literal"><span class="pre">multi_answers</span></code> valant <code class="docutils literal"><span class="pre">False`</span></code>, tandis que <code class="docutils literal"><span class="pre">QcmSubmitMulti</span></code> peut
+contenir des relations vers plusieurs options et est utilisée lorsque <code class="docutils literal"><span class="pre">multi_answers</span></code> vaut
+<code class="docutils literal"><span class="pre">True</span></code>. Il s&#8217;agit donc dans le premier cas d&#8217;une relation <em>complexe-simple</em>,
+puique chaque entrée pointe vers une seule option. Dans le deuxième
+cas, c&#8217;est une relation de type <em>complexe-complexe</em>, puisqu&#8217;il est possible qu&#8217;une
+entrée soit reliée à plus d&#8217;une option.</p>
+<p>Dans Django, voici comment seront définies ces relations :</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">id_selected</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">QcmChoice</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c">#Relation complexe-simple</span>
+<span class="n">id_selected</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="n">QcmChoice</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c">#Relation complexe-complexe</span>
+</pre></div>
+</div>
+<p>L&#8217;argument <code class="docutils literal"><span class="pre">null</span></code> vaut ici <code class="docutils literal"><span class="pre">True</span></code> car il se peut que l&#8217;étudiant ne coche aucun choix.</p>
+<p>En plus de ces relations, ces tables enregistrent aussi le nombre de points obtenus
+par l&#8217;étudiant pour la question dans la colonne <code class="docutils literal"><span class="pre">result</span></code>. Deux autres relations
+sont présentes : la première fait le lien avec la résolution dans la table <a href="#id2"><span class="problematic" id="id3">:ref:class:`CompletedQuiz`</span></a>
+et la deuxième relie l&#8217;entrée avec la question à laquelle la réponse est apportée.</p>
+<dl class="method">
+<dt id="quiz.models.QcmSubmit.build_correct">
+<code class="descname">build_correct</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#QcmSubmit.build_correct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.QcmSubmit.build_correct" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Instancie et retourne un objet <code class="xref py py-class docutils literal"><span class="pre">utils.correct.CorrectQcm</span></code> correspondant à la réponse soumise.
+La classe <code class="xref py py-class docutils literal"><span class="pre">utils.correct.CorrectQcm</span></code> permet un accès plus rapide aux données nécessaires
+à l&#8217;affichage de la solution depuis le template.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="quiz.models.QcmSubmitMulti">
+<em class="property">class </em><code class="descclassname">quiz.models.</code><code class="descname">QcmSubmitMulti</code><span class="sig-paren">(</span><em>id</em>, <em>result</em>, <em>id_submitted_quiz_id</em>, <em>id_question_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#QcmSubmitMulti"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.QcmSubmitMulti" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><dl class="method">
+<dt id="quiz.models.QcmSubmitMulti.save_result">
+<code class="descname">save_result</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#QcmSubmitMulti.save_result"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.QcmSubmitMulti.save_result" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Comptabilise et enregistre les points obtenus par rapport aux choix cochés.</p>
+<p>Cette méthode parcourt tous les choix possibles pour la question
+<code class="docutils literal"><span class="pre">self.id_question</span></code> récupérés avec <code class="docutils literal"><span class="pre">.get_choices()</span></code>. Pour chaque
+choix, elle utilise la méthode <code class="docutils literal"><span class="pre">.correct_submit()</span></code> pour
+vérifier que le choix a été coché correctement. L&#8217;étudiant obtient une part
+des points pour chaque choix correct.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="quiz.models.QcmSubmitOne">
+<em class="property">class </em><code class="descclassname">quiz.models.</code><code class="descname">QcmSubmitOne</code><span class="sig-paren">(</span><em>id</em>, <em>result</em>, <em>id_submitted_quiz_id</em>, <em>id_question_id</em>, <em>id_selected_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#QcmSubmitOne"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.QcmSubmitOne" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><dl class="method">
+<dt id="quiz.models.QcmSubmitOne.save_result">
+<code class="descname">save_result</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/quiz/models.html#QcmSubmitOne.save_result"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#quiz.models.QcmSubmitOne.save_result" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Comptabilise et enregistre les points obtenus par rapport au choix sélectionné.</p>
+<p>Si le choix sélectionné correspond à la solution, tous les points sont attribués.
+Si aucune option n&#8217;est choisie, l&#8217;étudiant obtient automatiquement zéro point.</p>
+</dd></dl>
+
+</dd></dl>
+
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://docs.djangoproject.com/en/1.7/ref/models/fields/#field-types">https://docs.djangoproject.com/en/1.7/ref/models/fields/#field-types</a>. Consulté le 29 mars 2015.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="source.html" class="btn btn-neutral float-right" title="Vues Django" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="global.html" class="btn btn-neutral" title="Fonctionnement général de l’application" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Benoît Léo Maillard.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

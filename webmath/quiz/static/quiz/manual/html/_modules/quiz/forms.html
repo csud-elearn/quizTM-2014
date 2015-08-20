@@ -1,0 +1,341 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>quiz.forms &mdash; documentation Développement d&#39;une application web de création de quiz 0.1</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="documentation Développement d&#39;une application web de création de quiz 0.1" href="../../index.html"/>
+        <link rel="up" title="Code du module" href="../index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="../../index.html" class="icon icon-home"> Développement d'une application web de création de quiz
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rapydscript.html">Présentation de RapydScript</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../rapydscript.html#pourquoi-utiliser-python-plutot-que-javascript">Pourquoi utiliser Python plutôt que Javascript ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rapydscript.html#differentes-manieres-d-aborder-le-probleme-coffeescript-brython-et-rapydscript">Différentes manières d&#8217;aborder le problème : CoffeeScript, Brython et RapydScript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rapydscript.html#introduction-a-rapydscript">Introduction à RapydScript</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../rapydscript.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../rapydscript.html#compilation">Compilation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../rapydscript.html#programmer-avec-rapydscript">Programmer avec RapydScript</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../rapydscript.html#notions-de-base">Notions de base</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rapydscript.html#programmation-orientee-objet-poo">Programmation orientée objet (POO)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rapydscript.html#utilisation-de-la-bibliotheque-standard-python">Utilisation de la bibliothèque standard Python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rapydscript.html#separer-son-code-en-plusieurs-fichiers">Séparer son code en plusieurs fichiers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../rapydscript.html#utilisation-de-fonctions-javascript-natives-ou-provenant-de-librairies-externes">Utilisation de fonctions Javascript natives ou provenant de librairies externes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../doc-user.html">Documentation utilisateur</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../doc-user.html#professeurs">Professeurs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../doc-user.html#creation-de-quiz">Création de quiz</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../doc-user.html#creation-d-une-question-et-definition-de-ses-caracteristiques">Création d&#8217;une question et définition de ses caractéristiques</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../doc-user.html#affichage-de-l-apercu-et-des-erreurs">Affichage de l&#8217;aperçu et des erreurs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../doc-user.html#utilisation-de-markdown-pour-la-mise-en-forme">Utilisation de Markdown pour la mise en forme</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../doc-user.html#affichage-de-mathematiques">Affichage de mathématiques</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../doc-user.html#enregistrement-et-importation-de-brouillons">Enregistrement et importation de brouillons</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../doc-user.html#envoi-definitif-du-quiz">Envoi définitif du quiz</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../doc-user.html#suivi-des-eleves">Suivi des élèves</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../doc-user.html#liste-des-quiz-crees-par-un-professeur">Liste des quiz créés par un professeur</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../doc-user.html#affichage-des-statistiques-avancees">Affichage des statistiques avancées</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../doc-user.html#etudiants">Étudiants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../doc-user.html#trouver-un-quiz">Trouver un quiz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../doc-user.html#completer-un-quiz-et-correction-automatique">Compléter un quiz et correction automatique</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../doc-user.html#historique-des-resolutions">Historique des résolutions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../global.html">Fonctionnement général de l&#8217;application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../global.html#url">URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../global.html#organisation-des-fichiers-de-l-application">Organisation des fichiers de l&#8217;application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../global.html#bibliotheques-et-frameworks-utilises-dans-l-application">Bibliothèques et frameworks utilisés dans l&#8217;application</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../database.html">Modèle relationnel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../database.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../database.html#utilisation-dans-l-application-de-creation-de-quiz">Utilisation dans l&#8217;application de création de quiz</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../database.html#implementation-dans-django">Implémentation dans Django</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../database.html#schema-global">Schéma global</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../database.html#explications-des-tables">Explications des tables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../source.html">Vues Django</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../source.html#concept-de-vue-dans-django">Concept de vue dans Django</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source.html#vues-de-l-application">Vues de l&#8217;application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source.html#les-formulaires">Les formulaires</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../source.html#le-package-utils">Le package <strong>utils</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../source.html#module-quiz.utils.save">utils/save.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../source.html#module-quiz.utils.submit">utils/submit.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../source.html#module-quiz.utils.correct">utils/correct.py</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../front-end.html">Outil d&#8217;édition de quiz avec RapydScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../conclusion.html">Conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../end.html">Annexes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../end.html#webographie">Webographie</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">Développement d'une application web de création de quiz</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Code du module</a> &raquo;</li>
+      
+    <li>quiz.forms</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <h1>Code source de quiz.forms</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">forms</span>
+    
+<div class="viewcode-block" id="QuestionForm"><a class="viewcode-back" href="../../source.html#quiz.forms.QuestionForm">[docs]</a><span class="k">class</span> <span class="nc">QuestionForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Classe abstraite dont héritent tous les formulaires destinés à la résolution</span>
+<span class="sd">    des quiz. Seul l&#39;attribut ``question`` est défini. Il correspond à la référence</span>
+<span class="sd">    de la question dans la base de données et permet d&#39;afficher facilement des informations</span>
+<span class="sd">    sur la question depuis le template.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">question</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">question</span> <span class="o">=</span> <span class="n">question</span>
+        </div>
+<div class="viewcode-block" id="CheckboxForm"><a class="viewcode-back" href="../../source.html#quiz.forms.CheckboxForm">[docs]</a><span class="k">class</span> <span class="nc">CheckboxForm</span><span class="p">(</span><span class="n">QuestionForm</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Formulaire Django personnalisé correspondant à une question à choix multiples</span>
+<span class="sd">    pouvant admettre plusieurs réponses correctes.</span>
+<span class="sd">    </span>
+<span class="sd">    Le type de champ de formulaire utilisé est un ``ModelMultipleChoiceField``. Ce champ permet</span>
+<span class="sd">    de sélectionner plusieurs entrées d&#39;une table de la base de données par l&#39;intermédiaire</span>
+<span class="sd">    de cases à cocher. Ici, il s&#39;agit</span>
+<span class="sd">    de la table :py:class`models.QcmChoice`.</span>
+<span class="sd">    </span>
+<span class="sd">    L&#39;argument ``queryset`` permet de définir les choix qui seront affichés, il s&#39;agit</span>
+<span class="sd">    d&#39;une liste d&#39;entrées de la table :py:class`models.QcmChoice`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queryset</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">QuestionForm</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;answer&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ModelMultipleChoiceField</span><span class="p">(</span>
+            <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">CheckboxSelectMultiple</span><span class="p">,</span>
+            <span class="n">queryset</span><span class="o">=</span><span class="n">queryset</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="bp">False</span>
+        <span class="p">)</span>
+    
+<div class="viewcode-block" id="CheckboxForm.get_type"><a class="viewcode-back" href="../../source.html#quiz.forms.CheckboxForm.get_type">[docs]</a>    <span class="k">def</span> <span class="nf">get_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retourne ``1`` pour donner une indication sur la manière d&#39;afficher </span>
+<span class="sd">        la question dans le template</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="mi">1</span> <span class="c">#Indication pour le rendu dans le template</span>
+</div></div>
+<div class="viewcode-block" id="RadioForm"><a class="viewcode-back" href="../../source.html#quiz.forms.RadioForm">[docs]</a><span class="k">class</span> <span class="nc">RadioForm</span><span class="p">(</span><span class="n">QuestionForm</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Formulaire Django personnalisé correspondant à une question à choix multiples</span>
+<span class="sd">    avec une seule réponse correcte.</span>
+<span class="sd">    </span>
+<span class="sd">    Ici, on utilise un champ de formulaire ``ModelChoiceField``. Il s&#39;agit du même principe</span>
+<span class="sd">    que pour :py:class:`CheckboxForm` sauf qu&#39;un seul choix peut être sélectionné et</span>
+<span class="sd">    que le formulaire est affiché en HTML sous forme de boutons radio.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queryset</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">QuestionForm</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;answer&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ModelChoiceField</span><span class="p">(</span>
+            <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">RadioSelect</span><span class="p">,</span>
+            <span class="n">queryset</span><span class="o">=</span><span class="n">queryset</span><span class="p">,</span>
+            <span class="n">empty_label</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="bp">False</span>
+        <span class="p">)</span>
+        
+<div class="viewcode-block" id="RadioForm.get_type"><a class="viewcode-back" href="../../source.html#quiz.forms.RadioForm.get_type">[docs]</a>    <span class="k">def</span> <span class="nf">get_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retourne ``1`` pour donner une indication sur la manière d&#39;afficher </span>
+<span class="sd">        la question dans le template</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="mi">1</span> <span class="c">#Indication pour le rendu dans le template</span>
+    </div></div>
+<div class="viewcode-block" id="TextForm"><a class="viewcode-back" href="../../source.html#quiz.forms.TextForm">[docs]</a><span class="k">class</span> <span class="nc">TextForm</span><span class="p">(</span><span class="n">QuestionForm</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Formulaire Django personnalisé destiné à l&#39;affichage des questions à réponse courte.</span>
+<span class="sd">    </span>
+<span class="sd">    Un ``CharField`` constitue l&#39;unique champ de ce formulaire. Il s&#39;agit simplement</span>
+<span class="sd">    d&#39;un champ de texte basique dans lequel l&#39;étudiant peut écrire sa réponse.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">QuestionForm</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&#39;answer&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+            <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;class&#39;</span> <span class="p">:</span> <span class="s">&#39;form-control&#39;</span><span class="p">}),</span>
+            <span class="n">min_length</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="bp">False</span>
+        <span class="p">)</span>
+    
+<div class="viewcode-block" id="TextForm.get_type"><a class="viewcode-back" href="../../source.html#quiz.forms.TextForm.get_type">[docs]</a>    <span class="k">def</span> <span class="nf">get_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retourne ``0`` pour donner une indication sur la manière d&#39;afficher </span>
+<span class="sd">        la question dans le template</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="mi">0</span> <span class="c">#Indication pour le rendu dans le template</span></div></div>
+</pre></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Benoît Léo Maillard.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

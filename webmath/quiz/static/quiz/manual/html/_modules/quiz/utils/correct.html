@@ -1,0 +1,340 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>quiz.utils.correct &mdash; documentation Développement d&#39;une application web de création de quiz 0.1</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="documentation Développement d&#39;une application web de création de quiz 0.1" href="../../../index.html"/>
+        <link rel="up" title="Code du module" href="../../index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="../../../index.html" class="icon icon-home"> Développement d'une application web de création de quiz
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rapydscript.html">Présentation de RapydScript</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../rapydscript.html#pourquoi-utiliser-python-plutot-que-javascript">Pourquoi utiliser Python plutôt que Javascript ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rapydscript.html#differentes-manieres-d-aborder-le-probleme-coffeescript-brython-et-rapydscript">Différentes manières d&#8217;aborder le problème : CoffeeScript, Brython et RapydScript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rapydscript.html#introduction-a-rapydscript">Introduction à RapydScript</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../rapydscript.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../rapydscript.html#compilation">Compilation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../rapydscript.html#programmer-avec-rapydscript">Programmer avec RapydScript</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../rapydscript.html#notions-de-base">Notions de base</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../rapydscript.html#programmation-orientee-objet-poo">Programmation orientée objet (POO)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../rapydscript.html#utilisation-de-la-bibliotheque-standard-python">Utilisation de la bibliothèque standard Python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../rapydscript.html#separer-son-code-en-plusieurs-fichiers">Séparer son code en plusieurs fichiers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../rapydscript.html#utilisation-de-fonctions-javascript-natives-ou-provenant-de-librairies-externes">Utilisation de fonctions Javascript natives ou provenant de librairies externes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc-user.html">Documentation utilisateur</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../doc-user.html#professeurs">Professeurs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../doc-user.html#creation-de-quiz">Création de quiz</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../doc-user.html#creation-d-une-question-et-definition-de-ses-caracteristiques">Création d&#8217;une question et définition de ses caractéristiques</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../doc-user.html#affichage-de-l-apercu-et-des-erreurs">Affichage de l&#8217;aperçu et des erreurs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../doc-user.html#utilisation-de-markdown-pour-la-mise-en-forme">Utilisation de Markdown pour la mise en forme</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../doc-user.html#affichage-de-mathematiques">Affichage de mathématiques</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../doc-user.html#enregistrement-et-importation-de-brouillons">Enregistrement et importation de brouillons</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../doc-user.html#envoi-definitif-du-quiz">Envoi définitif du quiz</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../doc-user.html#suivi-des-eleves">Suivi des élèves</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../doc-user.html#liste-des-quiz-crees-par-un-professeur">Liste des quiz créés par un professeur</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../doc-user.html#affichage-des-statistiques-avancees">Affichage des statistiques avancées</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../doc-user.html#etudiants">Étudiants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../doc-user.html#trouver-un-quiz">Trouver un quiz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../doc-user.html#completer-un-quiz-et-correction-automatique">Compléter un quiz et correction automatique</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../doc-user.html#historique-des-resolutions">Historique des résolutions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../global.html">Fonctionnement général de l&#8217;application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../global.html#url">URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../global.html#organisation-des-fichiers-de-l-application">Organisation des fichiers de l&#8217;application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../global.html#bibliotheques-et-frameworks-utilises-dans-l-application">Bibliothèques et frameworks utilisés dans l&#8217;application</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../database.html">Modèle relationnel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../database.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../database.html#utilisation-dans-l-application-de-creation-de-quiz">Utilisation dans l&#8217;application de création de quiz</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../database.html#implementation-dans-django">Implémentation dans Django</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../database.html#schema-global">Schéma global</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../database.html#explications-des-tables">Explications des tables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source.html">Vues Django</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../source.html#concept-de-vue-dans-django">Concept de vue dans Django</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source.html#vues-de-l-application">Vues de l&#8217;application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source.html#les-formulaires">Les formulaires</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source.html#le-package-utils">Le package <strong>utils</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source.html#module-quiz.utils.save">utils/save.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source.html#module-quiz.utils.submit">utils/submit.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source.html#module-quiz.utils.correct">utils/correct.py</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../front-end.html">Outil d&#8217;édition de quiz avec RapydScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../conclusion.html">Conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../end.html">Annexes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../end.html#webographie">Webographie</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">Développement d'une application web de création de quiz</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Code du module</a> &raquo;</li>
+      
+    <li>quiz.utils.correct</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <h1>Code source de quiz.utils.correct</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Ensemble d&#39;objets pour permettre un accès facilité aux données nécessaires à</span>
+<span class="sd">l&#39;affichage des corrections</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CorrectQuestion"><a class="viewcode-back" href="../../../source.html#quiz.utils.correct.CorrectQuestion">[docs]</a><span class="k">class</span> <span class="nc">CorrectQuestion</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Définit des raccourcis pour accéder aux attributs communs à tous les types</span>
+<span class="sd">    de questions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">submit</span><span class="p">):</span>
+        <span class="c"># Définition des caractéristiques de base des corrections à afficher</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">comment</span> <span class="o">=</span> <span class="n">submit</span><span class="o">.</span><span class="n">id_question</span><span class="o">.</span><span class="n">comment</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">submit</span><span class="o">.</span><span class="n">id_question</span><span class="o">.</span><span class="n">text</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">submit</span><span class="o">.</span><span class="n">id_question</span><span class="o">.</span><span class="n">points</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">result</span> <span class="o">=</span> <span class="n">submit</span><span class="o">.</span><span class="n">result</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">average</span> <span class="o">=</span> <span class="n">submit</span><span class="o">.</span><span class="n">id_question</span><span class="o">.</span><span class="n">average_result</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="CorrectSq"><a class="viewcode-back" href="../../../source.html#quiz.utils.correct.CorrectSq">[docs]</a><span class="k">class</span> <span class="nc">CorrectSq</span><span class="p">(</span><span class="n">CorrectQuestion</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fournit des attributs spécifiques à la correction des questions à réponse courte.</span>
+<span class="sd">    L&#39;attribut ``type`` permet d&#39;identifier dans le template le type de question</span>
+<span class="sd">    dont il s&#39;agit et de déterminer la manière d&#39;afficher la correction.</span>
+<span class="sd">    </span>
+<span class="sd">    Pour une question à réponse courte, ``type`` vaut ``0``.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sqsubmit</span><span class="p">):</span>
+        <span class="n">CorrectQuestion</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sqsubmit</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">submit</span> <span class="o">=</span> <span class="n">sqsubmit</span><span class="o">.</span><span class="n">text</span> <span class="c"># Texte soumis par l&#39;étudiant</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="mi">0</span> <span class="c"># Détermine la manière d&#39;afficher la question dans le template</span>
+        
+        <span class="c"># Les réponses correctes sont placés dans une liste sous forme de chaînes de charactères</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">l_correct</span> <span class="o">=</span> <span class="n">sqsubmit</span><span class="o">.</span><span class="n">get_corrections</span><span class="p">()</span>
+        
+        <span class="c"># Comparaison par rapport à la correction</span>
+        <span class="k">if</span> <span class="n">sqsubmit</span><span class="o">.</span><span class="n">correct</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">is_correct</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">html_class</span> <span class="o">=</span> <span class="s">&quot;success&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">is_correct</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">html_class</span> <span class="o">=</span> <span class="s">&quot;danger&quot;</span>
+</div>
+<div class="viewcode-block" id="CorrectQcm"><a class="viewcode-back" href="../../../source.html#quiz.utils.correct.CorrectQcm">[docs]</a><span class="k">class</span> <span class="nc">CorrectQcm</span><span class="p">(</span><span class="n">CorrectQuestion</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Facilite l&#39;affichage de la correction des questions à choix multiples par</span>
+<span class="sd">    l&#39;intermédiaire de raccourcis et instancie des objets de type :py:class:`CorrectChoice`.</span>
+<span class="sd">    </span>
+<span class="sd">    L&#39;attribut ``type`` vaut ``1`` pour les QCM à réponses multiples, ``2`` pour</span>
+<span class="sd">    les listes déroulantes et ``3`` pour les QCM à réponse unique.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qcmsubmit</span><span class="p">):</span>
+        <span class="n">CorrectQuestion</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qcmsubmit</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">l_correct_choices</span> <span class="o">=</span> <span class="p">[]</span> <span class="c"># Contient les objets CorrectChoice</span>
+
+        <span class="c"># Détermination du type de questions pour l&#39;affichage dans le template</span>
+        <span class="k">if</span> <span class="n">qcmsubmit</span><span class="o">.</span><span class="n">id_question</span><span class="o">.</span><span class="n">multi_answers</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="mi">2</span>
+        
+        <span class="c"># Choix possibles pour la question</span>
+        <span class="n">l_choices</span> <span class="o">=</span> <span class="n">qcmsubmit</span><span class="o">.</span><span class="n">id_question</span><span class="o">.</span><span class="n">get_choices</span><span class="p">()</span>
+        
+        <span class="k">for</span> <span class="n">choice</span> <span class="ow">in</span> <span class="n">l_choices</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">l_correct_choices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CorrectChoice</span><span class="p">(</span><span class="n">choice</span><span class="p">,</span> <span class="n">qcmsubmit</span><span class="p">))</span>
+</div>
+<div class="viewcode-block" id="CorrectChoice"><a class="viewcode-back" href="../../../source.html#quiz.utils.correct.CorrectChoice">[docs]</a><span class="k">class</span> <span class="nc">CorrectChoice</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fournis des raccourcis pour accéder aux données des choix de QCM à corriger.</span>
+<span class="sd">    Cette classe permet d&#39;indiquer le texte à afficher avec le choix, de déterminer</span>
+<span class="sd">    s&#39;il a été coché et s&#39;il est correct.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">choice</span><span class="p">,</span> <span class="n">qcmsubmit</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_correct</span> <span class="o">=</span> <span class="n">choice</span><span class="o">.</span><span class="n">correct_submit</span><span class="p">(</span><span class="n">qcmsubmit</span><span class="p">)</span> <span class="c"># Vérification du choix</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_checked</span> <span class="o">=</span> <span class="n">choice</span><span class="o">.</span><span class="n">checked</span><span class="p">(</span><span class="n">qcmsubmit</span><span class="p">)</span> <span class="c"># Vaut true si le choix est sélectionné</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">choice</span><span class="o">.</span><span class="n">text</span> <span class="c"># Texte du choix</span>
+        
+        <span class="c"># Attributs pour l&#39;affichage de la correction</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_correct</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">html_class</span> <span class="o">=</span> <span class="s">&quot;success&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">html_class</span> <span class="o">=</span> <span class="s">&quot;danger&quot;</span>
+            
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_checked</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">attribute</span> <span class="o">=</span> <span class="s">&quot;checked&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">attribute</span> <span class="o">=</span> <span class="s">&quot;&quot;</span></div>
+</pre></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Benoît Léo Maillard.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

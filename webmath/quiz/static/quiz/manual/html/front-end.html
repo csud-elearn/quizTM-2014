@@ -1,0 +1,557 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Outil d’édition de quiz avec RapydScript &mdash; documentation Développement d&#39;une application web de création de quiz 0.1</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="documentation Développement d&#39;une application web de création de quiz 0.1" href="index.html"/>
+        <link rel="next" title="Conclusion" href="conclusion.html"/>
+        <link rel="prev" title="Vues Django" href="source.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="index.html" class="icon icon-home"> Développement d'une application web de création de quiz
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rapydscript.html">Présentation de RapydScript</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rapydscript.html#pourquoi-utiliser-python-plutot-que-javascript">Pourquoi utiliser Python plutôt que Javascript ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rapydscript.html#differentes-manieres-d-aborder-le-probleme-coffeescript-brython-et-rapydscript">Différentes manières d&#8217;aborder le problème : CoffeeScript, Brython et RapydScript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rapydscript.html#introduction-a-rapydscript">Introduction à RapydScript</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rapydscript.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rapydscript.html#compilation">Compilation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rapydscript.html#programmer-avec-rapydscript">Programmer avec RapydScript</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rapydscript.html#notions-de-base">Notions de base</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rapydscript.html#programmation-orientee-objet-poo">Programmation orientée objet (POO)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rapydscript.html#utilisation-de-la-bibliotheque-standard-python">Utilisation de la bibliothèque standard Python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rapydscript.html#separer-son-code-en-plusieurs-fichiers">Séparer son code en plusieurs fichiers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rapydscript.html#utilisation-de-fonctions-javascript-natives-ou-provenant-de-librairies-externes">Utilisation de fonctions Javascript natives ou provenant de librairies externes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc-user.html">Documentation utilisateur</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc-user.html#professeurs">Professeurs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="doc-user.html#creation-de-quiz">Création de quiz</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="doc-user.html#creation-d-une-question-et-definition-de-ses-caracteristiques">Création d&#8217;une question et définition de ses caractéristiques</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc-user.html#affichage-de-l-apercu-et-des-erreurs">Affichage de l&#8217;aperçu et des erreurs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc-user.html#affichage-de-mathematiques">Affichage de mathématiques</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc-user.html#enregistrement-et-importation-de-brouillons">Enregistrement et importation de brouillons</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc-user.html#envoi-definitif-du-quiz">Envoi définitif du quiz</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="doc-user.html#suivi-des-eleves">Suivi des élèves</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="doc-user.html#liste-des-quiz-crees-par-un-professeur">Liste des quiz créés par un professeur</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc-user.html#affichage-des-statistiques-avancees">Affichage des statistiques avancées</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="doc-user.html#etudiants">Étudiants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="doc-user.html#trouver-un-quiz">Trouver un quiz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doc-user.html#completer-un-quiz-et-correction-automatique">Compléter un quiz et correction automatique</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doc-user.html#historique-des-resolutions">Historique des résolutions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Fonctionnement général de l&#8217;application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="global.html#url">URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="global.html#organisation-des-fichiers-de-l-application">Organisation des fichiers de l&#8217;application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="global.html#bibliotheques-et-frameworks-utilises-dans-l-application">Bibliothèques et frameworks utilisés dans l&#8217;application</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="database.html">Modèle relationnel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="database.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html#utilisation-dans-l-application-de-creation-de-quiz">Utilisation dans l&#8217;application de création de quiz</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="database.html#implementation-dans-django">Implémentation dans Django</a></li>
+<li class="toctree-l3"><a class="reference internal" href="database.html#schema-global">Schéma global</a></li>
+<li class="toctree-l3"><a class="reference internal" href="database.html#explications-des-tables">Explications des tables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="source.html">Vues Django</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="source.html#concept-de-vue-dans-django">Concept de vue dans Django</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source.html#vues-de-l-application">Vues de l&#8217;application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source.html#les-formulaires">Les formulaires</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source.html#le-package-utils">Le package <strong>utils</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="source.html#module-quiz.utils.save">utils/save.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="source.html#module-quiz.utils.submit">utils/submit.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="source.html#module-quiz.utils.correct">utils/correct.py</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Outil d&#8217;édition de quiz avec RapydScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusion.html">Conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="end.html">Annexes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="end.html#webographie">Webographie</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Développement d'une application web de création de quiz</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Outil d&#8217;édition de quiz avec RapydScript</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/front-end.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="outil-d-edition-de-quiz-avec-rapydscript">
+<h1>Outil d&#8217;édition de quiz avec RapydScript<a class="headerlink" href="#outil-d-edition-de-quiz-avec-rapydscript" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Le code de l&#8217;interpréteur se trouve dans le fichiers <strong>rs-source/interpreter.pyj</strong> et est écrit entièrement
+en RapydScript. Le rôle de ce fichier est de gérer l&#8217;interprétation du langage utilisé dans l&#8217;outil
+de création de quiz.
+L&#8217;objectif de cette manipulation est de permettre à l&#8217;utilisateur
+d&#8217;entrer du code ressemblant vaguement à du Markdown pour ensuite stocker les informations
+concernant le quiz dans la base de données sous forme d&#8217;un modèle relationnel. Avant l&#8217;enregistrement
+des données côté serveur, il est nécessaire de structurer ces informations. Ce fichier,
+entièrement écrit en RapydScript, va dans un premier temps se charger de lire le code entré par l&#8217;utilisateur
+et d&#8217;en dégager une structure orientée objet sur laquelle il est facile de se baser
+pour afficher un aperçu du quiz et opérer des contrôles sur la validité des données
+proposées.</p>
+<p>Une fois ces contrôles effectués, cette structure pourra être sérialisée
+en JSON (Javascript Object Notation), un format permettant l&#8217;échange de données sous
+forme de chaînes de caractères. Le résultat ainsi obtenu pourra ainsi être
+transmis au serveur à l&#8217;aide d&#8217;un simple formulaire HTML.</p>
+<p>Pour illustrer la manipulation opérée par ce script, on peut prendre l&#8217;exemple
+de ce code entré par l&#8217;utilisateur :</p>
+<div class="highlight-text"><div class="highlight"><pre>## Cases à cocher
+* Option 1
+= Option 4
+= Option 5
+. 3
++ Commentaire affiché lors de la correction
+</pre></div>
+</div>
+<p>Avant d&#8217;être envoyées au serveur, voici à quoi ressembleront les données structurées
+au format JSON :</p>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">[</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Cases à cocher&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;Commentaire affiché lors de la correction&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;points&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;options&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Option 1&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;valid&quot;</span><span class="p">:</span> <span class="kc">false</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Option 4&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;valid&quot;</span><span class="p">:</span> <span class="kc">true</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Option 5&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;valid&quot;</span><span class="p">:</span> <span class="kc">true</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Le code ainsi produit est humainement lisible et il est facile de comprendre comment
+sont organisées les informations sur le quiz.</p>
+<dl class="class">
+<dt id="Parse">
+<em class="property">class </em><code class="descname">Parse</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="headerlink" href="#Parse" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Classe principale du fichier dont le rôle est de gérer la lecture du code pour
+produire du JSON contenant toutes les informations sur le quiz et qui pourra
+être envoyé au serveur pour l&#8217;enregistrement dans la base de données.</p>
+<p>L&#8217;argument <code class="docutils literal"><span class="pre">text</span></code> correspond au code du quiz récupéré dans la zone de texte.</p>
+<dl class="method">
+<dt id="Parse.read">
+<code class="descname">read</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="headerlink" href="#Parse.read" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Cette méthode sépare dans un premier temps toutes les lignes du fichier et
+les stocke dans une liste. Elle parcourt ensuite la liste puis sépare
+la balise du contenu de chaque ligne.</p>
+<p>Une fois que la balise est séparée
+du contenu, elle appelle la méthode <code class="docutils literal"><span class="pre">.new_question</span></code> pour
+la première ligne du code ainsi que pour toutes les lignes situées après
+une ligne vide. <code class="docutils literal"><span class="pre">.new_question()</span></code> prend en argument la balise
+et le contenu de la ligne en question.</p>
+<p>Elle procède ensuite de manière analogue avec la méthode <code class="docutils literal"><span class="pre">.new_attribute</span></code>
+pour les lignes qui ne sont pas en début de paragraphe.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Parse.new_question">
+<code class="descname">new_question</code><span class="sig-paren">(</span><em>tag</em>, <em>content</em><span class="sig-paren">)</span><a class="headerlink" href="#Parse.new_question" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Instancie une nouvelle question avec la classe associée à la balise <code class="docutils literal"><span class="pre">tag</span></code>.
+La question ainsi créée est stockée dans la variable d&#8217;instance <code class="docutils literal"><span class="pre">self.question_parent</span></code>
+pour pouvoir ajouter plus tard les caractéristiques de la question comme
+les options possibles ou le nombre de points qui peuvent être attibués.
+Elle est également ajoutée dans la liste <code class="docutils literal"><span class="pre">self.questions</span></code> qui contient
+toutes les questions du quiz.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Parse.new_attribute">
+<code class="descname">new_attribute</code><span class="sig-paren">(</span><em>tag</em>, <em>content</em><span class="sig-paren">)</span><a class="headerlink" href="#Parse.new_attribute" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Utilise la méthode <code class="docutils literal"><span class="pre">.add_attribute()</span></code> de la question <code class="docutils literal"><span class="pre">self.question_parent</span></code>
+avec la balise et le contenu en argument pour ajouter un attributs à la question.
+La méthode <code class="docutils literal"><span class="pre">.add_attribute()</span></code> se chargera de déterminer ce à quoi correspond
+l&#8217;attribut en fonction de la balise donnée en argument.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Parse.render">
+<code class="descname">render</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Parse.render" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Démarre l&#8217;aperçu en appliquant la méthode <code class="docutils literal"><span class="pre">.render()</span></code> pour chaque
+question stockée dans <code class="docutils literal"><span class="pre">self.questions</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Parse.error">
+<code class="descname">error</code><span class="sig-paren">(</span><em>message</em>, <em>line</em><span class="sig-paren">)</span><a class="headerlink" href="#Parse.error" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Ajoute dans la liste <code class="docutils literal"><span class="pre">self.errors</span></code> un dictionnaire contenant le message
+et la ligne de l&#8217;erreur.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Parse.show_errors">
+<code class="descname">show_errors</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Parse.show_errors" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Si des erreurs ont été détectées, affiche pour chaque erreur le message
+accompagné de la ligne à l&#8217;aide de jQuery.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="QuestionAbstract">
+<em class="property">class </em><code class="descname">QuestionAbstract</code><span class="sig-paren">(</span><em>parent</em>, <em>text</em>, <em>line</em><span class="sig-paren">)</span><a class="headerlink" href="#QuestionAbstract" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Classe mère de toutes les classes définissant les questions. C&#8217;est une classe
+abstraite, c&#8217;est à dire qu&#8217;elle n&#8217;est pas destinée à être instanciée directement.</p>
+<p>L&#8217;argument <code class="docutils literal"><span class="pre">parent</span></code> correspond à l&#8217;instance de la classe <a class="reference internal" href="#Parse" title="Parse"><code class="xref py py-class docutils literal"><span class="pre">Parse</span></code></a>
+depuis laquelle la question a été instanciée. <code class="docutils literal"><span class="pre">text</span></code> sera défini comme énoncé
+de la question et <code class="docutils literal"><span class="pre">line</span></code> indique la ligne à laquelle la question a été créée
+dans le code pour pouvoir afficher des messages d&#8217;erreurs au cas où la question
+rencontre un problème.</p>
+<p>L&#8217;attribut <code class="docutils literal"><span class="pre">self.tags_list</span></code> est un dictionnaire recensant les balises à utiliser
+pour les attributs de la question. À chaque balise est associée la référence d&#8217;une méthode
+qui traitera les données de la ligne contenant la balise.</p>
+<dl class="method">
+<dt id="QuestionAbstract.add_attribute">
+<code class="descname">add_attribute</code><span class="sig-paren">(</span><em>self</em>, <em>tag</em>, <em>content</em><span class="sig-paren">)</span><a class="headerlink" href="#QuestionAbstract.add_attribute" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Appelle la méthode correspondant à la balise <code class="docutils literal"><span class="pre">tag</span></code> si celle-ci est définie
+<code class="docutils literal"><span class="pre">self.tags_list</span></code>. La méthode est appelée avec un argument, <code class="docutils literal"><span class="pre">content</span></code>.</p>
+<p>Si la balise n&#8217;est pas répertoriée, cette méthode transmet une erreur à
+<code class="docutils literal"><span class="pre">self.parent`</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="QuestionAbstract.add_comment">
+<code class="descname">add_comment</code><span class="sig-paren">(</span><em>self</em>, <em>content</em><span class="sig-paren">)</span><a class="headerlink" href="#QuestionAbstract.add_comment" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Ajoute un commentaire à la question en assignant <code class="docutils literal"><span class="pre">content</span></code> à <code class="docutils literal"><span class="pre">self.comment</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="QuestionAbstract.add_points">
+<code class="descname">add_points</code><span class="sig-paren">(</span><em>self</em>, <em>content</em><span class="sig-paren">)</span><a class="headerlink" href="#QuestionAbstract.add_points" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Définit le nombre de points pour la question. Convertir <code class="docutils literal"><span class="pre">content</span></code> en
+un nombre décimal et l&#8217;assigne à <code class="docutils literal"><span class="pre">self.points</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="QuestionAbstract.properties">
+<code class="descname">properties</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#QuestionAbstract.properties" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Renvoie un dictionnaire contenant toutes les infos sur la question qui doivent
+être sérialisées en JSON et enregistrées sur la base de données.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="SimpleQuestion">
+<em class="property">class </em><code class="descname">SimpleQuestion</code><a class="headerlink" href="#SimpleQuestion" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Cette classe hérite de :py:class`QuestionAbstract` et définit les caractéristiques
+d&#8217;une question à réponse courte.</p>
+<p>En plus des attributs héritées de <code class="xref py py-class docutils literal"><span class="pre">AbstractQuestion</span></code>, chaque objet
+de cette classe possède une liste <code class="docutils literal"><span class="pre">self.answers</span></code> qui contient les solutions valides
+pour la question. La balise <code class="docutils literal"><span class="pre">=</span></code> est associée à la définition des solutons.</p>
+<dl class="method">
+<dt id="SimpleQuestion.add_answer">
+<code class="descname">add_answer</code><span class="sig-paren">(</span><em>content</em><span class="sig-paren">)</span><a class="headerlink" href="#SimpleQuestion.add_answer" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Ajoute <code class="docutils literal"><span class="pre">content</span></code> à <code class="docutils literal"><span class="pre">self.answers</span></code> pour ajouter une solution.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="SimpleQuestion.render">
+<code class="descname">render</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SimpleQuestion.render" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Affiche le rendu final de la question. Ce type de question est présenté sous
+la forme d&#8217;un simple champ de texte en HTML.</p>
+<p>Cette méthode créé un élément HTML <code class="docutils literal"><span class="pre">&lt;label&gt;</span></code> contenant l&#8217;énoncé de la question
+ainsi qu&#8217;un <code class="docutils literal"><span class="pre">&lt;input</span> <span class="pre">type=&quot;text&quot;&gt;</span></code> pour entrer la réponse.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="SimpleQuestion.check_question">
+<code class="descname">check_question</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SimpleQuestion.check_question" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Cette méthode est appelée lors de l&#8217;aperçu pour vérifier que la question
+soit valide. Pour ce type de question, il suffit qu&#8217;au moins une réponse
+valide ait été définie. Si la condition n&#8217;est pas remplie, la méthode
+<code class="docutils literal"><span class="pre">.error()</span></code> est appliquée à <code class="docutils literal"><span class="pre">self.parent</span></code> pour signaler qu&#8217;il y a une erreur
+et que le quiz n&#8217;est pas prêt à être envoyé.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="QCM_Checkbox">
+<em class="property">class </em><code class="descname">QCM_Checkbox</code><a class="headerlink" href="#QCM_Checkbox" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Cette classe hérite de :py:class`QuestionAbstract` et est destinée aux questions
+à choix multiples pouvant admettre plusieurs options correctes.</p>
+<p>La balise <code class="docutils literal"><span class="pre">*</span></code> est associée à la définition d&#8217;une option incorrecte alors que
+le signe <code class="docutils literal"><span class="pre">=</span></code> permet d&#8217;ajouter une option valide.</p>
+<p>L&#8217;attribut <code class="docutils literal"><span class="pre">self.options</span></code> stocke les choix possibles pour la question. Chaque
+élément de cette liste est un dictionnaire qui se présente sous la forme suivante :</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="s">&quot;content&quot;</span> <span class="p">:</span> <span class="n">content</span><span class="p">,</span> <span class="s">&quot;valid&quot;</span> <span class="p">:</span> <span class="bp">False</span><span class="p">}</span> <span class="c"># Option incorrecte</span>
+<span class="p">{</span><span class="s">&quot;content&quot;</span> <span class="p">:</span> <span class="n">content</span><span class="p">,</span> <span class="s">&quot;valid&quot;</span> <span class="p">:</span> <span class="bp">True</span><span class="p">}</span> <span class="c"># Option correcte</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="QCM_Checkbox.add_option">
+<code class="descname">add_option</code><span class="sig-paren">(</span><em>content</em><span class="sig-paren">)</span><a class="headerlink" href="#QCM_Checkbox.add_option" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Ajoute une option invalide avec comme texte <code class="docutils literal"><span class="pre">content</span></code> dans <code class="docutils literal"><span class="pre">self.options</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="QCM_Checkbox.add_answer">
+<code class="descname">add_answer</code><span class="sig-paren">(</span><em>content</em><span class="sig-paren">)</span><a class="headerlink" href="#QCM_Checkbox.add_answer" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonctionne de manière analogue à la méthode <code class="docutils literal"><span class="pre">.add_option()</span></code> pour définir une option correcte.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="QCM_Checkbox.render">
+<code class="descname">render</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#QCM_Checkbox.render" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Permet d&#8217;afficher un aperçu de la question. Créé un <code class="docutils literal"><span class="pre">&lt;span&gt;</span></code> pour afficher
+l&#8217;énoncé de la question puis ajoute pour chaque option un <code class="docutils literal"><span class="pre">&lt;input</span> <span class="pre">type=&quot;checkbox&quot;&gt;</span></code> avec
+un <code class="docutils literal"><span class="pre">&lt;label&gt;</span></code> contenant le texte de l&#8217;option.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="QCM_Checkbox.check_question">
+<code class="descname">check_question</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#QCM_Checkbox.check_question" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Deux conditions sont nécessaires pour valider cette question : la question
+doit avoir au moins deux options et au moins une option correcte.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="QCM_Radio">
+<em class="property">class </em><code class="descname">QCM_Radio</code><a class="headerlink" href="#QCM_Radio" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Ce type de question hérite de <a class="reference internal" href="#QCM_Checkbox" title="QCM_Checkbox"><code class="xref py py-class docutils literal"><span class="pre">QCM_Checkbox</span></code></a> et y ressemble beaucoup.
+La principale différence se situe au niveau de l&#8217;affichage : au lieu d&#8217;un
+<code class="docutils literal"><span class="pre">&lt;input</span> <span class="pre">type=&quot;checkbox&quot;&gt;</span></code>, ce type est affiché avec un <code class="docutils literal"><span class="pre">&lt;input</span> <span class="pre">type=&quot;radio&quot;&gt;</span></code>.
+C&#8217;est pourquoi la variable <code class="docutils literal"><span class="pre">self.input_type</span></code> vaut ici <code class="docutils literal"><span class="pre">&quot;radio&quot;</span></code> et sert à
+indiquer à la méthode <code class="docutils literal"><span class="pre">.render()</span></code> la manière d&#8217;afficher la question.</p>
+<dl class="class">
+<dt id="QCM_Radio.add_answer">
+<em class="property">class </em><code class="descname">add_answer</code><a class="headerlink" href="#QCM_Radio.add_answer" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Cette méthode fonctionne comme pour <code class="docutils literal"><span class="pre">QCM_Checkbox</span></code> à la différence près
+qu&#8217;elle avertir la présence d&#8217;une erreur dès qu&#8217;une deuxième option correcte
+est ajoutée.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="start_render">
+<code class="descname">start_render</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#start_render" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Instancie un objet à partir de la classe <a class="reference internal" href="#Parse" title="Parse"><code class="xref py py-class docutils literal"><span class="pre">Parse</span></code></a> et y applique la
+méthode <code class="docutils literal"><span class="pre">.render()</span></code> pour afficher l&#8217;aperçu.</p>
+<p>Il faut aussi relancer le rendu MathJax pour que les formules mathématiques ajoutées
+dans les questions soient affichés. Cela peut se faire très simplement avec la ligne
+de code suivante :</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">MathJax</span><span class="o">.</span><span class="n">Hub</span><span class="o">.</span><span class="n">Queue</span><span class="p">([</span><span class="s">&quot;Typeset&quot;</span><span class="p">,</span><span class="n">MathJax</span><span class="o">.</span><span class="n">Hub</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="submit">
+<code class="descname">submit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#submit" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Instancie un objet de la classe et y applique la méthode <code class="docutils literal"><span class="pre">.tojson()</span></code>. La chaîne
+JSON ainsi obtenue est placée dans un <code class="docutils literal"><span class="pre">&lt;input</span> <span class="pre">type=&quot;hidden&quot;&gt;</span></code> et le formulaire
+comportant les champs de titre et du code du quiz est envoyé au serveur à l&#8217;aide
+de jQuery :</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#createform&quot;</span><span class="p">).</span><span class="nx">submit</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="demo">
+<code class="descname">demo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#demo" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Insère dans la zone de texte un exemple de code comportant trois questions.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="main">
+<code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Il s&#8217;agit de la fonction executée au chargement de la page avec <code class="docutils literal"><span class="pre">jQuery(document).ready(main)</span></code>.
+Elle définit le rôle des boutons ayant un lien ce fichier.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="conclusion.html" class="btn btn-neutral float-right" title="Conclusion" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="source.html" class="btn btn-neutral" title="Vues Django" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Benoît Léo Maillard.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

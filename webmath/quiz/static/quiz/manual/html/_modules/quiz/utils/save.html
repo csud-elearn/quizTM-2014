@@ -1,0 +1,381 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>quiz.utils.save &mdash; documentation Développement d&#39;une application web de création de quiz 0.1</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="documentation Développement d&#39;une application web de création de quiz 0.1" href="../../../index.html"/>
+        <link rel="up" title="Code du module" href="../../index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="../../../index.html" class="icon icon-home"> Développement d'une application web de création de quiz
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rapydscript.html">Présentation de RapydScript</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../rapydscript.html#pourquoi-utiliser-python-plutot-que-javascript">Pourquoi utiliser Python plutôt que Javascript ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rapydscript.html#differentes-manieres-d-aborder-le-probleme-coffeescript-brython-et-rapydscript">Différentes manières d&#8217;aborder le problème : CoffeeScript, Brython et RapydScript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rapydscript.html#introduction-a-rapydscript">Introduction à RapydScript</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../rapydscript.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../rapydscript.html#compilation">Compilation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../rapydscript.html#programmer-avec-rapydscript">Programmer avec RapydScript</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../rapydscript.html#notions-de-base">Notions de base</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../rapydscript.html#programmation-orientee-objet-poo">Programmation orientée objet (POO)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../rapydscript.html#utilisation-de-la-bibliotheque-standard-python">Utilisation de la bibliothèque standard Python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../rapydscript.html#separer-son-code-en-plusieurs-fichiers">Séparer son code en plusieurs fichiers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../rapydscript.html#utilisation-de-fonctions-javascript-natives-ou-provenant-de-librairies-externes">Utilisation de fonctions Javascript natives ou provenant de librairies externes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc-user.html">Documentation utilisateur</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../doc-user.html#professeurs">Professeurs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../doc-user.html#creation-de-quiz">Création de quiz</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../doc-user.html#creation-d-une-question-et-definition-de-ses-caracteristiques">Création d&#8217;une question et définition de ses caractéristiques</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../doc-user.html#affichage-de-l-apercu-et-des-erreurs">Affichage de l&#8217;aperçu et des erreurs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../doc-user.html#utilisation-de-markdown-pour-la-mise-en-forme">Utilisation de Markdown pour la mise en forme</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../doc-user.html#affichage-de-mathematiques">Affichage de mathématiques</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../doc-user.html#enregistrement-et-importation-de-brouillons">Enregistrement et importation de brouillons</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../doc-user.html#envoi-definitif-du-quiz">Envoi définitif du quiz</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../doc-user.html#suivi-des-eleves">Suivi des élèves</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../doc-user.html#liste-des-quiz-crees-par-un-professeur">Liste des quiz créés par un professeur</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../doc-user.html#affichage-des-statistiques-avancees">Affichage des statistiques avancées</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../doc-user.html#etudiants">Étudiants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../doc-user.html#trouver-un-quiz">Trouver un quiz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../doc-user.html#completer-un-quiz-et-correction-automatique">Compléter un quiz et correction automatique</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../doc-user.html#historique-des-resolutions">Historique des résolutions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../global.html">Fonctionnement général de l&#8217;application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../global.html#url">URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../global.html#organisation-des-fichiers-de-l-application">Organisation des fichiers de l&#8217;application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../global.html#bibliotheques-et-frameworks-utilises-dans-l-application">Bibliothèques et frameworks utilisés dans l&#8217;application</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../database.html">Modèle relationnel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../database.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../database.html#utilisation-dans-l-application-de-creation-de-quiz">Utilisation dans l&#8217;application de création de quiz</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../database.html#implementation-dans-django">Implémentation dans Django</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../database.html#schema-global">Schéma global</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../database.html#explications-des-tables">Explications des tables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source.html">Vues Django</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../source.html#concept-de-vue-dans-django">Concept de vue dans Django</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source.html#vues-de-l-application">Vues de l&#8217;application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source.html#les-formulaires">Les formulaires</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../source.html#le-package-utils">Le package <strong>utils</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../source.html#module-quiz.utils.save">utils/save.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source.html#module-quiz.utils.submit">utils/submit.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../source.html#module-quiz.utils.correct">utils/correct.py</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../front-end.html">Outil d&#8217;édition de quiz avec RapydScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../conclusion.html">Conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../end.html">Annexes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../end.html#webographie">Webographie</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">Développement d'une application web de création de quiz</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Code du module</a> &raquo;</li>
+      
+    <li>quiz.utils.save</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <h1>Code source de quiz.utils.save</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">django.utils</span> <span class="kn">import</span> <span class="n">timezone</span>
+<span class="kn">from</span> <span class="nn">quiz.models</span> <span class="kn">import</span> <span class="o">*</span>
+
+
+<span class="c">#Classe abstraite pour toutes les questions</span>
+<div class="viewcode-block" id="SaveQuestion"><a class="viewcode-back" href="../../../source.html#quiz.utils.save.SaveQuestion">[docs]</a><span class="k">class</span> <span class="nc">SaveQuestion</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Classe abstraite qui créé une nouvelle question dans la base de données avec</span>
+<span class="sd">    les attributs communs à tous les types de questions. La méthode ``.save()``</span>
+<span class="sd">    n&#39;est pas encore utilisée car certains attributs doivent encore être ajoutés</span>
+<span class="sd">    dans les classes filles.</span>
+<span class="sd">    </span>
+<span class="sd">    La table concernée peut être :py:class:`models.SimpleQuestion` ou :py:class:`models.Qcm`.</span>
+<span class="sd">    Cela dépend de l&#39;argument ``Model`` qui définit la classe à utiliser. </span>
+<span class="sd">    </span>
+<span class="sd">    L&#39;argument ``question`` est un dictionnaire contenant les données sur la question.</span>
+<span class="sd">    Les arguments `quiz_db`` et ``n`` correspondent respectivement à la référence</span>
+<span class="sd">    du quiz dans la table :py:class:models.Quiz`` et à l&#39;index de la position</span>
+<span class="sd">    de la question.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">question</span><span class="p">,</span> <span class="n">Model</span><span class="p">,</span> <span class="n">quiz_db</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="c"># Création de la nouvelle entrée sans utiliser la méthode .save()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">question_db</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span>
+            <span class="n">text</span><span class="o">=</span><span class="n">question</span><span class="p">[</span><span class="s">&quot;text&quot;</span><span class="p">],</span>
+            <span class="n">comment</span><span class="o">=</span><span class="n">question</span><span class="p">[</span><span class="s">&quot;comment&quot;</span><span class="p">],</span>
+            <span class="n">points</span><span class="o">=</span><span class="n">question</span><span class="p">[</span><span class="s">&quot;points&quot;</span><span class="p">],</span>
+            <span class="n">number</span><span class="o">=</span><span class="n">n</span><span class="p">,</span>
+            <span class="n">id_quiz</span><span class="o">=</span><span class="n">quiz_db</span>
+        <span class="p">)</span>
+</div>
+<div class="viewcode-block" id="SaveSimpleQuestion"><a class="viewcode-back" href="../../../source.html#quiz.utils.save.SaveSimpleQuestion">[docs]</a><span class="k">class</span> <span class="nc">SaveSimpleQuestion</span><span class="p">(</span><span class="n">SaveQuestion</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Enregistre une question à réponse courte dans la base de données. Tous les champs</span>
+<span class="sd">    de la base de données ont déjà été définis par :py:class:`SaveQuestion`,</span>
+<span class="sd">    la méthode ``.save()`` peut donc être utilisée directement. Les différentes</span>
+<span class="sd">    solutions sont ensuite sauvegardées.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">question</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">SaveQuestion</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">question</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        
+        <span class="c"># Enregistrement dans la base de données</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">question_db</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        
+        <span class="c"># Ajout des réponses</span>
+        <span class="k">for</span> <span class="n">answer</span> <span class="ow">in</span> <span class="n">question</span><span class="p">[</span><span class="s">&quot;answers&quot;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_answer</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+            
+        <span class="k">for</span> <span class="n">regex</span> <span class="ow">in</span> <span class="n">question</span><span class="p">[</span><span class="s">&quot;regex_answers&quot;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_regex_answer</span><span class="p">(</span><span class="n">regex</span><span class="p">)</span>
+            
+<div class="viewcode-block" id="SaveSimpleQuestion.add_answer"><a class="viewcode-back" href="../../../source.html#quiz.utils.save.SaveSimpleQuestion.add_answer">[docs]</a>    <span class="k">def</span> <span class="nf">add_answer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Ajoute une solution à la question en créant un champ dans la table </span>
+<span class="sd">        :py:class:`models.SqAnswer`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">answer_db</span> <span class="o">=</span> <span class="n">SqAnswer</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">,</span> <span class="n">id_question</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">question_db</span><span class="p">)</span>
+        <span class="n">answer_db</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        </div>
+<div class="viewcode-block" id="SaveSimpleQuestion.add_regex_answer"><a class="viewcode-back" href="../../../source.html#quiz.utils.save.SaveSimpleQuestion.add_regex_answer">[docs]</a>    <span class="k">def</span> <span class="nf">add_regex_answer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">answer</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Ajoute une solution à la question sous forme d&#39;expression régulière. La</span>
+<span class="sd">        table utilisée est :py:class:`models.SqRegexAnswer`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">answer</span><span class="p">[</span><span class="s">&quot;text&quot;</span><span class="p">]</span>
+        <span class="n">regex</span> <span class="o">=</span> <span class="n">answer</span><span class="p">[</span><span class="s">&quot;regex&quot;</span><span class="p">]</span>
+        
+        <span class="n">answer_db</span> <span class="o">=</span> <span class="n">SqRegexAnswer</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">,</span> <span class="n">id_question</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">question_db</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="n">regex</span><span class="p">)</span>
+        <span class="n">answer_db</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="c">#Classe abstraite pour tous les QCM</span></div></div>
+<div class="viewcode-block" id="SaveQcm"><a class="viewcode-back" href="../../../source.html#quiz.utils.save.SaveQcm">[docs]</a><span class="k">class</span> <span class="nc">SaveQcm</span><span class="p">(</span><span class="n">SaveQuestion</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Enregistre une question à choix multiples dans la base de données. S&#39;il s&#39;agit</span>
+<span class="sd">    d&#39;une question à réponses correctes multiples, il faut assigner la valeur ``True``</span>
+<span class="sd">    à l&#39;attribut ``multi_answers``. Par défaut, celui-ci reçoit la valeur ``False``.</span>
+<span class="sd">    Les différentes options à sélectionner sont également enregistrées.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">question</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">SaveQuestion</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">question</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">question</span><span class="p">[</span><span class="s">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">question_db</span><span class="o">.</span><span class="n">multi_answers</span> <span class="o">=</span> <span class="bp">True</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">question_db</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        
+        <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="n">question</span><span class="p">[</span><span class="s">&quot;options&quot;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="n">option</span><span class="p">)</span>
+            
+<div class="viewcode-block" id="SaveQcm.add_option"><a class="viewcode-back" href="../../../source.html#quiz.utils.save.SaveQcm.add_option">[docs]</a>    <span class="k">def</span> <span class="nf">add_option</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">option</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Ajoute une option à la question en créant une nouvelle entrée dans la table</span>
+<span class="sd">        :py:class:`models.QcmChoice`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">option</span><span class="p">[</span><span class="s">&quot;content&quot;</span><span class="p">]</span>
+        <span class="n">valid</span> <span class="o">=</span> <span class="n">option</span><span class="p">[</span><span class="s">&quot;valid&quot;</span><span class="p">]</span>
+        
+        <span class="n">choice_db</span> <span class="o">=</span> <span class="n">QcmChoice</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">,</span> <span class="n">valid</span><span class="o">=</span><span class="n">valid</span><span class="p">,</span> <span class="n">id_question</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">question_db</span><span class="p">)</span>
+        <span class="n">choice_db</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</div></div>
+<div class="viewcode-block" id="SaveQuiz"><a class="viewcode-back" href="../../../source.html#quiz.utils.save.SaveQuiz">[docs]</a><span class="k">class</span> <span class="nc">SaveQuiz</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Classe permettant l&#39;enregistrement d&#39;un quiz et de toutes ses questions dans</span>
+<span class="sd">    la base de données. Une première entrée :py:class:`models.Quiz` est enregistrée</span>
+<span class="sd">    puis les données des questions sont sauvegardées par l&#39;intermédiaire des classes</span>
+<span class="sd">    :py:class:`SaveSimpleQuestion` et :py:class:`SaveQcm`.</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">TYPES</span> <span class="o">=</span> <span class="p">[</span><span class="n">SaveSimpleQuestion</span><span class="p">,</span> <span class="n">SaveQcm</span><span class="p">,</span> <span class="n">SaveQcm</span><span class="p">]</span>
+    <span class="n">MODELS</span> <span class="o">=</span> <span class="p">[</span><span class="n">SimpleQuestion</span><span class="p">,</span> <span class="n">Qcm</span><span class="p">,</span> <span class="n">Qcm</span><span class="p">]</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">questions_list</span><span class="p">,</span> <span class="n">quizcode</span><span class="p">,</span> <span class="n">teacher</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">quiz_db</span> <span class="o">=</span> <span class="n">Quiz</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="n">quizcode</span><span class="p">,</span> <span class="n">id_teacher</span><span class="o">=</span><span class="n">teacher</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">quiz_db</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        
+        <span class="n">n_question</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">global_points</span> <span class="o">=</span> <span class="mi">0</span>
+        
+        <span class="k">for</span> <span class="n">question</span> <span class="ow">in</span> <span class="n">questions_list</span><span class="p">:</span>
+            <span class="n">q_type</span> <span class="o">=</span> <span class="n">question</span><span class="p">[</span><span class="s">&quot;type&quot;</span><span class="p">]</span> <span class="c">#Récupération du type de question</span>
+            
+            <span class="n">Constructor</span> <span class="o">=</span> <span class="n">SaveQuiz</span><span class="o">.</span><span class="n">TYPES</span><span class="p">[</span><span class="n">q_type</span><span class="p">]</span>
+            <span class="n">Model</span> <span class="o">=</span> <span class="n">SaveQuiz</span><span class="o">.</span><span class="n">MODELS</span><span class="p">[</span><span class="n">q_type</span><span class="p">]</span>
+            
+            <span class="n">Constructor</span><span class="p">(</span><span class="n">question</span><span class="o">=</span><span class="n">question</span><span class="p">,</span> <span class="n">Model</span><span class="o">=</span><span class="n">Model</span><span class="p">,</span> <span class="n">quiz_db</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">quiz_db</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n_question</span><span class="p">)</span> <span class="c">#Instanciation à patir du constructeur correspondant</span>
+            
+            <span class="n">global_points</span> <span class="o">+=</span> <span class="n">question</span><span class="p">[</span><span class="s">&quot;points&quot;</span><span class="p">]</span>
+            <span class="n">n_question</span> <span class="o">+=</span> <span class="mi">1</span>
+            
+        <span class="bp">self</span><span class="o">.</span><span class="n">quiz_db</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">global_points</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">quiz_db</span><span class="o">.</span><span class="n">save</span><span class="p">()</span></div>
+</pre></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Benoît Léo Maillard.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
