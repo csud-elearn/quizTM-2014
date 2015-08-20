@@ -36,7 +36,7 @@ class Student(BaseProfile):
         return "Etudiant {0}".format(self.user.username)
 
 
-class Classes(models.Model):
+class Class(models.Model):
     # nom du groupe, par exemple 1ecg3
     name = models.CharField(max_length=15)
     
@@ -51,6 +51,8 @@ class Classes(models.Model):
     
     # participants au groupe
     # http://stackoverflow.com/questions/9352662/how-to-use-the-reverse-of-a-django-manytomany-relationship
-    members = models.ManyToManyField(Student, related_name='classes')
+    members = models.ManyToManyField(Student, related_name='classes', blank=True)
     
-    #
+    def __str__(self):
+        return "Classe {0}".format(self.name)
+
