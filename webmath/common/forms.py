@@ -8,11 +8,20 @@ class LoginForm(forms.Form):
     password = forms.CharField(label="Mot de passe", widget=forms.PasswordInput(attrs={'class' : 'form-control bottom-space'}))
 
 
-class RegisterForm(forms.Form):
+class RegisterFormAllowTeachers(forms.Form):
     username = forms.CharField(label="Nom d'utilisateur", widget= forms.TextInput(attrs={'class' : 'form-control bottom-space'}))
     password = forms.CharField(label='Mot de passe', widget=forms.PasswordInput(attrs={'class' : 'form-control bottom-space'}))
     mail = forms.CharField(label='E-mail', widget=forms.EmailInput(attrs={'class' : 'form-control bottom-space'}))
     account_type = forms.ChoiceField(label='Type de compte', choices=(
         ("teacher", "Professeur"),
+        ("student", "Étudiant"),
+        ), widget=forms.Select(attrs={'class' : 'form-control bottom-space'}))
+
+class RegisterForm(forms.Form):
+    username = forms.CharField(label="Nom d'utilisateur", widget= forms.TextInput(attrs={'class' : 'form-control bottom-space'}))
+    password = forms.CharField(label='Mot de passe', widget=forms.PasswordInput(attrs={'class' : 'form-control bottom-space'}))
+    mail = forms.CharField(label='E-mail', widget=forms.EmailInput(attrs={'class' : 'form-control bottom-space'}))
+    account_type = forms.ChoiceField(label='Type de compte', choices=(
+        #("teacher", "Professeur"),
         ("student", "Étudiant"),
         ), widget=forms.Select(attrs={'class' : 'form-control bottom-space'}))

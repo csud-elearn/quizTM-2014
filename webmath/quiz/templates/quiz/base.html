@@ -97,7 +97,7 @@
                     <a href="{% url 'quiz:find' %}" class="list-group-item {% block side-complete %}{% endblock %}">Compléter un quiz</a>
                     <a href="{% url 'quiz:completed-quizzes' %}" class="list-group-item {% block side-completed %}{% endblock %}">Mes résolutions</a>
                     
-                    {% if user.is_authenticated and user.is_prof %}
+                    {% if user.is_authenticated and user.is_teacher%}
                     <a href="{% url 'quiz:created-quizzes' %}" class="list-group-item {% block side-created %}{% endblock %}">Mes quiz</a>
                     
                     <a href="{% url 'quiz:create' %}" class="list-group-item {% block side-create %}{% endblock %}">Créer un quiz</a>
