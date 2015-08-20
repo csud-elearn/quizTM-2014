@@ -1,5 +1,17 @@
 from django.db import models
+from django.contrib import auth
 from django.contrib.auth.models import User
+
+# context processor to pass profile to the template
+# def profile(request):
+#     return {'profile': request.user.
+    
+def is_member(self, group):
+    return self.profile.type == group
+auth.models.User.add_to_class('is_student', lambda self: self.profile.type == 'student')
+auth.models.User.add_to_class('is_prof', lambda self: self.profile.type == 'prof')
+auth.models.User.add_to_class('is_admin', lambda self: self.profile.type == 'admin')
+
 
 class BaseProfile(models.Model):
     
@@ -11,7 +23,7 @@ class BaseProfile(models.Model):
         (PROF, 'Professeur'),
         (ADMIN, 'Administrateur'),
     )
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, related_name="profile")
     avatar = models.ImageField(null=True, blank=True, upload_to="avatars/")
     
     # déterminer s'il s'agit d'un prof ou d'un étudiant. Ce champ est un peu redondant 
@@ -22,10 +34,7 @@ class BaseProfile(models.Model):
         choices=TYPE_CHOICES,
         default=STUDENT
     )
-                                      
-    class Meta:
-        abstract = True
-        
+
     
 class Admin(BaseProfile):
     
@@ -59,3 +68,5 @@ class Group(models.Model):
     # participants au groupe
     # http://stackoverflow.com/questions/9352662/how-to-use-the-reverse-of-a-django-manytomany-relationship
     members = models.ManyToManyField(Student, related_name='groups')
+    
+    #

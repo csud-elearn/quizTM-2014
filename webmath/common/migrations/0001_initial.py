@@ -13,27 +13,71 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Student',
+            name='BaseProfile',
             fields=[
-                ('id', models.AutoField(serialize=False, verbose_name='ID', primary_key=True, auto_created=True)),
-                ('avatar', models.ImageField(null=True, upload_to='avatars/', blank=True)),
-                ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, primary_key=True, auto_created=True)),
+                ('avatar', models.ImageField(null=True, blank=True, upload_to='avatars/')),
+                ('type', models.CharField(max_length=1, choices=[('S', 'Étudiant'), ('P', 'Professeur'), ('A', 'Administrateur')], default='S')),
             ],
             options={
-                'abstract': False,
             },
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='Teacher',
+            name='Admin',
             fields=[
-                ('id', models.AutoField(serialize=False, verbose_name='ID', primary_key=True, auto_created=True)),
-                ('avatar', models.ImageField(null=True, upload_to='avatars/', blank=True)),
-                ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
+                ('baseprofile_ptr', models.OneToOneField(primary_key=True, to='common.BaseProfile', parent_link=True, auto_created=True, serialize=False)),
             ],
             options={
-                'abstract': False,
+            },
+            bases=('common.baseprofile',),
+        ),
+        migrations.CreateModel(
+            name='Group',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, primary_key=True, auto_created=True)),
+                ('name', models.CharField(max_length=15)),
+                ('is_active', models.BooleanField(default=True)),
+                ('creation_datetime', models.DateTimeField(auto_now_add=True)),
+            ],
+            options={
             },
             bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Student',
+            fields=[
+                ('baseprofile_ptr', models.OneToOneField(primary_key=True, to='common.BaseProfile', parent_link=True, auto_created=True, serialize=False)),
+            ],
+            options={
+            },
+            bases=('common.baseprofile',),
+        ),
+        migrations.CreateModel(
+            name='Teacher',
+            fields=[
+                ('baseprofile_ptr', models.OneToOneField(primary_key=True, to='common.BaseProfile', parent_link=True, auto_created=True, serialize=False)),
+            ],
+            options={
+            },
+            bases=('common.baseprofile',),
+        ),
+        migrations.AddField(
+            model_name='group',
+            name='members',
+            field=models.ManyToManyField(related_name='groups', to='common.Student'),
+            preserve_default=True,
+        ),
+        migrations.AddField(
+            model_name='group',
+            name='owner',
+            field=models.ForeignKey(to='common.Teacher'),
+            preserve_default=True,
+        ),
+        migrations.AddField(
+            model_name='baseprofile',
+            name='user',
+            field=models.OneToOneField(to=settings.AUTH_USER_MODEL, related_name='profile'),
+            preserve_default=True,
         ),
     ]
