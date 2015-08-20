@@ -542,7 +542,7 @@ class QcmChoice(models.Model):
         type de relation avec Django sera abordée plus loin.
     """
     text = models.TextField()
-    valid = models.BooleanField() #Vaut True si la case doit être cochée
+    valid = models.BooleanField(default=True) #Vaut True si la case doit être cochée
     id_question = models.ForeignKey(Qcm)
     
     def __str__(self):
