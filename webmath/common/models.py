@@ -7,33 +7,17 @@ from django.contrib.auth.models import User
 #     return {'profile': request.user.
     
 def is_member(self, group):
-    return self.profile.type == group
-auth.models.User.add_to_class('is_student', lambda self: self.profile.type == 'student')
-auth.models.User.add_to_class('is_prof', lambda self: self.profile.type == 'prof')
-auth.models.User.add_to_class('is_admin', lambda self: self.profile.type == 'admin')
+    return self.groups.filter(name=group).exists()
 
+auth.models.User.add_to_class('is_member', is_member)
+auth.models.User.add_to_class('is_student', lambda self: self.is_member('students'))
+auth.models.User.add_to_class('is_teacher', lambda self: self.is_member('teachers'))
+auth.models.User.add_to_class('is_admin', lambda self: self.is_member('admins'))
 
 class BaseProfile(models.Model):
     
-    STUDENT = 'S'
-    PROF = 'P'
-    ADMIN = 'A'
-    TYPE_CHOICES = (
-        (STUDENT, 'Étudiant'),
-        (PROF, 'Professeur'),
-        (ADMIN, 'Administrateur'),
-    )
     user = models.OneToOneField(User, related_name="profile")
     avatar = models.ImageField(null=True, blank=True, upload_to="avatars/")
-    
-    # déterminer s'il s'agit d'un prof ou d'un étudiant. Ce champ est un peu redondant 
-    # il est probablement possible de déterminer le type de compte en regardant l'instance de la classe
-    # puisque ce modèle n'est jamais implémenté tel quel (abstract = True)
-    type = models.CharField(
-        max_length=1,
-        choices=TYPE_CHOICES,
-        default=STUDENT
-    )
 
     
 class Admin(BaseProfile):
@@ -52,7 +36,7 @@ class Student(BaseProfile):
         return "Etudiant {0}".format(self.user.username)
 
 
-class Group(models.Model):
+class Classes(models.Model):
     # nom du groupe, par exemple 1ecg3
     name = models.CharField(max_length=15)
     
@@ -67,6 +51,6 @@ class Group(models.Model):
     
     # participants au groupe
     # http://stackoverflow.com/questions/9352662/how-to-use-the-reverse-of-a-django-manytomany-relationship
-    members = models.ManyToManyField(Student, related_name='groups')
+    members = models.ManyToManyField(Student, related_name='classes')
     
     #
