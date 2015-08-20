@@ -17,4 +17,5 @@ urlpatterns = patterns('',
     url(r'^listdrafts/', listdrafts, name="listdrafts"),
     url(r'^getdraft/', getdraft, name="getdraft"),
     url(r'^add-correct-answer/', add_correct_answer, name="add-correct-answer"),
+    url(r'^classes/', ls_classes, name="classes"),
 )

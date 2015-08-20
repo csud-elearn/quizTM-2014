@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from quiz.utils.save import SaveQuiz
 from quiz.utils.submit import QuizForms
 from quiz.models import Quiz, QuizDraft, CompletedQuiz, SqSubmit, QcmSubmitMulti, QcmSubmitOne
-from common.models import Teacher, Student
+from common.models import Teacher, Student, Class
 from common.auth_utils import *
 from django.contrib.auth.decorators import login_required, user_passes_test
 import json
@@ -379,3 +379,14 @@ def add_correct_answer(request):
         submit.set_as_correct()
         
         return HttpResponse(submit.pk)
+        
+        
+@login_required
+@user_passes_test(is_teacher)
+def ls_classes(request):
+    teacher = request.user
+    
+    # retourne toutes les classes dont possédées par teacher
+    classes = Class.objects.filter(owner=teacher)
+    
+    return render(request, 'quiz/classes.html', { 'classes': classes })

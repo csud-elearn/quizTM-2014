@@ -66,6 +66,12 @@
                      <li>
                         <a href="/static/quiz/manual/html/doc-user.html#professeurs" target="_blank">Guide prof</a>
                     </li>
+                    
+                    {% if user.is_teacher %}
+                    <li>
+                        <a href="{% url 'quiz:classes' %}" >Mes classes</a>
+                    </li>
+                    {% endif %}
                 </ul>
                 <ul class="nav  navbar-nav navbar-right">
                     {% if user.is_authenticated %}
@@ -94,14 +100,16 @@
 
             <div class="col-md-3">
                 <div class="list-group">
-                    <a href="{% url 'quiz:find' %}" class="list-group-item {% block side-complete %}{% endblock %}">Compléter un quiz</a>
-                    <a href="{% url 'quiz:completed-quizzes' %}" class="list-group-item {% block side-completed %}{% endblock %}">Mes résolutions</a>
-                    
-                    {% if user.is_authenticated and user.is_teacher%}
-                    <a href="{% url 'quiz:created-quizzes' %}" class="list-group-item {% block side-created %}{% endblock %}">Mes quiz</a>
-                    
-                    <a href="{% url 'quiz:create' %}" class="list-group-item {% block side-create %}{% endblock %}">Créer un quiz</a>
-                    {% endif %}
+                    {% block sidebar %}
+                        <a href="{% url 'quiz:find' %}" class="list-group-item {% block side-complete %}{% endblock %}">Compléter un quiz</a>
+                        <a href="{% url 'quiz:completed-quizzes' %}" class="list-group-item {% block side-completed %}{% endblock %}">Mes résolutions</a>
+                        
+                        {% if user.is_authenticated and user.is_teacher%}
+                        <a href="{% url 'quiz:created-quizzes' %}" class="list-group-item {% block side-created %}{% endblock %}">Mes quiz</a>
+                        
+                        <a href="{% url 'quiz:create' %}" class="list-group-item {% block side-create %}{% endblock %}">Créer un quiz</a>
+                        {% endif %}
+                    {% endblock %}
                 </div>
             </div>
 

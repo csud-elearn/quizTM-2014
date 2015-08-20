@@ -1,0 +1,14 @@
+{% extends "quiz/base.html" %}
+{% load staticfiles %}
+
+{% block title %}Gestion des classes{% endblock %}
+
+{% block page-content %}
+{{ classes }}
+{% endblock %}
+
+{% block sidebar %}
+<a href="#" class="list-group-item" {% block side-ls-classes %}{% endblock %}>Liste des classes</a>
+<a href="#" class="list-group-item">Ajouter une classe</a>
+<a href="#" class="list-group-item">Statistiques par classe></a>
+{% endblock %}
