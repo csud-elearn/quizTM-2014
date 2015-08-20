@@ -344,19 +344,25 @@ def advanced_stats(request, n_quiz):
     chaque question du quiz. Ce formulaire ne peut pas être envoyé et sert
     uniquement à l'affichage.
     """
+    
     quiz = get_object_or_404(Quiz, pk=n_quiz)
     l_completed = CompletedQuiz.objects.filter(id_quiz=quiz)
+
     n_completed = len(l_completed)
     
     # Création d'un formulaire pour pouvoir afficher le rendu des questions
     # dans le template
     quizforms = QuizForms(quiz)
     
+    # classes appartenant à teacher
+    classes = Class.objects.filter(owner=request.user)
+    
     return render(request, 'quiz/advanced-stats.html', {
         'quiz' : quiz,
         'l_completed' : l_completed,
         'l_forms' : quizforms.l_forms,
         'n_completed' : n_completed,
+        'classes' : classes,
     })
     
 @login_required

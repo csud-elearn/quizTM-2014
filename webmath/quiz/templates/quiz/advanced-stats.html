@@ -15,6 +15,19 @@
 <div class="thumbnail">
     <div class="caption-full">
         <h1>Statistiques avancées - {{ quiz.title }}</h1>
+        
+        <form id="form-select-class" class="form">
+            <div class="form-group">
+                <label  for="class">Classe à afficher : </label>
+                <select name="class" id="class">
+                        <option value="all-classes" default></option>
+                    {% for cl in classes %}
+                        <option value="{{cl.id}}">{{cl.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </form>
+        
         <div id="tables-container">
         <div id="stats-tables">
         <div class="fixed-cols bottom-space">
@@ -30,19 +43,25 @@
                 </thead>
                 <tbody>
                     {% for completed in l_completed %}
-                        <tr>
+                        <tr class="dynamic">
+                            <th class="hidden">
+                                {% for cl in completed.get_student_classes %}
+                                <div data-class="{{cl.id}}"></div>
+                                {% endfor %}
+                            </th>
                             <th class="contains-button" scope="row">
+                            
                                 <a title="Afficher la correction détaillée" href="{% url 'quiz:correct' completed.pk %}" class="btn btn-xs btn-warning">
                                     <span class="glyphicon glyphicon-check"></span>
                                 </a>
                                 {{ completed.id_user }}
                             </th>
-                            <td class="info">{{ completed.result }} <span class="bold">/ {{ completed.id_quiz.points }}</span></td>
+                            <td class="info">{{ completed.result | floatformat }} <span class="bold">/ {{ completed.id_quiz.points | floatformat:0 }}</span></td>
                         </tr>
                     {% endfor %}
                     <tr class="info">
                         <th scope="row">Moyenne</th>
-                        <td>{{ quiz.average_result }} <span class="bold">/ {{ quiz.points }}</span></td>
+                        <td>{{ quiz.average_result | floatformat }} <span class="bold">/ {{ quiz.points | floatformat:0 }}</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -65,15 +84,22 @@
                 </thead>
                 <tbody>
                     {% for completed in l_completed %}
-                        <tr>
+                        <tr class="dynamic">
+                            <td style="display: none">
+                            {% for cl in completed.get_student_classes %}
+                                <div data-class="{{cl.id}}"></div>
+                            {% endfor %}
+
+                            </td>
+
                         {% for question_submit in completed.get_questions_submits %}
-                            <td>{{ question_submit.result }} <span class="bold">/ {{ question_submit.id_question.points }}</span></td>
+                            <td>{{ question_submit.result | floatformat }} <span class="bold">/ {{ question_submit.id_question.points | floatformat }}</span></td>
                         {% endfor %}
                         </tr>
                     {% endfor %}
                     <tr>
                     {% for question in quiz.get_questions %}
-                        <td class="info">{{ question.average_result }} <span class="bold">/ {{ question.points }}</span></td>
+                        <td class="info">{{ question.average_result | floatformat }} <span class="bold">/ {{ question.points | floatformat }}</span></td>
                     {% endfor %}
                     </tr>
                 </tbody>
@@ -133,4 +159,23 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+$( document ).ready(function() {
+    $('form#form-select-class select').change(function () {
+        var classe = $(this).val();
+        console.log(classe);
+        if ( classe !== 'all-classes') {
+            $('tr.dynamic').hide();
+        }
+        // filter les lignes qui correspondent à cet id de classe
+        $divs = $('div[data-class="' + classe + '"]');
+        //$divs.closest('tr').css('background-color', 'red');
+        $divs.closest('tr').show();
+    });
+});
+</script>
+
 {% endblock %}

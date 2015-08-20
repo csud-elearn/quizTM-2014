@@ -163,7 +163,9 @@ class CompletedQuiz(models.Model):
             
         self.result = result # Le nombre de points obtenus est modifié
         self.save()
-
+        
+    def get_student_classes(self):
+        return list(self.id_user.profile.student.classes.all())
 #    
 #Classes abstraites
 #
