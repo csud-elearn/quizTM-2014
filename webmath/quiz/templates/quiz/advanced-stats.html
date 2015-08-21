@@ -20,7 +20,7 @@
             <div class="form-group">
                 <label  for="class">Classe à afficher : </label>
                 <select name="class" id="class">
-                        <option value="all-classes" default></option>
+                        <option value="all-classes" default>Toutes mes classes</option>
                     {% for cl in classes %}
                         <option value="{{cl.id}}">{{cl.name}}</option>
                     {% endfor %}
@@ -169,6 +169,8 @@ $( document ).ready(function() {
         console.log(classe);
         if ( classe !== 'all-classes') {
             $('tr.dynamic').hide();
+        } else {
+            $('tr.dynamic').show();
         }
         // filter les lignes qui correspondent à cet id de classe
         $divs = $('div[data-class="' + classe + '"]');
