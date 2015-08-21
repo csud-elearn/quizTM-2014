@@ -20,7 +20,7 @@ class QuestionAbstract: #Classe mère de toutes les questions, non destinée à 
                 # Conversion du markdown pour les attributs qui en ont besoin
                 content = self.parent.converter.makeHtml(content)
                 content = content.replace('<pre>', '<pre class="prettyprint">')
-            
+
             JS("self.tags_list[tag]['function'].call(self, content)") #Exécute la méthode associé au tag
         else:
             self.parent.error("Balise invalide pour ce type de question") #Si le tag n'est pas supporté par la question
@@ -32,13 +32,13 @@ class QuestionAbstract: #Classe mère de toutes les questions, non destinée à 
         i_comma = n_points.find(",")
         if i_comma >= 0:
             n_points = n_points[:i_comma] + "." + n_points[i_comma+1:]
-        
-        
+
+
         self.points = float(n_points)
 
         if not self.points:
             self.parent.error("La valeur en points doit être un nombre décimal")
-            
+
 
     def properties(self):
         #Retourne les propriétés communes à tous types de question pour la construction du json
@@ -49,7 +49,7 @@ class QuestionAbstract: #Classe mère de toutes les questions, non destinée à 
         }
 
         return properties
-        
+
     def render(self):
         pass
 
@@ -58,26 +58,26 @@ class SimpleQuestion(QuestionAbstract): #Question simple avec un champ de texte 
         QuestionAbstract.__init__(self, parent, text, line)
         self.answers = [] #Listes des solutions
         self.regex_answers = [] # Liste des solutions contenant des expressions régulières
-        
+
         #Associaton des différents tags au méthodes de la classe
         self.tags_list["="] = {"function" : self.add_answer, "markdown" : False}
         self.tags_list["=r"] = {"function" : self.add_regex_answer, "markdown" : False}
 
     def add_answer(self, content):
         self.answers.append(content)
-        
+
     def add_regex_answer(self, content):
         if "//" in content:
             answer_dict = {
                 "text" : self.parent.converter.makeHtml(content.split("//")[0].clean()),
                 "regex" : content.split("//")[1].clean(),
             }
-            
+
             if not answer_dict["text"]:
                 self.parent.error("Texte à afficher vide")
             if not answer_dict["regex"]:
                 self.parent.error("Expression régulière vide")
-            
+
             self.regex_answers.append(answer_dict)
         else:
             self.parent.error("Le texte à afficher doit être séparé de l'expression régulière par un <code>//</code>")
@@ -87,7 +87,7 @@ class SimpleQuestion(QuestionAbstract): #Question simple avec un champ de texte 
         $container = $("<li>", {"class" : "q-container list-group-item"}).appendTo(self.parent.$render)
         $("<label>", {"for" : id_input, "class" : "markdown-body"}).append(self.text).appendTo($container)
         $("<input>", {"type" : "text", "id" : id_input, "class" : "form-control markdown-body"}).appendTo($container)
-        
+
     def properties(self): #Renvoie les caractéristiques de la question pour la construction du json
         properties = QuestionAbstract.properties(self)
         properties["type"] = 0
@@ -127,7 +127,7 @@ class QCM_Checkbox(QuestionAbstract):
             $("<input>", {"type" : self.input_type, "id" : id_option, "name" : name}).appendTo($container)
             $("<label>", {"for": id_option, "class" : "markdown-body"}).append(option.content).appendTo($container)
             $("<br />").appendTo($container)
-            
+
     def properties(self): #Renvoie les caractéristiques de la question pour la construction du json
         properties = QuestionAbstract.properties(self)
         properties["type"] = 1
@@ -153,7 +153,7 @@ class QCM_Radio(QCM_Checkbox):
         else:
             self.options.append({"content" : content, "valid" : True})
             self.has_answer = True
-            
+
     def properties(self): #Renvoie les caractéristiques de la question pour la construction du json
         properties = QCM_Checkbox.properties(self)
         properties["type"] = 2
@@ -170,26 +170,26 @@ class Parse:
         self.question_parent = None #Référence vers le dernier objet question instancié
         self.l = 0
         self.converter = JS("new Showdown.converter();")
-        
+
         self.read(text)
-            
+
     def read(self, texte):
-        
+
         l_blocks = texte.split("\n{")
-        
+
         block_1 = l_blocks[0]
         if block_1[0] == "{":
             l_blocks[0] = block_1[1:]
-        
+
         for block in l_blocks:
             i_closing_tag = block.find("}")
-            
+
             if i_closing_tag == -1:
                 self.error("Balise manquante ou incomplète")
             else:
                 tag = block[:i_closing_tag]
                 content = block[i_closing_tag+1:].clean()
-                
+
                 if content:
                     question = self.new_question(tag, content)
                     if question:
@@ -197,13 +197,13 @@ class Parse:
                         self.questions.append(question)
                     else:
                         self.new_attribute(tag, content)
-                
+
                 else:
                     self.error("Texte vide")
-                
+
             self.l += 1
             self.l += block.count("\n")
-            
+
         for question in self.questions:
             question.check_question()
 
@@ -213,13 +213,13 @@ class Parse:
             "++" : QCM_Checkbox,
             "**" : QCM_Radio,
         }
-        
+
         if questions_types[tag]:
             #Instanciation de la question avec le constructeur associé au tag
             question = JS("new questions_types[tag](self, content, self.l)") #Utilisation de JS() pour écrire du JS pur. Sans cela, RS n'ajoute pas "new"
-            
+
             return question
-            
+
         else:
             return False
 
@@ -264,7 +264,7 @@ class Parse:
                 $("<div>", {"class" : "error-content"}).append(error.message).appendTo($container)
         else:
             $(".errorsbox").addClass("panel-default content-hidden disabled").removeClass("panel-danger")
-            
+
     def tojson(self): #Renvoie la chaine json contenant toutes les caractéristiques du quiz
         json = ""
         if len(self.errors) > 0:
@@ -293,20 +293,27 @@ def start_render(): #Affiche l'aperçu
     parse = Parse(code).render()
     PR.prettyPrint() # Rafraichir le rendu prettify.js
     MathJax.Hub.Queue(["Typeset",MathJax.Hub]) # Rafraîchit le rendu mathjax
-    
-def submit(): #Soumet les données au serveur
+
+def submit(event): #Soumet les données au serveur
     parse = Parse($("#quizcode").val())
+
+    # c'est ici pour le moment que l'on recherche les tags
+    tags = $('#tags-input').tagsinput('items')
+    tags_json = JSON.stringify(tags)
+
     json_string = parse.tojson()
     title = $("#title").val()
     if json_string: # Contrôle qu'il y ait au moins une question
         if title: # Vérifie le titre
             $("#quiz_json").val(json_string) #On ajoute le json dans un champ de formulaire caché
+            $("#tags").val(tags_json) #On ajoute le json dans un champ de formulaire caché
+
             $("#createform").submit() #Le formulaire est soumis
         else:
             utils.alert_dialog("Erreur", "Vous devez spécifier un titre pour votre quiz")
     else:
         parse.render()
-        
+
 def sort_by_line(a, b): # Fonction qui définit les critères de tri des erreurs pour .sort() (JS)
     if a["line"] < b["line"]:
         return -1
@@ -316,21 +323,21 @@ def sort_by_line(a, b): # Fonction qui définit les critères de tri des erreurs
 
 
 def demo(): #Permet d'insérer un exemple de format texte
-    demo_text = "## Cases à cocher\
-\n* Option 1\
-\n= Option 4\
-\n= Option 5\
+    demo_text = "{++} Cases à cocher\
+\n{*} Option 1\
+\n{=} Option 4\
+\n{=} Option 5\
 \n\
 \n\
-\n?? Question simple\
-\n= Réponse\
+\n{??} Question simple\
+\n{=} Réponse\
 \n\
-\n** Boutons radio\
-\n* Option 1\
-\n= Option 2"
+\n{**} Boutons radio\
+\n{*} Option 1\
+\n{=} Option 2"
     $("#quizcode").val(demo_text)
     show_lines()
-    
+
 def prevent_submit(event):
     # Désactivation de l'envoi du formulaire avec la touche Enter
     if event.which == 13:

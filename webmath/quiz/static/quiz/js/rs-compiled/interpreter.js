@@ -1,28 +1,41 @@
 (function(){
+    "use strict";
+    var _$rapyd$_Temp;
     function range(start, stop, step) {
+        var length, idx, range;
         if (arguments.length <= 1) {
             stop = start || 0;
             start = 0;
         }
         step = arguments[2] || 1;
-        var length = Math.max (Math.ceil ((stop - start) / step) , 0);
-        var idx = 0;
-        var range = new Array(length);
+        length = Math.max(Math.ceil((stop - start) / step), 0);
+        idx = 0;
+        range = new Array(length);
         while (idx < length) {
             range[idx++] = start;
             start += step;
         }
         return range;
     }
+    function _$rapyd$_Iterable(iterable) {
+        if (iterable instanceof Array || iterable instanceof String || typeof iterable === "string") {
+            return iterable;
+        }
+        return Object.keys(iterable);
+    }
     function _$rapyd$_in(val, arr) {
-        if (arr instanceof Array || typeof arr === "string") return arr.indexOf(val) != -1;
-        else {
-            if (arr.hasOwnProperty(val)) return true;
+        if (arr instanceof Array || typeof arr === "string") {
+            return arr.indexOf(val) !== -1;
+        } else {
+            if (arr.hasOwnProperty(val)) {
+                return true;
+            }
             return false;
         }
     }
     function dir(item) {
-        var arr = [];
+        var arr;
+        arr = [];
         for (var i in item) {
             arr.push(i);
         }
@@ -33,49 +46,21 @@
         child.prototype.constructor = child;
     }
     function len(obj) {
-        if (obj instanceof Array || typeof obj === "string") return obj.length;
-        else {
-            var count = 0;
+        var count;
+        if (obj instanceof Array || typeof obj === "string") {
+            return obj.length;
+        } else {
+            count = 0;
             for (var i in obj) {
-                if (obj.hasOwnProperty(i)) count++;
+                if (obj.hasOwnProperty(i)) {
+                    count += 1;
+                }
             }
             return count;
         }
     }
     var str;
-            if (typeof JSON === "undefined") {
-        
-    JSON.stringify = function(obj) {
-        var t = typeof (obj);
-        if (t != "object" || obj === null) {
-            // simple data type
-            if (t == "string")
-                obj = '"' + obj + '"';
-            if (t == "function")
-                return; // return undefined
-            else
-                return String(obj);
-        } else {
-            // recurse array or object
-            var n, v, json = []
-            var arr = (obj && obj.constructor == Array);
-            for (n in obj) {
-                v = obj[n];
-                t = typeof (v);
-                if (t != "function" && t != "undefined") {
-                    if (t == "string")
-                        v = '"' + v + '"';
-                    else if ((t == "object" || t == "function") && v !== null)
-                        v = JSON.stringify(v);
-                    json.push((arr ? "" : '"' + n + '":') + String(v));
-                }
-            }
-            return (arr ? "[" : "{") + String(json) + (arr ? "]" : "}");
-        }
-    };
-    ;
-    }
-    str = JSON.stringify;
+            str = JSON.stringify;
     function kwargs(f) {
         var argNames;
         argNames = f.toString().match(/\(([^\)]+)/)[1];
@@ -142,64 +127,8 @@
         self.message = message;
     };
 
-    if (!Array.prototype.map) {
-        
-	Array.prototype.map = function(callback, thisArg) {
-		var T, A, k;
-		if (this == null) {
-			throw new TypeError(" this is null or not defined");
-		}
-		var O = Object(this);
-		var len = O.length >>> 0;
-		if ({}.toString.call(callback) != "[object Function]") {
-			throw new TypeError(callback + " is not a function");
-		}
-		if (thisArg) {
-			T = thisArg;
-		}
-		A = new Array(len);
-		for (var k = 0; k < len; k++) {
-			var kValue, mappedValue;
-			if (k in O) {
-				kValue = O[k];
-				mappedValue = callback.call(T, kValue);
-				A[k] = mappedValue;
-			}
-		}
-		return A;
-	};
-	;
-    }
     function map(oper, arr) {
         return list(arr.map(oper));
-    }
-    if (!Array.prototype.filter) {
-        
-	Array.prototype.filter = function(filterfun, thisArg) {
-		"use strict";
-		if (this == null) {
-			throw new TypeError(" this is null or not defined");
-		}
-		var O = Object(this);
-		var len = O.length >>> 0;
-		if ({}.toString.call(filterfun) != "[object Function]") {
-			throw new TypeError(filterfun + " is not a function");
-		}
-		if (thisArg) {
-			T = thisArg;
-		}
-		var A = [];
-		var thisp = arguments[1];
-		for (var k = 0; k < len; k++) {
-			if (k in O) {
-				var val = O[k]; // in case fun mutates this
-				if (filterfun.call(T, val))
-					A.push(val);
-			}
-		}
-		return A;
-	};
-	;
     }
     function filter(oper, arr) {
         return list(arr.filter(oper));
@@ -220,7 +149,7 @@
             if (a.constructor !== b.constructor || a.length !== b.length) {
                 return false;
             }
-            var _$rapyd$_Iter0 = dict.keys(a);
+            var _$rapyd$_Iter0 = _$rapyd$_Iterable(dict.keys(a));
             for (var _$rapyd$_Index0 = 0; _$rapyd$_Index0 < _$rapyd$_Iter0.length; _$rapyd$_Index0++) {
                 i = _$rapyd$_Iter0[_$rapyd$_Index0];
                 if (b.hasOwnProperty(i)) {
@@ -254,7 +183,7 @@
         if (typeof iterable === "undefined") iterable = [];
         var result, i;
         result = [];
-        var _$rapyd$_Iter1 = iterable;
+        var _$rapyd$_Iter1 = _$rapyd$_Iterable(iterable);
         for (var _$rapyd$_Index1 = 0; _$rapyd$_Index1 < _$rapyd$_Iter1.length; _$rapyd$_Index1++) {
             i = _$rapyd$_Iter1[_$rapyd$_Index1];
             result.append(i);
@@ -292,7 +221,7 @@
     function dict(iterable) {
         var result, key;
         result = {};
-        var _$rapyd$_Iter2 = iterable;
+        var _$rapyd$_Iter2 = _$rapyd$_Iterable(iterable);
         for (var _$rapyd$_Index2 = 0; _$rapyd$_Index2 < _$rapyd$_Iter2.length; _$rapyd$_Index2++) {
             key = _$rapyd$_Iter2[_$rapyd$_Index2];
             result[key] = iterable[key];
@@ -320,7 +249,7 @@
     dict.values = function(hash) {
         var vals, key;
         vals = [];
-        var _$rapyd$_Iter3 = dict.keys(hash);
+        var _$rapyd$_Iter3 = _$rapyd$_Iterable(dict.keys(hash));
         for (var _$rapyd$_Index3 = 0; _$rapyd$_Index3 < _$rapyd$_Iter3.length; _$rapyd$_Index3++) {
             key = _$rapyd$_Iter3[_$rapyd$_Index3];
             vals.append(hash[key]);
@@ -330,7 +259,7 @@
     dict.items = function(hash) {
         var items, key;
         items = [];
-        var _$rapyd$_Iter4 = dict.keys(hash);
+        var _$rapyd$_Iter4 = _$rapyd$_Iterable(dict.keys(hash));
         for (var _$rapyd$_Index4 = 0; _$rapyd$_Index4 < _$rapyd$_Iter4.length; _$rapyd$_Index4++) {
             key = _$rapyd$_Iter4[_$rapyd$_Index4];
             items.append([key, hash[key]]);
@@ -340,7 +269,7 @@
     dict.copy = dict;
     dict.clear = function(hash) {
         var key;
-        var _$rapyd$_Iter5 = dict.keys(hash);
+        var _$rapyd$_Iter5 = _$rapyd$_Iterable(dict.keys(hash));
         for (var _$rapyd$_Index5 = 0; _$rapyd$_Index5 < _$rapyd$_Iter5.length; _$rapyd$_Index5++) {
             key = _$rapyd$_Iter5[_$rapyd$_Index5];
             delete hash[key];
@@ -528,7 +457,7 @@
             "class": "markdown-body"
         }).append(self.text).appendTo($container);
         name = self.parent.get_name();
-        var _$rapyd$_Iter6 = self.options;
+        var _$rapyd$_Iter6 = _$rapyd$_Iterable(self.options);
         for (var _$rapyd$_Index6 = 0; _$rapyd$_Index6 < _$rapyd$_Iter6.length; _$rapyd$_Index6++) {
             option = _$rapyd$_Iter6[_$rapyd$_Index6];
             id_option = self.parent.get_id();
@@ -613,7 +542,7 @@
         if (block_1[0] === "{") {
             l_blocks[0] = block_1.slice(1);
         }
-        var _$rapyd$_Iter7 = l_blocks;
+        var _$rapyd$_Iter7 = _$rapyd$_Iterable(l_blocks);
         for (var _$rapyd$_Index7 = 0; _$rapyd$_Index7 < _$rapyd$_Iter7.length; _$rapyd$_Index7++) {
             block = _$rapyd$_Iter7[_$rapyd$_Index7];
             i_closing_tag = block.find("}");
@@ -637,7 +566,7 @@
             self.l += 1;
             self.l += block.count("\n");
         }
-        var _$rapyd$_Iter8 = self.questions;
+        var _$rapyd$_Iter8 = _$rapyd$_Iterable(self.questions);
         for (var _$rapyd$_Index8 = 0; _$rapyd$_Index8 < _$rapyd$_Iter8.length; _$rapyd$_Index8++) {
             question = _$rapyd$_Iter8[_$rapyd$_Index8];
             question.check_question();
@@ -677,7 +606,7 @@
             $(".viewbox").css("display", "block");
             self.$render = $("#view_form");
             self.$render.empty();
-            var _$rapyd$_Iter9 = self.questions;
+            var _$rapyd$_Iter9 = _$rapyd$_Iterable(self.questions);
             for (var _$rapyd$_Index9 = 0; _$rapyd$_Index9 < _$rapyd$_Iter9.length; _$rapyd$_Index9++) {
                 question = _$rapyd$_Iter9[_$rapyd$_Index9];
                 question.render();
@@ -703,7 +632,7 @@
             $(".errorsbox").removeClass("panel-default content-hidden disabled").addClass("panel-danger");
             $errors_div = $("#errors-div");
             $errors_div.empty();
-            var _$rapyd$_Iter10 = self.errors;
+            var _$rapyd$_Iter10 = _$rapyd$_Iterable(self.errors);
             for (var _$rapyd$_Index10 = 0; _$rapyd$_Index10 < _$rapyd$_Iter10.length; _$rapyd$_Index10++) {
                 error = _$rapyd$_Iter10[_$rapyd$_Index10];
                 $container = $("<div>", {
@@ -730,7 +659,7 @@
             utils.alert_dialog("Erreur", "Votre quiz ne comporte aucune question");
         } else {
             object_json = [];
-            var _$rapyd$_Iter11 = self.questions;
+            var _$rapyd$_Iter11 = _$rapyd$_Iterable(self.questions);
             for (var _$rapyd$_Index11 = 0; _$rapyd$_Index11 < _$rapyd$_Iter11.length; _$rapyd$_Index11++) {
                 question = _$rapyd$_Iter11[_$rapyd$_Index11];
                 object_json.append(question.properties());
@@ -757,14 +686,18 @@
         PR.prettyPrint();
         MathJax.Hub.Queue([ "Typeset", MathJax.Hub ]);
     }
-    function submit() {
-        var parse, json_string, title;
+    function submit(event) {
+        var parse, tags, tags_json, json_string, title;
+        event.preventDefault();
         parse = new Parse($("#quizcode").val());
+        tags = $("#tags-input").tagsinput("items");
+        tags_json = JSON.stringify(tags);
         json_string = parse.tojson();
         title = $("#title").val();
         if (json_string) {
             if (title) {
                 $("#quiz_json").val(json_string);
+                $("#tags").val(tags_json);
                 $("#createform").submit();
             } else {
                 utils.alert_dialog("Erreur", "Vous devez spécifier un titre pour votre quiz");
@@ -782,7 +715,7 @@
     }
     function demo() {
         var demo_text;
-        demo_text = "## Cases à cocher\n* Option 1\n= Option 4\n= Option 5\n\n\n?? Question simple\n= Réponse\n\n** Boutons radio\n* Option 1\n= Option 2";
+        demo_text = "{++} Cases à cocher\n{*} Option 1\n{=} Option 4\n{=} Option 5\n\n\n{??} Question simple\n{=} Réponse\n\n{**} Boutons radio\n{*} Option 1\n{=} Option 2";
         $("#quizcode").val(demo_text);
         show_lines();
     }

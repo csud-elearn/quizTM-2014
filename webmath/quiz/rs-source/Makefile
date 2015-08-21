@@ -1,8 +1,13 @@
-compile-interpreter: interpreter.pyj
-	rapydscript interpreter.pyj -o ../static/quiz/js/rs-compiled/interpreter.js -p --screw-ie8
+OUTPUT_DIR = ../static/quiz/js/rs-compiled
+RS_OPTS = -p --screw-ie8
 
-compile-toolbar: toolbar.pyj
-	rapydscript toolbar.pyj -o ../static/quiz/js/rs-compiled/toolbar.js -p --screw-ie8
+interpreter: interpreter.pyj
+	rapydscript interpreter.pyj -o $(OUTPUT_DIR)/interpreter.js $(RS_OPTS)
 
-compile-find_url: find_url.pyj
-	rapydscript find_url.pyj -o ../static/quiz/js/rs-compiled/find_url.js -p --screw-ie8
+toolbar: toolbar.pyj
+	rapydscript toolbar.pyj -o $(OUTPUT_DIR)/toolbar.js $(RS_OPTS)
+
+find_url: find_url.pyj
+	rapydscript find_url.pyj -o $(OUTPUT_DIR)/find_url.js $(RS_OPTS)
+
+all: interpreter toolbar find_url

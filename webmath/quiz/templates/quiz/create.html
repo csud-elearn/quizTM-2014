@@ -13,8 +13,8 @@
 <script src="{% static 'quiz/js/rs-compiled/interpreter.js' %}"></script>
 <script type="text/javascript" src="{% static 'quiz/bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js' %}"></script>
 
-
 {% endblock %}
+
 
 {% block page-content %}
 <div class="thumbnail">
@@ -23,13 +23,14 @@
             <h1>Nouveau quiz</h1>
             <label for="title">Titre du quiz</label>
             <input type="text" class="form-control bottom-space" id="title" name="title" placeholder="Titre du quiz">
-            <label for="tags">Tags pour le quiz</label>
-            <input type="text" class="form-control bottom-space tag-list" id="tags" name="tags" 
+            <label for="tags-input">Tags pour le quiz</label>
+            <select multiple type="text" class="form-control bottom-space tag-list" id="tags-input" name="tags-input"
                 data-role="tagsinput"
                 placeholder="Insérer vos tags ici">
-            
+            </select>
+
             <label for="quizcode">Texte du quiz</label>
-            
+
             <!-- Toolbar supérieure -->
             <div class="btn-toolbar">
                 <!-- Première partie de la barre d'outils -->
@@ -72,7 +73,7 @@
 ```"><span class="glyphicon glyphicon-align-left"></span> Bloc de code</a></li>
                             <li><a class="tag-insert" data-tag-before="`" data-tag-after="`"><span class="glyphicon glyphicon-console"></span> Code sur une ligne</a></li>
                             <li><a class="tag-insert" data-tag-before="[texte" data-tag-after="](url)"><span class="glyphicon glyphicon-link"></span> Lien</a></li>
-                            
+
                         </ul>
                     </div>
                     <div class="btn-group" role="group">
@@ -123,7 +124,7 @@
                         </ul>
                     </div>
                 </div>
-                
+
                 <!-- Deuxième partie de la barre d'outils -->
                 <div class="btn-group bottom-space">
                     <div class="btn-group" role="group">
@@ -143,7 +144,7 @@
                     </a>
                 </div>
             </div>
-                
+
             <!-- Zone de texte -->
             <div class="input-group bottom-space">
                 <span class="input-group-addon lines" id="basic-addon1">1</span>
@@ -152,17 +153,18 @@
             <a href="#viewbox" class="btn btn-primary btn-sm bottom-space" id="start-render" title="Aperçu du quiz">
                 <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Aperçu
             </a>
-            
+
             <a class="btn btn-success btn-sm bottom-space" id="submit" title="Enregistrer le quiz">
                 <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Enregistrer
             </a>
-            
+
             <div class="panel panel-default content-hidden bottom-space errorsbox disabled">
                 <div class="panel-heading bold">Erreurs <span class="caret"></span></div>
                 <div class="panel-body" id="errors-div"></div>
             </div>
-            
+
             <input type="hidden" id="quiz_json" name="json" />
+            <input type="hidden" id="tags" name="tags_list" />
         </div>
     </form>
 </div>
@@ -240,19 +242,6 @@
 
 {% block javascript %}
 <script type="text/javascript" >
-    $( function () {
-        console.log('salut');
-        var tagList = $('.tag-list');
-        console.log(tagList);
-        // If using Bootstrap 2, be sure to include:
-        // Tags.bootstrapVersion = "2";
-        tagList.tags({
-            tagData:["boilerplate", "tags"],
-            suggestions:["basic", "suggestions"],
-            excludeList:["not", "these", "words"]
-        });
-    });
-    
- 
+
 </script>
 {% endblock %}
