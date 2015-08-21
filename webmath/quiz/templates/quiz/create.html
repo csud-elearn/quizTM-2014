@@ -6,10 +6,14 @@
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'quiz/css/create.css' %}">
+<link rel="stylesheet" href="{% static 'quiz/bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.css' %}">
 <script src="{% static 'quiz/js/textarea_lines.js' %}"></script>
 <script src="{% static 'quiz/js/jquery.caret.js' %}"></script>
 <script src="{% static 'quiz/js/rs-compiled/toolbar.js' %}"></script>
 <script src="{% static 'quiz/js/rs-compiled/interpreter.js' %}"></script>
+<script type="text/javascript" src="{% static 'quiz/bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js' %}"></script>
+
+
 {% endblock %}
 
 {% block page-content %}
@@ -18,7 +22,12 @@
         <div class="caption-full">
             <h1>Nouveau quiz</h1>
             <label for="title">Titre du quiz</label>
-            <input type="text" class="form-control bottom-space" id="title" name="title">
+            <input type="text" class="form-control bottom-space" id="title" name="title" placeholder="Titre du quiz">
+            <label for="tags">Tags pour le quiz</label>
+            <input type="text" class="form-control bottom-space tag-list" id="tags" name="tags" 
+                data-role="tagsinput"
+                placeholder="Insérer vos tags ici">
+            
             <label for="quizcode">Texte du quiz</label>
             
             <!-- Toolbar supérieure -->
@@ -227,4 +236,23 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript" >
+    $( function () {
+        console.log('salut');
+        var tagList = $('.tag-list');
+        console.log(tagList);
+        // If using Bootstrap 2, be sure to include:
+        // Tags.bootstrapVersion = "2";
+        tagList.tags({
+            tagData:["boilerplate", "tags"],
+            suggestions:["basic", "suggestions"],
+            excludeList:["not", "these", "words"]
+        });
+    });
+    
+ 
+</script>
 {% endblock %}

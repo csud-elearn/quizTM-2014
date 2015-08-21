@@ -12,7 +12,8 @@ from django.core.validators import RegexValidator
 class Tag(models.Model):
     
     name = models.CharField(max_length=15, validators=[
-        RegexValidator(r'', "Les tags ne doivent pas comporter d'espaces")
+        # https://regex101.com/r/zG5xG9/1
+        RegexValidator(r'(?i)^(\w|\d|[\-_àèìòùâêîôûéäëïöü])+$', "Les tags ne doivent pas comporter d'espaces ni de caractères spéciaux")
     ])
 
 class Quiz(models.Model): #Infos générales sur le quiz

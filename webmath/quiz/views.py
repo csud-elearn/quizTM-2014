@@ -19,7 +19,7 @@ def create(request):
     S'il s'agit d'une requête HTTP GET, elle renvoie simplement le template de
     création de quiz contenant un formulaire vide.
     
-    Au contraire, s'il la requête HTTP est de type POST, la vue se charge d'enregistrer
+    Au contraire, si la requête HTTP est de type POST, la vue se charge d'enregistrer
     le nouveau quiz dans la base de données en instanciant un objet de la classe
     :py:class:`.utils.save.SaveQuiz` avec en argument les paramètres de la requête HTTP et le compte
     utilisateur du créateur du quiz. Cette
