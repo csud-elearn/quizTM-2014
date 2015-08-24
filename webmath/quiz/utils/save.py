@@ -119,6 +119,8 @@ class SaveQuiz:
 
         # création et/ou liaison avec la table des tags
         for t in tags:
+            t = t.strip()
+            t = t.replace(' ', '-')
             try:
                 tag = Tag.objects.get(name=t)
             except ObjectDoesNotExist:
