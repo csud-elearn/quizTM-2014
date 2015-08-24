@@ -4,7 +4,7 @@ from django.http import JsonResponse
 
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.shortcuts import render, HttpResponse, HttpResponseRedirect, get_object_or_404
+from django.shortcuts import render, HttpResponse, HttpResponseRedirect, get_object_or_404, redirect
 
 from common.models import Teacher, Student, Class
 from common.auth_utils import *
@@ -120,6 +120,9 @@ def complete(request, n_quiz):
             request, 'quiz/complete.html',
             {'quiz': quiz, 'l_forms': quizforms.l_forms}
         )
+
+def root(request):
+    return redirect('quiz:find')
 
 def find(request):
     """

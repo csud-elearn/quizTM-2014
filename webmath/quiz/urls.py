@@ -4,7 +4,8 @@ from quiz.views import *
 
 urlpatterns = patterns('',
     # URL des pages de l'application
-    url(r'^$', find, name="find"),
+    url(r'^$', root, name="root"),
+    url(r'^find/$', find, name="find"),
     url(r'^create/$', create, name="create"),
     url(r'^(\d+)/complete/', complete, name="complete"),
     url(r'^(\d+)/correct/', correct, name="correct"),
