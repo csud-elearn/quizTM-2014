@@ -22,5 +22,5 @@ class RegisterStudentForm(forms.Form):
     username = forms.CharField(label="Nom d'utilisateur", widget= forms.TextInput(attrs={'class' : 'form-control bottom-space'}))
     password = forms.CharField(label='Mot de passe', widget=forms.PasswordInput(attrs={'class' : 'form-control bottom-space'}))
     mail = forms.CharField(label='E-mail', widget=forms.EmailInput(attrs={'class' : 'form-control bottom-space'}))
-    class_group_id = forms.ModelMultipleChoiceField(queryset=Class.objects.all())
+    class_group_id = forms.ModelMultipleChoiceField(label="Groupe", queryset=Class.objects.all())
     
