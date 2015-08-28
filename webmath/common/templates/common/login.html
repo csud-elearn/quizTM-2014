@@ -15,7 +15,7 @@
         </form>
         
         {% else %}
-        <div class="alert alert-info"><span class="bold">Pas encore inscrit ? </span><a class="btn btn-xs btn-primary" href="{% url 'common:register' %}">S'inscrire</a></div>
+        <div class="alert alert-info"><span class="bold">Pas encore inscrit ? </span><a class="btn btn-xs btn-primary" href="{% url 'common:register_student' %}">S'inscrire</a></div>
         <form class="formLogin" method="post" action=".">
             {% csrf_token %}
             {{ form.as_p }}

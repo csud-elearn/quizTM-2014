@@ -26,4 +26,5 @@ class RegisterStudentForm(forms.Form):
         label="Groupe", queryset=Class.objects.all(),
         help_text='Choisissez <strong>TOUTES</strong> les classes auxquelles vous appartenez! '
     )
+
     
