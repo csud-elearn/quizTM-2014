@@ -3,7 +3,8 @@ from common.views import *
 
 
 urlpatterns = patterns('',
-    url(r'^register/$', register, name='register'),
+    url(r'^register/student$', register_student, name='register_student'),
+    # url(r'^register/teacher$', register_teacher, name='register_teacher'),
     url(r'^login/$', connexion, name='connexion'),
     url(r'^logout/$', deconnexion, name='deconnexion'),
 )

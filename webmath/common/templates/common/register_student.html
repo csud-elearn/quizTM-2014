@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    </head>
+    <body>
+    </body>
+</html>
+
+
+{% extends "quiz/base.html" %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block page-content %}
+<div class="thumbnail">
+    <div class="caption-full">
+        <h1>Inscription étudiant</h1>
+        <form method="POST" action="{% url 'common:register_student' %}">
+            {% csrf_token %}
+            {{ registerform }}
+            {% if error %}
+            <div class="alert alert-danger bottom-space"><span class="bold">Nom d'utilisateur indisponible !</span> Veuillez en choisir un autre</div>
+            {% endif %}
+            <button type="submit" class="btn btn-sm btn-primary bottom-space">Envoyer</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
