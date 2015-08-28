@@ -1,5 +1,6 @@
 {% extends "quiz/base.html" %}
 {% load staticfiles %}
+{% load tz %}
 
 {% block side-completed %}active{% endblock %}
 
@@ -23,7 +24,7 @@
                 <tr>
                     <th scope="row">{{ completed.pk }}</th>
                     <td><a href="{% url 'quiz:correct' completed.pk %}">{{ completed.id_quiz.title }}</a></td>
-                    <td>{{ completed.submit_date }}</td>
+                    <td>{{ completed.submit_date | localtime }}</td>
                     <td>{{ completed.result }}/{{ completed.id_quiz.points }}</td>
                 </tr>
                 {% endfor %}
