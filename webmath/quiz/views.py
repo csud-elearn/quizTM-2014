@@ -375,7 +375,8 @@ def advanced_stats(request, n_quiz):
     quizforms = QuizForms(quiz)
 
     # classes appartenant à teacher
-    classes = Class.objects.filter(owner=request.user)
+    teacher = Teacher.objects.filter(user=request.user)
+    classes = Class.objects.filter(owner=teacher)
 
     return render(request, 'quiz/advanced-stats.html', {
         'quiz' : quiz,
