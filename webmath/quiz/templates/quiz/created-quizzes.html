@@ -5,6 +5,15 @@
 
 {% block head %}
 <script src="{% static 'quiz/js/find_url.js' %}"></script>
+<script type="text/javascript" src="{% static 'quiz/bower_components/filterTable/jquery.filtertable.min.js' %}"></script>
+
+<style type="text/css">
+    .filter-table input {
+        width: 80%;
+        display: inline-block;
+    }
+</style>
+
 {% endblock %}
 
 {% block title %}Mes quiz{% endblock %}
@@ -46,4 +55,19 @@
         </table>
     </div>
 </div>
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+$( document ).ready(function() {
+    $('table').filterTable({
+        label: 'Filtre : ',
+        filterExpression: 'filterTableFindAll',
+        minRows: 2,
+        placeholder: 'Filtre de quiz, par exemple tags, éléments du titre'
+    }); 
+
+});
+</script>
+
 {% endblock %}
