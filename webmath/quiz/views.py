@@ -350,7 +350,9 @@ def created_quizzes(request):
     teacher = Teacher.objects.get(user=request.user)
     l_created = Quiz.objects.filter(id_teacher=teacher)
 
-    return render(request, 'quiz/created-quizzes.html', {'l_created' : l_created})
+    return render(request, 'quiz/created-quizzes.html', {
+        'l_created' : l_created,
+    })
 
 @login_required
 @user_passes_test(is_teacher)

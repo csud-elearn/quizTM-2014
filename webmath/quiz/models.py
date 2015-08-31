@@ -68,6 +68,9 @@ class Quiz(models.Model): #Infos générales sur le quiz
 
         return ordered_questions
 
+    def get_tags(self):
+        return map(str, self.tags.all())
+
     def average_result(self):
         """
         Récupère dans la base de données toutes les résolutions se rattachant

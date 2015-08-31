@@ -20,6 +20,7 @@
                     <th>#</th>
                     <th>Nom du quiz</th>
                     <th>Nombre de questions</th>
+                    <th>Tags</th>
                     <th>Résultat moyen</th>
                     <th>Total</th>
                     <th>Statistiques</th>
@@ -31,6 +32,11 @@
                     <th scope="row">{{ quiz.pk }}</th>
                     <td><a href="{% url 'quiz:complete' quiz.pk %}">{{ quiz.title }}</a></td>
                     <td>{{ quiz.length }}</td>
+                    <td>
+                        {% for tag in quiz.get_tags %}
+                        <span class="tag label label-info">{{ tag }}</span>
+                        {% endfor %}
+                    </td>
                     <td>{{ quiz.average_result }}</td>
                     <td>{{ quiz.points }}</td>
                     <td><a href="{% url 'quiz:advanced-stats' quiz.pk %}" class="btn btn-xs btn-warning"><span class="glyphicon glyphicon-stats"></span> Voir les stats</a></td>
