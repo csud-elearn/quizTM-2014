@@ -1,3 +1,5 @@
+from django.core.exceptions import ObjectDoesNotExist
+
 from django.utils import timezone
 from quiz.models import *
 
@@ -97,6 +99,7 @@ class SaveQcm(SaveQuestion):
         choice_db = QcmChoice(text=text, valid=valid, id_question=self.question_db)
         choice_db.save()
 
+
 class SaveQuiz:
     """
     Classe permettant l'enregistrement d'un quiz et de toutes ses questions dans
@@ -108,9 +111,24 @@ class SaveQuiz:
     TYPES = [SaveSimpleQuestion, SaveQcm, SaveQcm]
     MODELS = [SimpleQuestion, Qcm, Qcm]
     
-    def __init__(self, title, questions_list, quizcode, teacher):
+    def __init__(self, title, questions_list, quizcode, teacher, tags=None):
         self.quiz_db = Quiz(title=title, code=quizcode, id_teacher=teacher)
         self.quiz_db.save()
+
+        tags = tags or []
+
+        # création et/ou liaison avec la table des tags
+        for t in tags:
+            t = t.strip()
+            t = t.replace(' ', '-')
+            try:
+                tag = Tag.objects.get(name=t)
+            except ObjectDoesNotExist:
+                # créer le tag
+                tag = Tag(name=t)
+                tag.save()
+            self.quiz_db.tags.add(tag)
+
         
         n_question = 0
         global_points = 0
