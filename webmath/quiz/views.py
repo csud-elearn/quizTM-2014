@@ -132,7 +132,7 @@ def find(request):
     """
     return render(
         request, 'quiz/find.html',
-        {'l_quiz' : Quiz.objects.order_by('-creation_date')[:5]}
+        {'l_quiz' : Quiz.objects.order_by('-creation_date')[:]}
     )
 
 def findquiz(request):
