@@ -14,6 +14,8 @@ auth.models.User.add_to_class('is_student', lambda self: self.is_member('student
 auth.models.User.add_to_class('is_teacher', lambda self: self.is_member('teachers'))
 auth.models.User.add_to_class('is_admin', lambda self: self.is_member('admins'))
 
+
+
 class BaseProfile(models.Model):
     
     user = models.OneToOneField(User, related_name="profile")
@@ -29,6 +31,17 @@ class Teacher(BaseProfile):
 
     def __str__(self):
         return "Professeur {0}".format(self.user.username)
+
+    def get_classes(self):
+        return Class.objects.filter(owner=self)
+
+# ajout d'une méthode `get_classes` au modèle User dans le but de pouvoir
+# rapidement extraire les classes d'un projet
+def get_classes(self):
+    teacher = Teacher.objects.get(user=self)
+    return teacher.get_classes()
+auth.models.User.add_to_class('get_classes', get_classes)
+
 
 class Student(BaseProfile):
 
