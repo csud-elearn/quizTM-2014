@@ -40,6 +40,8 @@ def register_student(request):
         if registerform.is_valid():
             username = registerform.cleaned_data["username"]
             password = registerform.cleaned_data["password"]
+            firstname = registerform.cleaned_data["firstname"]
+            lastname = registerform.cleaned_data["lastname"]
             mail = registerform.cleaned_data["mail"]
             class_groups = registerform.cleaned_data["class_group_id"]
             
@@ -51,7 +53,12 @@ def register_student(request):
 
                     
                 # dans ce qui suit, user correspond à un student
-                user = User.objects.create_user(username, mail, password)
+                user = User.objects.create_user(
+                    username=username, 
+                    email=mail, 
+                    password=password,
+                    first_name=firstname,
+                    last_name=lastname)
                 group = Group.objects.get(name=group_name)
                 user.groups.add(group)
                 user.save()

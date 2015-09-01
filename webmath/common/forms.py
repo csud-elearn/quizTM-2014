@@ -20,6 +20,8 @@ class RegisterFormAllowTeachers(forms.Form):
 
 class RegisterStudentForm(forms.Form):
     username = forms.CharField(label="Nom d'utilisateur", widget= forms.TextInput(attrs={'class' : 'form-control bottom-space'}))
+    firstname  = forms.CharField(label="Prénom", widget= forms.TextInput(attrs={'class' : 'form-control bottom-space'}))
+    lastname = forms.CharField(label="Nom", widget= forms.TextInput(attrs={'class' : 'form-control bottom-space'}))
     password = forms.CharField(label='Mot de passe', widget=forms.PasswordInput(attrs={'class' : 'form-control bottom-space'}))
     mail = forms.CharField(label='E-mail', widget=forms.EmailInput(attrs={'class' : 'form-control bottom-space'}))
     class_group_id = forms.ModelMultipleChoiceField(
