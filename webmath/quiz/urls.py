@@ -18,5 +18,9 @@ urlpatterns = patterns('',
     url(r'^listdrafts/', listdrafts, name="listdrafts"),
     url(r'^getdraft/', getdraft, name="getdraft"),
     url(r'^add-correct-answer/', add_correct_answer, name="add-correct-answer"),
-    url(r'^classes/', ls_classes, name="classes"),
+
+    # gestion des classes
+    url(r'^classes/$', class_members, name="classes"),
+    url(r'^classes/(?P<class_id>\d+)$', class_members, name="class_members"),
+
 )

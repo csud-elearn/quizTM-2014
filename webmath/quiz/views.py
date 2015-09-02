@@ -412,10 +412,16 @@ def add_correct_answer(request):
 
 @login_required
 @user_passes_test(is_teacher)
-def ls_classes(request):
-    teacher = request.user
+def class_members(request, class_id=None):
+    user = request.user
+    teacher = Teacher.objects.filter(user=user)
 
-    # retourne toutes les classes dont possédées par teacher
+    # retourne toutes les classes possédées par teacher
     classes = Class.objects.filter(owner=teacher)
 
-    return render(request, 'quiz/classes.html', { 'classes': classes })
+    print('class_id', class_id)
+    if class_id:
+        class_group = Class.objects.get(pk=class_id)
+        students = class_group.members.all()
+
+    return render(request, 'quiz/class_members.html', locals())

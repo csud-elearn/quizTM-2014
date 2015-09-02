@@ -1,0 +1,63 @@
+{% extends "quiz/base_class_admin.html" %}
+
+{% block side-class-members %}active{% endblock %}
+
+{% block content-title %}
+Liste des classes
+{% endblock content-title %}
+
+{% block page-content %}
+
+    <h2>Mes classes</h2>
+
+ 
+    <table class="table responsive-table bordered">
+        <thead>
+            <td>Nom de la classe</td>
+        </thead>
+        <tbody>
+
+        {% for cl in classes  %}
+        <tr>
+            <td>
+                <a href="{% url 'quiz:class_members' cl.id %}">{{cl.name}}</a>
+            </td>
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+    {% if class_group %}
+
+        <h2>Liste des étudiants de la classe <span class="class-group-name bold">{{class_group.name}}</span></h2>
+
+        <table class="table responsive-table bordered">
+        <thead>
+            <td>ID user</td>
+            <td>Nom</td>
+            <td>Prénom</td>
+            
+        </thead>
+        <tbody>
+        
+        {% for student in students  %}
+        <tr>
+            <td>
+                {{student.user.id}}
+            </td>
+            <td>
+                {{student.user.last_name}}
+            </td>
+            <td>
+                {{student.user.first_name}}
+            </td>
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+    
+    {% endif %}
+
+{% endblock page-content %}
