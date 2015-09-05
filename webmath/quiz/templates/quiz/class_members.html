@@ -11,7 +11,7 @@ Liste des classes
     <h2>Mes classes</h2>
 
  
-    <table class="table responsive-table bordered">
+    <table class="table responsive-table table-striped table-bordered table-hover">
         <thead>
             <td>Nom de la classe</td>
         </thead>
@@ -30,11 +30,13 @@ Liste des classes
 
     {% if class_group %}
 
-        <h2>Liste des étudiants de la classe <span class="class-group-name bold">{{class_group.name}}</span></h2>
-
-        <table class="table responsive-table bordered">
+        <table class="table responsive-table table-striped table-bordered table-hover table-condensed">
+        <caption>
+            Liste des étudiants de la classe <span class="class-group-name bold">{{class_group.name}}</span>
+        </caption>
         <thead>
-            <td>ID user</td>
+            
+            <td>#</td>
             <td>Nom</td>
             <td>Prénom</td>
             
@@ -44,7 +46,7 @@ Liste des classes
         {% for student in students  %}
         <tr>
             <td>
-                {{student.user.id}}
+                {{forloop.counter}}
             </td>
             <td>
                 {{student.user.last_name}}
